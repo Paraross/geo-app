@@ -35,29 +35,34 @@ layout_mode = 2
 columns = 2
 
 [node name="SideLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskDataGrid"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="SideSpinBox" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskDataGrid"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.1
 editable = false
 
-[node name="AreaLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskDataGrid"]
+[node name="TaskAnswerGrid" type="GridContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AreaLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
 layout_mode = 2
 text = "Area"
 
-[node name="AreaSpinBox" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskDataGrid"]
+[node name="AreaSpinBox" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.01
 
-[node name="VolumeLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskDataGrid"]
+[node name="VolumeLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
 layout_mode = 2
 text = "Volume"
 
-[node name="VolumeSpinBox" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskDataGrid"]
+[node name="VolumeSpinBox" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.01
