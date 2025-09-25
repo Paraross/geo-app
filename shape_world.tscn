@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://ng6j4mjp362o"]
+
+[ext_resource type="Script" uid="uid://ublatk17f74f" path="res://shape_world.gd" id="1_yqeqd"]
+[ext_resource type="Script" uid="uid://d0ml2eda64idd" path="res://camera.gd" id="2_iqh5t"]
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+background_color = Color(0.28118682, 0.28118688, 0.28118682, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+material = SubResource("StandardMaterial3D_7dm0k")
+
+[node name="ShapeWorld" type="WorldEnvironment"]
+environment = SubResource("Environment_ig7tw")
+script = ExtResource("1_yqeqd")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 2.5, 2.5)
+rotation_edit_mode = 1
+script = ExtResource("2_iqh5t")
+
+[node name="CameraLight" type="DirectionalLight3D" parent="Camera"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_7dm0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_ig7tw")
