@@ -10,64 +10,64 @@
 script = ExtResource("1_ig7tw")
 current_screen = NodePath("MainMenu")
 
-[node name="TaskView" type="HBoxContainer" parent="."]
+[node name="TaskScreen" type="HBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShapeViewportContainer" type="SubViewportContainer" parent="TaskView"]
+[node name="ShapeViewportContainer" type="SubViewportContainer" parent="TaskScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
 
-[node name="ShapeViewport" type="SubViewport" parent="TaskView/ShapeViewportContainer"]
+[node name="ShapeViewport" type="SubViewport" parent="TaskScreen/ShapeViewportContainer"]
 handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
-[node name="ShapeWorld" parent="TaskView/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
+[node name="ShapeWorld" parent="TaskScreen/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 
-[node name="PanelContainer" type="PanelContainer" parent="TaskView"]
+[node name="PanelContainer" type="PanelContainer" parent="TaskScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TaskView/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskScreen/PanelContainer"]
 layout_mode = 2
 
-[node name="TaskDataGrid" type="GridContainer" parent="TaskView/PanelContainer/VBoxContainer"]
+[node name="TaskDataGrid" type="GridContainer" parent="TaskScreen/PanelContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="TaskAnswerGrid" type="GridContainer" parent="TaskView/PanelContainer/VBoxContainer"]
+[node name="TaskAnswerGrid" type="GridContainer" parent="TaskScreen/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="AreaLabel" type="Label" parent="TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+[node name="AreaLabel" type="Label" parent="TaskScreen/PanelContainer/VBoxContainer/TaskAnswerGrid"]
 layout_mode = 2
 text = "Area"
 
-[node name="AreaSpinBox" type="SpinBox" parent="TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+[node name="AreaSpinBox" type="SpinBox" parent="TaskScreen/PanelContainer/VBoxContainer/TaskAnswerGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.01
 
-[node name="VolumeLabel" type="Label" parent="TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+[node name="VolumeLabel" type="Label" parent="TaskScreen/PanelContainer/VBoxContainer/TaskAnswerGrid"]
 layout_mode = 2
 text = "Volume"
 
-[node name="VolumeSpinBox" type="SpinBox" parent="TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+[node name="VolumeSpinBox" type="SpinBox" parent="TaskScreen/PanelContainer/VBoxContainer/TaskAnswerGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.01
 
-[node name="CheckAnswerButton" type="Button" parent="TaskView/PanelContainer/VBoxContainer"]
+[node name="CheckAnswerButton" type="Button" parent="TaskScreen/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 text = "Check answer"
 
-[node name="NewTaskButton" type="Button" parent="TaskView/PanelContainer/VBoxContainer"]
+[node name="NewTaskButton" type="Button" parent="TaskScreen/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -129,7 +129,7 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[connection signal="pressed" from="TaskView/PanelContainer/VBoxContainer/CheckAnswerButton" to="." method="_on_check_answer_button_pressed"]
-[connection signal="pressed" from="TaskView/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TaskScreen/PanelContainer/VBoxContainer/CheckAnswerButton" to="." method="_on_check_answer_button_pressed"]
+[connection signal="pressed" from="TaskScreen/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]

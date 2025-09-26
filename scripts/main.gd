@@ -6,17 +6,17 @@ extends Node
 		make_current_screen_visible()
 		print("current_screen changed to %s" % current_screen)
 
-@onready var task_view: HBoxContainer = $TaskView
+@onready var task_view: HBoxContainer = $TaskScreen
 
-@onready var shape_world: ShapeWorld = $TaskView/ShapeViewportContainer/ShapeViewport/ShapeWorld
+@onready var shape_world: ShapeWorld = $TaskScreen/ShapeViewportContainer/ShapeViewport/ShapeWorld
 
-@onready var task_data_grid: GridContainer = $TaskView/PanelContainer/VBoxContainer/TaskDataGrid
-@onready var task_answer_grid: GridContainer = $TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid
+@onready var task_data_grid: GridContainer = $TaskScreen/PanelContainer/VBoxContainer/TaskDataGrid
+@onready var task_answer_grid: GridContainer = $TaskScreen/PanelContainer/VBoxContainer/TaskAnswerGrid
 @onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
-@onready var check_answer_button: Button = $TaskView/PanelContainer/VBoxContainer/CheckAnswerButton
-@onready var new_task_button: Button = $TaskView/PanelContainer/VBoxContainer/NewTaskButton
+@onready var check_answer_button: Button = $TaskScreen/PanelContainer/VBoxContainer/CheckAnswerButton
+@onready var new_task_button: Button = $TaskScreen/PanelContainer/VBoxContainer/NewTaskButton
 
 @onready var main_menu_background: ColorRect = $MainMenuBackground
 @onready var main_menu: CenterContainer = $MainMenu
