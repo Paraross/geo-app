@@ -60,3 +60,8 @@ func _on_check_answer_button_pressed() -> void:
 		print(shape_world.current_task.volume_tip())
 	
 	print()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		get_tree().quit()

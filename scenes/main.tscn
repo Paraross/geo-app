@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bugepp7ityxgx"]
+[gd_scene load_steps=6 format=3 uid="uid://bugepp7ityxgx"]
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/shape_world.tscn" id="2_0xm2m"]
 [ext_resource type="Theme" uid="uid://c7n5qor8wgsok" path="res://themes/ui_theme.tres" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/animation_component.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="6_tefeu"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
@@ -16,7 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ShapeViewportContainer" type="SubViewportContainer" parent="TaskView"]
-custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
@@ -111,6 +111,7 @@ layout_mode = 2
 theme = ExtResource("3_sugp2")
 theme_type_variation = &"QuitButon"
 text = "Quit"
+script = ExtResource("6_tefeu")
 
 [node name="AnimationComponent2" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/QuitButton"]
 script = ExtResource("4_jyhfs")
@@ -122,3 +123,4 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [connection signal="pressed" from="TaskView/PanelContainer/VBoxContainer/CheckAnswerButton" to="." method="_on_check_answer_button_pressed"]
 [connection signal="pressed" from="TaskView/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]

@@ -32,7 +32,10 @@ func on_hover_end() -> void:
 
 
 func add_tween(property: String, value: Variant) -> void:
-	var tween := get_tree().create_tween().set_trans(trans_type).set_ease(ease_type)
+	var tree := get_tree()
+	if tree == null:
+		return
+	var tween := tree.create_tween().set_trans(trans_type).set_ease(ease_type)
 	tween.tween_property(node, property, value, duration)
 
 
