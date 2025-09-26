@@ -11,6 +11,9 @@ extends Node
 @onready var check_answer_button: Button = $TaskView/PanelContainer/VBoxContainer/CheckAnswerButton
 @onready var new_task_button: Button = $TaskView/PanelContainer/VBoxContainer/NewTaskButton
 
+@onready var main_menu_background: ColorRect = $MainMenuBackground
+@onready var main_menu: CenterContainer = $MainMenu
+
 func _on_button_pressed() -> void:
 	shape_world.spawn_new_task()
 	
@@ -65,3 +68,8 @@ func _on_check_answer_button_pressed() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		get_tree().quit()
+
+
+func _on_start_button_pressed() -> void:
+	main_menu.visible = false
+	main_menu_background.visible = false
