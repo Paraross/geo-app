@@ -1,5 +1,8 @@
 extends Camera3D
 
+#TODO: improve input handling when inputting answers
+#TODO: e.g ctrl+a both rotates the camera and selects in the spin box
+
 ## In radians per second.
 @export var rotation_speed: float = TAU / 3.0
 @export var zoom_speed: float = 1.0

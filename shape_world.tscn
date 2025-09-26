@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ng6j4mjp362o"]
 
-[ext_resource type="Script" uid="uid://ublatk17f74f" path="res://shape_world.gd" id="1_yqeqd"]
-[ext_resource type="Script" uid="uid://d0ml2eda64idd" path="res://camera.gd" id="2_iqh5t"]
+[ext_resource type="Script" uid="uid://ublatk17f74f" path="res://scripts/shape_world.gd" id="1_yqeqd"]
+[ext_resource type="Script" uid="uid://d0ml2eda64idd" path="res://scripts/camera.gd" id="2_iqh5t"]
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
 background_color = Color(0.28118682, 0.28118688, 0.28118682, 1)
