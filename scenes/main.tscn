@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bugepp7ityxgx"]
+[gd_scene load_steps=5 format=3 uid="uid://bugepp7ityxgx"]
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/shape_world.tscn" id="2_0xm2m"]
 [ext_resource type="Theme" uid="uid://c7n5qor8wgsok" path="res://themes/ui_theme.tres" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/animation_component.gd" id="4_jyhfs"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
@@ -97,11 +98,27 @@ layout_mode = 2
 theme = ExtResource("3_sugp2")
 text = "Start"
 
+[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/StartButton"]
+script = ExtResource("4_jyhfs")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
 [node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 theme_type_variation = &"QuitButon"
 text = "Quit"
+
+[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+script = ExtResource("4_jyhfs")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/CheckAnswerButton" to="." method="_on_check_answer_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
