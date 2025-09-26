@@ -80,7 +80,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 

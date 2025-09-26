@@ -11,8 +11,9 @@ content_margin_bottom = 16.0
 bg_color = Color(0.41404402, 0.11800531, 0.13559523, 1)
 
 [resource]
+Button/font_sizes/font_size = 36
 Button/styles/normal = ExtResource("1_qa7hf")
-Label/font_sizes/font_size = 24
+Label/font_sizes/font_size = 42
 Label/styles/normal = SubResource("StyleBoxEmpty_qa7hf")
 PanelContainer/styles/panel = ExtResource("2_qa7hf")
 QuitButon/base_type = &"Button"
