@@ -1,15 +1,15 @@
 extends Node
 
-@onready var shape_world: ShapeWorld = $HBoxContainer/ShapeViewportContainer/ShapeViewport/ShapeWorld
+@onready var shape_world: ShapeWorld = $TaskView/ShapeViewportContainer/ShapeViewport/ShapeWorld
 
-@onready var task_data_grid: GridContainer = $HBoxContainer/PanelContainer/VBoxContainer/TaskDataGrid
+@onready var task_data_grid: GridContainer = $TaskView/PanelContainer/VBoxContainer/TaskDataGrid
 
-@onready var task_answer_grid: GridContainer = $HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid
+@onready var task_answer_grid: GridContainer = $TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid
 @onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
-@onready var check_answer_button: Button = $HBoxContainer/PanelContainer/VBoxContainer/CheckAnswerButton
-@onready var new_task_button: Button = $HBoxContainer/PanelContainer/VBoxContainer/NewTaskButton
+@onready var check_answer_button: Button = $TaskView/PanelContainer/VBoxContainer/CheckAnswerButton
+@onready var new_task_button: Button = $TaskView/PanelContainer/VBoxContainer/NewTaskButton
 
 func _on_button_pressed() -> void:
 	shape_world.spawn_new_task()

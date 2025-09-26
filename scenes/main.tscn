@@ -8,7 +8,71 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="TaskView" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShapeViewportContainer" type="SubViewportContainer" parent="TaskView"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="ShapeViewport" type="SubViewport" parent="TaskView/ShapeViewportContainer"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="ShapeWorld" parent="TaskView/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
+
+[node name="PanelContainer" type="PanelContainer" parent="TaskView"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskView/PanelContainer"]
+layout_mode = 2
+
+[node name="TaskDataGrid" type="GridContainer" parent="TaskView/PanelContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TaskAnswerGrid" type="GridContainer" parent="TaskView/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AreaLabel" type="Label" parent="TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+layout_mode = 2
+text = "Area"
+
+[node name="AreaSpinBox" type="SpinBox" parent="TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+
+[node name="VolumeLabel" type="Label" parent="TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSpinBox" type="SpinBox" parent="TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+
+[node name="CheckAnswerButton" type="Button" parent="TaskView/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Check answer"
+
+[node name="NewTaskButton" type="Button" parent="TaskView/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Get new task"
+
+[node name="MainMenu" type="CenterContainer" parent="."]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,89 +80,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShapeViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-stretch = true
-
-[node name="ShapeViewport" type="SubViewport" parent="HBoxContainer/ShapeViewportContainer"]
-handle_input_locally = false
-size = Vector2i(958, 1080)
-render_target_update_mode = 0
-
-[node name="ShapeWorld" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
-
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="TaskDataGrid" type="GridContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="TaskAnswerGrid" type="GridContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="AreaLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
-layout_mode = 2
-text = "Area"
-
-[node name="AreaSpinBox" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
-layout_mode = 2
-size_flags_horizontal = 3
-step = 0.01
-
-[node name="VolumeLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
-layout_mode = 2
-text = "Volume"
-
-[node name="VolumeSpinBox" type="SpinBox" parent="HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
-layout_mode = 2
-size_flags_horizontal = 3
-step = 0.01
-
-[node name="CheckAnswerButton" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 10
-text = "Check answer"
-
-[node name="NewTaskButton" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 10
-text = "Get new task"
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MainMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 text = "Main Menu"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MainMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 text = "Start"
 
-[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/StartButton"]
+[node name="AnimationComponent" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/StartButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -106,13 +106,13 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MainMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 theme_type_variation = &"QuitButon"
 text = "Quit"
 
-[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+[node name="AnimationComponent2" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/QuitButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -120,5 +120,5 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/CheckAnswerButton" to="." method="_on_check_answer_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TaskView/PanelContainer/VBoxContainer/CheckAnswerButton" to="." method="_on_check_answer_button_pressed"]
+[connection signal="pressed" from="TaskView/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
