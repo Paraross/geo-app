@@ -19,4 +19,4 @@ PanelContainer/styles/panel = ExtResource("2_qa7hf")
 QuitButon/base_type = &"Button"
 QuitButon/styles/hover = SubResource("StyleBoxFlat_jkgan")
 QuitButon/styles/normal = ExtResource("3_qa7hf")
-VBoxContainer/constants/separation = 8
+VBoxContainer/constants/separation = 16
