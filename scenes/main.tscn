@@ -73,40 +73,52 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 text = "Get new task"
 
-[node name="MainMenuBackground" type="ColorRect" parent="."]
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.26002115, 0.26002115, 0.26002115, 1)
 
-[node name="MainMenu" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="MainMenu"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenu"]
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/CenterContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MainMenu/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 text = "Main Menu"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="MainMenu/PanelContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 text = "Start"
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/StartButton"]
+[node name="AnimationComponent" type="Node" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -114,14 +126,14 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="QuitButton" type="Button" parent="MainMenu/PanelContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 theme_type_variation = &"QuitButon"
 text = "Quit"
 script = ExtResource("6_tefeu")
 
-[node name="AnimationComponent2" type="Node" parent="MainMenu/PanelContainer/VBoxContainer/QuitButton"]
+[node name="AnimationComponent2" type="Node" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -131,5 +143,5 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [connection signal="pressed" from="TaskScreen/PanelContainer/VBoxContainer/CheckAnswerButton" to="." method="_on_check_answer_button_pressed"]
 [connection signal="pressed" from="TaskScreen/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
