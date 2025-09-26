@@ -42,4 +42,4 @@ func randomize_values() -> void:
 
 
 func truncate(x: float) -> float:
-	return float(int(100.0 * x)) / 100.0
+	return float(roundf(100.0 * x)) / 100.0
