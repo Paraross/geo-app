@@ -18,9 +18,6 @@ extends Node
 @onready var check_answer_button: Button = $TaskScreen/PanelContainer/VBoxContainer/CheckAnswerButton
 @onready var new_task_button: Button = $TaskScreen/PanelContainer/VBoxContainer/NewTaskButton
 
-@onready var main_menu_background: ColorRect = $MainMenuBackground
-@onready var main_menu: CenterContainer = $MainMenu
-
 func _ready() -> void:
 	make_children_not_visible()
 	make_current_screen_visible()
