@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://c7n5qor8wgsok"]
+
+[ext_resource type="StyleBox" uid="uid://biscsakumsjs1" path="res://themes/button.tres" id="1_qa7hf"]
+[ext_resource type="StyleBox" uid="uid://b6o40ufp5k8kc" path="res://themes/panel_container.tres" id="2_qa7hf"]
+[ext_resource type="StyleBox" uid="uid://lfqhgl5aaoq2" path="res://themes/quit_button.tres" id="3_qa7hf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qa7hf"]
+content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkgan"]
+bg_color = Color(0.41404402, 0.11800531, 0.13559523, 1)
+
+[resource]
+Button/styles/normal = ExtResource("1_qa7hf")
+Label/font_sizes/font_size = 24
+Label/styles/normal = SubResource("StyleBoxEmpty_qa7hf")
+PanelContainer/styles/panel = ExtResource("2_qa7hf")
+QuitButon/base_type = &"Button"
+QuitButon/styles/hover = SubResource("StyleBoxFlat_jkgan")
+QuitButon/styles/normal = ExtResource("3_qa7hf")
+VBoxContainer/constants/separation = 8
