@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/animation_component.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="6_tefeu"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" node_paths=PackedStringArray("current_screen")]
 script = ExtResource("1_ig7tw")
+current_screen = NodePath("MainMenu")
 
 [node name="TaskView" type="HBoxContainer" parent="."]
 anchors_preset = 15

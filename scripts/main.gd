@@ -1,9 +1,16 @@
 extends Node
 
+@export var current_screen: Control:
+	set(value):
+		current_screen = value
+		make_current_screen_visible()
+		print("current_screen changed to %s" % current_screen)
+
+@onready var task_view: HBoxContainer = $TaskView
+
 @onready var shape_world: ShapeWorld = $TaskView/ShapeViewportContainer/ShapeViewport/ShapeWorld
 
 @onready var task_data_grid: GridContainer = $TaskView/PanelContainer/VBoxContainer/TaskDataGrid
-
 @onready var task_answer_grid: GridContainer = $TaskView/PanelContainer/VBoxContainer/TaskAnswerGrid
 @onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
@@ -13,6 +20,10 @@ extends Node
 
 @onready var main_menu_background: ColorRect = $MainMenuBackground
 @onready var main_menu: CenterContainer = $MainMenu
+
+func _ready() -> void:
+	make_children_not_visible()
+	make_current_screen_visible()
 
 func _on_button_pressed() -> void:
 	shape_world.spawn_new_task()
@@ -65,11 +76,20 @@ func _on_check_answer_button_pressed() -> void:
 	print()
 
 
+func make_children_not_visible() -> void:
+	for child: Control in get_children():
+		child.visible = false
+
+
+func make_current_screen_visible() -> void:
+	current_screen.visible = true
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		get_tree().quit()
 
 
 func _on_start_button_pressed() -> void:
-	main_menu.visible = false
-	main_menu_background.visible = false
+	make_children_not_visible()
+	current_screen = task_view
