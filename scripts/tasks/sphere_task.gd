@@ -20,12 +20,12 @@ func values() -> Array[Array]:
 
 func correct_area() -> float:
 	var result := 4.0 * PI * radius * radius
-	return truncate(result)
+	return Global.truncate(result)
 
 
 func correct_volume() -> float:
 	var result := 4.0 / 3.0 * PI * radius * radius * radius
-	return truncate(result)
+	return Global.truncate(result)
 
 
 func area_tip() -> String:
@@ -38,4 +38,4 @@ func volume_tip() -> String:
 
 func randomize_values() -> void:
 	var rand_value := randf_range(min_value, max_value) / 2.0
-	radius = truncate_round(rand_value)
+	radius = Global.truncate_round(rand_value)
