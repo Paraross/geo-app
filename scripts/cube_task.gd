@@ -1,4 +1,3 @@
-class_name CubeTask
 extends Task
 
 @export var side_length: float = 1.0
