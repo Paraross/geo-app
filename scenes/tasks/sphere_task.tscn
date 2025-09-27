@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bv76bs7wf35xt"]
 
-[ext_resource type="Script" uid="uid://v7pvsd6jaw3k" path="res://scripts/sphere_task.gd" id="1_1rmag"]
+[ext_resource type="Script" uid="uid://v7pvsd6jaw3k" path="res://scripts/tasks/sphere_task.gd" id="1_1rmag"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_gmrm6"]
 
