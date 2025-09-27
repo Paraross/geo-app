@@ -1,35 +1,28 @@
-class_name Task
+@abstract class_name Task
 extends Node3D
 
 @export var min_value: float = 1.0
 @export var max_value: float = 2.0
 
-func difficulty() -> Global.TaskDifficulty:
-	return Global.TaskDifficulty.EASY
+@abstract func difficulty() -> Global.TaskDifficulty
 
 
-func values() -> Array[Array]:
-	return []
+@abstract func values() -> Array[Array]
 
 
-func correct_area() -> float:
-	return NAN
+@abstract func correct_area() -> float
 
 
-func correct_volume() -> float:
-	return NAN
+@abstract func correct_volume() -> float
 
 
-func area_tip() -> String:
-	return ""
+@abstract func area_tip() -> String
 
 
-func volume_tip() -> String:
-	return ""
+@abstract func volume_tip() -> String
 
 
-func randomize_values() -> void:
-	pass
+@abstract func randomize_values() -> void
 
 
 func truncate(x: float) -> float:
