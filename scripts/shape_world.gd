@@ -5,8 +5,8 @@ var current_task: Task
 
 # TODO: move to own directory and load all from it
 const ALL_TASKS: Array[NodePath] = [
-	"res://scenes/cube_task.tscn",
-	"res://scenes/prism_task.tscn",
+	"res://scenes/tasks/cube_task.tscn",
+	"res://scenes/tasks/prism_task.tscn",
 ]
 
 func spawn_new_task() -> void:
