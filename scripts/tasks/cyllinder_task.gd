@@ -12,6 +12,10 @@ func _ready() -> void:
 	cyllinder_mesh.height = height
 
 
+func difficulty() -> Global.TaskDifficulty:
+	return Global.TaskDifficulty.MEDIUM
+
+
 func values() -> Array[Array]:
 	return [
 		["Radius", radius],

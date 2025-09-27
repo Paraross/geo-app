@@ -4,6 +4,10 @@ extends Node3D
 @export var min_value: float = 1.0
 @export var max_value: float = 2.0
 
+func difficulty() -> Global.TaskDifficulty:
+	return Global.TaskDifficulty.EASY
+
+
 func values() -> Array[Array]:
 	return []
 

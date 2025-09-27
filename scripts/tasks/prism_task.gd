@@ -16,6 +16,10 @@ func _ready() -> void:
 	prism_mesh.size.z = height
 
 
+func difficulty() -> Global.TaskDifficulty:
+	return Global.TaskDifficulty.EASY
+
+
 func values() -> Array[Array]:
 	return [
 		["Base base", base_base],

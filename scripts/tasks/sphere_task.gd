@@ -10,6 +10,10 @@ func _ready() -> void:
 	sphere_mesh.height = 2.0 * radius
 
 
+func difficulty() -> Global.TaskDifficulty:
+	return Global.TaskDifficulty.EASY
+
+
 func values() -> Array[Array]:
 	return [["Radius", radius]]
 

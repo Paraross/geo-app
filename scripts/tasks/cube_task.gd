@@ -11,6 +11,10 @@ func _ready() -> void:
 	cube_mesh.size.z = side_length
 
 
+func difficulty() -> Global.TaskDifficulty:
+	return Global.TaskDifficulty.EASY
+
+
 func values() -> Array[Array]:
 	return [["Side", side_length]]
 
