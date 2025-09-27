@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddn7lp27rrv1x"]
+
+[ext_resource type="Script" uid="uid://b2fq07imhi1l8" path="res://scripts/cyllinder_task.gd" id="1_1dm5o"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ajj2c"]
+height = 1.0
+
+[node name="CyllinderTask" type="Node3D"]
+script = ExtResource("1_1dm5o")
+
+[node name="Cyllinder" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_ajj2c")
