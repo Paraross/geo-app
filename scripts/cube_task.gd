@@ -35,11 +35,5 @@ func volume_tip() -> String:
 
 
 func randomize_values() -> void:
-	var rand_value := randf_range(0.5, 2.5)
-	var truncated := truncate(rand_value)
-	var rounded := roundf(10.0 * truncated) / 10.0
-	side_length = rounded
-
-
-func truncate(x: float) -> float:
-	return float(roundf(100.0 * x)) / 100.0
+	var rand_value := randf_range(min_value, max_value)
+	side_length = truncate_round(rand_value)
