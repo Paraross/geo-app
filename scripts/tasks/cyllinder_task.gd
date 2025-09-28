@@ -24,13 +24,11 @@ func values() -> Array[Array]:
 
 
 func correct_area() -> float:
-	var result := 2.0 * base_area() + side_area()
-	return Global.truncate(result)
+	return 2.0 * base_area() + side_area()
 
 
 func correct_volume() -> float:
-	var result := base_area() * height
-	return Global.truncate(result)
+	return base_area() * height
 
 
 func area_tip() -> String:
@@ -44,8 +42,8 @@ func volume_tip() -> String:
 func randomize_values() -> void:
 	var rand_value1 := randf_range(min_value, max_value) / 2.0
 	var rand_value2 := randf_range(min_value, max_value)
-	radius = Global.truncate_round(rand_value1)
-	height = Global.truncate_round(rand_value2)
+	radius = Global.round_with_digits(rand_value1, 1)
+	height = Global.round_with_digits(rand_value2, 1)
 
 
 func base_area() -> float:

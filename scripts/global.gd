@@ -6,10 +6,7 @@ enum TaskDifficulty {
 	HARD,
 }
 
-func truncate(x: float) -> float:
-	return float(roundf(100.0 * x)) / 100.0
-
-
-func truncate_round(x: float) -> float:
-	var truncated := truncate(x)
-	return roundf(10.0 * truncated) / 10.0
+func round_with_digits(x: float, digits: int) -> float:
+	var shift := 10.0 ** digits
+	var rounded := roundf(x * shift) / shift
+	return rounded
