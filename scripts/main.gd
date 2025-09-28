@@ -4,7 +4,7 @@ extends Node
 	set(value):
 		current_screen = value
 		make_current_screen_visible()
-		print("current_screen changed to %s" % current_screen)
+		# print("current_screen changed to %s" % current_screen)
 
 @onready var task_screen: HBoxContainer = $TaskScreen
 @onready var shape_world: ShapeWorld = $TaskScreen/ShapeViewportContainer/ShapeViewport/ShapeWorld
@@ -14,9 +14,16 @@ extends Node
 @onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
+@onready var task_filter_menu: Control = $TaskFilterMenu
+@onready var diff_list: ItemList = task_filter_menu.get_node("CenterContainer/PanelContainer/HBoxContainer/VBoxContainer/ItemList") 
+@onready var task_list: ItemList = task_filter_menu.get_node("CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/ItemList") 
+
 func _ready() -> void:
 	make_children_not_visible()
 	make_current_screen_visible()
+
+	load_all_tasks()
+	initialize_difficulty_list()
 
 func _on_button_pressed() -> void:
 	shape_world.spawn_new_task()
@@ -86,3 +93,39 @@ func _notification(what: int) -> void:
 func _on_start_button_pressed() -> void:
 	make_children_not_visible()
 	current_screen = task_screen
+
+
+func initialize_difficulty_list() -> void:
+	for difficulty_name: String in Global.TaskDifficulty.keys():
+		diff_list.add_item(difficulty_name.capitalize())
+	
+	# select all by default
+	for i in range(diff_list.item_count):
+		diff_list.select(i, false)
+	
+	fill_task_list()
+
+
+func fill_task_list() -> void:
+	var selected_difficulty_indices := diff_list.get_selected_items()
+
+	task_list.clear()
+	for task in Global.all_tasks:
+		var task_difficulty_is_selected := selected_difficulty_indices.find(task.difficulty()) != -1
+		if task_difficulty_is_selected:
+			task_list.add_item(task.name)
+
+
+func load_all_tasks() -> void:
+	const TASK_SCENE_DIRECTORY: String = "res://scenes/tasks/"
+
+	var task_paths := ResourceLoader.list_directory(TASK_SCENE_DIRECTORY)
+	for path in task_paths:
+		if path.ends_with(".tscn"):
+			var task_scene: PackedScene = load(TASK_SCENE_DIRECTORY.path_join(path))
+			var task: Task = task_scene.instantiate()
+			Global.all_tasks.push_back(task)
+
+
+func _on_difficulty_item_list_multi_selected(_index: int, _selected: bool) -> void:
+	fill_task_list()
