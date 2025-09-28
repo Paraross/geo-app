@@ -15,8 +15,9 @@ extends Node
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
 @onready var task_filter_menu: Control = $TaskFilterMenu
-@onready var diff_list: ItemList = task_filter_menu.get_node("CenterContainer/PanelContainer/HBoxContainer/VBoxContainer/ItemList") 
-@onready var task_list: ItemList = task_filter_menu.get_node("CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/ItemList") 
+@onready var task_filter_vbox: VBoxContainer = task_filter_menu.get_node("CenterContainer/PanelContainer/VBoxContainer")
+@onready var diff_list: ItemList = task_filter_vbox.get_node("GridContainer/DifficultyList") 
+@onready var task_list: ItemList = task_filter_vbox.get_node("GridContainer/TaskList") 
 
 func _ready() -> void:
 	make_children_not_visible()
@@ -91,8 +92,10 @@ func _notification(what: int) -> void:
 
 func _on_start_button_pressed() -> void:
 	make_children_not_visible()
-	current_screen = task_screen
+	current_screen = task_filter_menu
 
+
+# TODO: move out of main
 
 func initialize_difficulty_list() -> void:
 	for difficulty_name: String in Global.TaskDifficulty.keys():
@@ -117,3 +120,8 @@ func fill_task_list() -> void:
 
 func _on_difficulty_item_list_multi_selected(_index: int, _selected: bool) -> void:
 	fill_task_list()
+
+
+func _on_task_filter_start_button_pressed() -> void:
+	make_children_not_visible()
+	current_screen = task_screen
