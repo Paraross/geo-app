@@ -117,12 +117,10 @@ func fill_task_list() -> void:
 
 
 func load_all_tasks() -> void:
-	const TASK_SCENE_DIRECTORY: String = "res://scenes/tasks/"
-
-	var task_paths := ResourceLoader.list_directory(TASK_SCENE_DIRECTORY)
+	var task_paths := ResourceLoader.list_directory(Tasks.SCENE_DIRECTORY)
 	for path in task_paths:
 		if path.ends_with(".tscn"):
-			var task_scene: PackedScene = load(TASK_SCENE_DIRECTORY.path_join(path))
+			var task_scene: PackedScene = load(Tasks.SCENE_DIRECTORY.path_join(path))
 			var task: Task = task_scene.instantiate()
 			Global.all_tasks.push_back(task)
 
