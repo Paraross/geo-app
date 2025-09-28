@@ -22,7 +22,6 @@ func _ready() -> void:
 	make_children_not_visible()
 	make_current_screen_visible()
 
-	load_all_tasks()
 	initialize_difficulty_list()
 
 func _on_button_pressed() -> void:
@@ -110,19 +109,10 @@ func fill_task_list() -> void:
 	var selected_difficulty_indices := diff_list.get_selected_items()
 
 	task_list.clear()
-	for task in Global.all_tasks:
+	for task in Tasks.all_tasks:
 		var task_difficulty_is_selected := selected_difficulty_indices.find(task.difficulty()) != -1
 		if task_difficulty_is_selected:
 			task_list.add_item(task.name)
-
-
-func load_all_tasks() -> void:
-	var task_paths := ResourceLoader.list_directory(Tasks.SCENE_DIRECTORY)
-	for path in task_paths:
-		if path.ends_with(".tscn"):
-			var task_scene: PackedScene = load(Tasks.SCENE_DIRECTORY.path_join(path))
-			var task: Task = task_scene.instantiate()
-			Global.all_tasks.push_back(task)
 
 
 func _on_difficulty_item_list_multi_selected(_index: int, _selected: bool) -> void:
