@@ -2,8 +2,11 @@ extends Node
 
 @export var current_screen: Screen:
 	set(value):
+		if current_screen != null:
+			current_screen.on_left()
 		last_screen = current_screen
 		current_screen = value
+		current_screen.on_entered()
 		make_screens_not_visible()
 		make_current_screen_visible()
 
