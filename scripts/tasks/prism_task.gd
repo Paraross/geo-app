@@ -10,12 +10,6 @@ extends Task
 @onready var prism: MeshInstance3D = $Prism
 @onready var prism_mesh: PrismMesh = prism.mesh
 
-func _ready() -> void:
-	prism_mesh.size.x = base_base
-	prism_mesh.size.y = base_height
-	prism_mesh.size.z = height
-
-
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
@@ -51,10 +45,17 @@ func randomize_values() -> void:
 	var rand_value1 := randf_range(min_value, max_value)
 	var rand_value2 := randf_range(min_value, max_value)
 	var rand_value3 := randf_range(min_value, max_value)
-
 	base_base = Global.round_with_digits(rand_value1, 1)
 	base_height = Global.round_with_digits(rand_value2, 1)
 	height = Global.round_with_digits(rand_value3, 1)
+	if prism_mesh != null:
+		set_mesh_properties()
+
+
+func set_mesh_properties() -> void:
+	prism_mesh.size.x = base_base
+	prism_mesh.size.y = base_height
+	prism_mesh.size.z = height
 
 
 func base_area() -> float:

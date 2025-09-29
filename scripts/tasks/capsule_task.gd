@@ -6,13 +6,8 @@ extends Task
 @onready var capsule: MeshInstance3D = $Capsule
 @onready var capsule_mesh: CapsuleMesh = capsule.mesh
 
-func _ready() -> void:
-	capsule_mesh.radius = radius
-	capsule_mesh.height = height
-
-
 func difficulty() -> Global.TaskDifficulty:
-	return Global.TaskDifficulty.MEDIUM
+	return Global.TaskDifficulty.HARD
 
 
 func values() -> Array[Array]:
@@ -47,6 +42,13 @@ func randomize_values() -> void:
 	var rand_value2 := randf_range(min_value, max_value) * 2.0
 	radius = Global.round_with_digits(rand_value1, 1)
 	height = Global.round_with_digits(rand_value2, 1)
+	if capsule_mesh != null:
+		set_mesh_properties()
+
+
+func set_mesh_properties() -> void:
+	capsule_mesh.radius = radius
+	capsule_mesh.height = height
 
 
 func cyllinder_height() -> float:

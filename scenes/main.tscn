@@ -126,6 +126,7 @@ auto_height = true
 [node name="TaskList" type="ItemList" parent="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 select_mode = 2
+auto_width = true
 auto_height = true
 
 [node name="StartButton" type="Button" parent="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer"]

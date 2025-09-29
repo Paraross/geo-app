@@ -15,3 +15,11 @@ func load_all_tasks() -> void:
 			var task_scene: PackedScene = load(Tasks.SCENE_DIRECTORY.path_join(path))
 			var task: Task = task_scene.instantiate()
 			all_tasks.push_back(task)
+
+
+func niceify_name(task_name: String) -> String:
+	return task_name.replace("Task", "").capitalize()
+
+
+func deniceify_name(task_name: String) -> String:
+	return task_name.replace(" ", "") + "Task"

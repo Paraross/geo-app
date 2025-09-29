@@ -5,12 +5,6 @@ extends Task
 @onready var cube: MeshInstance3D = $Cube
 @onready var cube_mesh: BoxMesh = cube.mesh
 
-func _ready() -> void:
-	cube_mesh.size.x = side_length
-	cube_mesh.size.y = side_length
-	cube_mesh.size.z = side_length
-
-
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
@@ -38,3 +32,11 @@ func volume_tip() -> String:
 func randomize_values() -> void:
 	var rand_value := randf_range(min_value, max_value)
 	side_length = Global.round_with_digits(rand_value, 1)
+	if cube_mesh != null:
+		set_mesh_properties()
+
+
+func set_mesh_properties() -> void:
+	cube_mesh.size.x = side_length
+	cube_mesh.size.y = side_length
+	cube_mesh.size.z = side_length
