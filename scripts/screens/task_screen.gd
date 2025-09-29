@@ -7,12 +7,13 @@ var available_tasks: Array[Task]
 @onready var task_vbox: VBoxContainer = $"HBoxContainer/PanelContainer/VBoxContainer"
 @onready var task_data_grid: GridContainer = task_vbox.get_node("TaskDataGrid")
 @onready var task_answer_grid: GridContainer = task_vbox.get_node("TaskAnswerGrid")
-# TODO:
-@onready var area_spin_box: SpinBox
-@onready var volume_spin_box: SpinBox
+@onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
+@onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
 func on_entered() -> void:
-	pass
+	var answer_step := 1.0 / 10.0 ** Settings.answer_precision
+	area_spin_box.step = answer_step
+	volume_spin_box.step = answer_step
 
 
 func on_left() -> void:
