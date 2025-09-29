@@ -19,7 +19,7 @@ var last_screen: Control
 
 @onready var task_filter_screen: TaskFilterScreen = $TaskFilterScreen
 @onready var settings_screen: Control = $SettingsScreen
-@onready var main_menu: Control = $MainMenu
+@onready var main_menu_screen: Control = $MainMenuScreen
 
 func _ready() -> void:
 	make_children_not_visible()
@@ -114,4 +114,4 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
-	current_screen = main_menu
+	current_screen = main_menu_screen

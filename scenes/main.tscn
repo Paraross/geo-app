@@ -10,7 +10,7 @@
 
 [node name="Main" type="Node" node_paths=PackedStringArray("current_screen")]
 script = ExtResource("1_ig7tw")
-current_screen = NodePath("MainMenu")
+current_screen = NodePath("MainMenuScreen")
 
 [node name="TaskScreen" type="HBoxContainer" parent="."]
 visible = false
@@ -223,7 +223,7 @@ text = "Back"
 layout_mode = 2
 text = "Main Menu"
 
-[node name="MainMenu" type="Control" parent="."]
+[node name="MainMenuScreen" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -232,7 +232,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="MainMenu"]
+[node name="Background" type="ColorRect" parent="MainMenuScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,7 +243,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.26002115, 0.26002115, 0.26002115, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="MainMenu"]
+[node name="CenterContainer" type="CenterContainer" parent="MainMenuScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -251,25 +251,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenu/CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MainMenuScreen/CenterContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuScreen/CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 text = "Main Menu"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 text = "Start"
 
-[node name="AnimationComponent" type="Node" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
+[node name="AnimationComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -277,11 +277,11 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="SettingsButton" type="Button" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="AnimationComponent2" type="Node" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
+[node name="AnimationComponent2" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -289,14 +289,14 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="QuitButton" type="Button" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
 theme_type_variation = &"QuitButon"
 text = "Quit"
 script = ExtResource("6_tefeu")
 
-[node name="AnimationComponent2" type="Node" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+[node name="AnimationComponent2" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -313,6 +313,6 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="value_changed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision/SpinBox" to="SettingsScreen" method="_on_answer_precision_changed"]
 [connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_main_menu_settings_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
+[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_main_menu_settings_button_pressed"]
+[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
