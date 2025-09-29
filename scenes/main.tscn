@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bugepp7ityxgx"]
+[gd_scene load_steps=7 format=3 uid="uid://bugepp7ityxgx"]
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/shape_world.tscn" id="2_0xm2m"]
 [ext_resource type="Theme" uid="uid://c7n5qor8wgsok" path="res://themes/ui_theme.tres" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://bxvhplwobiied" path="res://scripts/task_filter_menu.gd" id="3_tefeu"]
 [ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/animation_component.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="6_tefeu"]
 
@@ -80,6 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_tefeu")
 
 [node name="Background" type="ColorRect" parent="TaskFilterMenu"]
 layout_mode = 1
@@ -203,7 +205,7 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [connection signal="pressed" from="TaskScreen/PanelContainer/VBoxContainer/CheckAnswerButton" to="." method="_on_check_answer_button_pressed"]
 [connection signal="pressed" from="TaskScreen/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
-[connection signal="multi_selected" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="." method="_on_difficulty_item_list_multi_selected"]
+[connection signal="multi_selected" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterMenu" method="_on_difficulty_item_list_multi_selected"]
 [connection signal="pressed" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]

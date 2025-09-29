@@ -14,16 +14,12 @@ extends Node
 @onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
-@onready var task_filter_menu: Control = $TaskFilterMenu
-@onready var task_filter_vbox: VBoxContainer = task_filter_menu.get_node("CenterContainer/PanelContainer/VBoxContainer")
-@onready var difficulty_list: ItemList = task_filter_vbox.get_node("GridContainer/DifficultyList") 
-@onready var task_list: ItemList = task_filter_vbox.get_node("GridContainer/TaskList") 
+@onready var task_filter_menu: TaskFilterMenu = $TaskFilterMenu
 
 func _ready() -> void:
 	make_children_not_visible()
 	make_current_screen_visible()
 
-	initialize_difficulty_list()
 
 func _on_button_pressed() -> void:
 	shape_world.spawn_new_task()
@@ -90,57 +86,13 @@ func _notification(what: int) -> void:
 		get_tree().quit()
 
 
-func _on_start_button_pressed() -> void:
+func _on_main_menu_start_button_pressed() -> void:
 	make_children_not_visible()
 	current_screen = task_filter_menu
 
 
-# TODO: move out of main
-
-func initialize_difficulty_list() -> void:
-	for difficulty_name: String in Global.TaskDifficulty.keys():
-		difficulty_list.add_item(difficulty_name.capitalize())
-	
-	# select all by default
-	for i in range(difficulty_list.item_count):
-		difficulty_list.select(i, false)
-	
-	fill_task_list()
-
-
-func fill_task_list() -> void:
-	var selected_difficulty_indices := difficulty_list.get_selected_items()
-
-	task_list.clear()
-	for task in Tasks.all_tasks:
-		var task_difficulty_is_selected := selected_difficulty_indices.find(task.difficulty()) != -1
-		if task_difficulty_is_selected:
-			var nice_name := Tasks.niceify_name(task.name)
-			assert(Tasks.deniceify_name(nice_name) == task.name)
-			task_list.add_item(nice_name)
-	
-	for i in range(task_list.item_count):
-		task_list.select(i, false)
-
-
-func _on_difficulty_item_list_multi_selected(_index: int, _selected: bool) -> void:
-	fill_task_list()
-
-
 func _on_task_filter_start_button_pressed() -> void:
-	var selected_task_indices := task_list.get_selected_items()
-
-	if selected_task_indices.is_empty():
-		print("no task selected")
-		return
-
-	var selected_tasks: Array[Task] = []
-	for index in selected_task_indices:
-		var raw_name := Tasks.deniceify_name(task_list.get_item_text(index))
-		for task in Tasks.all_tasks:
-			if task.name == raw_name:
-				selected_tasks.push_back(task)
-
+	var selected_tasks := task_filter_menu.selected_tasks()
 	shape_world.available_tasks = selected_tasks
 
 	make_children_not_visible()
