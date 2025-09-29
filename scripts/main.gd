@@ -4,8 +4,8 @@ extends Node
 	set(value):
 		last_screen = current_screen
 		current_screen = value
+		make_screens_not_visible()
 		make_current_screen_visible()
-		# print("current_screen changed to %s" % current_screen)
 
 var last_screen: Screen
 
@@ -22,7 +22,7 @@ var last_screen: Screen
 @onready var main_menu_screen: MainMenuScreen = $MainMenuScreen
 
 func _ready() -> void:
-	make_children_not_visible()
+	make_screens_not_visible()
 	make_current_screen_visible()
 
 
@@ -77,8 +77,8 @@ func _on_check_answer_button_pressed() -> void:
 	print()
 
 
-func make_children_not_visible() -> void:
-	for child: Control in get_children():
+func make_screens_not_visible() -> void:
+	for child: Screen in get_children():
 		child.visible = false
 
 
@@ -92,12 +92,10 @@ func _notification(what: int) -> void:
 
 
 func _on_main_menu_start_button_pressed() -> void:
-	make_children_not_visible()
 	current_screen = task_filter_screen
 
 
 func _on_main_menu_settings_button_pressed() -> void:
-	make_children_not_visible()
 	current_screen = settings_screen
 
 
@@ -105,7 +103,6 @@ func _on_task_filter_start_button_pressed() -> void:
 	var selected_tasks := task_filter_screen.selected_tasks()
 	shape_world.available_tasks = selected_tasks
 
-	make_children_not_visible()
 	current_screen = task_screen
 
 
