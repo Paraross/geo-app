@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/global.gd"
 Tasks="*res://scripts/tasks.gd"
+Settings="*res://scripts/settings.gd"
 
 [debug]
 

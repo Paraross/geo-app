@@ -45,9 +45,9 @@ func randomize_values() -> void:
 	var rand_value1 := randf_range(min_value, max_value)
 	var rand_value2 := randf_range(min_value, max_value)
 	var rand_value3 := randf_range(min_value, max_value)
-	base_base = Global.round_with_digits(rand_value1, 1)
-	base_height = Global.round_with_digits(rand_value2, 1)
-	height = Global.round_with_digits(rand_value3, 1)
+	base_base = Global.round_task_data(rand_value1)
+	base_height = Global.round_task_data(rand_value2)
+	height = Global.round_task_data(rand_value3)
 	if prism_mesh != null:
 		set_mesh_properties()
 

@@ -31,7 +31,7 @@ func volume_tip() -> String:
 
 func randomize_values() -> void:
 	var rand_value := randf_range(min_value, max_value)
-	side_length = Global.round_with_digits(rand_value, 1)
+	side_length = Global.round_task_data(rand_value)
 	if cube_mesh != null:
 		set_mesh_properties()
 

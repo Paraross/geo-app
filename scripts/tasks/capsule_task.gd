@@ -40,8 +40,8 @@ func volume_tip() -> String:
 func randomize_values() -> void:
 	var rand_value1 := randf_range(min_value, max_value) / 2.0
 	var rand_value2 := randf_range(min_value, max_value) * 2.0
-	radius = Global.round_with_digits(rand_value1, 1)
-	height = Global.round_with_digits(rand_value2, 1)
+	radius = Global.round_task_data(rand_value1)
+	height = Global.round_task_data(rand_value2)
 	if capsule_mesh != null:
 		set_mesh_properties()
 

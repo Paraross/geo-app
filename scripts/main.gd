@@ -52,8 +52,8 @@ func _on_check_answer_button_pressed() -> void:
 		print("no task")
 		return
 	
-	var correct_area := Global.round_with_digits(shape_world.current_task.correct_area(), 2)
-	var correct_volume := Global.round_with_digits(shape_world.current_task.correct_volume(), 2)
+	var correct_area := Global.round_task_answer(shape_world.current_task.correct_area())
+	var correct_volume := Global.round_task_answer(shape_world.current_task.correct_volume())
 	
 	var entered_area := area_spin_box.value
 	var entered_volume := volume_spin_box.value

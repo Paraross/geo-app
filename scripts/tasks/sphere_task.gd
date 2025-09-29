@@ -31,7 +31,7 @@ func volume_tip() -> String:
 
 func randomize_values() -> void:
 	var rand_value := randf_range(min_value, max_value) / 2.0
-	radius = Global.round_with_digits(rand_value, 1)
+	radius = Global.round_task_data(rand_value)
 	if sphere_mesh != null:
 		set_mesh_properties()
 
