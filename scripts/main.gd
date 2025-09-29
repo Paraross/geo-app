@@ -16,6 +16,8 @@ extends Node
 
 @onready var task_filter_menu: TaskFilterMenu = $TaskFilterMenu
 
+@onready var settings_menu: Control = $SettingsMenu
+
 func _ready() -> void:
 	make_children_not_visible()
 	make_current_screen_visible()
@@ -89,6 +91,11 @@ func _notification(what: int) -> void:
 func _on_main_menu_start_button_pressed() -> void:
 	make_children_not_visible()
 	current_screen = task_filter_menu
+
+
+func _on__main_menu_settings_button_pressed() -> void:
+	make_children_not_visible()
+	current_screen = settings_menu
 
 
 func _on_task_filter_start_button_pressed() -> void:

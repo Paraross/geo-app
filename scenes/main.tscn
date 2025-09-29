@@ -12,6 +12,7 @@ script = ExtResource("1_ig7tw")
 current_screen = NodePath("MainMenu")
 
 [node name="TaskScreen" type="HBoxContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,7 +27,7 @@ stretch = true
 [node name="ShapeViewport" type="SubViewport" parent="TaskScreen/ShapeViewportContainer"]
 handle_input_locally = false
 size = Vector2i(958, 1080)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="ShapeWorld" parent="TaskScreen/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 
@@ -75,6 +76,7 @@ size_flags_vertical = 10
 text = "Get new task"
 
 [node name="TaskFilterMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -135,7 +137,76 @@ auto_height = true
 layout_mode = 2
 text = "Start"
 
+[node name="SettingsMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.26002115, 0.26002115, 0.26002115, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="SettingsMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="DataPrecision" type="HBoxContainer" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How many digits task values have"
+
+[node name="Label" type="Label" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/DataPrecision"]
+layout_mode = 2
+text = "Data precision"
+
+[node name="SpinBox" type="SpinBox" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/DataPrecision"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 6.0
+value = 1.0
+suffix = "digits"
+
+[node name="AnswerPrecision" type="HBoxContainer" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How many digits task answers have"
+
+[node name="Label" type="Label" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision"]
+layout_mode = 2
+text = "Answer precision"
+
+[node name="SpinBox" type="SpinBox" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 6.0
+value = 1.0
+suffix = "digits"
+
 [node name="MainMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -188,6 +259,18 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
+[node name="SettingsButton" type="Button" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="AnimationComponent2" type="Node" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
+script = ExtResource("4_jyhfs")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
 [node name="QuitButton" type="Button" parent="MainMenu/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_sugp2")
@@ -208,4 +291,5 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="multi_selected" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterMenu" method="_on_difficulty_item_list_multi_selected"]
 [connection signal="pressed" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on__main_menu_settings_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
