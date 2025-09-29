@@ -17,7 +17,7 @@ var last_screen: Control
 @onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
-@onready var task_filter_menu: TaskFilterMenu = $TaskFilterMenu
+@onready var task_filter_screen: TaskFilterScreen = $TaskFilterScreen
 @onready var settings_screen: Control = $SettingsScreen
 @onready var main_menu: Control = $MainMenu
 
@@ -93,7 +93,7 @@ func _notification(what: int) -> void:
 
 func _on_main_menu_start_button_pressed() -> void:
 	make_children_not_visible()
-	current_screen = task_filter_menu
+	current_screen = task_filter_screen
 
 
 func _on_main_menu_settings_button_pressed() -> void:
@@ -102,7 +102,7 @@ func _on_main_menu_settings_button_pressed() -> void:
 
 
 func _on_task_filter_start_button_pressed() -> void:
-	var selected_tasks := task_filter_menu.selected_tasks()
+	var selected_tasks := task_filter_screen.selected_tasks()
 	shape_world.available_tasks = selected_tasks
 
 	make_children_not_visible()

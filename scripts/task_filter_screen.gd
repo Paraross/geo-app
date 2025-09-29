@@ -1,4 +1,4 @@
-class_name TaskFilterMenu
+class_name TaskFilterScreen
 extends Control
 
 @onready var task_filter_vbox: VBoxContainer = $"CenterContainer/PanelContainer/VBoxContainer"
