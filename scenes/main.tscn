@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bugepp7ityxgx"]
+[gd_scene load_steps=8 format=3 uid="uid://bugepp7ityxgx"]
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/shape_world.tscn" id="2_0xm2m"]
 [ext_resource type="Theme" uid="uid://c7n5qor8wgsok" path="res://themes/ui_theme.tres" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://bxvhplwobiied" path="res://scripts/task_filter_menu.gd" id="3_tefeu"]
 [ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/animation_component.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://cbvp3d0of5sdd" path="res://scripts/settings_screen.gd" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="6_tefeu"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("current_screen")]
@@ -141,15 +142,16 @@ text = "Start"
 layout_mode = 2
 text = "Back"
 
-[node name="SettingsMenu" type="Control" parent="."]
+[node name="SettingsScreen" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_o6xl0")
 
-[node name="Background" type="ColorRect" parent="SettingsMenu"]
+[node name="Background" type="ColorRect" parent="SettingsScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -160,7 +162,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.26002115, 0.26002115, 0.26002115, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="SettingsMenu"]
+[node name="CenterContainer" type="CenterContainer" parent="SettingsScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,52 +174,52 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="SettingsMenu/CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="SettingsScreen/CenterContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu/CenterContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="DataPrecision" type="HBoxContainer" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="DataPrecision" type="HBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "How many digits task values have"
 
-[node name="Label" type="Label" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/DataPrecision"]
+[node name="Label" type="Label" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/DataPrecision"]
 layout_mode = 2
 text = "Data precision"
 
-[node name="SpinBox" type="SpinBox" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/DataPrecision"]
+[node name="SpinBox" type="SpinBox" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/DataPrecision"]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 6.0
 value = 1.0
 suffix = "digits"
 
-[node name="AnswerPrecision" type="HBoxContainer" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="AnswerPrecision" type="HBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "How many digits task answers have"
 
-[node name="Label" type="Label" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision"]
+[node name="Label" type="Label" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision"]
 layout_mode = 2
 text = "Answer precision"
 
-[node name="SpinBox" type="SpinBox" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision"]
+[node name="SpinBox" type="SpinBox" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision"]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 6.0
 value = 1.0
 suffix = "digits"
 
-[node name="BackButton" type="Button" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
 
-[node name="MainMenuButton" type="Button" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
 
@@ -307,8 +309,10 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="multi_selected" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterMenu" method="_on_difficulty_item_list_multi_selected"]
 [connection signal="pressed" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
 [connection signal="pressed" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="value_changed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/DataPrecision/SpinBox" to="SettingsScreen" method="_on_data_precision_changed"]
+[connection signal="value_changed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision/SpinBox" to="SettingsScreen" method="_on_answer_precision_changed"]
+[connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_main_menu_settings_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]

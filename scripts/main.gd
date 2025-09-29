@@ -18,7 +18,7 @@ var last_screen: Control
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
 @onready var task_filter_menu: TaskFilterMenu = $TaskFilterMenu
-@onready var settings_menu: Control = $SettingsMenu
+@onready var settings_screen: Control = $SettingsScreen
 @onready var main_menu: Control = $MainMenu
 
 func _ready() -> void:
@@ -43,7 +43,7 @@ func _on_button_pressed() -> void:
 		
 		var spin_box := SpinBox.new()
 		spin_box.editable = false
-		spin_box.step = 0.1
+		spin_box.step = 1.0 / 10.0 ** Settings.data_precision
 		spin_box.value = value_value
 		task_data_grid.add_child(spin_box)
 
@@ -98,7 +98,7 @@ func _on_main_menu_start_button_pressed() -> void:
 
 func _on_main_menu_settings_button_pressed() -> void:
 	make_children_not_visible()
-	current_screen = settings_menu
+	current_screen = settings_screen
 
 
 func _on_task_filter_start_button_pressed() -> void:
