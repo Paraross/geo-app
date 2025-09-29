@@ -5,6 +5,14 @@ extends Screen
 @onready var difficulty_list: ItemList = task_filter_vbox.get_node("GridContainer/DifficultyList") 
 @onready var task_list: ItemList = task_filter_vbox.get_node("GridContainer/TaskList") 
 
+func on_entered() -> void:
+	pass
+
+
+func on_left() -> void:
+	pass
+
+
 func _ready() -> void:
 	initialize_difficulty_list()
 
