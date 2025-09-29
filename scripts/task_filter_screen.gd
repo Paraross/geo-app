@@ -1,5 +1,5 @@
 class_name TaskFilterScreen
-extends Control
+extends Screen
 
 @onready var task_filter_vbox: VBoxContainer = $"CenterContainer/PanelContainer/VBoxContainer"
 @onready var difficulty_list: ItemList = task_filter_vbox.get_node("GridContainer/DifficultyList") 

@@ -1,25 +1,25 @@
 extends Node
 
-@export var current_screen: Control:
+@export var current_screen: Screen:
 	set(value):
 		last_screen = current_screen
 		current_screen = value
 		make_current_screen_visible()
 		# print("current_screen changed to %s" % current_screen)
 
-var last_screen: Control
+var last_screen: Screen
 
-@onready var task_screen: HBoxContainer = $TaskScreen
-@onready var shape_world: ShapeWorld = $TaskScreen/ShapeViewportContainer/ShapeViewport/ShapeWorld
-@onready var task_vbox: VBoxContainer = $TaskScreen/PanelContainer/VBoxContainer
+@onready var task_screen: TaskScreen = $TaskScreen
+@onready var shape_world: ShapeWorld = task_screen.get_node("HBoxContainer/ShapeViewportContainer/ShapeViewport/ShapeWorld")
+@onready var task_vbox: VBoxContainer = task_screen.get_node("HBoxContainer/PanelContainer/VBoxContainer")
 @onready var task_data_grid: GridContainer = task_vbox.get_node("TaskDataGrid")
 @onready var task_answer_grid: GridContainer = task_vbox.get_node("TaskAnswerGrid")
 @onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
 @onready var task_filter_screen: TaskFilterScreen = $TaskFilterScreen
-@onready var settings_screen: Control = $SettingsScreen
-@onready var main_menu_screen: Control = $MainMenuScreen
+@onready var settings_screen: SettingsScreen = $SettingsScreen
+@onready var main_menu_screen: MainMenuScreen = $MainMenuScreen
 
 func _ready() -> void:
 	make_children_not_visible()

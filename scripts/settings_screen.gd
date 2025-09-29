@@ -1,4 +1,5 @@
-extends Control
+class_name SettingsScreen
+extends Screen
 
 func _on_data_precision_changed(value: float) -> void:
 	Settings.data_precision = int(value)
