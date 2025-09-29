@@ -2,9 +2,12 @@ extends Node
 
 @export var current_screen: Control:
 	set(value):
+		last_screen = current_screen
 		current_screen = value
 		make_current_screen_visible()
 		# print("current_screen changed to %s" % current_screen)
+
+var last_screen: Control
 
 @onready var task_screen: HBoxContainer = $TaskScreen
 @onready var shape_world: ShapeWorld = $TaskScreen/ShapeViewportContainer/ShapeViewport/ShapeWorld
@@ -15,8 +18,8 @@ extends Node
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 
 @onready var task_filter_menu: TaskFilterMenu = $TaskFilterMenu
-
 @onready var settings_menu: Control = $SettingsMenu
+@onready var main_menu: Control = $MainMenu
 
 func _ready() -> void:
 	make_children_not_visible()
@@ -93,7 +96,7 @@ func _on_main_menu_start_button_pressed() -> void:
 	current_screen = task_filter_menu
 
 
-func _on__main_menu_settings_button_pressed() -> void:
+func _on_main_menu_settings_button_pressed() -> void:
 	make_children_not_visible()
 	current_screen = settings_menu
 
@@ -104,3 +107,11 @@ func _on_task_filter_start_button_pressed() -> void:
 
 	make_children_not_visible()
 	current_screen = task_screen
+
+
+func _on_back_button_pressed() -> void:
+	current_screen = last_screen
+
+
+func _on_main_menu_button_pressed() -> void:
+	current_screen = main_menu

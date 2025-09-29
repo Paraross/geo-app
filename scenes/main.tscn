@@ -137,6 +137,10 @@ auto_height = true
 layout_mode = 2
 text = "Start"
 
+[node name="BackButton" type="Button" parent="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
 [node name="SettingsMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -161,6 +165,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 30.0
+offset_right = 14.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -204,6 +212,14 @@ size_flags_horizontal = 3
 max_value = 6.0
 value = 1.0
 suffix = "digits"
+
+[node name="BackButton" type="Button" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="MainMenuButton" type="Button" parent="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
 
 [node name="MainMenu" type="Control" parent="."]
 visible = false
@@ -290,6 +306,9 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="pressed" from="TaskScreen/PanelContainer/VBoxContainer/NewTaskButton" to="." method="_on_button_pressed"]
 [connection signal="multi_selected" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterMenu" method="_on_difficulty_item_list_multi_selected"]
 [connection signal="pressed" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
+[connection signal="pressed" from="TaskFilterMenu/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="SettingsMenu/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
-[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on__main_menu_settings_button_pressed"]
+[connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_main_menu_settings_button_pressed"]
 [connection signal="pressed" from="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
