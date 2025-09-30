@@ -20,6 +20,19 @@ func on_left() -> void:
 	pass
 
 
+func reset() -> void:
+	area_spin_box.value = 0.0
+	volume_spin_box.value = 0.0
+	clear_task_data_grid()
+	shape_world.reset_current_task()
+
+
+func clear_task_data_grid() -> void:
+	for child in task_data_grid.get_children():
+		assert(child is Label or child is SpinBox)
+		child.queue_free()
+
+
 func _on_check_answer_button_pressed() -> void:
 	if shape_world.current_task == null:
 		print("no task")
@@ -52,9 +65,7 @@ func _on_check_answer_button_pressed() -> void:
 func _on_new_task_button_pressed() -> void:
 	shape_world.spawn_new_task(available_tasks)
 	
-	for child in task_data_grid.get_children():
-		assert(child is Label or child is SpinBox)
-		child.queue_free()
+	clear_task_data_grid()
 	
 	for value_pair: Array in shape_world.current_task.values():
 		var value_name: String = value_pair[0]
