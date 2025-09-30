@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bugepp7ityxgx"]
+[gd_scene load_steps=11 format=3 uid="uid://bugepp7ityxgx"]
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/shape_world.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bnee8638le068" path="res://scripts/screens/task_screen.gd" id="2_85g3d"]
 [ext_resource type="Theme" uid="uid://c7n5qor8wgsok" path="res://themes/ui_theme.tres" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://bxvhplwobiied" path="res://scripts/screens/task_filter_screen.gd" id="3_tefeu"]
+[ext_resource type="Texture2D" uid="uid://benixub5eg7nq" path="res://assets/gear_icon.tres" id="4_choun"]
 [ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/animation_component.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://cbvp3d0of5sdd" path="res://scripts/screens/settings_screen.gd" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://du67yjm7lo0e8" path="res://scripts/screens/main_menu_screen.gd" id="5_tipki"]
@@ -50,6 +51,12 @@ size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer"]
 layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+tooltip_text = "Settings"
+icon = ExtResource("4_choun")
 
 [node name="TaskDataGrid" type="GridContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -318,6 +325,7 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
+[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_task_screen_settings_button_pressed"]
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/CheckAnswerButton" to="TaskScreen" method="_on_check_answer_button_pressed"]
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/NewTaskButton" to="TaskScreen" method="_on_new_task_button_pressed"]
 [connection signal="multi_selected" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterScreen" method="_on_difficulty_item_list_multi_selected"]
