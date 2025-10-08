@@ -93,9 +93,9 @@ func _on_new_task_button_pressed() -> void:
 	clear_task_data_grid()
 	check_answer_button.disabled = false
 	
-	for value_pair: Array in shape_world.current_task.values():
-		var value_name: String = value_pair[0]
-		var value_value: Tasks.TaskFloatValue = value_pair[1]
+	for task_value_pair: Array in shape_world.current_task.values():
+		var value_name: String = task_value_pair[0]
+		var value_value: Tasks.TaskFloatValue = task_value_pair[1]
 		
 		var label := Label.new()
 		label.text = value_name

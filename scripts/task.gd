@@ -5,10 +5,6 @@ func _ready() -> void:
 	set_mesh_properties()
 
 
-func idk() -> Callable:
-	return func (message: String) -> void: print("task message: %s" % message)
-
-
 @abstract func difficulty() -> Global.TaskDifficulty
 
 @abstract func values() -> Array[Array]

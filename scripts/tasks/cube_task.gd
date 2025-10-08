@@ -5,10 +5,6 @@ var side_length: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
 @onready var cube: MeshInstance3D = $Cube
 @onready var cube_mesh: BoxMesh = cube.mesh
 
-func idk() -> Callable:
-	return func (message: String) -> void:
-		print("cubetask %s message: %s" % [side_length, message])
-
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
