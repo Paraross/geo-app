@@ -32,12 +32,11 @@ func fill_task_list() -> void:
 	var selected_difficulty_indices := difficulty_list.get_selected_items()
 
 	task_list.clear()
-	for task in Tasks.all_tasks:
+	for task_name in Tasks.all_tasks:
+		var task := Tasks.all_tasks[task_name]
 		var task_difficulty_is_selected := selected_difficulty_indices.find(task.difficulty()) != -1
 		if task_difficulty_is_selected:
-			var nice_name := Tasks.niceify_name(task.name)
-			assert(Tasks.deniceify_name(nice_name) == task.name)
-			task_list.add_item(nice_name)
+			task_list.add_item(task_name)
 	
 	for i in range(task_list.item_count):
 		task_list.select(i, false)
@@ -51,13 +50,23 @@ func selected_tasks() -> Array[Task]:
 
 	var selected_tasks1: Array[Task] = []
 	for index in selected_task_indices:
-		var raw_name := Tasks.deniceify_name(task_list.get_item_text(index))
-		for task in Tasks.all_tasks:
-			if task.name == raw_name:
-				selected_tasks1.push_back(task)
+		var nice_name := task_list.get_item_text(index)
+		selected_tasks1.push_back(Tasks.all_tasks[nice_name])
 
 	return selected_tasks1
 
 
 func _on_difficulty_item_list_multi_selected(_index: int, _selected: bool) -> void:
 	fill_task_list()
+
+
+func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_index: int) -> void:
+	if mouse_button_index != MouseButton.MOUSE_BUTTON_RIGHT:
+		return
+
+	var task_name := task_list.get_item_text(index)
+	print("%s" % task_name)
+
+	var task := Tasks.all_tasks[task_name]
+	var f := task.idk()
+	f.call("abc")

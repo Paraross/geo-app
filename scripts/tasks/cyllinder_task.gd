@@ -1,7 +1,10 @@
 extends Task
 
-@export var radius: float = 0.5
-@export var height: float = 1.0
+var radius: Tasks.TaskFloatValue = Tasks.TaskFloatValue.new(
+	Settings.default_task_data_min_value / 2.0,
+	Settings.default_task_data_max_value / 2.0,
+)
+var height: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
 
 @onready var cyllinder: MeshInstance3D = $Cyllinder
 @onready var cyllinder_mesh: CylinderMesh = cyllinder.mesh
@@ -22,7 +25,7 @@ func correct_area() -> float:
 
 
 func correct_volume() -> float:
-	return base_area() * height
+	return base_area() * height.value
 
 
 func area_tip() -> String:
@@ -34,23 +37,21 @@ func volume_tip() -> String:
 
 
 func randomize_values() -> void:
-	var rand_value1 := randf_range(min_value, max_value) / 2.0
-	var rand_value2 := randf_range(min_value, max_value)
-	radius = Global.round_task_data(rand_value1)
-	height = Global.round_task_data(rand_value2)
+	radius.randomize_and_round()
+	height.randomize_and_round()
 	if cyllinder_mesh != null:
 		set_mesh_properties()
 
 
 func set_mesh_properties() -> void:
-	cyllinder_mesh.top_radius = radius
-	cyllinder_mesh.bottom_radius = radius
-	cyllinder_mesh.height = height
+	cyllinder_mesh.top_radius = radius.value
+	cyllinder_mesh.bottom_radius = radius.value
+	cyllinder_mesh.height = height.value
 
 
 func base_area() -> float:
-	return PI * radius * radius
+	return PI * radius.value * radius.value
 
 
 func side_area() -> float:
-	return 2.0 * PI * radius * height
+	return 2.0 * PI * radius.value * height.value

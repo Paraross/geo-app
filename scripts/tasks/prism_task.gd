@@ -1,11 +1,11 @@
 extends Task
 
 # x
-@export var base_base: float = 1.0
+var base_base: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
 # y
-@export var base_height: float = 1.0
+var base_height: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
 # z
-@export var height: float = 1.0
+var height: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
 
 @onready var prism: MeshInstance3D = $Prism
 @onready var prism_mesh: PrismMesh = prism.mesh
@@ -24,13 +24,13 @@ func values() -> Array[Array]:
 
 # correct only for a isosceles triangle
 func correct_area() -> float:
-	var bottom_side_area := base_base * height
-	var side_side_area := sqrt(pow(base_base / 2.0, 2.0) + pow(base_height, 2.0))
+	var bottom_side_area := base_base.value * height.value
+	var side_side_area := sqrt(pow(base_base.value / 2.0, 2.0) + pow(base_height.value, 2.0))
 	return 2.0 * (base_area() + side_side_area) + bottom_side_area
 
 
 func correct_volume() -> float:
-	return base_area() * height
+	return base_area() * height.value
 
 
 func area_tip() -> String:
@@ -42,21 +42,18 @@ func volume_tip() -> String:
 
 
 func randomize_values() -> void:
-	var rand_value1 := randf_range(min_value, max_value)
-	var rand_value2 := randf_range(min_value, max_value)
-	var rand_value3 := randf_range(min_value, max_value)
-	base_base = Global.round_task_data(rand_value1)
-	base_height = Global.round_task_data(rand_value2)
-	height = Global.round_task_data(rand_value3)
+	base_base.randomize_and_round()
+	base_height.randomize_and_round()
+	height.randomize_and_round()
 	if prism_mesh != null:
 		set_mesh_properties()
 
 
 func set_mesh_properties() -> void:
-	prism_mesh.size.x = base_base
-	prism_mesh.size.y = base_height
-	prism_mesh.size.z = height
+	prism_mesh.size.x = base_base.value
+	prism_mesh.size.y = base_height.value
+	prism_mesh.size.z = height.value
 
 
 func base_area() -> float:
-	return base_base * base_height / 2.0
+	return base_base.value * base_height.value / 2.0

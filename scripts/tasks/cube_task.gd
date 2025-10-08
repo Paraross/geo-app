@@ -1,9 +1,14 @@
 extends Task
 
-@export var side_length: float = 1.0
+var side_length: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
 
 @onready var cube: MeshInstance3D = $Cube
 @onready var cube_mesh: BoxMesh = cube.mesh
+
+func idk() -> Callable:
+	return func (message: String) -> void:
+		print("cubetask %s message: %s" % [side_length, message])
+
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
@@ -14,11 +19,11 @@ func values() -> Array[Array]:
 
 
 func correct_area() -> float:
-	return 6.0 * side_length * side_length
+	return 6.0 * side_length.value * side_length.value
 
 
 func correct_volume() -> float:
-	return side_length * side_length * side_length
+	return side_length.value * side_length.value * side_length.value
 
 
 func area_tip() -> String:
@@ -30,13 +35,12 @@ func volume_tip() -> String:
 
 
 func randomize_values() -> void:
-	var rand_value := randf_range(min_value, max_value)
-	side_length = Global.round_task_data(rand_value)
+	side_length.randomize_and_round()
 	if cube_mesh != null:
 		set_mesh_properties()
 
 
 func set_mesh_properties() -> void:
-	cube_mesh.size.x = side_length
-	cube_mesh.size.y = side_length
-	cube_mesh.size.z = side_length
+	cube_mesh.size.x = side_length.value
+	cube_mesh.size.y = side_length.value
+	cube_mesh.size.z = side_length.value

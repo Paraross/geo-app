@@ -95,7 +95,7 @@ func _on_new_task_button_pressed() -> void:
 	
 	for value_pair: Array in shape_world.current_task.values():
 		var value_name: String = value_pair[0]
-		var value_value: float = value_pair[1]
+		var value_value: Tasks.TaskFloatValue = value_pair[1]
 		
 		var label := Label.new()
 		label.text = value_name
@@ -104,7 +104,7 @@ func _on_new_task_button_pressed() -> void:
 		var spin_box := SpinBox.new()
 		spin_box.editable = false
 		spin_box.step = 1.0 / 10.0 ** Settings.data_precision
-		spin_box.value = value_value
+		spin_box.value = value_value.value
 		task_data_grid.add_child(spin_box)
 
 
