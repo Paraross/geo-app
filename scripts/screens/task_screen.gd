@@ -3,8 +3,8 @@ extends Screen
 
 var available_tasks: Array[Task]
 
-@onready var shape_world: ShapeWorld = $"HBoxContainer/ShapeViewportContainer/ShapeViewport/ShapeWorld"
-@onready var task_vbox: VBoxContainer = $"HBoxContainer/PanelContainer/VBoxContainer"
+@onready var shape_world: ShapeWorld = $HBoxContainer/ShapeViewportContainer/ShapeViewport/ShapeWorld
+@onready var task_vbox: VBoxContainer = $HBoxContainer/PanelContainer/VBoxContainer
 
 @onready var task_data_grid: GridContainer = task_vbox.get_node("TaskDataGrid")
 @onready var task_answer_grid: GridContainer = task_vbox.get_node("TaskAnswerGrid")
