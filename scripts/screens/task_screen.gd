@@ -46,9 +46,6 @@ func _on_check_answer_button_pressed() -> void:
 	var entered_area := area_spin_box.value
 	var entered_volume := volume_spin_box.value
 	
-	print("correct area: %s" % correct_area)
-	print("correct volume: %s" % correct_volume)
-	
 	if is_equal_approx(entered_area, correct_area):
 		area_result_label.text = "The area is correct"
 	else:
@@ -60,6 +57,10 @@ func _on_check_answer_button_pressed() -> void:
 	else:
 		volume_result_label.text = "The volume is incorrect"
 		print(shape_world.current_task.volume_tip())
+
+	if OS.is_debug_build():
+		area_result_label.text += " (%s)" % correct_area
+		volume_result_label.text += " (%s)" % correct_volume
 	
 	print()
 
