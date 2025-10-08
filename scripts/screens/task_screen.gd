@@ -42,15 +42,9 @@ func reset() -> void:
 	volume_result_label.text = ""
 	area_result_tip_button.visible = false
 	volume_result_tip_button.visible = false
-	clear_task_data_grid()
+	Global.clear_grid(task_data_grid)
 	shape_world.reset_current_task()
 	check_answer_button.disabled = true
-
-
-func clear_task_data_grid() -> void:
-	for child in task_data_grid.get_children():
-		assert(child is Label or child is SpinBox)
-		child.queue_free()
 
 
 # TODO: set color
@@ -90,7 +84,7 @@ func _on_check_answer_button_pressed() -> void:
 func _on_new_task_button_pressed() -> void:
 	shape_world.spawn_new_task(available_tasks)
 	
-	clear_task_data_grid()
+	Global.clear_grid(task_data_grid)
 	check_answer_button.disabled = false
 	
 	for task_value_pair: Array in shape_world.current_task.values():

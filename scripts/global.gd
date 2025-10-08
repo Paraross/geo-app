@@ -18,3 +18,8 @@ func round_task_data(x: float) -> float:
 
 func round_task_answer(x: float) -> float:
 	return round_with_digits(x, Settings.answer_precision)
+
+
+func clear_grid(grid: GridContainer) -> void:
+	for child in grid.get_children():
+		child.queue_free()

@@ -69,15 +69,11 @@ func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_
 		return
 
 	var task_name := task_list.get_item_text(index)
-	# TODO: to function?
 	var task := Tasks.all_tasks[task_name]
 
 	task_settings_popup_label.text = "%s settings" % task_name
 
-	# TODO: code duplication in task_screen.gd
-	for child in task_settings_popup_grid.get_children():
-		assert(child is Label or child is SpinBox)
-		child.queue_free()
+	Global.clear_grid(task_settings_popup_grid)
 
 	for task_value_pair: Array in task.values():
 		var value_name: String = task_value_pair[0]
