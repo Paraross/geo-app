@@ -11,6 +11,7 @@ var available_tasks: Array[Task]
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
 @onready var area_result_label: Label = task_answer_grid.get_node("AreaResultLabel")
 @onready var volume_result_label: Label = task_answer_grid.get_node("VolumeResultLabel")
+@onready var check_answer_button: Button = task_vbox.get_node("CheckAnswerButton")
 
 func on_entered() -> void:
 	var answer_step := 1.0 / 10.0 ** Settings.answer_precision
@@ -27,6 +28,7 @@ func reset() -> void:
 	volume_spin_box.value = 0.0
 	clear_task_data_grid()
 	shape_world.reset_current_task()
+	check_answer_button.disabled = true
 
 
 func clear_task_data_grid() -> void:
@@ -36,9 +38,7 @@ func clear_task_data_grid() -> void:
 
 
 func _on_check_answer_button_pressed() -> void:
-	if shape_world.current_task == null:
-		print("no task")
-		return
+	assert(shape_world.current_task != null)
 	
 	var correct_area := Global.round_task_answer(shape_world.current_task.correct_area())
 	var correct_volume := Global.round_task_answer(shape_world.current_task.correct_volume())
@@ -61,14 +61,13 @@ func _on_check_answer_button_pressed() -> void:
 	if OS.is_debug_build():
 		area_result_label.text += " (%s)" % correct_area
 		volume_result_label.text += " (%s)" % correct_volume
-	
-	print()
 
 
 func _on_new_task_button_pressed() -> void:
 	shape_world.spawn_new_task(available_tasks)
 	
 	clear_task_data_grid()
+	check_answer_button.disabled = false
 	
 	for value_pair: Array in shape_world.current_task.values():
 		var value_name: String = value_pair[0]
