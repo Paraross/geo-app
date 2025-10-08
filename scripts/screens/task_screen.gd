@@ -37,21 +37,21 @@ func clear_task_data_grid() -> void:
 		child.queue_free()
 
 
-func _on_check_answer_button_pressed() -> void:
-	assert(shape_world.current_task != null)
-	
+# TODO: set color
+func set_answer_labels() -> void:
 	var correct_area := Global.round_task_answer(shape_world.current_task.correct_area())
 	var correct_volume := Global.round_task_answer(shape_world.current_task.correct_volume())
 	
 	var entered_area := area_spin_box.value
 	var entered_volume := volume_spin_box.value
 	
+	# area
 	if is_equal_approx(entered_area, correct_area):
 		area_result_label.text = "The area is correct"
 	else:
 		area_result_label.text = "The area is incorrect"
 		print(shape_world.current_task.area_tip())
-	
+	# volume
 	if is_equal_approx(entered_volume, correct_volume):
 		volume_result_label.text = "The volume is correct"
 	else:
@@ -59,8 +59,14 @@ func _on_check_answer_button_pressed() -> void:
 		print(shape_world.current_task.volume_tip())
 
 	if OS.is_debug_build():
-		area_result_label.text += " (%s)" % correct_area
-		volume_result_label.text += " (%s)" % correct_volume
+		var correct_answer_str := " (%s)" 
+		area_result_label.text += correct_answer_str % correct_area
+		volume_result_label.text += correct_answer_str % correct_volume
+
+
+func _on_check_answer_button_pressed() -> void:
+	assert(shape_world.current_task != null)
+	set_answer_labels()
 
 
 func _on_new_task_button_pressed() -> void:
