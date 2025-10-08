@@ -9,6 +9,8 @@ var available_tasks: Array[Task]
 @onready var task_answer_grid: GridContainer = task_vbox.get_node("TaskAnswerGrid")
 @onready var area_spin_box: SpinBox = task_answer_grid.get_node("AreaSpinBox")
 @onready var volume_spin_box: SpinBox = task_answer_grid.get_node("VolumeSpinBox")
+@onready var area_result_label: Label = task_answer_grid.get_node("AreaResultLabel")
+@onready var volume_result_label: Label = task_answer_grid.get_node("VolumeResultLabel")
 
 func on_entered() -> void:
 	var answer_step := 1.0 / 10.0 ** Settings.answer_precision
@@ -48,15 +50,15 @@ func _on_check_answer_button_pressed() -> void:
 	print("correct volume: %s" % correct_volume)
 	
 	if is_equal_approx(entered_area, correct_area):
-		print("correct area")
+		area_result_label.text = "The area is correct"
 	else:
-		print("incorrect area")
+		area_result_label.text = "The area is incorrect"
 		print(shape_world.current_task.area_tip())
 	
 	if is_equal_approx(entered_volume, correct_volume):
-		print("correct volume")
+		volume_result_label.text = "The volume is correct"
 	else:
-		print("incorrect volume")
+		volume_result_label.text = "The volume is incorrect"
 		print(shape_world.current_task.volume_tip())
 	
 	print()
