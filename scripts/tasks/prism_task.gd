@@ -1,11 +1,11 @@
 extends Task
 
 # x
-var base_base: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
+var base_base: TaskFloatValue = TaskFloatValue.default()
 # y
-var base_height: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
+var base_height: TaskFloatValue = TaskFloatValue.default()
 # z
-var height: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
+var height: TaskFloatValue = TaskFloatValue.default()
 
 @onready var prism: MeshInstance3D = $Prism
 @onready var prism_mesh: PrismMesh = prism.mesh

@@ -1,10 +1,10 @@
 extends Task
 
-var radius: Tasks.TaskFloatValue = Tasks.TaskFloatValue.new(
+var radius: TaskFloatValue = TaskFloatValue.new(
 	Settings.default_task_data_min_value / 2.0,
 	Settings.default_task_data_max_value / 2.0,
 )
-var height: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
+var height: TaskFloatValue = TaskFloatValue.default()
 
 @onready var cyllinder: MeshInstance3D = $Cyllinder
 @onready var cyllinder_mesh: CylinderMesh = cyllinder.mesh

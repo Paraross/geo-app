@@ -77,7 +77,7 @@ func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_
 
 	for task_value_pair: Array in task.values():
 		var value_name: String = task_value_pair[0]
-		var value_value: Tasks.TaskFloatValue = task_value_pair[1]
+		var value_value: TaskFloatValue = task_value_pair[1]
 
 		var label := Label.new()
 		label.text = value_name

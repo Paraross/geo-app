@@ -1,6 +1,6 @@
 extends Task
 
-var radius: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
+var radius: TaskFloatValue = TaskFloatValue.default()
 
 @onready var sphere: MeshInstance3D = $Sphere
 @onready var sphere_mesh: SphereMesh = sphere.mesh

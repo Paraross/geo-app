@@ -1,6 +1,6 @@
 extends Task
 
-var side_length: Tasks.TaskFloatValue = Tasks.TaskFloatValue.default()
+var side_length: TaskFloatValue = TaskFloatValue.default()
 
 @onready var cube: MeshInstance3D = $Cube
 @onready var cube_mesh: BoxMesh = cube.mesh
