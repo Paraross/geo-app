@@ -7,8 +7,8 @@ const data_precision_str: String = "data_precision"
 const answer_precision_str: String = "answer_precision"
 
 var settings: Dictionary[String, Setting] = {
-	data_precision_str: Setting.new(1),
-	answer_precision_str: Setting.new(2),
+	data_precision_str: IntSetting.new(1, 0, 6),
+	answer_precision_str: IntSetting.new(2, 0, 6),
 }
 
 var data_precision: int:
@@ -39,7 +39,7 @@ func load_settings_from_file() -> void:
 		return
 
 	for setting_name in settings:
-		settings[setting_name].value = config.get_value(settings_section, setting_name)
+		settings[setting_name].set_value_no_change(config.get_value(settings_section, setting_name))
 
 
 func save_settings_to_file() -> void:

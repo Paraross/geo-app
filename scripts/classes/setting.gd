@@ -16,6 +16,10 @@ func set_value(val: Variant) -> void:
 	changed = value != original_value
 
 
+func set_value_no_change(val: Variant) -> void:
+	value = val
+
+
 func set_original_value() -> void:
 	original_value = value
 	changed = false
