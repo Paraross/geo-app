@@ -3,10 +3,22 @@ extends Node
 const config_file_path: String = "user://settings.cfg"
 const settings_section: String = "settings"
 
-var settings: Dictionary[String, Variant] = {
-	"data_precision": 1,
-	"answer_precision": 2,
+var settings: Dictionary[String, Setting] = {
+	"data_precision": Setting.new(1),
+	"answer_precision": Setting.new(2),
 }
+
+var data_precision: int:
+	get:
+		return settings["data_precision"].value
+	set(value):
+		settings["data_precision"].set_value(value)
+
+var answer_precision: int:
+	get:
+		return settings["answer_precision"].value
+	set(value):
+		settings["answer_precision"].set_value(value)
 
 var default_task_data_min_value: float = 1.0
 var default_task_data_max_value: float = 2.0
@@ -28,19 +40,32 @@ func load_settings_from_file() -> void:
 		return
 
 	for setting_name in settings:
-		settings[setting_name] = config.get_value(settings_section, setting_name)
+		settings[setting_name].value = config.get_value(settings_section, setting_name)
 
 
 func save_settings_to_file() -> void:
 	var config := ConfigFile.new()
 	for setting_name in settings:
-		config.set_value(settings_section, setting_name, settings[setting_name])
+		config.set_value(settings_section, setting_name, settings[setting_name].value)
 	config.save(config_file_path)
 
 
-func data_precision() -> int:
-	return settings["data_precision"]
+class Setting:
+	var value: Variant
+	var original_value: Variant
+	var changed: bool
+
+	func _init(value: Variant) -> void:
+		self.value = value
+		self.original_value = value
+		self.changed = false
 
 
-func answer_precision() -> int:
-	return settings["answer_precision"]
+	func set_value(value: Variant) -> void:
+		self.value = value
+		self.changed = self.value != self.original_value
+
+
+	func set_original_value() -> void:
+		self.original_value = self.value
+		self.changed = false

@@ -13,11 +13,11 @@ func round_with_digits(x: float, digits: int) -> float:
 
 
 func round_task_data(x: float) -> float:
-	return round_with_digits(x, Settings.data_precision())
+	return round_with_digits(x, Settings.data_precision)
 
 
 func round_task_answer(x: float) -> float:
-	return round_with_digits(x, Settings.answer_precision())
+	return round_with_digits(x, Settings.answer_precision)
 
 
 func clear_grid(grid: GridContainer) -> void:
