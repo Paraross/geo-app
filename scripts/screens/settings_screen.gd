@@ -14,7 +14,7 @@ func on_entered() -> void:
 
 
 func on_left() -> void:
-	var is_changed := func (setting: Settings.Setting) -> bool: return setting.changed
+	var is_changed := func (setting: Setting) -> bool: return setting.changed
 	var settings_changed := Settings.settings.values().any(is_changed)
 
 	if settings_changed:

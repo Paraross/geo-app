@@ -48,24 +48,3 @@ func save_settings_to_file() -> void:
 	for setting_name in settings:
 		config.set_value(settings_section, setting_name, settings[setting_name].value)
 	config.save(config_file_path)
-
-
-class Setting:
-	var value: Variant
-	var original_value: Variant
-	var changed: bool
-
-	func _init(value: Variant) -> void:
-		self.value = value
-		self.original_value = value
-		self.changed = false
-
-
-	func set_value(value: Variant) -> void:
-		self.value = value
-		self.changed = self.value != self.original_value
-
-
-	func set_original_value() -> void:
-		self.original_value = self.value
-		self.changed = false
