@@ -23,3 +23,9 @@ func set_value_no_change(val: Variant) -> void:
 func set_original_value() -> void:
 	original_value = value
 	changed = false
+
+
+func ui_element() -> Control:
+	var label := Label.new()
+	label.text = "%s" % value
+	return label

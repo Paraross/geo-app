@@ -258,35 +258,9 @@ layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="DataPrecision" type="HBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="Grid" type="GridContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-tooltip_text = "How many digits task values have"
-
-[node name="Label" type="Label" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/DataPrecision"]
-layout_mode = 2
-text = "Data precision"
-
-[node name="SpinBox" type="SpinBox" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/DataPrecision"]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 6.0
-value = 1.0
-suffix = "digits"
-
-[node name="AnswerPrecision" type="HBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-tooltip_text = "How many digits task answers have"
-
-[node name="Label" type="Label" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision"]
-layout_mode = 2
-text = "Answer precision"
-
-[node name="SpinBox" type="SpinBox" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision"]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 6.0
-value = 1.0
-suffix = "digits"
+columns = 2
 
 [node name="BackButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -387,8 +361,6 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="item_clicked" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_item_clicked"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="value_changed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/DataPrecision/SpinBox" to="SettingsScreen" method="_on_data_precision_changed"]
-[connection signal="value_changed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/AnswerPrecision/SpinBox" to="SettingsScreen" method="_on_answer_precision_changed"]
 [connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
