@@ -3,22 +3,21 @@ extends Node
 const config_file_path: String = "user://settings.cfg"
 const settings_section: String = "settings"
 
+const data_precision_str: String = "data_precision"
+const answer_precision_str: String = "answer_precision"
+
 var settings: Dictionary[String, Setting] = {
-	"data_precision": Setting.new(1),
-	"answer_precision": Setting.new(2),
+	data_precision_str: Setting.new(1),
+	answer_precision_str: Setting.new(2),
 }
 
 var data_precision: int:
-	get:
-		return settings["data_precision"].value
-	set(value):
-		settings["data_precision"].set_value(value)
+	get: return settings[data_precision_str].value
+	set(value): settings[data_precision_str].set_value(value)
 
 var answer_precision: int:
-	get:
-		return settings["answer_precision"].value
-	set(value):
-		settings["answer_precision"].set_value(value)
+	get: return settings[answer_precision_str].value
+	set(value): settings[answer_precision_str].set_value(value)
 
 var default_task_data_min_value: float = 1.0
 var default_task_data_max_value: float = 2.0
