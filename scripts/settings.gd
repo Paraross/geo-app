@@ -3,9 +3,10 @@ extends Node
 const config_file_path: String = "user://settings.cfg"
 const settings_section: String = "settings"
 
-# TODO: This should probably just be a Dictionary
-var data_precision: int = 1
-var answer_precision: int = 2
+var settings: Dictionary[String, Variant] = {
+	"data_precision": 1,
+	"answer_precision": 2,
+}
 
 var default_task_data_min_value: float = 1.0
 var default_task_data_max_value: float = 2.0
@@ -26,12 +27,20 @@ func load_settings_from_file() -> void:
 		print("error opening settings file: %s" % err)
 		return
 
-	data_precision = config.get_value(settings_section, "data_precision")
-	answer_precision = config.get_value(settings_section, "answer_precision")
+	for setting_name in settings:
+		settings[setting_name] = config.get_value(settings_section, setting_name)
 
 
 func save_settings_to_file() -> void:
 	var config := ConfigFile.new()
-	config.set_value(settings_section, "data_precision", data_precision)
-	config.set_value(settings_section, "answer_precision", answer_precision)
+	for setting_name in settings:
+		config.set_value(settings_section, setting_name, settings[setting_name])
 	config.save(config_file_path)
+
+
+func data_precision() -> int:
+	return settings["data_precision"]
+
+
+func answer_precision() -> int:
+	return settings["answer_precision"]

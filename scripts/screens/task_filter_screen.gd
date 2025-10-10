@@ -84,13 +84,13 @@ func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_
 		task_settings_popup_grid.add_child(label)
 		
 		var min_spin_box := SpinBox.new()
-		min_spin_box.step = 1.0 / 10.0 ** Settings.data_precision
+		min_spin_box.step = 1.0 / 10.0 ** Settings.data_precision()
 		min_spin_box.value = value_value.min_value
 		min_spin_box.value_changed.connect(func (value: float) -> void: value_value.min_value = value)
 		task_settings_popup_grid.add_child(min_spin_box)
 
 		var max_spin_box := SpinBox.new()
-		max_spin_box.step = 1.0 / 10.0 ** Settings.data_precision
+		max_spin_box.step = 1.0 / 10.0 ** Settings.data_precision()
 		max_spin_box.value = value_value.max_value
 		max_spin_box.value_changed.connect(func (value: float) -> void: value_value.max_value = value)
 		task_settings_popup_grid.add_child(max_spin_box)

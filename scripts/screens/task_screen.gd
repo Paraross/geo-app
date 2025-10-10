@@ -26,7 +26,7 @@ var available_tasks: Array[Task]
 @onready var tip_popup_label: Label = $TipPopup/TipLabel
 
 func on_entered() -> void:
-	var answer_step := 1.0 / 10.0 ** Settings.answer_precision
+	var answer_step := 1.0 / 10.0 ** Settings.answer_precision()
 	area_spin_box.step = answer_step
 	volume_spin_box.step = answer_step
 
@@ -97,7 +97,7 @@ func _on_new_task_button_pressed() -> void:
 		
 		var spin_box := SpinBox.new()
 		spin_box.editable = false
-		spin_box.step = 1.0 / 10.0 ** Settings.data_precision
+		spin_box.step = 1.0 / 10.0 ** Settings.data_precision()
 		spin_box.value = value_value.value
 		task_data_grid.add_child(spin_box)
 
