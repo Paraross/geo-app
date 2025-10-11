@@ -49,3 +49,13 @@ func save_settings_to_file() -> void:
 	for setting_name in settings:
 		config.set_value(settings_section, setting_name, settings[setting_name].value)
 	config.save(config_file_path)
+
+
+func set_all_original_values() -> void:
+	for setting_name in settings:
+		settings[setting_name].set_original_value()
+
+
+func reset_all_to_original() -> void:
+	for setting_name in settings:
+		settings[setting_name].reset_to_original()

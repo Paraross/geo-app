@@ -63,3 +63,7 @@ func _on_main_menu_button_pressed() -> void:
 
 func _on_task_screen_settings_button_pressed() -> void:
 	current_screen = settings_screen
+
+
+func _on_settings_screen_left(to_main_menu: bool) -> void:
+	current_screen = main_menu_screen if to_main_menu else last_screen

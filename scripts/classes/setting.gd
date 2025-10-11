@@ -25,6 +25,10 @@ func set_original_value() -> void:
 	changed = false
 
 
+func reset_to_original() -> void:
+	set_value(original_value)
+
+
 func ui_element() -> Control:
 	var label := Label.new()
 	label.text = "%s" % value
