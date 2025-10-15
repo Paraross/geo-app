@@ -6,11 +6,11 @@
 [ext_resource type="Theme" uid="uid://c7n5qor8wgsok" path="res://themes/ui_theme.tres" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://bxvhplwobiied" path="res://scripts/screens/task_filter_screen.gd" id="3_tefeu"]
 [ext_resource type="Texture2D" uid="uid://benixub5eg7nq" path="res://assets/gear_icon.tres" id="4_choun"]
-[ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/animation_component.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/components/animation_component.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://cbvp3d0of5sdd" path="res://scripts/screens/settings_screen.gd" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://du67yjm7lo0e8" path="res://scripts/screens/main_menu_screen.gd" id="5_tipki"]
 [ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="6_tefeu"]
-[ext_resource type="Script" uid="uid://crqyttnj4l7vo" path="res://scripts/mouse_focus_component.gd" id="10_ya4ey"]
+[ext_resource type="Script" uid="uid://crqyttnj4l7vo" path="res://scripts/components/mouse_focus_component.gd" id="10_ya4ey"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("current_screen")]
 script = ExtResource("1_ig7tw")
