@@ -8,7 +8,9 @@ extends Node
 		current_screen = value
 		current_screen.on_entered()
 		make_screens_not_visible()
+		disable_input_for_screens()
 		make_current_screen_visible()
+		enable_input_for_current_screen()
 
 var last_screen: Screen
 
@@ -29,6 +31,19 @@ func make_screens_not_visible() -> void:
 
 func make_current_screen_visible() -> void:
 	current_screen.visible = true
+
+
+func disable_input_for_screens() -> void:
+	for child: Screen in get_children():
+		set_input_for_screen(child, false)
+
+
+func enable_input_for_current_screen() -> void:
+	set_input_for_screen(current_screen, true)
+
+
+func set_input_for_screen(screen: Screen, enable: bool) -> void:
+	screen.set_process_input(enable)
 
 
 func _notification(what: int) -> void:

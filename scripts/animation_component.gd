@@ -15,12 +15,12 @@ extends Node
 func _ready() -> void:
 	connect_signals()
 
-	call_deferred("setup")
+	setup.call_deferred()
 
 
 func connect_signals() -> void:
-	node.mouse_entered.connect(on_hover_start)
-	node.mouse_exited.connect(on_hover_end)
+	node.focus_entered.connect(on_hover_start)
+	node.focus_exited.connect(on_hover_end)
 
 
 func on_hover_start() -> void:
@@ -32,10 +32,7 @@ func on_hover_end() -> void:
 
 
 func add_tween(property: String, value: Variant) -> void:
-	var tree := get_tree()
-	if tree == null:
-		return
-	var tween := tree.create_tween().set_trans(trans_type).set_ease(ease_type)
+	var tween := node.create_tween().set_trans(trans_type).set_ease(ease_type)
 	tween.tween_property(node, property, value, duration)
 
 

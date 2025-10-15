@@ -20,6 +20,7 @@ Label/font_sizes/font_size = 42
 Label/styles/normal = SubResource("StyleBoxEmpty_qa7hf")
 PanelContainer/styles/panel = ExtResource("2_qa7hf")
 QuitButon/base_type = &"Button"
+QuitButon/styles/focus = SubResource("StyleBoxFlat_jkgan")
 QuitButon/styles/hover = SubResource("StyleBoxFlat_jkgan")
 QuitButon/styles/normal = ExtResource("3_qa7hf")
 VBoxContainer/constants/separation = 16
