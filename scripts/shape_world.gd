@@ -9,8 +9,11 @@ func spawn_new_task(available_tasks: Array[Task]) -> void:
 	var task := available_tasks[random_task_index]
 	task.randomize_values()
 
+	set_current_task(task)
+
+
+func set_current_task(task: Task) -> void:
 	reset_current_task()
-	
 	add_child(task)
 	current_task = task
 
