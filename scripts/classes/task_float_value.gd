@@ -6,9 +6,12 @@ var max_value: float
 var value: float
 
 static func default() -> TaskFloatValue:
+	var min_val := Settings.default_task_data_min_value
+	var max_val := Settings.default_task_data_max_value
 	return TaskFloatValue.new(
-		Settings.default_task_data_min_value,
-		Settings.default_task_data_max_value,
+		min_val,
+		max_val,
+		(min_val + max_val) / 2.0,
 	)
 
 
