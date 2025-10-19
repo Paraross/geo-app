@@ -7,8 +7,7 @@ var base_height: TaskFloatValue = TaskFloatValue.default()
 # z
 var height: TaskFloatValue = TaskFloatValue.default()
 
-@onready var prism: MeshInstance3D = $Prism
-@onready var prism_mesh: PrismMesh = prism.mesh
+@onready var prism: Prism = $Prism
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
@@ -45,15 +44,11 @@ func randomize_values() -> void:
 	base_base.randomize_and_round()
 	base_height.randomize_and_round()
 	height.randomize_and_round()
-	if prism_mesh != null:
-		set_mesh_properties()
+	set_mesh_properties()
 
 
 func set_mesh_properties() -> void:
-	prism_mesh.size.x = base_base.value
-	prism_mesh.size.y = base_height.value
-	prism_mesh.size.z = height.value
-
+	prism.set_properties(base_base.value, base_height.value, height.value)
 
 func base_area() -> float:
 	return base_base.value * base_height.value / 2.0

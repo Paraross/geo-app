@@ -6,8 +6,7 @@ var radius: TaskFloatValue = TaskFloatValue.new(
 )
 var height: TaskFloatValue = TaskFloatValue.default()
 
-@onready var capsule: MeshInstance3D = $Capsule
-@onready var capsule_mesh: CapsuleMesh = capsule.mesh
+@onready var capsule: Capsule = $Capsule
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.HARD
@@ -43,13 +42,11 @@ func volume_tip() -> String:
 func randomize_values() -> void:
 	radius.randomize_and_round()
 	height.randomize_and_round()
-	if capsule_mesh != null:
-		set_mesh_properties()
+	set_mesh_properties()
 
 
 func set_mesh_properties() -> void:
-	capsule_mesh.radius = radius.value
-	capsule_mesh.height = height.value
+	capsule.set_properties(radius.value, height.value)
 
 
 func cyllinder_height() -> float:

@@ -6,8 +6,7 @@ var radius: TaskFloatValue = TaskFloatValue.new(
 )
 var height: TaskFloatValue = TaskFloatValue.default()
 
-@onready var cyllinder: MeshInstance3D = $Cyllinder
-@onready var cyllinder_mesh: CylinderMesh = cyllinder.mesh
+@onready var cyllinder: Cyllinder = $Cyllinder
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.MEDIUM
@@ -39,14 +38,11 @@ func volume_tip() -> String:
 func randomize_values() -> void:
 	radius.randomize_and_round()
 	height.randomize_and_round()
-	if cyllinder_mesh != null:
-		set_mesh_properties()
+	set_mesh_properties()
 
 
 func set_mesh_properties() -> void:
-	cyllinder_mesh.top_radius = radius.value
-	cyllinder_mesh.bottom_radius = radius.value
-	cyllinder_mesh.height = height.value
+	cyllinder.set_properties(radius.value, height.value)
 
 
 func base_area() -> float:

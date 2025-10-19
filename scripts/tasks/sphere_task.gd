@@ -2,8 +2,7 @@ extends Task
 
 var radius: TaskFloatValue = TaskFloatValue.default()
 
-@onready var sphere: MeshInstance3D = $Sphere
-@onready var sphere_mesh: SphereMesh = sphere.mesh
+@onready var sphere: Sphere = $Sphere
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
@@ -31,10 +30,8 @@ func volume_tip() -> String:
 
 func randomize_values() -> void:
 	radius.randomize_and_round()
-	if sphere_mesh != null:
-		set_mesh_properties()
+	set_mesh_properties()
 
 
 func set_mesh_properties() -> void:
-	sphere_mesh.radius = radius.value
-	sphere_mesh.height = 2.0 * radius.value
+	sphere.set_radius(radius.value)

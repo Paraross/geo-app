@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dewctocm647rr"]
+[gd_scene load_steps=4 format=3 uid="uid://dewctocm647rr"]
 
 [ext_resource type="Script" uid="uid://btk0xs43pyhk8" path="res://scripts/tasks/capsule_task.gd" id="1_yjcy2"]
+[ext_resource type="Script" uid="uid://bpiucuqww4q6d" path="res://scripts/figures/capsule.gd" id="2_ayjap"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iwfpa"]
 
@@ -9,3 +10,5 @@ script = ExtResource("1_yjcy2")
 
 [node name="Capsule" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_iwfpa")
+script = ExtResource("2_ayjap")
+metadata/_custom_type_script = "uid://bpiucuqww4q6d"

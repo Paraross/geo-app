@@ -2,9 +2,7 @@ extends Task
 
 var side_length: TaskFloatValue = TaskFloatValue.default()
 
-@onready var cube: MeshInstance3D = $Cube
-@onready var cube_mesh: BoxMesh = cube.mesh
-
+@onready var cube: Cube = $Cube
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
@@ -32,11 +30,8 @@ func volume_tip() -> String:
 
 func randomize_values() -> void:
 	side_length.randomize_and_round()
-	if cube_mesh != null:
-		set_mesh_properties()
+	set_mesh_properties()
 
 
 func set_mesh_properties() -> void:
-	cube_mesh.size.x = side_length.value
-	cube_mesh.size.y = side_length.value
-	cube_mesh.size.z = side_length.value
+	cube.set_side_length(side_length.value)
