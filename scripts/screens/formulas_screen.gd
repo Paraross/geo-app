@@ -7,13 +7,15 @@ extends Screen
 @onready var area_tip_label: Label = $CenterContainer/PanelContainer/HBox/InfoVBox/AreaTipLabel
 @onready var volume_tip_label: Label = $CenterContainer/PanelContainer/HBox/InfoVBox/VolumeTipLabel
 
+@onready var shape_world: ShapeWorld = $CenterContainer/PanelContainer/HBox/SubViewportContainer/SubViewport/ShapeWorld
+
 func on_entered() -> void:
 	task_filter_edit.text = ""
 	fill_task_list()
 
 
 func on_left() -> void:
-	pass
+	shape_world.reset_current_task()
 
 
 func fill_task_list() -> void:
@@ -44,5 +46,9 @@ func _on_task_filter_edit_text_changed(new_text: String) -> void:
 func _on_task_list_item_selected(index: int) -> void:
 	var task_name := task_list.get_item_text(index)
 	var task := Tasks.all_tasks[task_name]
+
 	area_tip_label.text = task.area_tip()
 	volume_tip_label.text = task.volume_tip()
+
+	# TODO: set to default, make ui below to set properties
+	shape_world.set_current_task(task)
