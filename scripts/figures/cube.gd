@@ -21,8 +21,20 @@ func vertices() -> Array[Vector3]:
 func scaled_vertices() -> Array[Vector3]:
 	var scaled_vertices := VERTICES.duplicate()
 	for i in range(scaled_vertices.size()):
-		scaled_vertices[i] *= cube_mesh.size.x / 2.0
+		scaled_vertices[i] *= side_length() / 2.0
 	return scaled_vertices
+
+
+func area() -> float:
+	return 6.0 * side_length() * side_length()
+
+
+func volume() -> float:
+	return side_length() * side_length() * side_length()
+
+
+func side_length() -> float:
+	return cube_mesh.size.x
 
 
 func set_side_length(side_length: float) -> void:

@@ -13,11 +13,11 @@ func values() -> Array[Array]:
 
 
 func correct_area() -> float:
-	return 4.0 * PI * radius.value * radius.value
+	return sphere.area()
 
 
 func correct_volume() -> float:
-	return 4.0 / 3.0 * PI * radius.value * radius.value * radius.value
+	return sphere.volume()
 
 
 func area_tip() -> String:

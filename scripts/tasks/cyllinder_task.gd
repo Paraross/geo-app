@@ -20,11 +20,11 @@ func values() -> Array[Array]:
 
 
 func correct_area() -> float:
-	return 2.0 * base_area() + side_area()
+	return cyllinder.area()
 
 
 func correct_volume() -> float:
-	return base_area() * height.value
+	return cyllinder.volume()
 
 
 func area_tip() -> String:
@@ -43,11 +43,3 @@ func randomize_values() -> void:
 
 func set_mesh_properties() -> void:
 	cyllinder.set_properties(radius.value, height.value)
-
-
-func base_area() -> float:
-	return PI * radius.value * radius.value
-
-
-func side_area() -> float:
-	return 2.0 * PI * radius.value * height.value

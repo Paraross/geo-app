@@ -20,15 +20,11 @@ func values() -> Array[Array]:
 
 
 func correct_area() -> float:
-	var sphere_area := 4.0 * PI * radius.value * radius.value
-	var cyllinder_area := 2.0 * PI * radius.value * cyllinder_height()
-	return sphere_area + cyllinder_area
+	return capsule.area()
 
 
 func correct_volume() -> float:
-	var sphere_volume := 4.0 / 3.0 * PI * radius.value * radius.value * radius.value
-	var cyllinder_volume := PI * radius.value * radius.value * cyllinder_height()
-	return sphere_volume + cyllinder_volume
+	return capsule.volume()
 
 
 func area_tip() -> String:
@@ -47,7 +43,3 @@ func randomize_values() -> void:
 
 func set_mesh_properties() -> void:
 	capsule.set_properties(radius.value, height.value)
-
-
-func cyllinder_height() -> float:
-	return height.value - 2.0 * radius.value

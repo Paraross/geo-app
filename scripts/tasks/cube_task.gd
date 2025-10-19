@@ -13,11 +13,11 @@ func values() -> Array[Array]:
 
 
 func correct_area() -> float:
-	return 6.0 * side_length.value * side_length.value
+	return cube.area()
 
 
 func correct_volume() -> float:
-	return side_length.value * side_length.value * side_length.value
+	return cube.volume()
 
 
 func area_tip() -> String:

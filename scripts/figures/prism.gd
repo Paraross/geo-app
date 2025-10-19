@@ -25,6 +25,32 @@ func scaled_vertices() -> Array[Vector3]:
 	return scaled_vertices
 
 
+# correct only for a isosceles triangle
+func area() -> float:
+	var bottom_side_area := base_base() * height()
+	var side_side_area := sqrt(pow(base_base() / 2.0, 2.0) + pow(base_height(), 2.0))
+	return 2.0 * (base_area() + side_side_area) + bottom_side_area
+
+
+func volume() -> float:
+	return base_area() * height()
+
+
+func base_base() -> float:
+	return prism_mesh.size.x 
+
+
+func base_height() -> float:
+	return prism_mesh.size.y
+
+
+func height() -> float:
+	return prism_mesh.size.z
+
+func base_area() -> float:
+	return base_base() * base_height() / 2.0
+
+
 func set_properties(base_base: float, base_height: float, height: float) -> void:
 	prism_mesh.size.x = base_base
 	prism_mesh.size.y = base_height
