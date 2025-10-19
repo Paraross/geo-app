@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bugepp7ityxgx"]
+[gd_scene load_steps=13 format=3 uid="uid://bugepp7ityxgx"]
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/shape_world.tscn" id="2_0xm2m"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cbvp3d0of5sdd" path="res://scripts/screens/settings_screen.gd" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://du67yjm7lo0e8" path="res://scripts/screens/main_menu_screen.gd" id="5_tipki"]
 [ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://b0wykdryvqmi4" path="res://scripts/screens/formulas_screen.gd" id="7_eb6dy"]
 [ext_resource type="Script" uid="uid://crqyttnj4l7vo" path="res://scripts/components/mouse_focus_component.gd" id="10_ya4ey"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("current_screen")]
@@ -42,7 +43,7 @@ stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="TaskScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 0
 
 [node name="ShapeWorld" parent="TaskScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
@@ -275,7 +276,6 @@ text = "Main Menu"
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(275, 100)
-visible = true
 
 [node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
 offset_left = 4.0
@@ -306,6 +306,76 @@ text = "No"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
+
+[node name="FormulasScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_eb6dy")
+
+[node name="CenterContainer" type="CenterContainer" parent="FormulasScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="FormulasScreen/CenterContainer"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="FormulasScreen/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TaskVBox" type="VBoxContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="TaskFilterEdit" type="LineEdit" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox"]
+layout_mode = 2
+placeholder_text = "Filter tasks"
+
+[node name="TaskList" type="ItemList" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox"]
+layout_mode = 2
+auto_height = true
+
+[node name="MainMenuButton" type="Button" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Main Menu"
+
+[node name="InfoVBox" type="VBoxContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Label" type="Label" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/InfoVBox"]
+layout_mode = 2
+text = "Lorem ipsum"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="SubViewport" type="SubViewport" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="ShapeWorld" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
 
 [node name="MainMenuScreen" type="Control" parent="."]
 visible = false
@@ -366,6 +436,18 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
+[node name="FormulasButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Formulas"
+
+[node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
+script = ExtResource("10_ya4ey")
+metadata/_custom_type_script = "uid://crqyttnj4l7vo"
+
+[node name="AnimationComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
+script = ExtResource("4_jyhfs")
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
 [node name="SettingsButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
@@ -416,6 +498,10 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/YesButton" to="SettingsScreen" method="_on_yes_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/NoButton" to="SettingsScreen" method="_on_no_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/CancelButton" to="SettingsScreen" method="_on_cancel_button_pressed"]
+[connection signal="text_changed" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/TaskFilterEdit" to="FormulasScreen" method="_on_task_filter_edit_text_changed"]
+[connection signal="item_selected" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/TaskList" to="FormulasScreen" method="_on_task_list_item_selected"]
+[connection signal="pressed" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
+[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton" to="." method="_on_formulas_button_pressed"]
 [connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_main_menu_settings_button_pressed"]
 [connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
