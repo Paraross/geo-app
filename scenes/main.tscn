@@ -43,7 +43,7 @@ stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="TaskScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
-size = Vector2i(958, 1080)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="ShapeWorld" parent="TaskScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
@@ -362,9 +362,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 
-[node name="Label" type="Label" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/InfoVBox"]
+[node name="AreaTipHeader" type="Label" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
-text = "Lorem ipsum"
+text = "Area tip"
+
+[node name="AreaTipLabel" type="Label" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/InfoVBox"]
+layout_mode = 2
+
+[node name="VolumeTipHeader" type="Label" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/InfoVBox"]
+layout_mode = 2
+text = "Volume tip"
+
+[node name="VolumeTipLabel" type="Label" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/InfoVBox"]
+layout_mode = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox"]
 layout_mode = 2

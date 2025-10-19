@@ -4,6 +4,9 @@ extends Screen
 @onready var task_filter_edit: LineEdit = $CenterContainer/PanelContainer/HBox/TaskVBox/TaskFilterEdit
 @onready var task_list: ItemList = $CenterContainer/PanelContainer/HBox/TaskVBox/TaskList
 
+@onready var area_tip_label: Label = $CenterContainer/PanelContainer/HBox/InfoVBox/AreaTipLabel
+@onready var volume_tip_label: Label = $CenterContainer/PanelContainer/HBox/InfoVBox/VolumeTipLabel
+
 func on_entered() -> void:
 	task_filter_edit.text = ""
 	fill_task_list()
@@ -41,4 +44,5 @@ func _on_task_filter_edit_text_changed(new_text: String) -> void:
 func _on_task_list_item_selected(index: int) -> void:
 	var task_name := task_list.get_item_text(index)
 	var task := Tasks.all_tasks[task_name]
-	print(task)
+	area_tip_label.text = task.area_tip()
+	volume_tip_label.text = task.volume_tip()
