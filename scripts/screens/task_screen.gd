@@ -32,7 +32,7 @@ func on_entered() -> void:
 
 
 func on_left() -> void:
-	pass
+	shape_world.reset_current_task()
 
 
 func reset() -> void:
