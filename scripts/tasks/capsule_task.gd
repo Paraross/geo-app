@@ -1,6 +1,6 @@
 extends Task
 
-var radius: TaskFloatValue = TaskFloatValue.new(
+var radius: TaskFloatValue = TaskFloatValue.with_min_max(
 	Settings.default_task_data_min_value / 2.0,
 	Settings.default_task_data_max_value / 2.0,
 )

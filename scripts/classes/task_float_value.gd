@@ -5,17 +5,17 @@ var min_value: float
 var max_value: float
 var value: float
 
+static func with_min_max(min_val: float, max_val: float) -> TaskFloatValue:
+	return TaskFloatValue.new(min_val, max_val, (min_val + max_val) / 2.0)
+
+
 static func default() -> TaskFloatValue:
 	var min_val := Settings.default_task_data_min_value
 	var max_val := Settings.default_task_data_max_value
-	return TaskFloatValue.new(
-		min_val,
-		max_val,
-		(min_val + max_val) / 2.0,
-	)
+	return TaskFloatValue.with_min_max(min_val, max_val)
 
 
-func _init(min_val: float, max_val: float, val: float = 0.0) -> void:
+func _init(min_val: float, max_val: float, val: float) -> void:
 	min_value = min_val
 	max_value = max_val
 	value = val
