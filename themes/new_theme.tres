@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://djv8k6x7m5yp3"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://djv8k6x7m5yp3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_disabled"]
 content_margin_left = 16.0
@@ -137,6 +137,36 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itemlist_panel"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.18, 0.18, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.35, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itemlist_selected"]
+bg_color = Color(0.25, 0.5, 0.85, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itemlist_selected_focus"]
+bg_color = Color(0.3, 0.6, 0.95, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(0.6, 0.6, 0.65, 1)
@@ -151,6 +181,17 @@ Button/styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 GridContainer/constants/h_separation = 16
 GridContainer/constants/v_separation = 12
 HBoxContainer/constants/separation = 12
+ItemList/colors/font_color = Color(0.95, 0.95, 0.98, 1)
+ItemList/colors/font_hovered_color = Color(1, 1, 1, 1)
+ItemList/colors/font_selected_color = Color(1, 1, 1, 1)
+ItemList/constants/h_separation = 8
+ItemList/constants/icon_margin = 8
+ItemList/constants/line_separation = 4
+ItemList/constants/v_separation = 4
+ItemList/font_sizes/font_size = 18
+ItemList/styles/panel = SubResource("StyleBoxFlat_itemlist_panel")
+ItemList/styles/selected = SubResource("StyleBoxFlat_itemlist_selected")
+ItemList/styles/selected_focus = SubResource("StyleBoxFlat_itemlist_selected_focus")
 Label/colors/font_color = Color(0.95, 0.95, 0.98, 1)
 Label/font_sizes/font_size = 18
 MainMenuButton/base_type = &"Button"
