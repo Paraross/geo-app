@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/shape_world.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bnee8638le068" path="res://scripts/screens/task_screen.gd" id="2_85g3d"]
-[ext_resource type="Theme" uid="uid://c7n5qor8wgsok" path="res://themes/ui_theme.tres" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://bxvhplwobiied" path="res://scripts/screens/task_filter_screen.gd" id="3_tefeu"]
 [ext_resource type="Texture2D" uid="uid://benixub5eg7nq" path="res://assets/gear_icon.tres" id="4_choun"]
 [ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/components/animation_component.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://cbvp3d0of5sdd" path="res://scripts/screens/settings_screen.gd" id="4_o6xl0"]
+[ext_resource type="Theme" uid="uid://djv8k6x7m5yp3" path="res://themes/new_theme.tres" id="5_tasktheme"]
 [ext_resource type="Script" uid="uid://du67yjm7lo0e8" path="res://scripts/screens/main_menu_screen.gd" id="5_tipki"]
 [ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://b0wykdryvqmi4" path="res://scripts/screens/formulas_screen.gd" id="7_eb6dy"]
@@ -25,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_tasktheme")
 script = ExtResource("2_85g3d")
 metadata/_custom_type_script = "uid://chan7lqvx204"
 
@@ -59,6 +60,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 8
 tooltip_text = "Settings"
+theme_type_variation = &"SettingsButton"
 icon = ExtResource("4_choun")
 
 [node name="TaskDataGrid" type="GridContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
@@ -86,6 +88,7 @@ size_flags_horizontal = 0
 
 [node name="Button" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid/AreaResultHbox"]
 layout_mode = 2
+theme_type_variation = &"TipButton"
 text = "?"
 
 [node name="VolumeLabel" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
@@ -106,6 +109,7 @@ size_flags_horizontal = 0
 
 [node name="Button" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid/VolumeResultHbox"]
 layout_mode = 2
+theme_type_variation = &"TipButton"
 text = "?"
 
 [node name="CheckAnswerButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
@@ -126,10 +130,10 @@ oversampling_override = 1.0
 initial_position = 2
 
 [node name="TipLabel" type="Label" parent="TaskScreen/TipPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 80.0
 horizontal_alignment = 1
 
 [node name="TaskFilterScreen" type="Control" parent="."]
@@ -140,6 +144,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_tasktheme")
 script = ExtResource("3_tefeu")
 
 [node name="Background" type="ColorRect" parent="TaskFilterScreen"]
@@ -203,10 +208,10 @@ oversampling_override = 1.0
 initial_position = 2
 
 [node name="VBox" type="VBoxContainer" parent="TaskFilterScreen/TaskSettingsPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 80.0
 
 [node name="Label" type="Label" parent="TaskFilterScreen/TaskSettingsPopup/VBox"]
 layout_mode = 2
@@ -224,6 +229,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_tasktheme")
 script = ExtResource("4_o6xl0")
 
 [node name="Background" type="ColorRect" parent="SettingsScreen"]
@@ -278,10 +284,10 @@ initial_position = 2
 size = Vector2i(275, 100)
 
 [node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 271.0
-offset_bottom = 96.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 255.0
+offset_bottom = 80.0
 
 [node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2
@@ -314,6 +320,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_tasktheme")
 script = ExtResource("7_eb6dy")
 
 [node name="CenterContainer" type="CenterContainer" parent="FormulasScreen"]
@@ -388,13 +395,13 @@ render_target_update_mode = 4
 [node name="ShapeWorld" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
 
 [node name="MainMenuScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_tasktheme")
 script = ExtResource("5_tipki")
 
 [node name="Background" type="ColorRect" parent="MainMenuScreen"]
@@ -413,25 +420,29 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = 55.0
+offset_right = 41.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MainMenuScreen/CenterContainer"]
 layout_mode = 2
-theme = ExtResource("3_sugp2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuScreen/CenterContainer/PanelContainer"]
 layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_sugp2")
+theme = ExtResource("5_tasktheme")
+theme_type_variation = &"MainMenuLabel"
 text = "Main Menu"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_sugp2")
+theme_type_variation = &"MainMenuButton"
 text = "Start"
 
 [node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
@@ -448,6 +459,7 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [node name="FormulasButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"MainMenuButton"
 text = "Formulas"
 
 [node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
@@ -460,6 +472,7 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [node name="SettingsButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"MainMenuButton"
 text = "Settings"
 
 [node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
@@ -476,8 +489,7 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [node name="QuitButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_sugp2")
-theme_type_variation = &"QuitButon"
+theme_type_variation = &"MainMenuButton"
 text = "Quit"
 script = ExtResource("6_tefeu")
 
