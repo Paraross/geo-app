@@ -137,7 +137,6 @@ offset_bottom = 80.0
 horizontal_alignment = 1
 
 [node name="TaskFilterScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -286,8 +285,8 @@ size = Vector2i(275, 100)
 [node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 255.0
-offset_bottom = 80.0
+offset_right = 315.0
+offset_bottom = 147.0
 
 [node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2
@@ -314,6 +313,7 @@ size_flags_horizontal = 3
 text = "Cancel"
 
 [node name="FormulasScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -390,7 +390,7 @@ size_flags_stretch_ratio = 0.4
 
 [node name="SubViewport" type="SubViewport" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/SubViewportContainer"]
 handle_input_locally = false
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="ShapeWorld" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
 
@@ -401,6 +401,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("5_tasktheme")
 script = ExtResource("5_tipki")
 
@@ -420,10 +422,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 41.0
-offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 
