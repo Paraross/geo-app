@@ -37,11 +37,11 @@ func correct_volume() -> float:
 
 
 func area_tip() -> String:
-	return ""
+	return "<TODO>"
 
 
 func volume_tip() -> String:
-	return ""
+	return "<TODO>"
 
 
 func randomize_values() -> void:
