@@ -443,6 +443,10 @@ metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
 [node name="AnimationComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
 script = ExtResource("4_jyhfs")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [node name="SettingsButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
