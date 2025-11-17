@@ -12,6 +12,27 @@ const VERTICES: Array[Vector3] = [
 	Vector3(0, 1, -1),
 ]
 
+var base_base: float:
+	get:
+		return prism_mesh.size.x
+	set(value):
+		prism_mesh.size.x = value
+		properties_changed.emit()
+
+var base_height: float:
+	get:
+		return prism_mesh.size.y
+	set(value):
+		prism_mesh.size.y = value
+		properties_changed.emit()
+
+var height: float:
+	get:
+		return prism_mesh.size.z
+	set(value):
+		prism_mesh.size.z = value
+		properties_changed.emit()
+
 @onready var prism_mesh: PrismMesh = mesh
 
 func vertices() -> Array[Vector3]:
@@ -27,28 +48,17 @@ func scaled_vertices() -> Array[Vector3]:
 
 # correct only for a isosceles triangle
 func area() -> float:
-	var bottom_side_area := base_base() * height()
-	var side_side_area := sqrt(pow(base_base() / 2.0, 2.0) + pow(base_height(), 2.0))
+	var bottom_side_area := base_base * height
+	var side_side_area := sqrt(pow(base_base / 2.0, 2.0) + pow(base_height, 2.0))
 	return 2.0 * (base_area() + side_side_area) + bottom_side_area
 
 
 func volume() -> float:
-	return base_area() * height()
+	return base_area() * height
 
-
-func base_base() -> float:
-	return prism_mesh.size.x 
-
-
-func base_height() -> float:
-	return prism_mesh.size.y
-
-
-func height() -> float:
-	return prism_mesh.size.z
 
 func base_area() -> float:
-	return base_base() * base_height() / 2.0
+	return base_base * base_height / 2.0
 
 
 func set_properties(base_base: float, base_height: float, height: float) -> void:

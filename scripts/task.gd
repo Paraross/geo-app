@@ -19,4 +19,5 @@ func _ready() -> void:
 
 @abstract func randomize_values() -> void
 
+# TODO: might be obsolete
 @abstract func set_mesh_properties() -> void

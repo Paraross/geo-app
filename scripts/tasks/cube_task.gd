@@ -5,7 +5,7 @@ var side_length: TaskFloatValue = TaskFloatValue.default()
 @onready var cube: Cube = $Cube
 
 func _ready() -> void:
-	side_length.on_set = set_mesh_properties
+	side_length.on_set = func () -> void: cube.side_length = side_length.value
 	super._ready()
 
 

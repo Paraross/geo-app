@@ -9,6 +9,13 @@ var height: TaskFloatValue = TaskFloatValue.default()
 
 @onready var prism: Prism = $Prism
 
+func _ready() -> void:
+	base_base.on_set = func () -> void: prism.base_base = base_base.value
+	base_height.on_set = func () -> void: prism.base_height = base_height.value
+	height.on_set = func () -> void: prism.height = height.value
+	super._ready()
+
+
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
