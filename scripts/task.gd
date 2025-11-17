@@ -7,7 +7,7 @@ func _ready() -> void:
 
 @abstract func difficulty() -> Global.TaskDifficulty
 
-@abstract func values() -> Array[Array]
+@abstract func values() -> Dictionary[String, TaskFloatValue]
 
 @abstract func correct_area() -> float
 

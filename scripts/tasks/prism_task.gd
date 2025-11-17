@@ -20,12 +20,12 @@ func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
 
-func values() -> Array[Array]:
-	return [
-		["Base base", base_base],
-		["Base height", base_height],
-		["Height", height],
-	]
+func values() -> Dictionary[String, TaskFloatValue]:
+	return {
+		"Base base": base_base,
+		"Base height": base_height,
+		"Height": height,
+	}
 
 
 func correct_area() -> float:

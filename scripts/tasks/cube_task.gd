@@ -13,8 +13,8 @@ func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
 
-func values() -> Array[Array]:
-	return [["Side", side_length]]
+func values() -> Dictionary[String, TaskFloatValue]:
+	return { "Side": side_length }
 
 
 func correct_area() -> float:

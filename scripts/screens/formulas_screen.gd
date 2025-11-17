@@ -55,9 +55,9 @@ func _on_task_list_item_selected(index: int) -> void:
 
 	Global.clear_grid(task_data_grid)
 
-	for task_value_pair: Array in shape_world.current_task.values():
-		var value_name: String = task_value_pair[0]
-		var value_value: TaskFloatValue = task_value_pair[1]
+	var values := shape_world.current_task.values()
+	for value_name in values:
+		var value_value: TaskFloatValue = values[value_name]
 
 		var label := Label.new()
 		label.text = value_name
