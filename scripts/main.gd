@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func make_screens_not_visible() -> void:
-	for child: Screen in get_children():
+	for child: Screen in screens():
 		child.visible = false
 
 
@@ -35,7 +35,7 @@ func make_current_screen_visible() -> void:
 
 
 func disable_input_for_screens() -> void:
-	for child: Screen in get_children():
+	for child: Screen in screens():
 		set_input_for_screen(child, false)
 
 
@@ -45,6 +45,10 @@ func enable_input_for_current_screen() -> void:
 
 func set_input_for_screen(screen: Screen, enable: bool) -> void:
 	screen.set_process_input(enable)
+
+
+func screens() -> Array:
+	return get_children().filter(func (child: Node) -> bool: return child is Screen)
 
 
 func _notification(what: int) -> void:
