@@ -1,13 +1,9 @@
 extends Task
 
-var side_length: TaskFloatValue = TaskFloatValue.default()
+var side_length: TaskFloatValue = TaskFloatValue.default() \
+	.with_on_set(func () -> void: cube.side_length = side_length.value)
 
 @onready var cube: Cube = $Cube
-
-func _ready() -> void:
-	side_length.on_set = func () -> void: cube.side_length = side_length.value
-	super._ready()
-
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
@@ -31,12 +27,3 @@ func area_tip() -> String:
 
 func volume_tip() -> String:
 	return "A cube's volume is its side length cubed"
-
-
-func randomize_values() -> void:
-	side_length.randomize_and_round()
-	set_mesh_properties()
-
-
-func set_mesh_properties() -> void:
-	cube.side_length = side_length.value

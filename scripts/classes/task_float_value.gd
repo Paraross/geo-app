@@ -32,3 +32,8 @@ func random_in_range() -> float:
 
 func randomize_and_round() -> void:
 	value = Global.round_task_data(random_in_range())
+
+
+func with_on_set(on_set_function: Callable) -> TaskFloatValue:
+	on_set = on_set_function
+	return self

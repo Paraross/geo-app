@@ -1,20 +1,16 @@
 extends Task
 
 # x
-var base_base: TaskFloatValue = TaskFloatValue.default()
+var base_base: TaskFloatValue = TaskFloatValue.default() \
+	.with_on_set(func () -> void: prism.base_base = base_base.value)
 # y
-var base_height: TaskFloatValue = TaskFloatValue.default()
+var base_height: TaskFloatValue = TaskFloatValue.default() \
+	.with_on_set(func () -> void: prism.base_height = base_height.value)
 # z
-var height: TaskFloatValue = TaskFloatValue.default()
+var height: TaskFloatValue = TaskFloatValue.default() \
+	.with_on_set(func () -> void: prism.height = height.value)
 
 @onready var prism: Prism = $Prism
-
-func _ready() -> void:
-	base_base.on_set = func () -> void: prism.base_base = base_base.value
-	base_height.on_set = func () -> void: prism.base_height = base_height.value
-	height.on_set = func () -> void: prism.height = height.value
-	super._ready()
-
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
@@ -42,15 +38,3 @@ func area_tip() -> String:
 
 func volume_tip() -> String:
 	return "<TODO>"
-
-
-func randomize_values() -> void:
-	base_base.randomize_and_round()
-	base_height.randomize_and_round()
-	height.randomize_and_round()
-	set_mesh_properties()
-
-
-func set_mesh_properties() -> void:
-	prism.set_properties(base_base.value, base_height.value, height.value)
-

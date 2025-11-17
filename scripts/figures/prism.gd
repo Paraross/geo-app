@@ -59,10 +59,3 @@ func volume() -> float:
 
 func base_area() -> float:
 	return base_base * base_height / 2.0
-
-
-func set_properties(base_base: float, base_height: float, height: float) -> void:
-	prism_mesh.size.x = base_base
-	prism_mesh.size.y = base_height
-	prism_mesh.size.z = height
-	properties_changed.emit()

@@ -2,7 +2,9 @@
 extends Node3D
 
 func _ready() -> void:
-	set_mesh_properties()
+	var values := values()
+	for value_name in values:
+		values[value_name].on_set.call()
 
 
 @abstract func difficulty() -> Global.TaskDifficulty
@@ -17,7 +19,7 @@ func _ready() -> void:
 
 @abstract func volume_tip() -> String
 
-@abstract func randomize_values() -> void
-
-# TODO: might be obsolete
-@abstract func set_mesh_properties() -> void
+func randomize_values() -> void:
+	var values := values()
+	for value_name in values:
+		values[value_name].randomize_and_round()
