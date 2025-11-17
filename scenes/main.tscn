@@ -256,13 +256,13 @@ horizontal_alignment = 1
 layout_mode = 2
 columns = 2
 
-[node name="BackButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Back"
-
 [node name="MainMenuButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
+
+[node name="BackButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
 
 [node name="ConfirmPopup" type="PopupPanel" parent="SettingsScreen"]
 oversampling_override = 1.0
@@ -491,8 +491,8 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="left" from="SettingsScreen" to="." method="_on_settings_screen_left"]
-[connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="SettingsScreen" method="leave_to_last"]
 [connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="SettingsScreen" method="leave_to_main_menu"]
+[connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="SettingsScreen" method="leave_to_last"]
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/YesButton" to="SettingsScreen" method="_on_yes_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/NoButton" to="SettingsScreen" method="_on_no_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/CancelButton" to="SettingsScreen" method="_on_cancel_button_pressed"]
