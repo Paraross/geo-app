@@ -17,6 +17,14 @@
 script = ExtResource("1_ig7tw")
 current_screen = NodePath("MainMenuScreen")
 
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24313726, 0.24313726, 0.29803923, 1)
+
 [node name="TaskScreen" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -146,17 +154,6 @@ grow_vertical = 2
 theme = ExtResource("5_tasktheme")
 script = ExtResource("3_tefeu")
 
-[node name="Background" type="ColorRect" parent="TaskFilterScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.26002115, 0.26002115, 0.26002115, 1)
-
 [node name="CenterContainer" type="CenterContainer" parent="TaskFilterScreen"]
 layout_mode = 1
 anchors_preset = 15
@@ -232,17 +229,6 @@ grow_vertical = 2
 theme = ExtResource("5_tasktheme")
 script = ExtResource("4_o6xl0")
 
-[node name="Background" type="ColorRect" parent="SettingsScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.26002115, 0.26002115, 0.26002115, 1)
-
 [node name="CenterContainer" type="CenterContainer" parent="SettingsScreen"]
 layout_mode = 1
 anchors_preset = 15
@@ -286,8 +272,8 @@ size = Vector2i(275, 100)
 [node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 315.0
-offset_bottom = 147.0
+offset_right = 255.0
+offset_bottom = 80.0
 
 [node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2
@@ -407,17 +393,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("5_tasktheme")
 script = ExtResource("5_tipki")
-
-[node name="Background" type="ColorRect" parent="MainMenuScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.26002115, 0.26002115, 0.26002115, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="MainMenuScreen"]
 layout_mode = 1
