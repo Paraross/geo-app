@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://d0ml2eda64idd" path="res://scripts/camera.gd" id="2_iqh5t"]
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
-background_color = Color(0.28118682, 0.28118688, 0.28118682, 1)
+background_mode = 1
+background_color = Color(0.24313726, 0.24313726, 0.29803923, 1)
 
 [node name="ShapeWorld" type="WorldEnvironment"]
 environment = SubResource("Environment_ig7tw")
