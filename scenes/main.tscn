@@ -145,6 +145,7 @@ offset_bottom = 80.0
 horizontal_alignment = 1
 
 [node name="TaskFilterScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,7 +301,6 @@ size_flags_horizontal = 3
 text = "Cancel"
 
 [node name="FormulasScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -331,21 +331,21 @@ layout_mode = 2
 [node name="HBox" type="HBoxContainer" parent="FormulasScreen/CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="TaskVBox" type="VBoxContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox"]
+[node name="TaskFilterVBox" type="VBoxContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 
-[node name="TaskFilterEdit" type="LineEdit" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox"]
+[node name="TaskFilterEdit" type="LineEdit" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskFilterVBox"]
 layout_mode = 2
 placeholder_text = "Filter tasks"
 
-[node name="TaskList" type="ItemList" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox"]
+[node name="TaskList" type="ItemList" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskFilterVBox"]
 layout_mode = 2
 auto_height = true
 
-[node name="MainMenuButton" type="Button" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox"]
+[node name="MainMenuButton" type="Button" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskFilterVBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -370,16 +370,23 @@ text = "Volume tip"
 [node name="VolumeTipLabel" type="Label" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox"]
+[node name="TaskVBox" type="VBoxContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 
-[node name="SubViewport" type="SubViewport" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/SubViewportContainer"]
 handle_input_locally = false
-render_target_update_mode = 0
+render_target_update_mode = 4
 
-[node name="ShapeWorld" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
+[node name="ShapeWorld" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
+
+[node name="TaskDataGrid" type="GridContainer" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox"]
+layout_mode = 2
+columns = 2
 
 [node name="MainMenuScreen" type="Control" parent="."]
 visible = false
@@ -500,9 +507,9 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/YesButton" to="SettingsScreen" method="_on_yes_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/NoButton" to="SettingsScreen" method="_on_no_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/CancelButton" to="SettingsScreen" method="_on_cancel_button_pressed"]
-[connection signal="text_changed" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/TaskFilterEdit" to="FormulasScreen" method="_on_task_filter_edit_text_changed"]
-[connection signal="item_selected" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/TaskList" to="FormulasScreen" method="_on_task_list_item_selected"]
-[connection signal="pressed" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="text_changed" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskFilterVBox/TaskFilterEdit" to="FormulasScreen" method="_on_task_filter_edit_text_changed"]
+[connection signal="item_selected" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskFilterVBox/TaskList" to="FormulasScreen" method="_on_task_list_item_selected"]
+[connection signal="pressed" from="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskFilterVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
 [connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton" to="." method="_on_formulas_button_pressed"]
 [connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_main_menu_settings_button_pressed"]

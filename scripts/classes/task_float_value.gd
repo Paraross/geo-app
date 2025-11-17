@@ -3,7 +3,12 @@ extends RefCounted
 
 var min_value: float
 var max_value: float
-var value: float
+var value: float:
+	set(new_value):
+		value = new_value
+		if not on_set.is_null():
+			on_set.call()
+var on_set: Callable
 
 static func with_min_max(min_val: float, max_val: float) -> TaskFloatValue:
 	return TaskFloatValue.new(min_val, max_val, (min_val + max_val) / 2.0)

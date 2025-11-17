@@ -4,6 +4,11 @@ var side_length: TaskFloatValue = TaskFloatValue.default()
 
 @onready var cube: Cube = $Cube
 
+func _ready() -> void:
+	side_length.on_set = func () -> void: cube.set_side_length(side_length.value)
+	super._ready()
+
+
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
