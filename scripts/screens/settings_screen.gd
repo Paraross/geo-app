@@ -10,6 +10,7 @@ var return_to_main_menu: bool
 @onready var confirm_popup: PopupPanel = $ConfirmPopup
 @onready var button_hbox: HBoxContainer = confirm_popup.get_node("VBox/ButtonHBox")
 
+
 func on_entered() -> void:
 	Settings.set_all_original_values()
 	fill_settings_grid()
@@ -29,10 +30,10 @@ func fill_settings_grid() -> void:
 		settings_grid.add_child(label)
 
 		settings_grid.add_child(setting.ui_element())
-	
+
 
 func settings_changed() -> bool:
-	var is_changed := func (setting: Setting) -> bool: return setting.changed
+	var is_changed := func(setting: Setting) -> bool: return setting.changed
 	var settings_changed := Settings.settings.values().any(is_changed)
 	return settings_changed
 

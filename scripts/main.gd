@@ -20,6 +20,7 @@ var last_screen: Screen
 @onready var formulas_screen: FormulasScreen = $FormulasScreen
 @onready var main_menu_screen: MainMenuScreen = $MainMenuScreen
 
+
 func _ready() -> void:
 	make_screens_not_visible()
 	make_current_screen_visible()
@@ -48,7 +49,7 @@ func set_input_for_screen(screen: Screen, enable: bool) -> void:
 
 
 func screens() -> Array:
-	return get_children().filter(func (child: Node) -> bool: return child is Screen)
+	return get_children().filter(func(child: Node) -> bool: return child is Screen)
 
 
 func _notification(what: int) -> void:

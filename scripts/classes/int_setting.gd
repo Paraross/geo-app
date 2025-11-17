@@ -7,6 +7,7 @@ var max_value: int
 var prefix: String
 var suffix: String
 
+
 func _init(val: int, min_val: int, max_val: int, prefix: String = "", suffix: String = "") -> void:
 	min_value = min_val
 	max_value = max_val
@@ -36,5 +37,5 @@ func ui_element() -> Control:
 	spin_box.value = value
 	spin_box.prefix = prefix
 	spin_box.suffix = suffix
-	spin_box.value_changed.connect(func (val: float) -> void: set_value(int(val)))
+	spin_box.value_changed.connect(func(val: float) -> void: set_value(int(val)))
 	return spin_box

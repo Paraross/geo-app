@@ -12,6 +12,7 @@ extends Node
 @onready var node: Control = get_parent()
 @onready var default_scale: Vector2
 
+
 func _ready() -> void:
 	connect_signals()
 

@@ -35,6 +35,7 @@ var height: float:
 
 @onready var prism_mesh: PrismMesh = mesh
 
+
 func vertices() -> Array[Vector3]:
 	return VERTICES
 

@@ -12,15 +12,20 @@ var settings: Dictionary[String, Setting] = {
 }
 
 var data_precision: int:
-	get: return settings[data_precision_str].value
-	set(value): settings[data_precision_str].set_value(value)
+	get:
+		return settings[data_precision_str].value
+	set(value):
+		settings[data_precision_str].set_value(value)
 
 var answer_precision: int:
-	get: return settings[answer_precision_str].value
-	set(value): settings[answer_precision_str].set_value(value)
+	get:
+		return settings[answer_precision_str].value
+	set(value):
+		settings[answer_precision_str].set_value(value)
 
 var default_task_data_min_value: float = 1.0
 var default_task_data_max_value: float = 2.0
+
 
 func _ready() -> void:
 	load_settings_from_file()

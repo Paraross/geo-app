@@ -3,6 +3,7 @@ extends Figure
 
 @onready var capsule_mesh: CapsuleMesh = mesh
 
+
 func vertices() -> Array[Vector3]:
 	return []
 

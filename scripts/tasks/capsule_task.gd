@@ -8,6 +8,7 @@ var height: TaskFloatValue = TaskFloatValue.default()
 
 @onready var capsule: Capsule = $Capsule
 
+
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.HARD
 

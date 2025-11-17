@@ -5,6 +5,7 @@ extends Screen
 @onready var settings_button: Button = $CenterContainer/PanelContainer/VBoxContainer/SettingsButton
 @onready var quit_button: Button = $CenterContainer/PanelContainer/VBoxContainer/QuitButton
 
+
 func _input(event: InputEvent) -> void:
 	var should_focus_start_button := event.is_action_pressed("ui_focus_next") or event.is_action_pressed("ui_down")
 	var should_focus_quit_button := event.is_action_pressed("ui_focus_prev") or event.is_action_pressed("ui_up")

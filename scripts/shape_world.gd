@@ -3,6 +3,7 @@ extends WorldEnvironment
 
 var current_task: Task
 
+
 func spawn_new_task(available_tasks: Array[Task]) -> void:
 	var random_task_index := randi_range(0, available_tasks.size() - 1)
 

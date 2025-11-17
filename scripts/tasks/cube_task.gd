@@ -1,9 +1,10 @@
 extends Task
 
 var side_length: TaskFloatValue = TaskFloatValue.default() \
-	.with_on_set(func () -> void: cube.side_length = side_length.value)
+.with_on_set(func() -> void: cube.side_length = side_length.value)
 
 @onready var cube: Cube = $Cube
+
 
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY

@@ -2,12 +2,13 @@ class_name TaskFilterScreen
 extends Screen
 
 @onready var task_filter_vbox: VBoxContainer = $CenterContainer/PanelContainer/VBoxContainer
-@onready var difficulty_list: ItemList = task_filter_vbox.get_node("GridContainer/DifficultyList") 
-@onready var task_list: ItemList = task_filter_vbox.get_node("GridContainer/TaskList") 
+@onready var difficulty_list: ItemList = task_filter_vbox.get_node("GridContainer/DifficultyList")
+@onready var task_list: ItemList = task_filter_vbox.get_node("GridContainer/TaskList")
 @onready var task_settings_popup: PopupPanel = $TaskSettingsPopup
 @onready var task_settings_popup_vbox: VBoxContainer = task_settings_popup.get_node("VBox")
 @onready var task_settings_popup_label: Label = task_settings_popup_vbox.get_node("Label")
 @onready var task_settings_popup_grid: GridContainer = task_settings_popup_vbox.get_node("TaskValueGrid")
+
 
 func on_entered() -> void:
 	pass
@@ -24,11 +25,11 @@ func _ready() -> void:
 func initialize_difficulty_list() -> void:
 	for difficulty_name: String in Global.TaskDifficulty.keys():
 		difficulty_list.add_item(difficulty_name.capitalize())
-	
+
 	# select all by default
 	for i in range(difficulty_list.item_count):
 		difficulty_list.select(i, false)
-	
+
 	fill_task_list()
 
 
@@ -41,7 +42,7 @@ func fill_task_list() -> void:
 		var task_difficulty_is_selected := selected_difficulty_indices.find(task.difficulty()) != -1
 		if task_difficulty_is_selected:
 			task_list.add_item(task_name)
-	
+
 	for i in range(task_list.item_count):
 		task_list.select(i, false)
 
@@ -82,17 +83,17 @@ func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_
 		var label := Label.new()
 		label.text = value_name
 		task_settings_popup_grid.add_child(label)
-		
+
 		var min_spin_box := SpinBox.new()
 		min_spin_box.step = 1.0 / 10.0 ** Settings.data_precision
 		min_spin_box.value = value_value.min_value
-		min_spin_box.value_changed.connect(func (value: float) -> void: value_value.min_value = value)
+		min_spin_box.value_changed.connect(func(value: float) -> void: value_value.min_value = value)
 		task_settings_popup_grid.add_child(min_spin_box)
 
 		var max_spin_box := SpinBox.new()
 		max_spin_box.step = 1.0 / 10.0 ** Settings.data_precision
 		max_spin_box.value = value_value.max_value
-		max_spin_box.value_changed.connect(func (value: float) -> void: value_value.max_value = value)
+		max_spin_box.value_changed.connect(func(value: float) -> void: value_value.max_value = value)
 		task_settings_popup_grid.add_child(max_spin_box)
 
 	task_settings_popup.show()

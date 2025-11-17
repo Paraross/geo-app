@@ -4,6 +4,7 @@ var radius: TaskFloatValue = TaskFloatValue.default()
 
 @onready var sphere: Sphere = $Sphere
 
+
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 

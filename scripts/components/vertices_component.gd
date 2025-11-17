@@ -6,6 +6,7 @@ var vertex_meshes: Array[MeshInstance3D]
 @onready var parent: Figure = get_parent()
 @onready var mesh: PrimitiveMesh = parent.mesh
 
+
 func _ready() -> void:
 	for vertex_position: Vector3 in parent.vertices():
 		var vertex_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")

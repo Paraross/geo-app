@@ -3,6 +3,7 @@ extends Node
 
 @onready var node: Control = get_parent()
 
+
 func _ready() -> void:
 	connect_signals()
 

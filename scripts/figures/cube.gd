@@ -23,6 +23,7 @@ var side_length: float:
 
 @onready var cube_mesh: BoxMesh = mesh
 
+
 func vertices() -> Array[Vector3]:
 	return VERTICES
 

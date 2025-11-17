@@ -10,6 +10,7 @@ var value: float:
 			on_set.call()
 var on_set: Callable
 
+
 static func with_min_max(min_val: float, max_val: float) -> TaskFloatValue:
 	return TaskFloatValue.new(min_val, max_val, (min_val + max_val) / 2.0)
 

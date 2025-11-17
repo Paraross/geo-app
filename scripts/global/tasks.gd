@@ -4,6 +4,7 @@ const SCENE_DIRECTORY: String = "res://scenes/tasks/"
 
 var all_tasks: Dictionary[String, Task]
 
+
 func _ready() -> void:
 	load_all_tasks()
 

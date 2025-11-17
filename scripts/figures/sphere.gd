@@ -3,6 +3,7 @@ extends Figure
 
 @onready var sphere_mesh: SphereMesh = mesh
 
+
 func vertices() -> Array[Vector3]:
 	return []
 

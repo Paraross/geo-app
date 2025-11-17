@@ -3,6 +3,7 @@ extends Figure
 
 @onready var cyllinder_mesh: CylinderMesh = mesh
 
+
 func vertices() -> Array[Vector3]:
 	return []
 

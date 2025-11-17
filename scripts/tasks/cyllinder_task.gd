@@ -8,6 +8,7 @@ var height: TaskFloatValue = TaskFloatValue.default()
 
 @onready var cyllinder: Cyllinder = $Cyllinder
 
+
 func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.MEDIUM
 

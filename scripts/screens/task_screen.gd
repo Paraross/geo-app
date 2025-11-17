@@ -25,6 +25,7 @@ var available_tasks: Array[Task]
 @onready var tip_popup: PopupPanel = $TipPopup
 @onready var tip_popup_label: Label = $TipPopup/TipLabel
 
+
 func on_entered() -> void:
 	var answer_step := 1.0 / 10.0 ** Settings.answer_precision
 	area_spin_box.step = answer_step
@@ -51,10 +52,10 @@ func reset() -> void:
 func set_answer_labels() -> void:
 	var correct_area := Global.round_task_answer(shape_world.current_task.correct_area())
 	var correct_volume := Global.round_task_answer(shape_world.current_task.correct_volume())
-	
+
 	var entered_area := area_spin_box.value
 	var entered_volume := volume_spin_box.value
-	
+
 	# area
 	if is_equal_approx(entered_area, correct_area):
 		area_result_label.text = "The area is correct"
@@ -71,7 +72,7 @@ func set_answer_labels() -> void:
 		volume_result_tip_button.visible = true
 
 	if OS.is_debug_build():
-		var correct_answer_str := " (%s)" 
+		var correct_answer_str := " (%s)"
 		area_result_label.text += correct_answer_str % correct_area
 		volume_result_label.text += correct_answer_str % correct_volume
 
@@ -83,18 +84,18 @@ func _on_check_answer_button_pressed() -> void:
 
 func _on_new_task_button_pressed() -> void:
 	shape_world.spawn_new_task(available_tasks)
-	
+
 	Global.clear_grid(task_data_grid)
 	check_answer_button.disabled = false
-	
+
 	var values := shape_world.current_task.values()
 	for value_name in values:
 		var value_value: TaskFloatValue = values[value_name]
-		
+
 		var label := Label.new()
 		label.text = value_name
 		task_data_grid.add_child(label)
-		
+
 		var spin_box := SpinBox.new()
 		spin_box.editable = false
 		spin_box.step = 1.0 / 10.0 ** Settings.data_precision

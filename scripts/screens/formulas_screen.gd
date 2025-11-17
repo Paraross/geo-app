@@ -10,6 +10,7 @@ extends Screen
 @onready var shape_world: ShapeWorld = $CenterContainer/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport/ShapeWorld
 @onready var task_data_grid: GridContainer = $CenterContainer/PanelContainer/HBox/TaskVBox/TaskDataGrid
 
+
 func on_entered() -> void:
 	task_filter_edit.text = ""
 	fill_task_list()
@@ -38,7 +39,7 @@ func _on_task_filter_edit_text_changed(new_text: String) -> void:
 		fill_task_list()
 		return
 
-	var task_name_contains_filter_text := func (task_name: String) -> bool:
+	var task_name_contains_filter_text := func(task_name: String) -> bool:
 		return task_name.to_lower().contains(new_text.to_lower())
 
 	fill_task_list_if(task_name_contains_filter_text)
@@ -63,7 +64,7 @@ func _on_task_list_item_selected(index: int) -> void:
 		label.text = value_name
 		task_data_grid.add_child(label)
 
-		var a := func (value: float) -> void: value_value.value = value
+		var a := func(value: float) -> void: value_value.value = value
 
 		var spin_box := SpinBox.new()
 		spin_box.step = 1.0 / 10.0 ** Settings.data_precision

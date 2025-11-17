@@ -5,6 +5,7 @@ var value: Variant
 var original_value: Variant
 var changed: bool
 
+
 func _init(val: Variant) -> void:
 	value = val
 	original_value = val
