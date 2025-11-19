@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://2jabm07onlsf"]
+
+[ext_resource type="Script" uid="uid://cc78b06tagev7" path="res://scripts/components/label_component.gd" id="1_ytc30"]
+
+[node name="LabelComponent" type="Node"]
+script = ExtResource("1_ytc30")
+metadata/_custom_type_script = "uid://cc78b06tagev7"
+
+[node name="Label" type="Label3D" parent="."]
+billboard = 1

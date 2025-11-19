@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://013kke5pgw4v"]
+[gd_scene load_steps=6 format=3 uid="uid://013kke5pgw4v"]
 
 [ext_resource type="Script" uid="uid://dcij1g24gp5jx" path="res://scripts/tasks/cube_task.gd" id="1_a6ih5"]
 [ext_resource type="Script" uid="uid://dgqfrs01l2ox7" path="res://scripts/figures/cube.gd" id="2_yhg30"]
 [ext_resource type="Script" uid="uid://boae1pt14ty0v" path="res://scripts/components/vertices_component.gd" id="3_7vdrw"]
+[ext_resource type="PackedScene" uid="uid://2jabm07onlsf" path="res://scenes/label_component.tscn" id="4_7nc17"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dv1sy"]
 
@@ -18,3 +19,7 @@ metadata/_custom_type_script = "uid://dgqfrs01l2ox7"
 [node name="VerticesComponent" type="Node" parent="Cube"]
 script = ExtResource("3_7vdrw")
 metadata/_custom_type_script = "uid://boae1pt14ty0v"
+
+[node name="LabelComponent" parent="Cube/VerticesComponent" instance=ExtResource("4_7nc17")]
+vertex1_index = 3
+vertex2_index = 7
