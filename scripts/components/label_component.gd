@@ -5,8 +5,7 @@ extends Node
 @export var vertex2_index: int
 
 @onready var label: Label3D = $Label
-@onready var vertices_component: VerticesComponent = get_parent()
-@onready var figure: Figure = vertices_component.get_parent()
+@onready var figure: Figure = get_parent()
 
 
 func _ready() -> void:
