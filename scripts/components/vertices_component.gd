@@ -3,12 +3,12 @@ extends Node
 
 var vertex_meshes: Array[MeshInstance3D]
 
-@onready var parent: Figure = get_parent()
-@onready var mesh: PrimitiveMesh = parent.mesh
+@onready var figure: Figure = get_parent()
+@onready var mesh: PrimitiveMesh = figure.mesh
 
 
 func _ready() -> void:
-	for vertex_position: Vector3 in parent.vertices():
+	for vertex_position: Vector3 in figure.vertices():
 		var vertex_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")
 		var mesh_instance := MeshInstance3D.new()
 		mesh_instance.mesh = vertex_mesh
@@ -20,11 +20,11 @@ func _ready() -> void:
 
 
 func connect_signals() -> void:
-	parent.properties_changed.connect(set_vertices)
+	figure.properties_changed.connect(set_vertices)
 
 
 func set_vertices() -> void:
-	var vertices := parent.scaled_vertices()
+	var vertices := figure.scaled_vertices()
 	for i in range(vertex_meshes.size()):
 		var vertex_position := vertices[i]
 		var vertex_mesh := vertex_meshes[i]
