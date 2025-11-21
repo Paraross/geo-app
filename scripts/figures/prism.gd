@@ -7,9 +7,24 @@ const VERTICES: Array[Vector3] = [
 	Vector3(1, -1, 1), # right
 	Vector3(0, 1, 1), # top
 	# back
-	Vector3(-1, -1, -1),
-	Vector3(1, -1, -1),
-	Vector3(0, 1, -1),
+	Vector3(-1, -1, -1), # left
+	Vector3(1, -1, -1), # right
+	Vector3(0, 1, -1), # top
+]
+
+var edges1: Array[Edge] = [
+	# front
+	Edge.new(0, 1),
+	Edge.new(1, 2), #
+	Edge.new(2, 0), #
+	# back
+	Edge.new(3, 4),
+	Edge.new(4, 5),
+	Edge.new(5, 3),
+	# height
+	Edge.new(0, 3),
+	Edge.new(1, 4),
+	Edge.new(2, 5),
 ]
 
 var base_base: float:
@@ -45,6 +60,10 @@ func scaled_vertices() -> Array[Vector3]:
 	for i in range(scaled_vertices.size()):
 		scaled_vertices[i] *= prism_mesh.size / 2.0
 	return scaled_vertices
+
+
+func edges() -> Array[Edge]:
+	return edges1
 
 
 # correct only for a isosceles triangle

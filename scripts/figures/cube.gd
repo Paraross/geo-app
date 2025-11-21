@@ -12,6 +12,24 @@ const VERTICES: Array[Vector3] = [
 	Vector3(1, -1, -1), # right bottom far
 ]
 
+var edges1: Array[Edge] = [
+	# top
+	Edge.new(0, 1),
+	Edge.new(1, 2),
+	Edge.new(2, 3),
+	Edge.new(3, 0),
+	# bottom
+	Edge.new(4, 5),
+	Edge.new(5, 6),
+	Edge.new(6, 7),
+	Edge.new(7, 4),
+	# vertical
+	Edge.new(0, 4),
+	Edge.new(1, 5),
+	Edge.new(2, 6),
+	Edge.new(3, 7),
+]
+
 var side_length: float:
 	get:
 		return cube_mesh.size.x
@@ -33,6 +51,10 @@ func scaled_vertices() -> Array[Vector3]:
 	for i in range(scaled_vertices.size()):
 		scaled_vertices[i] *= side_length / 2.0
 	return scaled_vertices
+
+
+func edges() -> Array[Edge]:
+	return edges1
 
 
 func area() -> float:
