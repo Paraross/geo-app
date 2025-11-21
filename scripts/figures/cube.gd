@@ -2,22 +2,14 @@ class_name Cube
 extends Figure
 
 const VERTICES: Array[Vector3] = [
-	# left bottom far 
-	Vector3(-1, -1, -1),
-	# left bottom near
-	Vector3(-1, -1, 1),
-	# left top far
-	Vector3(-1, 1, -1),
-	# left top near
-	Vector3(-1, 1, 1),
-	# right bottom far
-	Vector3(1, -1, -1),
-	# right bottom near
-	Vector3(1, -1, 1),
-	# right top far
-	Vector3(1, 1, -1),
-	# right top near
-	Vector3(1, 1, 1),
+	Vector3(-1, 1, -1), # left top far
+	Vector3(-1, 1, 1), # left top near
+	Vector3(1, 1, 1), # right top near
+	Vector3(1, 1, -1), # right top far
+	Vector3(-1, -1, -1), # left bottom far 
+	Vector3(-1, -1, 1), # left bottom near
+	Vector3(1, -1, 1), # right bottom near
+	Vector3(1, -1, -1), # right bottom far
 ]
 
 var side_length: float:
