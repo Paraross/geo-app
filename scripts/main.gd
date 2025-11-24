@@ -7,10 +7,8 @@ extends Node
 		last_screen = current_screen
 		current_screen = value
 		current_screen.on_entered()
-		make_screens_not_visible()
-		disable_input_for_screens()
-		make_current_screen_visible()
-		enable_input_for_current_screen()
+		disable_screens()
+		enable_current_screen()
 
 var last_screen: Screen
 
@@ -22,30 +20,21 @@ var last_screen: Screen
 
 
 func _ready() -> void:
-	make_screens_not_visible()
-	make_current_screen_visible()
+	disable_screens()
+	enable_current_screen()
 
 
-func make_screens_not_visible() -> void:
-	for child: Screen in screens():
-		child.visible = false
+func disable_screens() -> void:
+	for screen: Screen in screens():
+		screen.visible = false
+		screen.set_process_input(false)
+		screen.process_mode = Node.PROCESS_MODE_DISABLED
 
 
-func make_current_screen_visible() -> void:
+func enable_current_screen() -> void:
 	current_screen.visible = true
-
-
-func disable_input_for_screens() -> void:
-	for child: Screen in screens():
-		set_input_for_screen(child, false)
-
-
-func enable_input_for_current_screen() -> void:
-	set_input_for_screen(current_screen, true)
-
-
-func set_input_for_screen(screen: Screen, enable: bool) -> void:
-	screen.set_process_input(enable)
+	current_screen.set_process_input(true)
+	current_screen.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func screens() -> Array:
