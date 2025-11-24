@@ -27,11 +27,15 @@ var edges1: Array[Edge] = [
 	Edge.new(2, 5),
 ]
 
+@onready var shape: ConvexPolygonShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
+
 var base_base: float:
 	get:
 		return prism_mesh.size.x
 	set(value):
 		prism_mesh.size.x = value
+		# slightly unoptimal
+		shape.points = scaled_vertices()
 		properties_changed.emit()
 
 var base_height: float:
@@ -39,6 +43,7 @@ var base_height: float:
 		return prism_mesh.size.y
 	set(value):
 		prism_mesh.size.y = value
+		shape.points = scaled_vertices()
 		properties_changed.emit()
 
 var height: float:
@@ -46,6 +51,7 @@ var height: float:
 		return prism_mesh.size.z
 	set(value):
 		prism_mesh.size.z = value
+		shape.points = scaled_vertices()
 		properties_changed.emit()
 
 @onready var prism_mesh: PrismMesh = mesh

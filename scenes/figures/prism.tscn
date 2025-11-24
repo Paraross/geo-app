@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc21mb02ols0s"]
+
+[ext_resource type="Script" uid="uid://chg8mvq4acv7p" path="res://scripts/figures/prism.gd" id="1_6ce3y"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_mi7nv"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6ce3y"]
+points = PackedVector3Array(-0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, -0.5)
+
+[node name="Prism" type="MeshInstance3D"]
+mesh = SubResource("PrismMesh_mi7nv")
+script = ExtResource("1_6ce3y")
+metadata/_custom_type_script = "uid://chg8mvq4acv7p"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_6ce3y")

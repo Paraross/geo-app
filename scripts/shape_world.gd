@@ -8,9 +8,7 @@ var current_task: Task
 @onready var viewport: SubViewport = get_parent()
 
 
-# TODO: disable process for all background screens
 # TODO: better screen management, SceneTree set_current_scene?
-# TODO: make figures scenes, add collision shapes
 func _process(_delta: float) -> void:
 	var viewport_size := viewport.size
 	var mouse_pos := viewport.get_mouse_position()
