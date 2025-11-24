@@ -17,7 +17,7 @@ func connect_signals() -> void:
 
 
 func update_label() -> void:
-	var vertices := figure.scaled_vertices()
+	var vertices := figure.vertices()
 
 	var vertex1 := vertices[vertex1_index]
 	var vertex2 := vertices[vertex2_index]

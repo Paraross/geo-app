@@ -8,7 +8,7 @@ var edge_cylinders: Array[Cyllinder]
 
 
 func _ready() -> void:
-	var vertices := scaled_vertices()
+	var vertices := vertices()
 	var vertex_sphere_scene: PackedScene = preload("res://scenes/figures/sphere.tscn")
 	var vertex_sphere_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")
 
@@ -53,7 +53,7 @@ func connect_signals() -> void:
 
 
 func set_vertices() -> void:
-	var vertices := scaled_vertices()
+	var vertices := vertices()
 	for i in range(vertex_spheres.size()):
 		var vertex_position := vertices[i]
 		var vertex_mesh := vertex_spheres[i]
@@ -61,7 +61,7 @@ func set_vertices() -> void:
 
 
 func set_edges() -> void:
-	var vertices := scaled_vertices()
+	var vertices := vertices()
 	var edges := edges()
 	for i in range(edge_cylinders.size()):
 		var edge := edges[i]
@@ -81,11 +81,7 @@ func set_edges() -> void:
 		edge_cylinders[i].transform = Transform3D(basis1, midpoint)
 
 
-# TODO:remove because unused?
 @abstract func vertices() -> Array[Vector3]
-
-
-@abstract func scaled_vertices() -> Array[Vector3]
 
 
 @abstract func edges() -> Array[Edge]

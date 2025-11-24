@@ -44,14 +44,10 @@ var side_length: float:
 
 
 func vertices() -> Array[Vector3]:
-	return VERTICES
-
-
-func scaled_vertices() -> Array[Vector3]:
-	var scaled_vertices := VERTICES.duplicate()
-	for i in range(scaled_vertices.size()):
-		scaled_vertices[i] *= side_length / 2.0
-	return scaled_vertices
+	var vertices := VERTICES.duplicate()
+	for i in range(vertices.size()):
+		vertices[i] *= side_length / 2.0
+	return vertices
 
 
 func edges() -> Array[Edge]:

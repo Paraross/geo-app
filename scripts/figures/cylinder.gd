@@ -26,10 +26,6 @@ func vertices() -> Array[Vector3]:
 	return []
 
 
-func scaled_vertices() -> Array[Vector3]:
-	return []
-
-
 func edges() -> Array[Edge]:
 	return []
 

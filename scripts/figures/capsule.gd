@@ -8,10 +8,6 @@ func vertices() -> Array[Vector3]:
 	return []
 
 
-func scaled_vertices() -> Array[Vector3]:
-	return []
-
-
 func area() -> float:
 	var sphere_area := 4.0 * PI * radius() * radius()
 	var cyllinder_area := 2.0 * PI * radius() * cyllinder_height()

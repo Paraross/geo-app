@@ -33,7 +33,7 @@ var base_base: float:
 	set(value):
 		prism_mesh.size.x = value
 		# slightly unoptimal
-		shape.points = scaled_vertices()
+		shape.points = vertices()
 		properties_changed.emit()
 
 var base_height: float:
@@ -41,7 +41,7 @@ var base_height: float:
 		return prism_mesh.size.y
 	set(value):
 		prism_mesh.size.y = value
-		shape.points = scaled_vertices()
+		shape.points = vertices()
 		properties_changed.emit()
 
 var height: float:
@@ -49,7 +49,7 @@ var height: float:
 		return prism_mesh.size.z
 	set(value):
 		prism_mesh.size.z = value
-		shape.points = scaled_vertices()
+		shape.points = vertices()
 		properties_changed.emit()
 
 @onready var prism_mesh: PrismMesh = mesh
@@ -57,14 +57,10 @@ var height: float:
 
 
 func vertices() -> Array[Vector3]:
-	return VERTICES
-
-
-func scaled_vertices() -> Array[Vector3]:
-	var scaled_vertices := VERTICES.duplicate()
-	for i in range(scaled_vertices.size()):
-		scaled_vertices[i] *= prism_mesh.size / 2.0
-	return scaled_vertices
+	var vertices := VERTICES.duplicate()
+	for i in range(vertices.size()):
+		vertices[i] *= prism_mesh.size / 2.0
+	return vertices
 
 
 func edges() -> Array[Edge]:
