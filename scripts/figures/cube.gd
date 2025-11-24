@@ -30,13 +30,15 @@ var edges1: Array[Edge] = [
 	Edge.new(3, 7),
 ]
 
+@onready var shape: BoxShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
+
 var side_length: float:
 	get:
 		return cube_mesh.size.x
 	set(value):
-		cube_mesh.size.x = value
-		cube_mesh.size.y = value
-		cube_mesh.size.z = value
+		var vec := Vector3(value, value, value)
+		cube_mesh.size = vec
+		shape.size = vec
 		properties_changed.emit()
 
 @onready var cube_mesh: BoxMesh = mesh
