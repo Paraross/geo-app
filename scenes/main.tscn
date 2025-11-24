@@ -52,7 +52,7 @@ stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="TaskScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(954, 1080)
 render_target_update_mode = 0
 
 [node name="ShapeWorld" parent="TaskScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
@@ -273,8 +273,8 @@ size = Vector2i(275, 100)
 [node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 255.0
-offset_bottom = 80.0
+offset_right = 315.0
+offset_bottom = 147.0
 
 [node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2

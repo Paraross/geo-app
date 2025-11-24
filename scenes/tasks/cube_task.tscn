@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://013kke5pgw4v"]
+[gd_scene load_steps=6 format=3 uid="uid://013kke5pgw4v"]
 
 [ext_resource type="Script" uid="uid://dcij1g24gp5jx" path="res://scripts/tasks/cube_task.gd" id="1_a6ih5"]
 [ext_resource type="Script" uid="uid://dgqfrs01l2ox7" path="res://scripts/figures/cube.gd" id="2_yhg30"]
 [ext_resource type="PackedScene" uid="uid://2jabm07onlsf" path="res://scenes/label_component.tscn" id="4_7nc17"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dv1sy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7vdrw"]
 
 [node name="CubeTask" type="Node3D"]
 script = ExtResource("1_a6ih5")
@@ -18,3 +20,8 @@ metadata/_custom_type_script = "uid://dgqfrs01l2ox7"
 [node name="LabelComponent" parent="Cube" instance=ExtResource("4_7nc17")]
 vertex1_index = 1
 vertex2_index = 2
+
+[node name="Area3D" type="Area3D" parent="Cube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/Area3D"]
+shape = SubResource("BoxShape3D_7vdrw")

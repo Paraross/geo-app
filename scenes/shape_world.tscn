@@ -17,3 +17,7 @@ rotation_edit_mode = 1
 script = ExtResource("2_iqh5t")
 
 [node name="CameraLight" type="DirectionalLight3D" parent="Camera"]
+
+[node name="RayCast" type="RayCast3D" parent="Camera"]
+target_position = Vector3(0, 0, -10)
+collide_with_areas = true
