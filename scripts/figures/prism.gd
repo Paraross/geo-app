@@ -27,8 +27,6 @@ var edges1: Array[Edge] = [
 	Edge.new(2, 5),
 ]
 
-@onready var shape: ConvexPolygonShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
-
 var base_base: float:
 	get:
 		return prism_mesh.size.x
@@ -55,6 +53,7 @@ var height: float:
 		properties_changed.emit()
 
 @onready var prism_mesh: PrismMesh = mesh
+@onready var shape: ConvexPolygonShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
 
 
 func vertices() -> Array[Vector3]:

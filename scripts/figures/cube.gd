@@ -6,7 +6,7 @@ const VERTICES: Array[Vector3] = [
 	Vector3(-1, 1, 1), # left top near
 	Vector3(1, 1, 1), # right top near
 	Vector3(1, 1, -1), # right top far
-	Vector3(-1, -1, -1), # left bottom far 
+	Vector3(-1, -1, -1), # left bottom far
 	Vector3(-1, -1, 1), # left bottom near
 	Vector3(1, -1, 1), # right bottom near
 	Vector3(1, -1, -1), # right bottom far
@@ -30,8 +30,6 @@ var edges1: Array[Edge] = [
 	Edge.new(3, 7),
 ]
 
-@onready var shape: BoxShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
-
 var side_length: float:
 	get:
 		return cube_mesh.size.x
@@ -42,6 +40,7 @@ var side_length: float:
 		properties_changed.emit()
 
 @onready var cube_mesh: BoxMesh = mesh
+@onready var shape: BoxShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
 
 
 func vertices() -> Array[Vector3]:

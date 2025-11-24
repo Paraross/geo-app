@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv76bs7wf35xt"]
+[gd_scene load_steps=3 format=3 uid="uid://bv76bs7wf35xt"]
 
 [ext_resource type="Script" uid="uid://v7pvsd6jaw3k" path="res://scripts/tasks/sphere_task.gd" id="1_1rmag"]
-[ext_resource type="Script" uid="uid://ch3r6ugu5nc4v" path="res://scripts/figures/sphere.gd" id="2_rs5g6"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_gmrm6"]
+[ext_resource type="PackedScene" uid="uid://cn3npgvnmgerc" path="res://scenes/figures/sphere.tscn" id="2_xph80"]
 
 [node name="SphereTask" type="Node3D"]
 script = ExtResource("1_1rmag")
 
-[node name="Sphere" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_gmrm6")
-script = ExtResource("2_rs5g6")
-metadata/_custom_type_script = "uid://ch3r6ugu5nc4v"
+[node name="Sphere" parent="." instance=ExtResource("2_xph80")]

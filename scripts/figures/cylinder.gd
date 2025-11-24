@@ -1,0 +1,50 @@
+class_name Cyllinder
+extends Figure
+
+var radius: float:
+	get:
+		return cylinder_mesh.top_radius
+	set(value):
+		cylinder_mesh.top_radius = value
+		cylinder_mesh.bottom_radius = value
+		shape.radius = value
+		properties_changed.emit()
+
+var height: float:
+	get:
+		return cylinder_mesh.height
+	set(value):
+		cylinder_mesh.height = value
+		shape.height = value
+		properties_changed.emit()
+
+@onready var cylinder_mesh: CylinderMesh = mesh
+@onready var shape: CylinderShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
+
+
+func vertices() -> Array[Vector3]:
+	return []
+
+
+func scaled_vertices() -> Array[Vector3]:
+	return []
+
+
+func edges() -> Array[Edge]:
+	return []
+
+
+func area() -> float:
+	return 2.0 * base_area() + side_area()
+
+
+func volume() -> float:
+	return base_area() * height
+
+
+func base_area() -> float:
+	return PI * radius * radius
+
+
+func side_area() -> float:
+	return 2.0 * PI * radius * height
