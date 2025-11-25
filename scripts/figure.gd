@@ -3,8 +3,12 @@ extends Area3D
 
 signal properties_changed
 
+@export var hl_material: Material = preload("res://assets/highlight_material.tres")
+
 var vertex_spheres: Array[Sphere]
 var edge_cylinders: Array[Cyllinder]
+
+var was_hovered: bool = false
 var is_hovered: bool = false
 
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
@@ -54,14 +58,12 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var hl_material: Material = preload("res://assets/highlight_material.tres")
-	var surface_material := mesh_instance.get_surface_override_material(0)
+	if not was_hovered and is_hovered:
+		on_hover_start()
+	elif was_hovered and not is_hovered:
+		on_hover_end()
 
-	if is_hovered and surface_material  == null:
-		mesh_instance.set_surface_override_material(0, hl_material)
-	elif surface_material != null:
-		mesh_instance.set_surface_override_material(0, null)
-
+	was_hovered = is_hovered
 	is_hovered = false
 
 func connect_signals() -> void:
@@ -97,6 +99,18 @@ func set_edges() -> void:
 
 		var basis1 := Basis(basis_right, basis_up, basis_forward)
 		edge_cylinders[i].transform = Transform3D(basis1, midpoint)
+
+
+func on_hover_start() -> void:
+	print("hover start")
+
+	mesh_instance.set_surface_override_material(0, hl_material)
+
+
+func on_hover_end() -> void:
+	print("hover end")
+
+	mesh_instance.set_surface_override_material(0, null)
 
 
 @abstract func vertices() -> Array[Vector3]

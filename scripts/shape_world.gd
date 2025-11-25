@@ -8,7 +8,6 @@ var current_task: Task
 @onready var viewport: SubViewport = get_parent()
 
 
-# TODO: better screen management, SceneTree set_current_scene?
 func _process(_delta: float) -> void:
 	var viewport_size := viewport.size
 	var mouse_pos := viewport.get_mouse_position()
@@ -16,6 +15,10 @@ func _process(_delta: float) -> void:
 
 	raycast.target_position = 10.0 * camera.project_local_ray_normal(mouse_pos)
 	raycast.enabled = mouse_in_viewport
+
+	if raycast.is_colliding():
+		var collider: Figure = raycast.get_collider()
+		collider.is_hovered = true
 
 
 func spawn_new_task(available_tasks: Array[Task]) -> void:
