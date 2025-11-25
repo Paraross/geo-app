@@ -52,12 +52,12 @@ var height: float:
 		shape.points = vertices()
 		properties_changed.emit()
 
-@onready var prism_mesh: PrismMesh = mesh_instance.mesh:
+@onready var prism_mesh: PrismMesh:
 	get:
 		return mesh_instance.mesh
 	set(value):
 		mesh_instance.mesh = value
-@onready var shape: ConvexPolygonShape3D = collision_shape.shape:
+@onready var shape: ConvexPolygonShape3D:
 	get:
 		return collision_shape.shape
 	set(value):

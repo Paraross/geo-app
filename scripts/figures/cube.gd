@@ -39,12 +39,12 @@ var side_length: float:
 		shape.size = vec
 		properties_changed.emit()
 
-@onready var cube_mesh: BoxMesh = mesh_instance.mesh:
+@onready var cube_mesh: BoxMesh:
 	get:
 		return mesh_instance.mesh
 	set(value):
 		mesh_instance.mesh = value
-@onready var shape: BoxShape3D = collision_shape.shape:
+@onready var shape: BoxShape3D:
 	get:
 		return collision_shape.shape
 	set(value):

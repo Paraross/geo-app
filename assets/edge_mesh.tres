@@ -4,4 +4,3 @@
 resource_local_to_scene = true
 top_radius = 0.025
 bottom_radius = 0.025
-height = 3.0

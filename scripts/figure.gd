@@ -33,6 +33,7 @@ func _ready() -> void:
 
 	var edge_cylinder_scene: PackedScene = preload("res://scenes/figures/cylinder.tscn")
 	var edge_cylinder_mesh: CylinderMesh = preload("res://assets/edge_mesh.tres")
+	var edge_cylinder_shape: CylinderShape3D = preload("res://assets/edge_shape.tres")
 
 	for edge in edges():
 		var start_vertex := vertices[edge.start_index]
@@ -45,6 +46,7 @@ func _ready() -> void:
 		add_child(edge_cylinder)
 
 		edge_cylinder.mesh_instance.mesh = edge_cylinder_mesh.duplicate()
+		edge_cylinder.collision_shape.shape = edge_cylinder_shape.duplicate()
 
 		var basis_right := (midpoint - position).normalized()
 		var basis_up := (end_vertex - start_vertex).normalized()

@@ -10,12 +10,12 @@ var radius: float:
 		shape.radius = value
 		properties_changed.emit()
 
-@onready var sphere_mesh: SphereMesh = mesh_instance.mesh:
+@onready var sphere_mesh: SphereMesh:
 	get:
 		return mesh_instance.mesh
 	set(value):
 		mesh_instance.mesh = value
-@onready var shape: SphereShape3D = collision_shape.shape:
+@onready var shape: SphereShape3D:
 	get:
 		return collision_shape.shape
 	set(value):
