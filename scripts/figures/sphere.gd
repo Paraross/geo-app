@@ -10,8 +10,8 @@ var radius: float:
 		shape.radius = value
 		properties_changed.emit()
 
-@onready var sphere_mesh: SphereMesh = mesh
-@onready var shape: SphereShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
+@onready var sphere_mesh: SphereMesh = mesh_instance.mesh
+@onready var shape: SphereShape3D = collision_shape.shape
 
 
 func vertices() -> Array[Vector3]:

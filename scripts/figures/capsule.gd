@@ -1,7 +1,7 @@
 class_name Capsule
 extends Figure
 
-@onready var capsule_mesh: CapsuleMesh = mesh
+@onready var capsule_mesh: CapsuleMesh = mesh_instance
 
 
 func vertices() -> Array[Vector3]:

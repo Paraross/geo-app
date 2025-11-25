@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dgqfrs01l2ox7" path="res://scripts/figures/cube.gd" id="1_y6thq"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_dv1sy"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vdrw"]
 
-[node name="Cube" type="MeshInstance3D"]
-mesh = SubResource("BoxMesh_dv1sy")
+[sub_resource type="BoxMesh" id="BoxMesh_dv1sy"]
+
+[node name="Cube" type="Area3D"]
 script = ExtResource("1_y6thq")
-metadata/_custom_type_script = "uid://dgqfrs01l2ox7"
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_7vdrw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_dv1sy")

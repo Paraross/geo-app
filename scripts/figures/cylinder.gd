@@ -18,8 +18,8 @@ var height: float:
 		shape.height = value
 		properties_changed.emit()
 
-@onready var cylinder_mesh: CylinderMesh = mesh
-@onready var shape: CylinderShape3D = ($Area3D/CollisionShape3D as CollisionShape3D).shape
+@onready var cylinder_mesh: CylinderMesh = mesh_instance.mesh
+@onready var shape: CylinderShape3D = collision_shape.shape
 
 
 func vertices() -> Array[Vector3]:

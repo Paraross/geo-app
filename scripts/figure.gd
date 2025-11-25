@@ -1,10 +1,13 @@
 @abstract class_name Figure
-extends MeshInstance3D
+extends Area3D
 
 signal properties_changed
 
 var vertex_spheres: Array[Sphere]
 var edge_cylinders: Array[Cyllinder]
+
+@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 
 func _ready() -> void:
@@ -14,10 +17,11 @@ func _ready() -> void:
 
 	for vertex_position in vertices:
 		var vertex_sphere: Sphere = vertex_sphere_scene.instantiate()
-		vertex_sphere.mesh = vertex_sphere_mesh
 
 		vertex_spheres.push_back(vertex_sphere)
 		add_child(vertex_sphere)
+
+		vertex_sphere.mesh_instance.mesh = vertex_sphere_mesh
 
 		vertex_sphere.position = vertex_position
 		vertex_sphere.radius = 0.05
@@ -31,10 +35,11 @@ func _ready() -> void:
 		var midpoint := (start_vertex + end_vertex) / 2.0
 
 		var edge_cylinder: Cyllinder = edge_cylinder_scene.instantiate()
-		edge_cylinder.mesh = edge_cylinder_mesh.duplicate()
 
 		edge_cylinders.push_back(edge_cylinder)
 		add_child(edge_cylinder)
+
+		edge_cylinder.mesh_instance.mesh = edge_cylinder_mesh.duplicate()
 
 		var basis_right := (midpoint - position).normalized()
 		var basis_up := (end_vertex - start_vertex).normalized()
@@ -69,7 +74,7 @@ func set_edges() -> void:
 		var end_vertex := vertices[edge.end_index]
 		var midpoint := (start_vertex + end_vertex) / 2.0
 
-		var edge_mesh: CylinderMesh = edge_cylinders[i].mesh
+		var edge_mesh: CylinderMesh = edge_cylinders[i].mesh_instance.mesh
 		edge_mesh.height = start_vertex.distance_to(end_vertex)
 		edge_cylinders[i].position = midpoint
 

@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" uid="uid://ch3r6ugu5nc4v" path="res://scripts/figures/sphere.gd" id="1_l5d8v"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_l5d8v"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_l5d8v"]
 
-[node name="Sphere" type="MeshInstance3D"]
-mesh = SubResource("SphereMesh_l5d8v")
+[sub_resource type="SphereMesh" id="SphereMesh_l5d8v"]
+
+[node name="Sphere" type="Area3D"]
 script = ExtResource("1_l5d8v")
-metadata/_custom_type_script = "uid://ch3r6ugu5nc4v"
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_l5d8v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_l5d8v")
