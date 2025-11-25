@@ -39,8 +39,16 @@ var side_length: float:
 		shape.size = vec
 		properties_changed.emit()
 
-@onready var cube_mesh: BoxMesh = mesh_instance.mesh
-@onready var shape: BoxShape3D = collision_shape.shape
+@onready var cube_mesh: BoxMesh = mesh_instance.mesh:
+	get:
+		return mesh_instance.mesh
+	set(value):
+		mesh_instance.mesh = value
+@onready var shape: BoxShape3D = collision_shape.shape:
+	get:
+		return collision_shape.shape
+	set(value):
+		collision_shape.shape = value
 
 
 func vertices() -> Array[Vector3]:

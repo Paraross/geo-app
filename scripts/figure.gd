@@ -5,6 +5,7 @@ signal properties_changed
 
 var vertex_spheres: Array[Sphere]
 var edge_cylinders: Array[Cyllinder]
+var is_hovered: bool = false
 
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
@@ -52,6 +53,17 @@ func _ready() -> void:
 	connect_signals()
 
 
+func _process(_delta: float) -> void:
+	var hl_material: Material = preload("res://assets/highlight_material.tres")
+	var surface_material := mesh_instance.get_surface_override_material(0)
+
+	if is_hovered and surface_material  == null:
+		mesh_instance.set_surface_override_material(0, hl_material)
+	elif surface_material != null:
+		mesh_instance.set_surface_override_material(0, null)
+
+	is_hovered = false
+
 func connect_signals() -> void:
 	properties_changed.connect(set_vertices)
 	properties_changed.connect(set_edges)
@@ -74,8 +86,9 @@ func set_edges() -> void:
 		var end_vertex := vertices[edge.end_index]
 		var midpoint := (start_vertex + end_vertex) / 2.0
 
-		var edge_mesh: CylinderMesh = edge_cylinders[i].mesh_instance.mesh
-		edge_mesh.height = start_vertex.distance_to(end_vertex)
+		# var edge_mesh: CylinderMesh = edge_cylinders[i].mesh_instance.mesh
+		# edge_mesh.height = start_vertex.distance_to(end_vertex)
+		edge_cylinders[i].height = start_vertex.distance_to(end_vertex)
 		edge_cylinders[i].position = midpoint
 
 		var basis_right := (midpoint - position).normalized()

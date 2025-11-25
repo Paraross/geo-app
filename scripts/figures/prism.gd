@@ -52,8 +52,16 @@ var height: float:
 		shape.points = vertices()
 		properties_changed.emit()
 
-@onready var prism_mesh: PrismMesh = mesh_instance.mesh
-@onready var shape: ConvexPolygonShape3D = collision_shape.shape
+@onready var prism_mesh: PrismMesh = mesh_instance.mesh:
+	get:
+		return mesh_instance.mesh
+	set(value):
+		mesh_instance.mesh = value
+@onready var shape: ConvexPolygonShape3D = collision_shape.shape:
+	get:
+		return collision_shape.shape
+	set(value):
+		collision_shape.shape = value
 
 
 func vertices() -> Array[Vector3]:
