@@ -2,6 +2,9 @@
 extends Area3D
 
 signal properties_changed
+signal hover_started
+signal hover_ended
+signal clicked
 
 @export var hl_material: Material = preload("res://assets/highlight_material.tres")
 
@@ -65,8 +68,13 @@ func _process(_delta: float) -> void:
 	elif was_hovered and not is_hovered:
 		on_hover_end()
 
+	if is_hovered:
+		if Input.is_action_just_pressed("select_figure"):
+			clicked.emit()
+
 	was_hovered = is_hovered
 	is_hovered = false
+
 
 func connect_signals() -> void:
 	properties_changed.connect(set_vertices)
@@ -104,15 +112,13 @@ func set_edges() -> void:
 
 
 func on_hover_start() -> void:
-	print("hover start")
-
 	mesh_instance.set_surface_override_material(0, hl_material)
+	hover_started.emit()
 
 
 func on_hover_end() -> void:
-	print("hover end")
-
 	mesh_instance.set_surface_override_material(0, null)
+	hover_ended.emit()
 
 
 @abstract func vertices() -> Array[Vector3]
