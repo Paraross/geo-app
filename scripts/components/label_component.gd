@@ -19,8 +19,8 @@ func connect_signals() -> void:
 
 func update_label() -> void:
 	label.position = figure.position + 0.25 * figure.transform.basis.x
-	if figure is Cyllinder:
-		var cylinder: Cyllinder = figure
+	if figure is Cylinder:
+		var cylinder: Cylinder = figure
 		label.text = "Length:\n%s" % Global.round_task_data(cylinder.height)
 
 

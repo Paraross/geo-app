@@ -9,7 +9,7 @@ signal clicked
 @export var hl_material: Material = preload("res://assets/highlight_material.tres")
 
 var vertex_spheres: Array[Sphere]
-var edge_cylinders: Array[Cyllinder]
+var edge_cylinders: Array[Cylinder]
 
 var was_hovered: bool = false
 var is_hovered: bool = false
@@ -43,7 +43,7 @@ func _ready() -> void:
 		var end_vertex := vertices[edge.end_index]
 		var midpoint := (start_vertex + end_vertex) / 2.0
 
-		var edge_cylinder: Cyllinder = edge_cylinder_scene.instantiate()
+		var edge_cylinder: Cylinder = edge_cylinder_scene.instantiate()
 
 		edge_cylinders.push_back(edge_cylinder)
 		add_child(edge_cylinder)

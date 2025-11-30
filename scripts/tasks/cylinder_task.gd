@@ -6,7 +6,7 @@ var radius: TaskFloatValue = TaskFloatValue.with_min_max(
 )
 var height: TaskFloatValue = TaskFloatValue.default()
 
-@onready var cyllinder: Cyllinder = $Cyllinder
+@onready var cylinder: Cylinder = $Cylinder
 
 
 func difficulty() -> Global.TaskDifficulty:
@@ -21,11 +21,11 @@ func values() -> Array[Array]:
 
 
 func correct_area() -> float:
-	return cyllinder.area()
+	return cylinder.area()
 
 
 func correct_volume() -> float:
-	return cyllinder.volume()
+	return cylinder.volume()
 
 
 func area_tip() -> String:
@@ -43,4 +43,4 @@ func randomize_values() -> void:
 
 
 func set_mesh_properties() -> void:
-	cyllinder.set_properties(radius.value, height.value)
+	cylinder.set_properties(radius.value, height.value)
