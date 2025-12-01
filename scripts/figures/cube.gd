@@ -61,106 +61,126 @@ func set_mesh() -> void:
 	var arrays := []
 	arrays.resize(Mesh.ARRAY_MAX)
 
-	# Define vertices for each face (4 vertices per face, 6 faces)
-	var verts := PackedVector3Array(
-		[
-			# Front face (z+)
-			VERTICES[0],
-			VERTICES[1],
-			VERTICES[2],
-			VERTICES[3],
-			# Back face (z-)
-			VERTICES[5],
-			VERTICES[4],
-			VERTICES[7],
-			VERTICES[6],
-			# Top face (y+)
-			VERTICES[4],
-			VERTICES[5],
-			VERTICES[1],
-			VERTICES[0],
-			# Bottom face (y-)
-			VERTICES[3],
-			VERTICES[2],
-			VERTICES[6],
-			VERTICES[7],
-			# Right face (x+)
-			VERTICES[1],
-			VERTICES[5],
-			VERTICES[6],
-			VERTICES[2],
-			# Left face (x-)
-			VERTICES[4],
-			VERTICES[0],
-			VERTICES[3],
-			VERTICES[7],
-		],
-	)
+	var verts: Array[PackedVector3Array] = [
+		# Front face (z+)
+		PackedVector3Array(
+			[
+				VERTICES[0],
+				VERTICES[1],
+				VERTICES[2],
+				VERTICES[3],
+			],
+		),
+		# Back face (z-)
+		PackedVector3Array(
+			[
+				VERTICES[5],
+				VERTICES[4],
+				VERTICES[7],
+				VERTICES[6],
+			],
+		),
+		# Top face (y+)
+		PackedVector3Array(
+			[
+				VERTICES[4],
+				VERTICES[5],
+				VERTICES[1],
+				VERTICES[0],
+			],
+		),
+		# Bottom face (y-)
+		PackedVector3Array(
+			[
+				VERTICES[3],
+				VERTICES[2],
+				VERTICES[6],
+				VERTICES[7],
+			],
+		),
+		# Right face (x+)
+		PackedVector3Array(
+			[
+				VERTICES[1],
+				VERTICES[5],
+				VERTICES[6],
+				VERTICES[2],
+			],
+		),
+		# Left face (x-)
+		PackedVector3Array(
+			[
+				VERTICES[4],
+				VERTICES[0],
+				VERTICES[3],
+				VERTICES[7],
+			],
+		),
+	]
 
-	var half_size := side_length / 2.0
-	for i in verts.size():
-		verts[i] *= half_size
-
-	var normals := PackedVector3Array()
-	normals.resize(verts.size())
-
-	for i in range(0, verts.size(), 4):
-		var triangle_vertex1 := verts[i]
-		var triangle_vertex2 := verts[i + 1]
-		var triangle_vertex3 := verts[i + 2]
-
-		var to_vertex2 := triangle_vertex2 - triangle_vertex1
-		var to_vertex3 := triangle_vertex3 - triangle_vertex1
-
-		var normal := to_vertex3.cross(to_vertex2).normalized()
-
-		normals[i] = normal
-		normals[i + 1] = normal
-		normals[i + 2] = normal
-		normals[i + 3] = normal
-
-	# Define indices for triangles (2 triangles per face, 6 faces)
-	var indices := PackedInt32Array(
-		[
-			# Front
-			0, 1, 2,
-			0, 2, 3,
-			# Back
-			4, 5, 6,
-			4, 6, 7,
-			# Top
-			8, 9, 10,
-			8, 10, 11,
-			# Bottom
-			12, 13, 14,
-			12, 14, 15,
-			# Right
-			16, 17, 18,
-			16, 18, 19,
-			# Left
-			20, 21, 22,
-			20, 22, 23,
-		],
-	)
-
-	arrays[Mesh.ARRAY_VERTEX] = verts
-	arrays[Mesh.ARRAY_NORMAL] = normals
-	arrays[Mesh.ARRAY_INDEX] = indices
+	arrays[Mesh.ARRAY_VERTEX] = flattened(verts)
+	arrays[Mesh.ARRAY_NORMAL] = generate_normals(verts)
+	arrays[Mesh.ARRAY_INDEX] = generate_indices(verts)
 
 	var array_mesh := ArrayMesh.new()
 	array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 	mesh_instance.mesh = array_mesh
 
 
-# doesn't work
-# func update_mesh() -> void:
-# 	var m := mesh_instance.mesh as ArrayMesh
-# 	var arrays := m.surface_get_arrays(0)
-# 	var verts: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
-#
-# 	var half_size := side_length / 2.0
-# 	for i in verts.size():
-# 		verts[i] *= half_size
+func flattened(verts: Array[PackedVector3Array]) -> PackedVector3Array:
+	var flattened := PackedVector3Array()
+
+	for face_vertices in verts:
+		for vertex in face_vertices:
+			flattened.push_back(scaled(vertex))
+
+	return flattened
+
+
+# verts - array of face vertices, each index corresponds to a face
+# minimum 3 vertices per face
+func generate_normals(verts: Array[PackedVector3Array]) -> PackedVector3Array:
+	var normals := PackedVector3Array()
+
+	for face_vertices in verts:
+		assert(face_vertices.size() >= 3)
+
+		var vertex1 := face_vertices[0]
+		var vertex2 := face_vertices[1]
+		var vertex3 := face_vertices[2]
+
+		var to_vertex2 := vertex2 - vertex1
+		var to_vertex3 := vertex3 - vertex1
+
+		var normal := to_vertex3.cross(to_vertex2).normalized()
+
+		for j in range(face_vertices.size()):
+			normals.push_back(normal)
+
+	return normals
+
+
+func generate_indices(verts: Array[PackedVector3Array]) -> PackedInt32Array:
+	var indices := PackedInt32Array()
+
+	var i := 0
+	for face_vertices in verts:
+		var vertex_count := face_vertices.size() 
+		assert(vertex_count >= 3)
+
+		var first_index := i
+		for j in range(vertex_count - 2):
+			var second_index := first_index + j + 1
+			var third_index := second_index + 1
+
+			indices.push_back(first_index)
+			indices.push_back(second_index)
+			indices.push_back(third_index)
+
+		i += vertex_count
+
+
+	return indices
 
 
 func set_collision_shape() -> void:
@@ -173,11 +193,15 @@ func update_collision_shape() -> void:
 	shape.points = vertices()
 
 
+func scaled(vertex: Vector3) -> Vector3:
+	return vertex * side_length / 2.0
+
+
 func vertices() -> Array[Vector3]:
-	var vertices := VERTICES.duplicate()
-	for i in range(vertices.size()):
-		vertices[i] *= side_length / 2.0
-	return vertices
+	var verts: Array[Vector3] = VERTICES.duplicate()
+	for i in range(verts.size()):
+		verts[i] = scaled(verts[i])
+	return verts
 
 
 func edges() -> Array[Edge]:
