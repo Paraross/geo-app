@@ -40,12 +40,11 @@ var edges1: Array[Edge] = [
 var side_length: float:
 	set(value):
 		side_length = value
-		var vec := Vector3(value, value, value)
-		shape.size = vec
-		update_mesh()
+		set_mesh()
+		update_collision_shape()
 		properties_changed.emit()
 
-@onready var shape: BoxShape3D:
+@onready var shape: ConvexPolygonShape3D:
 	get:
 		return collision_shape.shape
 	set(value):
@@ -54,14 +53,13 @@ var side_length: float:
 
 func _ready() -> void:
 	super._ready()
-	update_mesh()
+	set_mesh()
+	set_collision_shape()
 
 
-func update_mesh() -> void:
+func set_mesh() -> void:
 	var arrays := []
 	arrays.resize(Mesh.ARRAY_MAX)
-
-	var half_size := side_length / 2.0
 
 	# Define vertices for each face (4 vertices per face, 6 faces)
 	var verts := PackedVector3Array(
@@ -99,6 +97,7 @@ func update_mesh() -> void:
 		],
 	)
 
+	var half_size := side_length / 2.0
 	for i in verts.size():
 		verts[i] *= half_size
 
@@ -151,6 +150,27 @@ func update_mesh() -> void:
 	var array_mesh := ArrayMesh.new()
 	array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 	mesh_instance.mesh = array_mesh
+
+
+# doesn't work
+# func update_mesh() -> void:
+# 	var m := mesh_instance.mesh as ArrayMesh
+# 	var arrays := m.surface_get_arrays(0)
+# 	var verts: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+#
+# 	var half_size := side_length / 2.0
+# 	for i in verts.size():
+# 		verts[i] *= half_size
+
+
+func set_collision_shape() -> void:
+	var cp_shape := ConvexPolygonShape3D.new()
+	cp_shape.points = vertices()
+	shape = cp_shape
+
+
+func update_collision_shape() -> void:
+	shape.points = vertices()
 
 
 func vertices() -> Array[Vector3]:

@@ -1,13 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c568rgivd5bbl"]
+[gd_scene load_steps=2 format=3 uid="uid://c568rgivd5bbl"]
 
 [ext_resource type="Script" uid="uid://dgqfrs01l2ox7" path="res://scripts/figures/cube.gd" id="1_y6thq"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7vdrw"]
 
 [node name="Cube" type="Area3D"]
 script = ExtResource("1_y6thq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_7vdrw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
