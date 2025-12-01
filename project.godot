@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://scripts/global/global.gd"
 Tasks="*res://scripts/global/tasks.gd"
 Settings="*res://scripts/global/settings.gd"
+Poly="*res://scripts/global/poly.gd"
 
 [debug]
 
