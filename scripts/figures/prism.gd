@@ -28,35 +28,26 @@ var edges1: Array[Edge] = [
 ]
 
 var base_base: float:
-	get:
-		return prism_mesh.size.x
 	set(value):
-		prism_mesh.size.x = value
-		# slightly unoptimal
-		shape.points = vertices()
+		base_base = value
+		set_mesh()
+		update_collision_shape()
 		properties_changed.emit()
 
 var base_height: float:
-	get:
-		return prism_mesh.size.y
 	set(value):
-		prism_mesh.size.y = value
-		shape.points = vertices()
+		base_height = value
+		set_mesh()
+		update_collision_shape()
 		properties_changed.emit()
 
 var height: float:
-	get:
-		return prism_mesh.size.z
 	set(value):
-		prism_mesh.size.z = value
-		shape.points = vertices()
+		height = value
+		set_mesh()
+		update_collision_shape()
 		properties_changed.emit()
 
-@onready var prism_mesh: PrismMesh:
-	get:
-		return mesh_instance.mesh
-	set(value):
-		mesh_instance.mesh = value
 @onready var shape: ConvexPolygonShape3D:
 	get:
 		return collision_shape.shape
@@ -64,11 +55,50 @@ var height: float:
 		collision_shape.shape = value
 
 
+func _ready() -> void:
+	super._ready()
+	set_mesh()
+	set_collision_shape()
+
+
+func set_mesh() -> void:
+	var arrays := []
+	arrays.resize(Mesh.ARRAY_MAX)
+
+	var verts := Poly.extract_faces(VERTICES)
+
+	var flattened_faces := Poly.flatten_faces(verts)
+	for i in range(flattened_faces.size()):
+		flattened_faces[i] = scaled(flattened_faces[i])
+
+	arrays[Mesh.ARRAY_VERTEX] = flattened_faces
+	arrays[Mesh.ARRAY_NORMAL] = Poly.generate_normals(verts)
+	arrays[Mesh.ARRAY_INDEX] = Poly.generate_indices(verts)
+
+	var array_mesh := ArrayMesh.new()
+	array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	mesh_instance.mesh = array_mesh
+
+
+func set_collision_shape() -> void:
+	var cp_shape := ConvexPolygonShape3D.new()
+	cp_shape.points = vertices()
+	shape = cp_shape
+
+
+func update_collision_shape() -> void:
+	shape.points = vertices()
+
+
+func scaled(vertex: Vector3) -> Vector3:
+	return Vector3(vertex.x * base_base / 2.0, vertex.y * base_height / 2.0, vertex.z * height / 2.0)
+
+
 func vertices() -> Array[Vector3]:
-	var vertices := VERTICES.duplicate()
-	for i in range(vertices.size()):
-		vertices[i] *= prism_mesh.size / 2.0
-	return vertices
+	var verts: Array[Vector3] = VERTICES.duplicate()
+	for i in range(verts.size()):
+		verts[i] = scaled(verts[i])
+	return verts
 
 
 func edges() -> Array[Edge]:
