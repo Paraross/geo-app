@@ -101,8 +101,6 @@ func same_face(f1: PackedVector3Array, f2: PackedVector3Array) -> bool:
 	return true
 
 
-# verts - array of face vertices, each index corresponds to a face
-# minimum 3 vertices per face
 func generate_normals(verts: Array[PackedVector3Array]) -> PackedVector3Array:
 	var normals := PackedVector3Array()
 
