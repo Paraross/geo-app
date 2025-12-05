@@ -1,7 +1,7 @@
 class_name Prism
 extends Polyhedron
 
-const VERTICES: Array[Vector3] = [
+const VERTICES: PackedVector3Array = [
 	# front
 	Vector3(-1, -1, 1), # left
 	Vector3(1, -1, 1), # right
@@ -53,7 +53,7 @@ func scaled(vertex: Vector3) -> Vector3:
 	return vertex * Vector3(base_base, base_height, height) / 2.0
 
 
-func normalized_vertices() -> Array[Vector3]:
+func normalized_vertices() -> PackedVector3Array:
 	return VERTICES.duplicate()
 
 

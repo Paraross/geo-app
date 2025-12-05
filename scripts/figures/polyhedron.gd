@@ -4,6 +4,8 @@ extends Figure
 var vertex_spheres: Array[Sphere]
 var edge_cylinders: Array[Cylinder]
 
+# var vertices: PackedVector3Array
+
 @onready var shape: ConvexPolygonShape3D:
 	get:
 		return collision_shape.shape
@@ -129,14 +131,14 @@ func scaled(vertex: Vector3) -> Vector3:
 	return vertex
 
 
-func vertices() -> Array[Vector3]:
-	var verts: Array[Vector3] = normalized_vertices()
+func vertices() -> PackedVector3Array:
+	var verts := normalized_vertices()
 	for i in range(verts.size()):
 		verts[i] = scaled(verts[i])
 	return verts
 	
 
-func normalized_vertices() -> Array[Vector3]:
+func normalized_vertices() -> PackedVector3Array:
 	assert(false, "shouldn't be called for now")
 	return []
 

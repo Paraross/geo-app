@@ -1,7 +1,7 @@
 class_name Cube
 extends Polyhedron
 
-const VERTICES: Array[Vector3] = [
+const VERTICES: PackedVector3Array = [
 	# front
 	Vector3(-1, 1, 1), # 1 left top near
 	Vector3(1, 1, 1), # 2 right top near
@@ -49,7 +49,7 @@ func scaled(vertex: Vector3) -> Vector3:
 	return vertex * side_length / 2.0
 
 
-func normalized_vertices() -> Array[Vector3]:
+func normalized_vertices() -> PackedVector3Array:
 	return VERTICES.duplicate()
 
 

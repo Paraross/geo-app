@@ -11,7 +11,7 @@ func flatten_faces(verts: Array[PackedVector3Array]) -> PackedVector3Array:
 	return flattened
 
 
-func extract_faces(vertices: Array[Vector3]) -> Array[PackedVector3Array]:
+func extract_faces(vertices: PackedVector3Array) -> Array[PackedVector3Array]:
 	var faces: Array[PackedVector3Array] = []
 
 	const EPS := 0.0001
