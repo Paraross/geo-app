@@ -49,15 +49,8 @@ func scaled(vertex: Vector3) -> Vector3:
 	return vertex * side_length / 2.0
 
 
-func vertices() -> Array[Vector3]:
-	var verts: Array[Vector3] = VERTICES.duplicate()
-	for i in range(verts.size()):
-		verts[i] = scaled(verts[i])
-	return verts
-
-
 func normalized_vertices() -> Array[Vector3]:
-	return VERTICES
+	return VERTICES.duplicate()
 
 
 func edges() -> Array[Edge]:

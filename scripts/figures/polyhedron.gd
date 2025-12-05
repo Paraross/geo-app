@@ -130,8 +130,10 @@ func scaled(vertex: Vector3) -> Vector3:
 
 
 func vertices() -> Array[Vector3]:
-	assert(false, "shouldn't be called for now")
-	return []
+	var verts: Array[Vector3] = normalized_vertices()
+	for i in range(verts.size()):
+		verts[i] = scaled(verts[i])
+	return verts
 	
 
 func normalized_vertices() -> Array[Vector3]:

@@ -50,18 +50,11 @@ var height: float:
 
 
 func scaled(vertex: Vector3) -> Vector3:
-	return Vector3(vertex.x * base_base / 2.0, vertex.y * base_height / 2.0, vertex.z * height / 2.0)
-
-
-func vertices() -> Array[Vector3]:
-	var verts: Array[Vector3] = VERTICES.duplicate()
-	for i in range(verts.size()):
-		verts[i] = scaled(verts[i])
-	return verts
+	return vertex * Vector3(base_base, base_height, height) / 2.0
 
 
 func normalized_vertices() -> Array[Vector3]:
-	return VERTICES
+	return VERTICES.duplicate()
 
 
 func edges() -> Array[Edge]:
