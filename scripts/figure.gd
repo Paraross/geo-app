@@ -1,6 +1,7 @@
 @abstract class_name Figure
 extends Area3D
 
+@warning_ignore("unused_signal")
 signal properties_changed
 signal hover_started
 signal hover_ended
@@ -8,58 +9,11 @@ signal clicked
 
 @export var hl_material: Material = preload("res://assets/highlight_material.tres")
 
-var vertex_spheres: Array[Sphere]
-var edge_cylinders: Array[Cylinder]
-
 var was_hovered: bool = false
 var is_hovered: bool = false
 
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
-
-
-func _ready() -> void:
-	var vertices := vertices()
-	var vertex_sphere_scene: PackedScene = preload("res://scenes/figures/sphere.tscn")
-	var vertex_sphere_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")
-
-	for vertex_position in vertices:
-		var vertex_sphere: Sphere = vertex_sphere_scene.instantiate()
-
-		vertex_spheres.push_back(vertex_sphere)
-		add_child(vertex_sphere)
-
-		vertex_sphere.mesh_instance.mesh = vertex_sphere_mesh
-
-		vertex_sphere.position = vertex_position
-		vertex_sphere.radius = 0.05
-
-	var edge_cylinder_scene: PackedScene = preload("res://scenes/figures/cylinder.tscn")
-	var edge_cylinder_mesh: CylinderMesh = preload("res://assets/edge_mesh.tres")
-	var edge_cylinder_shape: CylinderShape3D = preload("res://assets/edge_shape.tres")
-
-	for edge in edges():
-		var start_vertex := vertices[edge.start_index]
-		var end_vertex := vertices[edge.end_index]
-		var midpoint := (start_vertex + end_vertex) / 2.0
-
-		var edge_cylinder: Cylinder = edge_cylinder_scene.instantiate()
-
-		edge_cylinders.push_back(edge_cylinder)
-		add_child(edge_cylinder)
-
-		edge_cylinder.mesh_instance.mesh = edge_cylinder_mesh.duplicate()
-		edge_cylinder.collision_shape.shape = edge_cylinder_shape.duplicate()
-
-		var basis_right := (midpoint - position).normalized()
-		var basis_up := (end_vertex - start_vertex).normalized()
-		var basis_forward := -basis_up.cross(basis_right)
-
-		edge_cylinder.height = start_vertex.distance_to(end_vertex)
-		edge_cylinder.radius = 0.025
-		edge_cylinder.transform = Transform3D(Basis(basis_right, basis_up, basis_forward), midpoint)
-
-	connect_signals()
 
 
 func _process(_delta: float) -> void:
@@ -74,41 +28,6 @@ func _process(_delta: float) -> void:
 
 	was_hovered = is_hovered
 	is_hovered = false
-
-
-func connect_signals() -> void:
-	properties_changed.connect(set_vertices)
-	properties_changed.connect(set_edges)
-
-
-func set_vertices() -> void:
-	var vertices := vertices()
-	for i in range(vertex_spheres.size()):
-		var vertex_position := vertices[i]
-		var vertex_mesh := vertex_spheres[i]
-		vertex_mesh.position = vertex_position
-
-
-func set_edges() -> void:
-	var vertices := vertices()
-	var edges := edges()
-	for i in range(edge_cylinders.size()):
-		var edge := edges[i]
-		var start_vertex := vertices[edge.start_index]
-		var end_vertex := vertices[edge.end_index]
-		var midpoint := (start_vertex + end_vertex) / 2.0
-
-		# var edge_mesh: CylinderMesh = edge_cylinders[i].mesh_instance.mesh
-		# edge_mesh.height = start_vertex.distance_to(end_vertex)
-		edge_cylinders[i].height = start_vertex.distance_to(end_vertex)
-		edge_cylinders[i].position = midpoint
-
-		var basis_right := (midpoint - position).normalized()
-		var basis_up := (end_vertex - start_vertex).normalized()
-		var basis_forward := -basis_up.cross(basis_right)
-
-		var basis1 := Basis(basis_right, basis_up, basis_forward)
-		edge_cylinders[i].transform = Transform3D(basis1, midpoint)
 
 
 func on_hover_start() -> void:
