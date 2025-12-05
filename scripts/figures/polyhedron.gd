@@ -113,8 +113,6 @@ func set_edges() -> void:
 		var end_vertex := vertices[edge.end_index]
 		var midpoint := (start_vertex + end_vertex) / 2.0
 
-		# var edge_mesh: CylinderMesh = edge_cylinders[i].mesh_instance.mesh
-		# edge_mesh.height = start_vertex.distance_to(end_vertex)
 		edge_cylinders[i].height = start_vertex.distance_to(end_vertex)
 		edge_cylinders[i].position = midpoint
 
@@ -122,8 +120,7 @@ func set_edges() -> void:
 		var basis_up := (end_vertex - start_vertex).normalized()
 		var basis_forward := -basis_up.cross(basis_right)
 
-		var basis1 := Basis(basis_right, basis_up, basis_forward)
-		edge_cylinders[i].transform = Transform3D(basis1, midpoint)
+		edge_cylinders[i].transform = Transform3D(Basis(basis_right, basis_up, basis_forward), midpoint)
 
 
 func scaled(vertex: Vector3) -> Vector3:
