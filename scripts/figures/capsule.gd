@@ -29,14 +29,6 @@ var height: float:
 		collision_shape.shape = value
 
 
-func vertices() -> Array[Vector3]:
-	return []
-
-
-func edges() -> Array[Edge]:
-	return []
-
-
 func area() -> float:
 	var sphere_area := 4.0 * PI * radius * radius
 	var capsule_area := 2.0 * PI * radius * capsule_height()

@@ -22,14 +22,6 @@ var radius: float:
 		collision_shape.shape = value
 
 
-func vertices() -> Array[Vector3]:
-	return []
-
-
-func edges() -> Array[Edge]:
-	return []
-
-
 func area() -> float:
 	return 4.0 * PI * radius * radius
 

@@ -30,14 +30,6 @@ var height: float:
 		collision_shape.shape = value
 
 
-func vertices() -> Array[Vector3]:
-	return []
-
-
-func edges() -> Array[Edge]:
-	return []
-
-
 func area() -> float:
 	return 2.0 * base_area() + side_area()
 

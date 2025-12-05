@@ -40,12 +40,6 @@ func on_hover_end() -> void:
 	hover_ended.emit()
 
 
-@abstract func vertices() -> Array[Vector3]
-
-
-@abstract func edges() -> Array[Edge]
-
-
 @abstract func area() -> float
 
 
