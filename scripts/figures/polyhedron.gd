@@ -4,7 +4,8 @@ extends Figure
 var vertex_spheres: Array[Sphere]
 var edge_cylinders: Array[Cylinder]
 
-# var vertices: PackedVector3Array
+var vertices: PackedVector3Array
+var faces_indices: Array[PackedInt32Array]
 
 @onready var shape: ConvexPolygonShape3D:
 	get:
@@ -14,7 +15,8 @@ var edge_cylinders: Array[Cylinder]
 
 
 func _ready() -> void:
-	var vertices := vertices()
+	faces_indices = Poly.extract_faces_indices(vertices)
+
 	var vertex_sphere_scene: PackedScene = preload("res://scenes/figures/sphere.tscn")
 	var vertex_sphere_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")
 
@@ -62,19 +64,31 @@ func _ready() -> void:
 
 
 func set_mesh() -> void:
+	if faces_indices.is_empty():
+		return
+
+	var face_verts: Array[PackedVector3Array] = []
+	face_verts.resize(faces_indices.size())
+
+	for i in range(faces_indices.size()):
+		var face_indices := faces_indices[i]
+		var face_vertices := PackedVector3Array()
+		face_vertices.resize(face_indices.size())
+
+		for j in range(face_indices.size()):
+			face_vertices[j] = vertices[face_indices[j]]
+
+		face_verts[i] = face_vertices
+
+	# TODO: run this only once at ready, store normalized faces, then multiply when needed
+	var flattened_faces := Poly.flatten_faces(face_verts)
+
 	var arrays := []
 	arrays.resize(Mesh.ARRAY_MAX)
 
-	var verts := Poly.extract_faces(normalized_vertices())
-
-	# TODO: run this only once at ready, store normalized faces, then multiply when needed
-	var flattened_faces := Poly.flatten_faces(verts)
-	for i in range(flattened_faces.size()):
-		flattened_faces[i] = scaled(flattened_faces[i])
-
 	arrays[Mesh.ARRAY_VERTEX] = flattened_faces
-	arrays[Mesh.ARRAY_NORMAL] = Poly.generate_normals(verts)
-	arrays[Mesh.ARRAY_INDEX] = Poly.generate_indices(verts)
+	arrays[Mesh.ARRAY_NORMAL] = Poly.generate_normals(face_verts)
+	arrays[Mesh.ARRAY_INDEX] = Poly.generate_indices(face_verts)
 
 	var array_mesh := ArrayMesh.new()
 	array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
@@ -83,12 +97,12 @@ func set_mesh() -> void:
 
 func set_collision_shape() -> void:
 	var cp_shape := ConvexPolygonShape3D.new()
-	cp_shape.points = vertices()
+	cp_shape.points = vertices
 	shape = cp_shape
 
 
 func update_collision_shape() -> void:
-	shape.points = vertices()
+	shape.points = vertices
 
 
 func connect_signals() -> void:
@@ -97,7 +111,6 @@ func connect_signals() -> void:
 
 
 func set_vertices() -> void:
-	var vertices := vertices()
 	for i in range(vertex_spheres.size()):
 		var vertex_position := vertices[i]
 		var vertex_mesh := vertex_spheres[i]
@@ -105,7 +118,6 @@ func set_vertices() -> void:
 
 
 func set_edges() -> void:
-	var vertices := vertices()
 	var edges := edges()
 	for i in range(edge_cylinders.size()):
 		var edge := edges[i]
@@ -123,21 +135,8 @@ func set_edges() -> void:
 		edge_cylinders[i].transform = Transform3D(Basis(basis_right, basis_up, basis_forward), midpoint)
 
 
-func scaled(vertex: Vector3) -> Vector3:
-	assert(false, "shouldn't be called for now")
-	return vertex
-
-
-func vertices() -> PackedVector3Array:
-	var verts := normalized_vertices()
-	for i in range(verts.size()):
-		verts[i] = scaled(verts[i])
-	return verts
-	
-
-func normalized_vertices() -> PackedVector3Array:
-	assert(false, "shouldn't be called for now")
-	return []
+func scale() -> Vector3:
+	return Vector3.ONE
 
 
 func edges() -> Array[Edge]:

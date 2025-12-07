@@ -12,11 +12,6 @@ const VERTICES: PackedVector3Array = [
 	Vector3(1, 1, -1), # 3 right top far
 	Vector3(1, -1, -1), # 7 right bottom far
 	Vector3(-1, -1, -1), # 4 left bottom far
-	# alt back
-	# Vector3(1, 1, -1), # 3 right top far
-	# Vector3(-1, 1, -1), # 0 left top far
-	# Vector3(-1, -1, -1), # 4 left bottom far
-	# Vector3(1, -1, -1), # 7 right bottom far
 ]
 
 var edges1: Array[Edge] = [
@@ -37,20 +32,27 @@ var edges1: Array[Edge] = [
 	Edge.new(3, 7),
 ]
 
+
 var side_length: float:
 	set(value):
 		side_length = value
+
+		var s := scale()
+		for i in vertices.size():
+			vertices[i] = VERTICES[i] * s
+
 		set_mesh()
 		update_collision_shape()
 		properties_changed.emit()
 
 
-func scaled(vertex: Vector3) -> Vector3:
-	return vertex * side_length / 2.0
+func _ready() -> void:
+	vertices = VERTICES.duplicate()
+	super._ready()
 
 
-func normalized_vertices() -> PackedVector3Array:
-	return VERTICES.duplicate()
+func scale() -> Vector3:
+	return Vector3(side_length, side_length, side_length) / 2.0
 
 
 func edges() -> Array[Edge]:

@@ -30,6 +30,11 @@ var edges1: Array[Edge] = [
 var base_base: float:
 	set(value):
 		base_base = value
+
+		var s := scale()
+		for i in vertices.size():
+			vertices[i] = VERTICES[i] * s
+
 		set_mesh()
 		update_collision_shape()
 		properties_changed.emit()
@@ -37,6 +42,11 @@ var base_base: float:
 var base_height: float:
 	set(value):
 		base_height = value
+
+		var s := scale()
+		for i in vertices.size():
+			vertices[i] = VERTICES[i] * s
+
 		set_mesh()
 		update_collision_shape()
 		properties_changed.emit()
@@ -44,17 +54,23 @@ var base_height: float:
 var height: float:
 	set(value):
 		height = value
+
+		var s := scale()
+		for i in vertices.size():
+			vertices[i] = VERTICES[i] * s
+
 		set_mesh()
 		update_collision_shape()
 		properties_changed.emit()
 
 
-func scaled(vertex: Vector3) -> Vector3:
-	return vertex * Vector3(base_base, base_height, height) / 2.0
+func _ready() -> void:
+	vertices = VERTICES.duplicate()
+	super._ready()
 
 
-func normalized_vertices() -> PackedVector3Array:
-	return VERTICES.duplicate()
+func scale() -> Vector3:
+	return Vector3(base_base, base_height, height) / 2.0
 
 
 func edges() -> Array[Edge]:

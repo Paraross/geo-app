@@ -6,13 +6,13 @@ func flatten_faces(verts: Array[PackedVector3Array]) -> PackedVector3Array:
 
 	for face_vertices in verts:
 		for vertex in face_vertices:
-			flattened.push_back(vertex)
+			flattened.append(vertex)
 
 	return flattened
 
 
-func extract_faces(vertices: PackedVector3Array) -> Array[PackedVector3Array]:
-	var faces: Array[PackedVector3Array] = []
+func extract_faces_indices(vertices: PackedVector3Array) -> Array[PackedInt32Array]:
+	var face_indices: Array[PackedInt32Array] = []
 
 	const EPS := 0.0001
 
@@ -53,52 +53,43 @@ func extract_faces(vertices: PackedVector3Array) -> Array[PackedVector3Array]:
 					normal = -normal
 
 				# Collect all coplanar vertices
-				var face: Array[Vector3] = []
-				for v in vertices:
-					if abs(normal.dot(v - a)) < EPS:
-						face.append(v)
+				var face: Array[int] = []
+				for v_i in range(vertices.size()):
+					if abs(normal.dot(vertices[v_i] - a)) < EPS:
+						face.append(v_i)
 
 				# Sort vertices cyclically
 				var center := Vector3.ZERO
-				for v in face:
-					center += v
+				for index in face:
+					center += vertices[index]
 				center /= face.size()
 
 				# Build basis for sorting
-				var axis_x := (face[0] - center).normalized()
+				var axis_x := (vertices[face[0]] - center).normalized()
 				var axis_y := normal.cross(axis_x).normalized()
 
 				face.sort_custom(
-					func(v1: Vector3, v2: Vector3) -> bool:
-						var va := v1 - center
-						var vb := v2 - center
+					func(i1: int, i2: int) -> bool:
+						var va := vertices[i1] - center
+						var vb := vertices[i2] - center
 						var angle_a := atan2(va.dot(axis_y), va.dot(axis_x))
 						var angle_b := atan2(vb.dot(axis_y), vb.dot(axis_x))
 						return angle_a < angle_b
 				)
 
-				var packed_face := PackedVector3Array(face)
+				var packed_face_indices := PackedInt32Array(face)
 
 				# Avoid duplicates
 				var already := false
-				for existing in faces:
-					if same_face(existing, packed_face):
+				for existing in face_indices:
+					if existing == packed_face_indices:
 						already = true
 						break
 
 				if not already:
-					faces.append(packed_face)
+					face_indices.append(packed_face_indices)
 
-	return faces
-
-
-func same_face(f1: PackedVector3Array, f2: PackedVector3Array) -> bool:
-	if f1.size() != f2.size():
-		return false
-	for p in f1:
-		if not p in f2:
-			return false
-	return true
+	return face_indices
 
 
 func generate_normals(verts: Array[PackedVector3Array]) -> PackedVector3Array:
@@ -117,7 +108,7 @@ func generate_normals(verts: Array[PackedVector3Array]) -> PackedVector3Array:
 		var normal := to_vertex3.cross(to_vertex2).normalized()
 
 		for j in range(face_vertices.size()):
-			normals.push_back(normal)
+			normals.append(normal)
 
 	return normals
 
@@ -135,9 +126,9 @@ func generate_indices(verts: Array[PackedVector3Array]) -> PackedInt32Array:
 			var second_index := first_index + j + 1
 			var third_index := second_index + 1
 
-			indices.push_back(first_index)
-			indices.push_back(second_index)
-			indices.push_back(third_index)
+			indices.append(first_index)
+			indices.append(second_index)
+			indices.append(third_index)
 
 		i += vertex_count
 
