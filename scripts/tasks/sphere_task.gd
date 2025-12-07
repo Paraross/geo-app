@@ -1,6 +1,7 @@
 extends Task
 
-var radius: TaskFloatValue = TaskFloatValue.default()
+var radius: TaskFloatValue = TaskFloatValue.default() \
+.with_on_set(func() -> void: sphere.radius = radius.value)
 
 @onready var sphere: Sphere = $Sphere
 
@@ -9,8 +10,8 @@ func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
 
-func values() -> Array[Array]:
-	return [["Radius", radius]]
+func values() -> Dictionary[String, TaskFloatValue]:
+	return { "Radius": radius }
 
 
 func correct_area() -> float:
@@ -27,12 +28,3 @@ func area_tip() -> String:
 
 func volume_tip() -> String:
 	return ""
-
-
-func randomize_values() -> void:
-	radius.randomize_and_round()
-	set_mesh_properties()
-
-
-func set_mesh_properties() -> void:
-	sphere.set_radius(radius.value)
