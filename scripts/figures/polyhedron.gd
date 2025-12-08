@@ -147,8 +147,28 @@ func edges() -> Array[Edge]:
 
 
 func area() -> float:
-	assert(false, "shouldn't be called for now")
-	return 0.0
+	var total_area := 0.0
+
+	for face_indices in faces_indices:
+		var triangle_indices := Poly.generate_triangle_indices(face_indices.size())
+
+		for i in range(0, triangle_indices.size(), 3):
+			var index1 := triangle_indices[i]
+			var index2 := triangle_indices[i + 1]
+			var index3 := triangle_indices[i + 2]
+			var face_index1 := face_indices[index1]
+			var face_index2 := face_indices[index2]
+			var face_index3 := face_indices[index3]
+			var vertex1 := vertices[face_index1]
+			var vertex2 := vertices[face_index2]
+			var vertex3 := vertices[face_index3]
+
+			var cross := (vertex2 - vertex1).cross(vertex3 - vertex1)
+			var area := cross.length() / 2.0
+
+			total_area += area
+
+	return total_area
 
 
 func volume() -> float:

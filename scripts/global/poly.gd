@@ -133,3 +133,22 @@ func generate_indices(verts: Array[PackedVector3Array]) -> PackedInt32Array:
 		i += vertex_count
 
 	return indices
+
+
+func generate_triangle_indices(vertex_count: int) -> PackedInt32Array:
+	assert(vertex_count >= 3)
+
+	var triangle_count := vertex_count - 2
+
+	var indices := PackedInt32Array()
+	# indices.resize(triangle_count * 3)
+
+	for i in range(triangle_count):
+		var second_index := i + 1
+		var third_index := second_index + 1
+
+		indices.append(0)
+		indices.append(second_index)
+		indices.append(third_index)
+
+	return indices
