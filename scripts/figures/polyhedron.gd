@@ -152,6 +152,7 @@ func area() -> float:
 	for face_indices in faces_indices:
 		var triangle_indices := Poly.generate_triangle_indices(face_indices.size())
 
+		# for each triangle in face
 		for i in range(0, triangle_indices.size(), 3):
 			var index1 := triangle_indices[i]
 			var index2 := triangle_indices[i + 1]
@@ -164,9 +165,9 @@ func area() -> float:
 			var vertex3 := vertices[face_index3]
 
 			var cross := (vertex2 - vertex1).cross(vertex3 - vertex1)
-			var area := cross.length() / 2.0
+			var triangle_area := cross.length() / 2.0
 
-			total_area += area
+			total_area += triangle_area
 
 	return total_area
 
