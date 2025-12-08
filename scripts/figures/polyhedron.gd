@@ -110,6 +110,8 @@ func connect_signals() -> void:
 	properties_changed.connect(update_collision_shape)
 	properties_changed.connect(set_vertices)
 	properties_changed.connect(set_edges)
+	properties_changed.connect(area)
+	properties_changed.connect(volume)
 
 
 func set_vertices() -> void:
@@ -150,27 +152,50 @@ func area() -> float:
 	var total_area := 0.0
 
 	for face_indices in faces_indices:
-		var triangle_count := face_indices.size() - 2
-		# for each triangle in face
-		for i in triangle_count:
-			var index1 := 0 # Poly.triangle_index(i * 3)
-			var index2 := Poly.triangle_index(i * 3 + 1)
-			var index3 := index2 + 1 # Poly.triangle_index(i * 3 + 2)
-			var face_index1 := face_indices[index1]
-			var face_index2 := face_indices[index2]
-			var face_index3 := face_indices[index3]
-			var vertex1 := vertices[face_index1]
-			var vertex2 := vertices[face_index2]
-			var vertex3 := vertices[face_index3]
-
-			var cross := (vertex2 - vertex1).cross(vertex3 - vertex1)
-			var triangle_area := cross.length() / 2.0
-
-			total_area += triangle_area
+		total_area += calculate_face_area(face_indices)
 
 	return total_area
 
 
+func calculate_face_area(face_indices: PackedInt32Array) -> float:
+	var face_area := 0.0
+
+	var triangle_count := face_indices.size() - 2
+	# for each triangle in face
+	for i in triangle_count:
+		var index1 := 0 # Poly.triangle_index(i * 3)
+		var index2 := Poly.triangle_index(i * 3 + 1)
+		var index3 := index2 + 1 # Poly.triangle_index(i * 3 + 2)
+		var face_index1 := face_indices[index1]
+		var face_index2 := face_indices[index2]
+		var face_index3 := face_indices[index3]
+		var vertex1 := vertices[face_index1]
+		var vertex2 := vertices[face_index2]
+		var vertex3 := vertices[face_index3]
+
+		var cross := (vertex2 - vertex1).cross(vertex3 - vertex1)
+		var triangle_area := cross.length() / 2.0
+
+		face_area += triangle_area
+
+	return face_area
+
+
+# https://en.wikipedia.org/wiki/Polyhedron#Volume
 func volume() -> float:
-	assert(false, "shouldn't be called for now")
-	return 0.0
+	var total_volume := 0.0
+
+	for face_indices in faces_indices:
+		var vertex1 := vertices[face_indices[0]]
+		var vertex2 := vertices[face_indices[1]]
+		var vertex3 := vertices[face_indices[2]]
+
+		var q := vertices[face_indices[0]]
+		var n := (vertex3 - vertex1).cross(vertex2 - vertex1).normalized()
+		var face_area := calculate_face_area(face_indices)
+
+		var volume := q.dot(n) * face_area
+
+		total_volume += volume
+
+	return total_volume / 3.0
