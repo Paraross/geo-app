@@ -1,5 +1,9 @@
 extends Node
 
+const MAX_CACHE_SIZE: int = 10
+
+var triangle_indices_cache: Dictionary[int, PackedInt32Array] = {}
+
 
 func flatten_faces(verts: Array[PackedVector3Array]) -> PackedVector3Array:
 	var flattened := PackedVector3Array()
@@ -138,17 +142,20 @@ func generate_indices(verts: Array[PackedVector3Array]) -> PackedInt32Array:
 func generate_triangle_indices(vertex_count: int) -> PackedInt32Array:
 	assert(vertex_count >= 3)
 
+	if triangle_indices_cache.has(vertex_count):
+		return triangle_indices_cache[vertex_count]
+
 	var triangle_count := vertex_count - 2
 
 	var indices := PackedInt32Array()
-	# indices.resize(triangle_count * 3)
+	indices.resize(triangle_count * 3)
 
 	for i in range(triangle_count):
-		var second_index := i + 1
-		var third_index := second_index + 1
+		indices[i * 3] = 0
+		indices[i * 3 + 1] = i + 1
+		indices[i * 3 + 2] = i + 2
 
-		indices.append(0)
-		indices.append(second_index)
-		indices.append(third_index)
+	if triangle_indices_cache.size() < MAX_CACHE_SIZE:
+		triangle_indices_cache[vertex_count] = indices
 
 	return indices
