@@ -35,8 +35,6 @@ var base_base: float:
 		for i in vertices.size():
 			vertices[i] = VERTICES[i] * s
 
-		set_mesh()
-		update_collision_shape()
 		properties_changed.emit()
 
 var base_height: float:
@@ -47,8 +45,6 @@ var base_height: float:
 		for i in vertices.size():
 			vertices[i] = VERTICES[i] * s
 
-		set_mesh()
-		update_collision_shape()
 		properties_changed.emit()
 
 var height: float:
@@ -59,8 +55,6 @@ var height: float:
 		for i in vertices.size():
 			vertices[i] = VERTICES[i] * s
 
-		set_mesh()
-		update_collision_shape()
 		properties_changed.emit()
 
 

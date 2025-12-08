@@ -41,8 +41,6 @@ var side_length: float:
 		for i in vertices.size():
 			vertices[i] = VERTICES[i] * s
 
-		set_mesh()
-		update_collision_shape()
 		properties_changed.emit()
 
 

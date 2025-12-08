@@ -106,6 +106,8 @@ func update_collision_shape() -> void:
 
 
 func connect_signals() -> void:
+	properties_changed.connect(set_mesh)
+	properties_changed.connect(update_collision_shape)
 	properties_changed.connect(set_vertices)
 	properties_changed.connect(set_edges)
 
