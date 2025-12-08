@@ -73,9 +73,11 @@ func edges() -> Array[Edge]:
 
 # correct only for a isosceles triangle
 func area() -> float:
-	var bottom_side_area := base_base * height
-	var side_side_area := sqrt(pow(base_base / 2.0, 2.0) + pow(base_height, 2.0))
-	return 2.0 * (base_area() + side_side_area) + bottom_side_area
+	var bottom_wall_area := base_base * height
+	var base_side := sqrt((base_base / 2.0) ** 2.0 + base_height ** 2.0)
+	var side_wall_area := base_side * height
+
+	return 2.0 * base_area() + 2.0 * side_wall_area + bottom_wall_area
 
 
 func volume() -> float:
