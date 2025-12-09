@@ -20,7 +20,7 @@ var current_step: int = 0
 @onready var check_answer_button: Button = task_vbox.get_node("CheckAnswerButton")
 
 @onready var tip_popup: PopupPanel = $TipPopup
-@onready var tip_popup_label: Label = $TipPopup/TipLabel
+@onready var tip_popup_label: Label = tip_popup.get_node("TipLabel")
 
 
 func on_entered() -> void:
@@ -114,8 +114,8 @@ func get_new_task() -> void:
 	check_answer_button.disabled = false
 	current_step = 0
 
-	update_step_nav_ui()
 	set_values_ui()
+	update_step_nav_ui()
 	set_step_ui()
 
 
@@ -143,12 +143,27 @@ func set_step_ui() -> void:
 		var title_label := Label.new()
 		title_label.text = step.title
 
+		var tip_button := Button.new()
+		tip_button.theme_type_variation = "TipButton"
+		tip_button.text = "?"
+		tip_button.pressed.connect(
+			func() -> void:
+				tip_popup_label.text = step.tip
+				tip_popup.position = tip_button.global_position
+				tip_popup.size = tip_popup_label.get_combined_minimum_size()
+				tip_popup.show()
+		)
+
+		var title_hbox := HBoxContainer.new()
+		title_hbox.add_child(title_label)
+		title_hbox.add_child(tip_button)
+
 		var answer_spinbox := SpinBox.new()
 		answer_spinbox.step = 1.0 / 10.0 ** Settings.answer_precision
 		answer_spinbox.value = step.correct_answer()
 
 		var step_vbox := VBoxContainer.new()
-		step_vbox.add_child(title_label)
+		step_vbox.add_child(title_hbox)
 		step_vbox.add_child(answer_spinbox)
 
 		steps_vbox.add_child(step_vbox)

@@ -119,7 +119,6 @@ text = "Get new task"
 
 [node name="TipPopup" type="PopupPanel" parent="TaskScreen"]
 oversampling_override = 1.0
-initial_position = 2
 
 [node name="TipLabel" type="Label" parent="TaskScreen/TipPopup"]
 offset_left = 20.0
@@ -257,8 +256,8 @@ size = Vector2i(275, 100)
 [node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 255.0
-offset_bottom = 80.0
+offset_right = 315.0
+offset_bottom = 147.0
 
 [node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2
