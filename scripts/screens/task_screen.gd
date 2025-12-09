@@ -18,6 +18,7 @@ var current_step: int = 0
 @onready var steps_vbox: VBoxContainer = task_vbox.get_node("StepsVBox")
 
 @onready var check_answer_button: Button = task_vbox.get_node("CheckAnswerButton")
+@onready var final_label: Label = task_vbox.get_node("FinalLabel")
 
 @onready var tip_popup: PopupPanel = $TipPopup
 @onready var tip_popup_label: Label = tip_popup.get_node("TipLabel")
@@ -35,6 +36,7 @@ func reset() -> void:
 	Global.clear_grid(task_data_grid)
 	shape_world.reset_current_task()
 	check_answer_button.disabled = true
+	final_label.visible = false
 	current_step = 0
 
 
@@ -53,6 +55,7 @@ func get_new_task() -> void:
 
 	Global.clear_grid(task_data_grid)
 	check_answer_button.disabled = false
+	final_label.visible = false
 	current_step = 0
 
 	set_values_ui()
@@ -178,6 +181,11 @@ func _on_check_answer_button_pressed() -> void:
 	answer_mark_label.visible = true
 
 	update_step_nav_ui()
+
+	var is_last_step := current_step == shape_world.current_task.step_count() - 1
+	if is_answer_correct and is_last_step:
+		check_answer_button.disabled = true
+		final_label.visible = true
 
 
 func _on_new_task_button_pressed() -> void:
