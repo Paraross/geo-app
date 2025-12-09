@@ -66,4 +66,4 @@ class Step:
 
 	func correct_answer() -> float:
 		var answer: float = _correct_answer_func.call()
-		return answer
+		return Global.round_task_answer(answer)
