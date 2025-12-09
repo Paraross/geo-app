@@ -1,6 +1,5 @@
 extends Node
 
-
 func flatten_faces(verts: Array[PackedVector3Array]) -> PackedVector3Array:
 	var flattened := PackedVector3Array()
 
@@ -48,7 +47,7 @@ func extract_faces_indices(vertices: PackedVector3Array) -> Array[PackedInt32Arr
 
 				if not valid:
 					continue
-				
+
 				if not found_side:
 					normal = -normal
 

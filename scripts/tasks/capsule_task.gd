@@ -21,17 +21,24 @@ func values() -> Dictionary[String, TaskFloatValue]:
 	}
 
 
-func correct_area() -> float:
-	return capsule.area()
-
-
-func correct_volume() -> float:
-	return capsule.volume()
-
-
 func area_tip() -> String:
-	return ""
+	return "A capsule's area is sphere area + cylinder side area"
 
 
 func volume_tip() -> String:
-	return ""
+	return "A capsule's volume is sphere volume + cylinder volume"
+
+
+func steps() -> Array[Step]:
+	return [
+		Step.new(
+			"1. Calculate area",
+			"A capsule's area is sphere area + cylinder side area",
+			func() -> float: return capsule.area()
+		),
+		Step.new(
+			"2. Calculate volume",
+			"A capsule's volume is sphere volume + cylinder volume",
+			func() -> float: return capsule.volume()
+		),
+	]

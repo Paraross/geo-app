@@ -62,7 +62,6 @@ func _ready() -> void:
 	set_collision_shape()
 
 
-
 func set_mesh() -> void:
 	if faces_indices.is_empty():
 		return

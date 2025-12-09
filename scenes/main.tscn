@@ -26,7 +26,6 @@ grow_vertical = 2
 color = Color(0.24313726, 0.24313726, 0.29803923, 1)
 
 [node name="TaskScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,7 +52,7 @@ stretch = true
 [node name="ShapeViewport" type="SubViewport" parent="TaskScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
 size = Vector2i(954, 1080)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="ShapeWorld" parent="TaskScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 
@@ -71,59 +70,44 @@ tooltip_text = "Settings"
 theme_type_variation = &"SettingsButton"
 icon = ExtResource("4_choun")
 
+[node name="Label" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Task Data"
+
 [node name="TaskDataGrid" type="GridContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 2
 
-[node name="TaskAnswerGrid" type="GridContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="AreaLabel" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+[node name="StepNavHbox" type="HBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Area"
 
-[node name="AreaSpinBox" type="SpinBox" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+[node name="PrevButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
+layout_mode = 2
+text = "< Prev"
+
+[node name="Label" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
 layout_mode = 2
 size_flags_horizontal = 3
-step = 0.01
+horizontal_alignment = 1
 
-[node name="AreaResultHbox" type="HBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
+[node name="NextButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
 layout_mode = 2
+text = "Next >"
 
-[node name="Label" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid/AreaResultHbox"]
+[node name="StepsVBox" type="VBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Button" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid/AreaResultHbox"]
-layout_mode = 2
-theme_type_variation = &"TipButton"
-text = "?"
-
-[node name="VolumeLabel" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
-layout_mode = 2
-text = "Volume"
-
-[node name="VolumeSpinBox" type="SpinBox" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
-layout_mode = 2
-size_flags_horizontal = 3
-step = 0.01
-
-[node name="VolumeResultHbox" type="HBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid/VolumeResultHbox"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Button" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid/VolumeResultHbox"]
-layout_mode = 2
-theme_type_variation = &"TipButton"
-text = "?"
+size_flags_vertical = 0
 
 [node name="CheckAnswerButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 10
+size_flags_horizontal = 0
+size_flags_vertical = 0
 disabled = true
 text = "Check answer"
 
@@ -273,8 +257,8 @@ size = Vector2i(275, 100)
 [node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 315.0
-offset_bottom = 147.0
+offset_right = 255.0
+offset_bottom = 80.0
 
 [node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2
@@ -301,6 +285,7 @@ size_flags_horizontal = 3
 text = "Cancel"
 
 [node name="FormulasScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -380,7 +365,7 @@ size_flags_stretch_ratio = 0.4
 
 [node name="SubViewport" type="SubViewport" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/SubViewportContainer"]
 handle_input_locally = false
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="ShapeWorld" parent="FormulasScreen/CenterContainer/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
 
@@ -492,8 +477,8 @@ duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_task_screen_settings_button_pressed"]
-[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid/AreaResultHbox/Button" to="TaskScreen" method="_on_area_result_tip_button_pressed"]
-[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/TaskAnswerGrid/VolumeResultHbox/Button" to="TaskScreen" method="_on_volume_result_tip_button_pressed"]
+[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox/PrevButton" to="TaskScreen" method="_on_prev_step_pressed"]
+[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox/NextButton" to="TaskScreen" method="_on_next_step_pressed"]
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/CheckAnswerButton" to="TaskScreen" method="_on_check_answer_button_pressed"]
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/NewTaskButton" to="TaskScreen" method="_on_new_task_button_pressed"]
 [connection signal="multi_selected" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterScreen" method="_on_difficulty_item_list_multi_selected"]

@@ -25,17 +25,29 @@ func values() -> Dictionary[String, TaskFloatValue]:
 	}
 
 
-func correct_area() -> float:
-	return prism.area()
-
-
-func correct_volume() -> float:
-	return prism.volume()
-
-
 func area_tip() -> String:
-	return "<TODO>"
+	return "A prism's total area is 2 × base area + side walls area"
 
 
 func volume_tip() -> String:
-	return "<TODO>"
+	return "A prism's volume is base area × height"
+
+
+func steps() -> Array[Step]:
+	return [
+		Step.new(
+			"1. Calculate base area",
+			"A triangular base area is (base × height) ÷ 2",
+			func() -> float: return prism.base_area()
+		),
+		Step.new(
+			"2. Calculate total area",
+			"A prism's total area is 2 × base area + side walls area",
+			func() -> float: return prism.area()
+		),
+		Step.new(
+			"3. Calculate volume",
+			"A prism's volume is base area × height",
+			func() -> float: return prism.volume()
+		),
+	]

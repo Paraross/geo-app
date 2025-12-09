@@ -32,7 +32,6 @@ var edges1: Array[Edge] = [
 	Edge.new(3, 7),
 ]
 
-
 var side_length: float:
 	set(value):
 		side_length = value

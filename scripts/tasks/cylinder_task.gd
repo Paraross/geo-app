@@ -20,22 +20,29 @@ func values() -> Dictionary[String, TaskFloatValue]:
 	}
 
 
-func correct_area() -> float:
-	return cylinder.area()
-
-
-func correct_volume() -> float:
-	return cylinder.volume()
-
-
 func area_tip() -> String:
-	return ""
+	return "A cylinder's total area is 2 × base area + side area"
 
 
 func volume_tip() -> String:
-	return ""
+	return "A cylinder's volume is base area × height"
 
 
-# func randomize_values() -> void:
-# 	radius.randomize_and_round()
-# 	height.randomize_and_round()
+func steps() -> Array[Step]:
+	return [
+		Step.new(
+			"1. Calculate base area",
+			"A circle's area is π × radius²",
+			func() -> float: return cylinder.base_area()
+		),
+		Step.new(
+			"2. Calculate total area",
+			"A cylinder's total area is 2 × base area + side area",
+			func() -> float: return cylinder.area()
+		),
+		Step.new(
+			"3. Calculate volume",
+			"A cylinder's volume is base area × height",
+			func() -> float: return cylinder.volume()
+		),
+	]
