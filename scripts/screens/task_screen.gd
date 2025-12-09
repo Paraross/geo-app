@@ -32,12 +32,6 @@ func on_left() -> void:
 
 
 func reset() -> void:
-	# area_spin_box.value = 0.0
-	# volume_spin_box.value = 0.0
-	# area_result_label.text = ""
-	# volume_result_label.text = ""
-	# area_result_tip_button.visible = false
-	# volume_result_tip_button.visible = false
 	Global.clear_grid(task_data_grid)
 	shape_world.reset_current_task()
 	check_answer_button.disabled = true
@@ -51,7 +45,7 @@ func update_step_nav_ui() -> void:
 	current_step = clamp(current_step, 0, max(0, steps - 1))
 	step_title_label.text = task.step_title(current_step)
 	prev_step_button.disabled = current_step <= 0
-	next_step_button.disabled = current_step >= steps - 1
+	next_step_button.disabled = current_step >= steps - 1 or not is_current_answer_correct()
 
 
 func get_new_task() -> void:
@@ -138,14 +132,21 @@ func update_step_ui() -> void:
 		i += 1
 
 
-func _on_area_result_tip_button_pressed() -> void:
-	tip_popup_label.text = shape_world.current_task.tip_for_step(current_step)
-	tip_popup.show()
+func is_current_answer_correct() -> bool:
+	if shape_world.current_task.steps().is_empty():
+		return false
 
+	var correct_answer := shape_world.current_task.steps()[current_step].correct_answer()
 
-func _on_volume_result_tip_button_pressed() -> void:
-	tip_popup_label.text = shape_world.current_task.tip_for_step(current_step)
-	tip_popup.show()
+	if steps_vbox.get_children().is_empty():
+		return false
+
+	var step_container: Container = steps_vbox.get_children()[current_step]
+
+	var answer_hbox: HBoxContainer = step_container.get_child(1)
+	var answer_spinbox: SpinBox = answer_hbox.get_child(0)
+
+	return is_equal_approx(answer_spinbox.value, correct_answer)
 
 
 func _on_prev_step_pressed() -> void:
@@ -164,9 +165,6 @@ func _on_next_step_pressed() -> void:
 
 
 func _on_check_answer_button_pressed() -> void:
-	assert(shape_world.current_task != null)
-	# set_answer_labels()
-
 	var correct_answer := shape_world.current_task.steps()[current_step].correct_answer()
 
 	var step_container: Container = steps_vbox.get_children()[current_step]
@@ -179,7 +177,7 @@ func _on_check_answer_button_pressed() -> void:
 	answer_mark_label.text = "️✅" if is_answer_correct else "❌"
 	answer_mark_label.visible = true
 
-	next_step_button.disabled = not is_answer_correct
+	update_step_nav_ui()
 
 
 func _on_new_task_button_pressed() -> void:
