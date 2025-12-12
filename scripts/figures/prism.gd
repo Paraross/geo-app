@@ -12,21 +12,6 @@ const VERTICES: PackedVector3Array = [
 	Vector3(0, 1, -1), # top
 ]
 
-var edges1: Array[Edge] = [
-	# front
-	Edge.new(0, 1),
-	Edge.new(1, 2), #
-	Edge.new(2, 0), #
-	# back
-	Edge.new(3, 4),
-	Edge.new(4, 5),
-	Edge.new(5, 3),
-	# height
-	Edge.new(0, 3),
-	Edge.new(1, 4),
-	Edge.new(2, 5),
-]
-
 var base_base: float:
 	set(value):
 		base_base = value
@@ -65,10 +50,6 @@ func _ready() -> void:
 
 func scale() -> Vector3:
 	return Vector3(base_base, base_height, height) / 2.0
-
-
-func edges() -> Array[Edge]:
-	return edges1
 
 
 # correct only for a isosceles triangle

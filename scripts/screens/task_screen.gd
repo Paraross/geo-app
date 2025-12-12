@@ -109,7 +109,7 @@ func set_step_ui() -> void:
 
 		var answer_mark_label := Label.new()
 		answer_mark_label.visible = false
-		
+
 		var answer_hbox := HBoxContainer.new()
 		answer_hbox.add_child(answer_spinbox)
 		answer_hbox.add_child(answer_mark_label)

@@ -14,24 +14,6 @@ const VERTICES: PackedVector3Array = [
 	Vector3(-1, -1, -1), # 4 left bottom far
 ]
 
-var edges1: Array[Edge] = [
-	# front
-	Edge.new(0, 1),
-	Edge.new(1, 2),
-	Edge.new(2, 3),
-	Edge.new(3, 0),
-	# back
-	Edge.new(4, 5),
-	Edge.new(5, 6),
-	Edge.new(6, 7),
-	Edge.new(7, 4),
-	# horizontal
-	Edge.new(0, 4),
-	Edge.new(1, 5),
-	Edge.new(2, 6),
-	Edge.new(3, 7),
-]
-
 var side_length: float:
 	set(value):
 		side_length = value
@@ -50,10 +32,6 @@ func _ready() -> void:
 
 func scale() -> Vector3:
 	return Vector3(side_length, side_length, side_length) / 2.0
-
-
-func edges() -> Array[Edge]:
-	return edges1
 
 
 func area() -> float:
