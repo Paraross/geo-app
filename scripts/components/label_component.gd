@@ -1,7 +1,8 @@
 class_name LabelComponent
-extends Node
+extends Label3D
 
-@onready var label: Label3D = $Label
+# TODO: label nie resetowany przy przechodzeniu formulas <-> tasks
+
 @onready var figure: Figure = get_parent()
 
 
@@ -18,11 +19,10 @@ func connect_signals() -> void:
 
 
 func update_label() -> void:
-	label.position = figure.position + 0.25 * figure.transform.basis.x
 	if figure is Cylinder:
 		var cylinder: Cylinder = figure
-		label.text = "Length:\n%s" % Global.round_task_data(cylinder.height)
+		text = "Length:\n%s" % Global.round_task_data(cylinder.height)
 
 
 func toggle_visibility() -> void:
-	label.visible = !label.visible
+	visible = !visible
