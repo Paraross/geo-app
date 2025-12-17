@@ -91,6 +91,27 @@ func extract_faces_indices(vertices: PackedVector3Array) -> Array[PackedInt32Arr
 	return face_indices
 
 
+func get_edges_from_faces(faces_indices: Array[PackedInt32Array]) -> Array[Edge]:
+	var edges: Array[Edge] = []
+
+	for face_indices in faces_indices:
+		var face_size := face_indices.size()
+		for i in range(face_size):
+			var index1 := face_indices[i]
+			var index2 := face_indices[(i + 1) % face_size]
+
+			var already_in := edges.any(
+				func(e: Edge) -> bool:
+					return e.start_index == index1 and e.end_index == index2 \
+					or e.start_index == index2 and e.end_index == index1
+			)
+
+			if not already_in:
+				edges.append(Edge.new(index1, index2))
+
+	return edges
+
+
 func generate_normals(verts: Array[PackedVector3Array]) -> PackedVector3Array:
 	var normals := PackedVector3Array()
 

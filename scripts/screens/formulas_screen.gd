@@ -7,7 +7,7 @@ extends Screen
 @onready var area_tip_label: Label = $CenterContainer/PanelContainer/HBox/InfoVBox/AreaTipLabel
 @onready var volume_tip_label: Label = $CenterContainer/PanelContainer/HBox/InfoVBox/VolumeTipLabel
 
-@onready var shape_world: ShapeWorld = $CenterContainer/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport/ShapeWorld
+@onready var task_environment: TaskEnvironment = $CenterContainer/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport/TaskEnvironment
 @onready var task_data_grid: GridContainer = $CenterContainer/PanelContainer/HBox/TaskVBox/TaskDataGrid
 
 
@@ -17,7 +17,7 @@ func on_entered() -> void:
 
 
 func on_left() -> void:
-	shape_world.reset_current_task()
+	task_environment.unload_current_task()
 
 
 func fill_task_list() -> void:
@@ -52,11 +52,11 @@ func _on_task_list_item_selected(index: int) -> void:
 	area_tip_label.text = task.area_tip()
 	volume_tip_label.text = task.volume_tip()
 
-	shape_world.set_current_task(task)
+	task_environment.set_current_task(task)
 
 	Global.clear_grid(task_data_grid)
 
-	var values := shape_world.current_task.values()
+	var values := task_environment.task.values()
 	for value_name in values:
 		var value_value: TaskFloatValue = values[value_name]
 

@@ -1,7 +1,11 @@
-class_name ShapeWorld
+class_name FigureEnvironment
 extends WorldEnvironment
 
-var current_task: Task
+# TODO: 
+# axes on toggle
+# free camera movement
+# visual point around which camera rotates
+# camera perspective / ortographic
 
 @onready var camera: Camera3D = $Camera
 @onready var raycast: RayCast3D = $Camera/RayCast
@@ -19,24 +23,3 @@ func _process(_delta: float) -> void:
 	if raycast.is_colliding():
 		var collider: Figure = raycast.get_collider()
 		collider.is_hovered = true
-
-
-func spawn_new_task(available_tasks: Array[Task]) -> void:
-	var random_task_index := randi_range(0, available_tasks.size() - 1)
-
-	var task := available_tasks[random_task_index]
-	task.randomize_values()
-
-	set_current_task(task)
-
-
-func set_current_task(task: Task) -> void:
-	reset_current_task()
-	add_child(task)
-	current_task = task
-
-
-func reset_current_task() -> void:
-	if current_task != null:
-		remove_child(current_task)
-		current_task = null

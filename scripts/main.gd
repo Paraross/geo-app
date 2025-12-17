@@ -14,6 +14,7 @@ var last_screen: Screen
 
 @onready var task_screen: TaskScreen = $TaskScreen
 @onready var task_filter_screen: TaskFilterScreen = $TaskFilterScreen
+@onready var playground_screen: PlaygroundScreen = $PlaygroundScreen
 @onready var settings_screen: SettingsScreen = $SettingsScreen
 @onready var formulas_screen: FormulasScreen = $FormulasScreen
 @onready var main_menu_screen: MainMenuScreen = $MainMenuScreen
@@ -50,7 +51,7 @@ func _on_main_menu_start_button_pressed() -> void:
 	current_screen = task_filter_screen
 
 
-func _on_main_menu_settings_button_pressed() -> void:
+func _on_settings_button_pressed() -> void:
 	current_screen = settings_screen
 
 
@@ -71,13 +72,13 @@ func _on_main_menu_button_pressed() -> void:
 	current_screen = main_menu_screen
 
 
-func _on_task_screen_settings_button_pressed() -> void:
-	current_screen = settings_screen
-
-
 func _on_formulas_button_pressed() -> void:
 	current_screen = formulas_screen
 
 
 func _on_settings_screen_left(to_main_menu: bool) -> void:
 	current_screen = main_menu_screen if to_main_menu else last_screen
+
+
+func _on_playground_button_pressed() -> void:
+	current_screen = playground_screen

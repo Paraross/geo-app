@@ -17,46 +17,20 @@ var faces_indices: Array[PackedInt32Array]
 func _ready() -> void:
 	faces_indices = Poly.extract_faces_indices(vertices)
 
-	var vertex_sphere_scene: PackedScene = preload("res://scenes/figures/sphere.tscn")
-	var vertex_sphere_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")
-
-	for vertex_position in vertices:
-		var vertex_sphere: Sphere = vertex_sphere_scene.instantiate()
-
-		vertex_spheres.push_back(vertex_sphere)
-		add_child(vertex_sphere)
-
-		vertex_sphere.mesh_instance.mesh = vertex_sphere_mesh
-
-		vertex_sphere.position = vertex_position
-		vertex_sphere.radius = 0.05
-
-	var edge_cylinder_scene: PackedScene = preload("res://scenes/figures/cylinder.tscn")
-	var edge_cylinder_mesh: CylinderMesh = preload("res://assets/edge_mesh.tres")
-	var edge_cylinder_shape: CylinderShape3D = preload("res://assets/edge_shape.tres")
-
-	for edge in edges():
-		var start_vertex := vertices[edge.start_index]
-		var end_vertex := vertices[edge.end_index]
-		var midpoint := (start_vertex + end_vertex) / 2.0
-
-		var edge_cylinder: Cylinder = edge_cylinder_scene.instantiate()
-
-		edge_cylinders.push_back(edge_cylinder)
-		add_child(edge_cylinder)
-
-		edge_cylinder.mesh_instance.mesh = edge_cylinder_mesh.duplicate()
-		edge_cylinder.collision_shape.shape = edge_cylinder_shape.duplicate()
-
-		var basis_right := (midpoint - position).normalized()
-		var basis_up := (end_vertex - start_vertex).normalized()
-		var basis_forward := -basis_up.cross(basis_right)
-
-		edge_cylinder.height = start_vertex.distance_to(end_vertex)
-		edge_cylinder.radius = 0.025
-		edge_cylinder.transform = Transform3D(Basis(basis_right, basis_up, basis_forward), midpoint)
+	create_vertex_spheres()
+	create_edge_cylinders()
 
 	connect_signals()
+
+	set_mesh()
+	set_collision_shape()
+
+
+func update_vertices() -> void:
+	clear_vertex_spheres_edge_cylinders()
+	faces_indices = Poly.extract_faces_indices(vertices)
+	create_vertex_spheres()
+	create_edge_cylinders()
 
 	set_mesh()
 	set_collision_shape()
@@ -95,9 +69,21 @@ func set_mesh() -> void:
 
 
 func set_collision_shape() -> void:
-	var cp_shape := ConvexPolygonShape3D.new()
-	cp_shape.points = vertices
-	shape = cp_shape
+	var faces := Poly.extract_faces_indices(vertices)
+	var edges := Poly.get_edges_from_faces(faces)
+
+	# TODO: check which vertices are problematic (when adding new vertex in playground)
+
+	# Euler's formula for polyhedrons
+	var is_valid_polyhedron := vertices.size() - edges.size() + faces.size() == 2
+
+	if is_valid_polyhedron:
+		var cp_shape := ConvexPolygonShape3D.new()
+		cp_shape.points = vertices
+		shape = cp_shape
+	else:
+		print("invalid vertices")
+		shape = null
 
 
 func update_collision_shape() -> void:
@@ -107,20 +93,70 @@ func update_collision_shape() -> void:
 func connect_signals() -> void:
 	properties_changed.connect(set_mesh)
 	properties_changed.connect(update_collision_shape)
-	properties_changed.connect(set_vertices)
-	properties_changed.connect(set_edges)
-	properties_changed.connect(area)
-	properties_changed.connect(volume)
+	properties_changed.connect(set_vertex_spheres_transform)
+	properties_changed.connect(set_edge_cylinders_transform)
 
 
-func set_vertices() -> void:
+func create_vertex_spheres() -> void:
+	var vertex_sphere_scene: PackedScene = preload("res://scenes/figures/sphere.tscn")
+	var vertex_sphere_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")
+
+	for vertex_position in vertices:
+		var vertex_sphere: Sphere = vertex_sphere_scene.instantiate()
+
+		vertex_spheres.push_back(vertex_sphere)
+		add_child(vertex_sphere)
+
+		vertex_sphere.mesh_instance.mesh = vertex_sphere_mesh
+
+		vertex_sphere.position = vertex_position
+		vertex_sphere.radius = 0.05
+
+
+func set_vertex_spheres_transform() -> void:
 	for i in range(vertex_spheres.size()):
 		var vertex_position := vertices[i]
 		var vertex_mesh := vertex_spheres[i]
 		vertex_mesh.position = vertex_position
 
 
-func set_edges() -> void:
+func create_edge_cylinders() -> void:
+	var edge_cylinder_scene: PackedScene = preload("res://scenes/figures/cylinder.tscn")
+	var edge_cylinder_mesh: CylinderMesh = preload("res://assets/edge_mesh.tres")
+	var edge_cylinder_shape: CylinderShape3D = preload("res://assets/edge_shape.tres")
+
+	var middle_point := Vector3.ZERO
+	for vertex in vertices:
+		middle_point += vertex
+	middle_point /= vertices.size()
+
+	for edge in edges():
+		var start_vertex := vertices[edge.start_index]
+		var end_vertex := vertices[edge.end_index]
+		var midpoint := (start_vertex + end_vertex) / 2.0
+
+		var edge_cylinder: Cylinder = edge_cylinder_scene.instantiate()
+
+		edge_cylinders.push_back(edge_cylinder)
+		add_child(edge_cylinder)
+
+		edge_cylinder.mesh_instance.mesh = edge_cylinder_mesh.duplicate()
+		edge_cylinder.collision_shape.shape = edge_cylinder_shape.duplicate()
+
+		var basis_right := (midpoint - middle_point).normalized()
+		if basis_right == Vector3.ZERO:
+			basis_right = Vector3.UP
+
+		var basis_up := (end_vertex - start_vertex).normalized()
+		var basis_forward := -basis_up.cross(basis_right)
+
+		edge_cylinder.height = start_vertex.distance_to(end_vertex)
+		edge_cylinder.radius = 0.025
+		edge_cylinder.transform = Transform3D(Basis(basis_right, basis_up, basis_forward), midpoint)
+
+	print()
+
+func set_edge_cylinders_transform() -> void:
 	var edges := edges()
 	for i in range(edge_cylinders.size()):
 		var edge := edges[i]
@@ -138,29 +174,24 @@ func set_edges() -> void:
 		edge_cylinders[i].transform = Transform3D(Basis(basis_right, basis_up, basis_forward), midpoint)
 
 
+func clear_vertex_spheres_edge_cylinders() -> void:
+	for vertex_sphere in vertex_spheres:
+		vertex_sphere.queue_free()
+		remove_child(vertex_sphere)
+	vertex_spheres.clear()
+	
+	for edge_cylinder in edge_cylinders:
+		edge_cylinder.queue_free()
+		remove_child(edge_cylinder)
+	edge_cylinders.clear()
+
+
 func scale() -> Vector3:
 	return Vector3.ONE
 
 
 func edges() -> Array[Edge]:
-	var edges: Array[Edge] = []
-
-	for face_indices in faces_indices:
-		var face_size := face_indices.size()
-		for i in range(face_size):
-			var index1 := face_indices[i]
-			var index2 := face_indices[(i + 1) % face_size]
-
-			var already_in := edges.any(
-				func(e: Edge) -> bool:
-					return e.start_index == index1 and e.end_index == index2 \
-					or e.start_index == index2 and e.end_index == index1
-			)
-
-			if not already_in:
-				edges.append(Edge.new(index1, index2))
-
-	return edges
+	return Poly.get_edges_from_faces(faces_indices)
 
 
 func area() -> float:

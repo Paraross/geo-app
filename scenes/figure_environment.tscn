@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://ng6j4mjp362o"]
 
-[ext_resource type="Script" uid="uid://ublatk17f74f" path="res://scripts/shape_world.gd" id="1_yqeqd"]
+[ext_resource type="Script" uid="uid://ublatk17f74f" path="res://scripts/task_environment.gd" id="1_yqeqd"]
 [ext_resource type="Script" uid="uid://d0ml2eda64idd" path="res://scripts/camera.gd" id="2_iqh5t"]
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
 background_mode = 1
 background_color = Color(0.24313726, 0.24313726, 0.29803923, 1)
 
-[node name="ShapeWorld" type="WorldEnvironment"]
+[node name="FigureEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_ig7tw")
 script = ExtResource("1_yqeqd")
 

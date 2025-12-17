@@ -5,7 +5,7 @@ var available_tasks: Array[Task]
 
 var current_step: int = 0
 
-@onready var shape_world: ShapeWorld = $HBoxContainer/ShapeViewportContainer/ShapeViewport/ShapeWorld
+@onready var task_environment: TaskEnvironment = $HBoxContainer/ShapeViewportContainer/ShapeViewport/TaskEnvironment
 @onready var task_vbox: VBoxContainer = $HBoxContainer/PanelContainer/VBoxContainer
 
 @onready var task_data_grid: GridContainer = task_vbox.get_node("TaskDataGrid")
@@ -34,14 +34,14 @@ func on_left() -> void:
 
 func reset() -> void:
 	Global.clear_grid(task_data_grid)
-	shape_world.reset_current_task()
+	task_environment.unload_current_task()
 	check_answer_button.disabled = true
 	final_label.visible = false
 	current_step = 0
 
 
 func update_step_nav_ui() -> void:
-	var task := shape_world.current_task
+	var task := task_environment.task
 
 	var steps := task.step_count()
 	current_step = clamp(current_step, 0, max(0, steps - 1))
@@ -51,7 +51,7 @@ func update_step_nav_ui() -> void:
 
 
 func get_new_task() -> void:
-	shape_world.spawn_new_task(available_tasks)
+	task_environment.spawn_new_task(available_tasks)
 
 	Global.clear_grid(task_data_grid)
 	check_answer_button.disabled = false
@@ -64,7 +64,7 @@ func get_new_task() -> void:
 
 
 func set_values_ui() -> void:
-	var values := shape_world.current_task.values()
+	var values := task_environment.task.values()
 	for value_name in values:
 		var value_value := values[value_name].value
 
@@ -83,7 +83,7 @@ func set_step_ui() -> void:
 		child.queue_free()
 		steps_vbox.remove_child(child)
 
-	for step in shape_world.current_task.steps():
+	for step in task_environment.task.steps():
 		var title_label := Label.new()
 		title_label.text = step.title
 
@@ -136,10 +136,10 @@ func update_step_ui() -> void:
 
 
 func is_current_answer_correct() -> bool:
-	if shape_world.current_task.steps().is_empty():
+	if task_environment.task.steps().is_empty():
 		return false
 
-	var correct_answer := shape_world.current_task.steps()[current_step].correct_answer()
+	var correct_answer := task_environment.task.steps()[current_step].correct_answer()
 
 	if steps_vbox.get_children().is_empty():
 		return false
@@ -160,7 +160,7 @@ func _on_prev_step_pressed() -> void:
 
 
 func _on_next_step_pressed() -> void:
-	var steps := shape_world.current_task.step_count()
+	var steps := task_environment.task.step_count()
 	if current_step < steps - 1:
 		current_step += 1
 		update_step_nav_ui()
@@ -168,7 +168,7 @@ func _on_next_step_pressed() -> void:
 
 
 func _on_check_answer_button_pressed() -> void:
-	var correct_answer := shape_world.current_task.steps()[current_step].correct_answer()
+	var correct_answer := task_environment.task.steps()[current_step].correct_answer()
 
 	var step_container: Container = steps_vbox.get_children()[current_step]
 	var answer_hbox: HBoxContainer = step_container.get_child(1)
@@ -182,7 +182,7 @@ func _on_check_answer_button_pressed() -> void:
 
 	update_step_nav_ui()
 
-	var is_last_step := current_step == shape_world.current_task.step_count() - 1
+	var is_last_step := current_step == task_environment.task.step_count() - 1
 	if is_answer_correct and is_last_step:
 		check_answer_button.disabled = true
 		final_label.visible = true

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7pqo574ybqsx"]
+
+[ext_resource type="Script" uid="uid://tx0btts1rywx" path="res://scripts/figures/polyhedron.gd" id="1_5pj3s"]
+
+[node name="Polyhedron" type="Area3D"]
+script = ExtResource("1_5pj3s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]

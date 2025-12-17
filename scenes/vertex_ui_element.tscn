@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgdov2iblt7d3"]
+
+[ext_resource type="Script" uid="uid://bbl5nxih7e8di" path="res://scripts/vertex_ui_element.gd" id="1_xhlat"]
+
+[node name="VertexUiElement" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xhlat")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Vertex"
+
+[node name="RemoveButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "-"
+
+[node name="CoordsContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="XSpinBox" type="SpinBox" parent="CoordsContainer"]
+layout_mode = 2
+min_value = -100.0
+step = 0.1
+
+[node name="YSpinBox" type="SpinBox" parent="CoordsContainer"]
+layout_mode = 2
+min_value = -100.0
+step = 0.1
+
+[node name="ZSpinBox" type="SpinBox" parent="CoordsContainer"]
+layout_mode = 2
+min_value = -100.0
+step = 0.1
