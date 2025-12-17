@@ -38,16 +38,16 @@ func steps() -> Array[Step]:
 		Step.new(
 			"1. Calculate base area",
 			"A triangular base area is (base × height) ÷ 2",
-			func() -> float: return prism.base_area()
+			prism.base_area
 		),
 		Step.new(
 			"2. Calculate total area",
 			"A prism's total area is 2 × base area + side walls area",
-			func() -> float: return prism.area()
+			prism.area
 		),
 		Step.new(
 			"3. Calculate volume",
 			"A prism's volume is base area × height",
-			func() -> float: return prism.volume()
+			prism.volume
 		),
 	]

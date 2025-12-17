@@ -35,8 +35,12 @@ func scale() -> Vector3:
 
 
 func area() -> float:
-	return 6.0 * side_length * side_length
+	return 6.0 * face_area()
 
 
 func volume() -> float:
 	return side_length * side_length * side_length
+
+
+func face_area() -> float:
+	return side_length * side_length
