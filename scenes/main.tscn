@@ -68,17 +68,20 @@ size_flags_horizontal = 3
 layout_mode = 2
 focus_mode = 1
 
-[node name="SettingsButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-tooltip_text = "Settings"
-theme_type_variation = &"SettingsButton"
-icon = ExtResource("4_choun")
 
-[node name="Label" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Task Data"
+
+[node name="SettingsButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "Settings"
+theme_type_variation = &"SettingsButton"
+icon = ExtResource("4_choun")
 
 [node name="TaskDataGrid" type="GridContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -219,6 +222,7 @@ layout_mode = 2
 columns = 3
 
 [node name="PlaygroundScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -246,7 +250,7 @@ stretch = true
 [node name="ShapeViewport" type="SubViewport" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
 size = Vector2i(954, 1080)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="PolyhedronEnvironment" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 script = ExtResource("8_a8y0u")
@@ -258,17 +262,20 @@ size_flags_horizontal = 3
 [node name="RightVBox" type="VBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel"]
 layout_mode = 2
 
-[node name="SettingsButton" type="Button" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
-size_flags_horizontal = 8
-tooltip_text = "Settings"
-theme_type_variation = &"SettingsButton"
-icon = ExtResource("4_choun")
 
-[node name="Label" type="Label" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="Label" type="Label" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Vertices"
+
+[node name="SettingsButton" type="Button" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "Settings"
+theme_type_variation = &"SettingsButton"
+icon = ExtResource("4_choun")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
@@ -432,6 +439,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
+[node name="Label" type="Label" parent="FormulasScreen/PanelContainer/HBox/InfoVBox"]
+layout_mode = 2
+text = "TODO: add task steps"
+
 [node name="AreaTipHeader" type="Label" parent="FormulasScreen/PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
 text = "Area tip"
@@ -472,7 +483,6 @@ layout_mode = 2
 columns = 2
 
 [node name="MainMenuScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -509,7 +519,7 @@ horizontal_alignment = 1
 [node name="StartButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
-text = "Start"
+text = "Solve tasks	"
 
 [node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
 script = ExtResource("10_ya4ey")
@@ -526,7 +536,7 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [node name="FormulasButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
-text = "Formulas"
+text = "Explore tasks"
 
 [node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
 script = ExtResource("10_ya4ey")
@@ -580,7 +590,7 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox/PrevButton" to="TaskScreen" method="_on_prev_step_pressed"]
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox/NextButton" to="TaskScreen" method="_on_next_step_pressed"]
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/CheckAnswerButton" to="TaskScreen" method="_on_check_answer_button_pressed"]
@@ -590,7 +600,7 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="resized" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_resized"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/NewVertexButton" to="PlaygroundScreen" method="_on_new_vertex_button_pressed"]
 [connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/CreatePolyhedronButton" to="PlaygroundScreen" method="_on_create_polyhedron_button_pressed"]
 [connection signal="left" from="SettingsScreen" to="." method="_on_settings_screen_left"]
