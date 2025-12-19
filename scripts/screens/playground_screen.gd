@@ -20,7 +20,7 @@ var vertex_ui_elements: Array[VertexUiElement] = []
 
 @onready var right_vbox: VBoxContainer = $HBoxContainer/RightPanel/RightVBox
 @onready var vertices_vbox: VBoxContainer = right_vbox.get_node("ScrollContainer/VBox/VerticesVBox")
-@onready var new_vertex_button: Button = right_vbox.get_node("ScrollContainer/VBox/NewVertexButton")
+@onready var new_vertex_button: Button = right_vbox.get_node("NewVertexButton")
 
 
 func on_entered() -> void:
