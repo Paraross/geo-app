@@ -28,13 +28,13 @@ grow_vertical = 2
 color = Color(0.24313726, 0.24313726, 0.29803923, 1)
 
 [node name="TaskScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("2_85g3d")
 metadata/_custom_type_script = "uid://chan7lqvx204"
@@ -54,8 +54,8 @@ stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="TaskScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 0
+size = Vector2i(954, 1080)
+render_target_update_mode = 4
 
 [node name="TaskEnvironment" parent="TaskScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 
@@ -65,6 +65,7 @@ size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer"]
 layout_mode = 2
+focus_mode = 1
 
 [node name="SettingsButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -106,6 +107,7 @@ text = "Next >"
 [node name="StepsScroll" type="ScrollContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+draw_focus_border = true
 
 [node name="StepsVBox" type="VBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepsScroll"]
 layout_mode = 2
@@ -147,6 +149,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("3_tefeu")
 
@@ -222,6 +225,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("7_trceg")
 metadata/_custom_type_script = "uid://bvt58xko28kd1"
@@ -301,6 +305,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("4_o6xl0")
 
@@ -375,12 +380,14 @@ size_flags_horizontal = 3
 text = "Cancel"
 
 [node name="FormulasScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("7_eb6dy")
 
@@ -407,6 +414,7 @@ placeholder_text = "Filter tasks"
 
 [node name="TaskList" type="ItemList" parent="FormulasScreen/PanelContainer/HBox/TaskFilterVBox"]
 layout_mode = 2
+allow_search = false
 auto_width = true
 auto_height = true
 
@@ -444,6 +452,7 @@ layout_mode = 2
 [node name="TaskVBox" type="VBoxContainer" parent="FormulasScreen/PanelContainer/HBox"]
 layout_mode = 2
 size_flags_stretch_ratio = 0.5
+focus_mode = 1
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="FormulasScreen/PanelContainer/HBox/TaskVBox"]
 custom_minimum_size = Vector2(700, 0)
@@ -454,7 +463,7 @@ size_flags_stretch_ratio = 0.4
 [node name="SubViewport" type="SubViewport" parent="FormulasScreen/PanelContainer/HBox/TaskVBox/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(768, 768)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="TaskEnvironment" parent="FormulasScreen/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
 
@@ -472,6 +481,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("5_tipki")
 
