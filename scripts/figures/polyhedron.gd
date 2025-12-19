@@ -144,19 +144,24 @@ func create_edge_cylinders() -> void:
 		edge_cylinder.collision_shape.shape = edge_cylinder_shape.duplicate()
 
 		var basis_right := (midpoint - middle_point).normalized()
-		if basis_right == Vector3.ZERO:
-			basis_right = Vector3.UP
+		if basis_right == Vector3.ZERO or basis_right.is_equal_approx(Vector3.ZERO):
+			basis_right = Vector3.RIGHT
 
 		var basis_up := (end_vertex - start_vertex).normalized()
-		var basis_forward := -basis_up.cross(basis_right)
+		var basis_forward := basis_right.cross(basis_up).normalized()
+		basis_right = basis_up.cross(basis_forward).normalized()
 
 		edge_cylinder.height = start_vertex.distance_to(end_vertex)
 		edge_cylinder.radius = 0.025
 		edge_cylinder.transform = Transform3D(Basis(basis_right, basis_up, basis_forward), midpoint)
 
-	print()
 
 func set_edge_cylinders_transform() -> void:
+	var middle_point := Vector3.ZERO
+	for vertex in vertices:
+		middle_point += vertex
+	middle_point /= vertices.size()
+
 	var edges := edges()
 	for i in range(edge_cylinders.size()):
 		var edge := edges[i]
@@ -165,11 +170,14 @@ func set_edge_cylinders_transform() -> void:
 		var midpoint := (start_vertex + end_vertex) / 2.0
 
 		edge_cylinders[i].height = start_vertex.distance_to(end_vertex)
-		edge_cylinders[i].position = midpoint
 
-		var basis_right := (midpoint - position).normalized()
+		var basis_right := (midpoint - middle_point).normalized()
+		if basis_right == Vector3.ZERO or basis_right.is_equal_approx(Vector3.ZERO):
+			basis_right = Vector3.RIGHT
+
 		var basis_up := (end_vertex - start_vertex).normalized()
-		var basis_forward := -basis_up.cross(basis_right)
+		var basis_forward := basis_right.cross(basis_up).normalized()
+		basis_right = basis_up.cross(basis_forward).normalized()
 
 		edge_cylinders[i].transform = Transform3D(Basis(basis_right, basis_up, basis_forward), midpoint)
 
@@ -179,7 +187,7 @@ func clear_vertex_spheres_edge_cylinders() -> void:
 		vertex_sphere.queue_free()
 		remove_child(vertex_sphere)
 	vertex_spheres.clear()
-	
+
 	for edge_cylinder in edge_cylinders:
 		edge_cylinder.queue_free()
 		remove_child(edge_cylinder)

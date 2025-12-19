@@ -15,7 +15,7 @@ var current_step: int = 0
 @onready var next_step_button: Button = step_nav_hbox.get_node("NextButton")
 @onready var step_title_label: Label = step_nav_hbox.get_node("Label")
 
-@onready var steps_vbox: VBoxContainer = task_vbox.get_node("StepsVBox")
+@onready var steps_vbox: VBoxContainer = task_vbox.get_node("StepsScroll/StepsVBox")
 
 @onready var check_answer_button: Button = task_vbox.get_node("CheckAnswerButton")
 @onready var final_label: Label = task_vbox.get_node("FinalLabel")
@@ -36,7 +36,7 @@ func reset() -> void:
 	Global.clear_grid(task_data_grid)
 	task_environment.unload_current_task()
 	check_answer_button.disabled = true
-	final_label.visible = false
+	final_label.text = ""
 	current_step = 0
 
 
@@ -55,7 +55,7 @@ func get_new_task() -> void:
 
 	Global.clear_grid(task_data_grid)
 	check_answer_button.disabled = false
-	final_label.visible = false
+	final_label.text = ""
 	current_step = 0
 
 	set_values_ui()
@@ -185,7 +185,7 @@ func _on_check_answer_button_pressed() -> void:
 	var is_last_step := current_step == task_environment.task.step_count() - 1
 	if is_answer_correct and is_last_step:
 		check_answer_button.disabled = true
-		final_label.visible = true
+		final_label.text = "Task complete!"
 
 
 func _on_new_task_button_pressed() -> void:

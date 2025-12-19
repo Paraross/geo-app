@@ -1,7 +1,7 @@
 class_name FigureEnvironment
 extends WorldEnvironment
 
-# TODO: 
+# TODO:
 # axes on toggle
 # free camera movement
 # visual point around which camera rotates

@@ -27,16 +27,16 @@ func steps() -> Array[Step]:
 		Step.new(
 			"1. Calculate face area",
 			"A cube face is a square, so its area is side × side",
-			cube.face_area
+			cube.face_area,
 		),
 		Step.new(
 			"2. Calculate total area",
 			"A cube's total area is the sum of all its 6 face areas",
-			cube.area
+			cube.area,
 		),
 		Step.new(
 			"3. Calculate volume",
 			"A cube's volume is the area of one face multiplied by its side length",
-			cube.volume
+			cube.volume,
 		),
 	]

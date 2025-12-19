@@ -33,16 +33,16 @@ func steps() -> Array[Step]:
 		Step.new(
 			"1. Calculate base area",
 			"A circle's area is π × radius²",
-			cylinder.base_area
+			cylinder.base_area,
 		),
 		Step.new(
 			"2. Calculate total area",
 			"A cylinder's total area is 2 × base area + side area",
-			cylinder.area
+			cylinder.area,
 		),
 		Step.new(
 			"3. Calculate volume",
 			"A cylinder's volume is base area × height",
-			cylinder.volume
+			cylinder.volume,
 		),
 	]

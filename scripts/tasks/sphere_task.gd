@@ -27,11 +27,11 @@ func steps() -> Array[Step]:
 		Step.new(
 			"1. Calculate area",
 			"A sphere's area is 4 × π × radius²",
-			sphere.area
+			sphere.area,
 		),
 		Step.new(
 			"2. Calculate volume",
 			"A sphere's volume is (4/3) × π × radius³",
-			sphere.volume
+			sphere.volume,
 		),
 	]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvqm8j5n7kx3y"]
+
+[ext_resource type="Script" uid="uid://dr1wqm2ih4pkh" path="res://scripts/tasks/stacked_cubes_task.gd" id="1_stacked"]
+[ext_resource type="PackedScene" uid="uid://c568rgivd5bbl" path="res://scenes/figures/cube.tscn" id="2_cube"]
+
+[node name="StackedCubesTask" type="Node3D"]
+script = ExtResource("1_stacked")
+metadata/_custom_type_script = "uid://bom80mryh4gm6"
+
+[node name="BottomCube" parent="." instance=ExtResource("2_cube")]
+
+[node name="TopCube" parent="." instance=ExtResource("2_cube")]
