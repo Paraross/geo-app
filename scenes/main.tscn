@@ -555,6 +555,18 @@ layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Playground"
 
+[node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
+script = ExtResource("10_ya4ey")
+metadata/_custom_type_script = "uid://crqyttnj4l7vo"
+
+[node name="AnimationComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
+script = ExtResource("4_jyhfs")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
 [node name="SettingsButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
