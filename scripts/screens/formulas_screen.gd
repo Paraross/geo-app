@@ -1,14 +1,14 @@
 class_name FormulasScreen
 extends Screen
 
-@onready var task_filter_edit: LineEdit = $CenterContainer/PanelContainer/HBox/TaskFilterVBox/TaskFilterEdit
-@onready var task_list: ItemList = $CenterContainer/PanelContainer/HBox/TaskFilterVBox/TaskList
+@onready var task_filter_edit: LineEdit = $PanelContainer/HBox/TaskFilterVBox/TaskFilterEdit
+@onready var task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/TaskList
 
-@onready var area_tip_label: Label = $CenterContainer/PanelContainer/HBox/InfoVBox/AreaTipLabel
-@onready var volume_tip_label: Label = $CenterContainer/PanelContainer/HBox/InfoVBox/VolumeTipLabel
+@onready var area_tip_label: Label = $PanelContainer/HBox/InfoVBox/AreaTipLabel
+@onready var volume_tip_label: Label = $PanelContainer/HBox/InfoVBox/VolumeTipLabel
 
-@onready var task_environment: TaskEnvironment = $CenterContainer/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport/TaskEnvironment
-@onready var task_data_grid: GridContainer = $CenterContainer/PanelContainer/HBox/TaskVBox/TaskDataGrid
+@onready var task_environment: TaskEnvironment = $PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport/TaskEnvironment
+@onready var task_data_grid: GridContainer = $PanelContainer/HBox/TaskVBox/TaskDataGrid
 
 
 func on_entered() -> void:
