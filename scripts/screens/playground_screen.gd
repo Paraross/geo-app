@@ -22,6 +22,7 @@ var vertex_ui_elements: Array[VertexUiElement] = []
 @onready var vertices_vbox: VBoxContainer = right_vbox.get_node("ScrollContainer/VBox/VerticesVBox")
 @onready var new_vertex_button: Button = right_vbox.get_node("NewVertexButton")
 
+@onready var popup: PopupPanel = $Popup
 
 func on_entered() -> void:
 	for vertex_ui_element: VertexUiElement in vertices_vbox.get_children():
@@ -71,16 +72,20 @@ func _on_new_vertex_button_pressed() -> void:
 
 
 func _on_create_polyhedron_button_pressed() -> void:
+	var vertices := PackedVector3Array()
+	vertices.resize(vertex_ui_elements.size())
+
+	for i in range(vertex_ui_elements.size()):
+		var element := vertex_ui_elements[i]
+		var x := element.x_spinbox.value
+		var y := element.y_spinbox.value
+		var z := element.z_spinbox.value
+		vertices[i] = Vector3(x, y, z)
+	
+	if not Poly.are_valid_polyhedron_vertices(vertices):
+		popup.show()
+		return
+
 	var polyhedron := polyhedron_environment.polyhedron
-	polyhedron.vertices.resize(vertex_ui_elements.size())
-
-	var i := 0
-	for vertex_ui_element in vertex_ui_elements:
-		var x := vertex_ui_element.x_spinbox.value
-		var y := vertex_ui_element.y_spinbox.value
-		var z := vertex_ui_element.z_spinbox.value
-		var vertex := Vector3(x, y, z)
-		polyhedron.vertices[i] = vertex
-		i += 1
-
+	polyhedron.vertices = vertices
 	polyhedron.update_vertices()

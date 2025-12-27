@@ -55,7 +55,7 @@ stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="TaskScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
-size = Vector2i(954, 1080)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="TaskEnvironment" parent="TaskScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
@@ -249,7 +249,7 @@ stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
-size = Vector2i(954, 1080)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="PolyhedronEnvironment" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
@@ -304,6 +304,18 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Create Polyhedron"
 
+[node name="Popup" type="PopupPanel" parent="PlaygroundScreen"]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(513, 100)
+
+[node name="Label" type="Label" parent="PlaygroundScreen/Popup"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 493.0
+offset_bottom = 80.0
+text = "A polyhedron cannot be created from those vertices."
+
 [node name="SettingsScreen" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -354,13 +366,13 @@ text = "Back"
 [node name="ConfirmPopup" type="PopupPanel" parent="SettingsScreen"]
 oversampling_override = 1.0
 initial_position = 2
-size = Vector2i(275, 100)
+size = Vector2i(351, 183)
 
 [node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 255.0
-offset_bottom = 80.0
+offset_right = 331.0
+offset_bottom = 163.0
 
 [node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2
