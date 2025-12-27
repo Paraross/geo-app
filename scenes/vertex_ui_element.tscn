@@ -23,15 +23,15 @@ layout_mode = 2
 
 [node name="XSpinBox" type="SpinBox" parent="CoordsContainer"]
 layout_mode = 2
-min_value = -100.0
-step = 0.1
+min_value = -10.0
+max_value = 10.0
 
 [node name="YSpinBox" type="SpinBox" parent="CoordsContainer"]
 layout_mode = 2
-min_value = -100.0
-step = 0.1
+min_value = -10.0
+max_value = 10.0
 
 [node name="ZSpinBox" type="SpinBox" parent="CoordsContainer"]
 layout_mode = 2
-min_value = -100.0
-step = 0.1
+min_value = -10.0
+max_value = 10.0
