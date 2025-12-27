@@ -1,5 +1,15 @@
 extends Node
 
+
+func are_valid_polyhedron_vertices(
+	vertices: PackedVector3Array,
+) -> bool:
+	var faces := Poly.extract_faces_indices(vertices)
+	var edges := Poly.get_edges_from_faces(faces)
+	# Euler's formula for polyhedrons
+	return vertices.size() - edges.size() + faces.size() == 2
+
+
 func flatten_faces(verts: Array[PackedVector3Array]) -> PackedVector3Array:
 	var flattened := PackedVector3Array()
 

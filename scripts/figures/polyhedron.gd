@@ -69,15 +69,9 @@ func set_mesh() -> void:
 
 
 func set_collision_shape() -> void:
-	var faces := Poly.extract_faces_indices(vertices)
-	var edges := Poly.get_edges_from_faces(faces)
-
 	# TODO: check which vertices are problematic (when adding new vertex in playground)
 
-	# Euler's formula for polyhedrons
-	var is_valid_polyhedron := vertices.size() - edges.size() + faces.size() == 2
-
-	if is_valid_polyhedron:
+	if Poly.are_valid_polyhedron_vertices(vertices):
 		var cp_shape := ConvexPolygonShape3D.new()
 		cp_shape.points = vertices
 		shape = cp_shape
