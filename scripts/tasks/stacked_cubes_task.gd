@@ -66,19 +66,19 @@ func steps() -> Array[Step]:
 			"The bottom cube's volume is its side length cubed",
 			func() -> float: return 5.0 * top_cube.face_area() + bottom_cube.area() - top_cube.face_area()
 		),
-		# Step.new(
-		# 	"6. Calculate bottom cube volume",
-		# 	"The bottom cube's volume is its side length cubed",
-		# 	bottom_cube.volume,
-		# ),
-		# Step.new(
-		# 	"7. Calculate top cube volume",
-		# 	"The top cube's volume is its side length cubed",
-		# 	top_cube.volume,
-		# ),
-		# Step.new(
-		# 	"8. Calculate total volume",
-		# 	"Add the volumes of both cubes together",
-		# 	func() -> float: return bottom_cube.volume() + top_cube.volume()
-		# ),
+		Step.new(
+			"6. Calculate bottom cube volume",
+			"The bottom cube's volume is its side length cubed",
+			bottom_cube.volume,
+		),
+		Step.new(
+			"7. Calculate top cube volume",
+			"The top cube's volume is its side length cubed",
+			top_cube.volume,
+		),
+		Step.new(
+			"8. Calculate total volume",
+			"Add the volumes of both cubes together",
+			func() -> float: return bottom_cube.volume() + top_cube.volume()
+		),
 	]

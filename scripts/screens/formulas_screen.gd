@@ -1,6 +1,8 @@
 class_name FormulasScreen
 extends Screen
 
+# TODO: Fill InfoVbox with task steps
+
 @onready var task_filter_edit: LineEdit = $PanelContainer/HBox/TaskFilterVBox/TaskFilterEdit
 @onready var task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/TaskList
 
