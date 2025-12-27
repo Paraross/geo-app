@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0rkfe12bqbpb"]
+
+[ext_resource type="Script" uid="uid://bbdr4ph48dwbl" path="res://scripts/axis.gd" id="1_12lcd"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jkv2x"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 20.0
+
+[node name="Axis" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_jkv2x")
+script = ExtResource("1_12lcd")

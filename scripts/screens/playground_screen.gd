@@ -24,6 +24,7 @@ var vertex_ui_elements: Array[VertexUiElement] = []
 
 @onready var popup: PopupPanel = $Popup
 
+
 func on_entered() -> void:
 	for vertex_ui_element: VertexUiElement in vertices_vbox.get_children():
 		vertex_ui_element.queue_free()
@@ -81,7 +82,7 @@ func _on_create_polyhedron_button_pressed() -> void:
 		var y := element.y_spinbox.value
 		var z := element.z_spinbox.value
 		vertices[i] = Vector3(x, y, z)
-	
+
 	if not Poly.are_valid_polyhedron_vertices(vertices):
 		popup.show()
 		return

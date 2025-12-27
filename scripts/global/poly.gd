@@ -1,8 +1,7 @@
 extends Node
 
-
 func are_valid_polyhedron_vertices(
-	vertices: PackedVector3Array,
+		vertices: PackedVector3Array,
 ) -> bool:
 	var faces := Poly.extract_faces_indices(vertices)
 	var edges := Poly.get_edges_from_faces(faces)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bugepp7ityxgx"]
+[gd_scene load_steps=23 format=3 uid="uid://bugepp7ityxgx"]
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="2_0xm2m"]
@@ -13,7 +13,39 @@
 [ext_resource type="Script" uid="uid://b0wykdryvqmi4" path="res://scripts/screens/formulas_screen.gd" id="7_eb6dy"]
 [ext_resource type="Script" uid="uid://bvt58xko28kd1" path="res://scripts/screens/playground_screen.gd" id="7_trceg"]
 [ext_resource type="Script" uid="uid://dmk6r1sfe6ut6" path="res://scripts/polyhedron_environment.gd" id="8_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://c0rkfe12bqbpb" path="res://scenes/axis.tscn" id="9_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://djsu2ayr7h4by" path="res://scenes/axis_sphere.tscn" id="10_jbj1t"]
 [ext_resource type="Script" uid="uid://crqyttnj4l7vo" path="res://scripts/components/mouse_focus_component.gd" id="10_ya4ey"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12lcd"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.5019608)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jkv2x"]
+material = SubResource("StandardMaterial3D_12lcd")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.5019608)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_muem4"]
+material = SubResource("StandardMaterial3D_jbj1t")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp3eg"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.5019608)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0ld40"]
+material = SubResource("StandardMaterial3D_dp3eg")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 20.0
 
 [node name="Main" type="Node" node_paths=PackedStringArray("current_screen")]
 script = ExtResource("1_ig7tw")
@@ -222,7 +254,6 @@ layout_mode = 2
 columns = 3
 
 [node name="PlaygroundScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -249,11 +280,34 @@ stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 0
+size = Vector2i(954, 1080)
+render_target_update_mode = 4
 
 [node name="PolyhedronEnvironment" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 script = ExtResource("8_a8y0u")
+
+[node name="CenterSphere" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("10_jbj1t")]
+
+[node name="CenterLabel" type="Label3D" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment/CenterSphere"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+billboard = 1
+text = "0.0"
+
+[node name="XAxis" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_jkv2x")
+material = SubResource("StandardMaterial3D_12lcd")
+label_distance = -0.2
+
+[node name="YAxis" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
+mesh = SubResource("CylinderMesh_muem4")
+material = SubResource("StandardMaterial3D_jbj1t")
+
+[node name="ZAxis" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0, 0, 0)
+rotation_order = 0
+mesh = SubResource("CylinderMesh_0ld40")
+material = SubResource("StandardMaterial3D_dp3eg")
 
 [node name="RightPanel" type="PanelContainer" parent="PlaygroundScreen/HBoxContainer"]
 layout_mode = 2
@@ -495,6 +549,7 @@ layout_mode = 2
 columns = 2
 
 [node name="MainMenuScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
