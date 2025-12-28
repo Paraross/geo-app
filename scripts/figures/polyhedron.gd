@@ -26,10 +26,10 @@ func _ready() -> void:
 	set_collision_shape()
 
 
-func update_vertices() -> void:
+func update_vertices(vertex_names: PackedStringArray) -> void:
 	clear_vertex_spheres_edge_cylinders()
 	faces_indices = Poly.extract_faces_indices(vertices)
-	create_vertex_spheres()
+	create_vertex_spheres(vertex_names)
 	create_edge_cylinders()
 
 	set_mesh()
@@ -91,12 +91,21 @@ func connect_signals() -> void:
 	properties_changed.connect(set_edge_cylinders_transform)
 
 
-func create_vertex_spheres() -> void:
-	var vertex_sphere_scene: PackedScene = preload("res://scenes/figures/sphere.tscn")
+func create_vertex_spheres(vertex_names: PackedStringArray = []) -> void:
+	var use_vertex_names := not vertex_names.is_empty()
+
+	assert(not use_vertex_names or vertex_names.size() == vertices.size())
+
+	var vertex_sphere_scene: PackedScene = preload("res://scenes/vertex_sphere.tscn")
 	var vertex_sphere_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")
 
-	for vertex_position in vertices:
-		var vertex_sphere: Sphere = vertex_sphere_scene.instantiate()
+	for i in range(vertices.size()):
+		var vertex_position := vertices[i]
+		var vertex_sphere: VertexSphere = vertex_sphere_scene.instantiate()
+
+		var label_component_scene: PackedScene = preload("res://scenes/label_component.tscn").duplicate_deep()
+		var label_component: LabelComponent = label_component_scene.instantiate()
+		vertex_sphere.add_child(label_component)
 
 		vertex_spheres.push_back(vertex_sphere)
 		add_child(vertex_sphere)
@@ -105,6 +114,14 @@ func create_vertex_spheres() -> void:
 
 		vertex_sphere.position = vertex_position
 		vertex_sphere.radius = 0.05
+
+		if use_vertex_names:
+			vertex_sphere.vertex_name = vertex_names[i]
+
+		vertex_sphere.clicked.connect(
+			func() -> void:
+				label_component.text = "%s\n%s" % [vertex_sphere.vertex_name, vertex_sphere.position]
+		)
 
 
 func set_vertex_spheres_transform() -> void:
@@ -131,11 +148,20 @@ func create_edge_cylinders() -> void:
 
 		var edge_cylinder: Cylinder = edge_cylinder_scene.instantiate()
 
+		var label_component_scene: PackedScene = preload("res://scenes/label_component.tscn").duplicate_deep()
+		var label_component: LabelComponent = label_component_scene.instantiate()
+		edge_cylinder.add_child(label_component)
+
 		edge_cylinders.push_back(edge_cylinder)
 		add_child(edge_cylinder)
 
 		edge_cylinder.mesh_instance.mesh = edge_cylinder_mesh.duplicate()
 		edge_cylinder.collision_shape.shape = edge_cylinder_shape.duplicate()
+
+		edge_cylinder.clicked.connect(
+			func() -> void:
+				label_component.text = "Length:\n%s" % Global.round_task_data(edge_cylinder.height)
+		)
 
 		var basis_right := (midpoint - middle_point).normalized()
 		if basis_right == Vector3.ZERO or basis_right.is_equal_approx(Vector3.ZERO):

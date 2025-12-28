@@ -85,9 +85,14 @@ func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> void:
 		popup.show()
 		return
 
+	var vertex_names: PackedStringArray
+	vertex_names.resize(vertex_ui_elements.size())
+	for i in range(vertex_ui_elements.size()):
+		vertex_names[i] = vertex_ui_elements[i].vertex_name
+
 	var polyhedron := polyhedron_environment.polyhedron
 	polyhedron.vertices = vertices
-	polyhedron.update_vertices()
+	polyhedron.update_vertices(vertex_names)
 
 
 func _on_new_vertex_button_pressed() -> void:

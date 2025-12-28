@@ -1,16 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgyxdvg640osa"]
+[gd_scene load_steps=4 format=3 uid="uid://bjav4gr8k3wfd"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_ii0iq"]
-radius = 0.05
-height = 0.1
+[ext_resource type="Script" uid="uid://bk11yct3lc2u7" path="res://scripts/vertex_sphere.gd" id="1_sw2ns"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_sw2ns"]
-radius = 0.05
+[sub_resource type="SphereShape3D" id="SphereShape3D_l5d8v"]
 
-[node name="VertexSphere" type="MeshInstance3D"]
-mesh = SubResource("SphereMesh_ii0iq")
+[sub_resource type="SphereMesh" id="SphereMesh_l5d8v"]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Sphere" type="Area3D"]
+script = ExtResource("1_sw2ns")
+metadata/_custom_type_script = "uid://bk11yct3lc2u7"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_sw2ns")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_l5d8v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_l5d8v")
