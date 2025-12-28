@@ -368,6 +368,7 @@ icon = ExtResource("4_choun")
 [node name="ScrollContainer" type="ScrollContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 size_flags_vertical = 3
+draw_focus_border = true
 
 [node name="VBox" type="VBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/ScrollContainer"]
 layout_mode = 2
