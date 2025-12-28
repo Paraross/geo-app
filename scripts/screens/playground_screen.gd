@@ -60,7 +60,7 @@ func add_new_vertex_ui_element(x: float, y: float, z: float, vertex_name: String
 			remove_vertex_ui_element(vertex_ui_element)
 	)
 
-	vertex_ui_element.label.text = vertex_name if vertex_name != "" else "Vertex %s" % vertex_ui_elements.size()
+	vertex_ui_element.vertex_name = vertex_name if vertex_name != "" else "Vertex %s" % vertex_ui_elements.size()
 	vertex_ui_element.x_spinbox.value = x
 	vertex_ui_element.y_spinbox.value = y
 	vertex_ui_element.z_spinbox.value = z
@@ -131,7 +131,7 @@ func _on_save_to_file_button_pressed() -> void:
 		var vertex := element.get_vertex()
 		vertices[i] = Vector3(vertex.x, vertex.y, vertex.z)
 
-		verts_for_json[i] = { "name": element.label.text, "x": vertex.x, "y": vertex.y, "z": vertex.z }
+		verts_for_json[i] = { "name": element.vertex_name, "x": vertex.x, "y": vertex.y, "z": vertex.z }
 
 	var vertices_json := JSON.stringify(verts_for_json, "  ")
 

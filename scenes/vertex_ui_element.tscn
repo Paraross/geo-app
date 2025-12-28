@@ -10,9 +10,11 @@ script = ExtResource("1_xhlat")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="NameLineEdit" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Vertex"
+placeholder_text = "Vertex"
+expand_to_text_length = true
 
 [node name="RemoveButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
