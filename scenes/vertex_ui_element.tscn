@@ -40,3 +40,5 @@ layout_mode = 2
 size_flags_horizontal = 8
 tooltip_text = "Remove vertex"
 icon = ExtResource("2_hsqwk")
+
+[connection signal="text_submitted" from="NameLineEdit" to="." method="_on_name_line_edit_text_submitted"]

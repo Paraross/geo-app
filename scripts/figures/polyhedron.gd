@@ -1,7 +1,7 @@
 class_name Polyhedron
 extends Figure
 
-var vertex_spheres: Array[Sphere]
+var vertex_spheres: Array[VertexSphere]
 var edge_cylinders: Array[Cylinder]
 
 var vertices: PackedVector3Array
@@ -118,10 +118,11 @@ func create_vertex_spheres(vertex_names: PackedStringArray = []) -> void:
 		if use_vertex_names:
 			vertex_sphere.vertex_name = vertex_names[i]
 
-		vertex_sphere.clicked.connect(
-			func() -> void:
-				label_component.text = "%s\n%s" % [vertex_sphere.vertex_name, vertex_sphere.position]
-		)
+		var update_label := func() -> void:
+			label_component.text = "%s\n%s" % [vertex_sphere.vertex_name, vertex_sphere.position]
+
+		vertex_sphere.clicked.connect(update_label)
+		vertex_sphere.properties_changed.connect(update_label)
 
 
 func set_vertex_spheres_transform() -> void:
@@ -158,10 +159,11 @@ func create_edge_cylinders() -> void:
 		edge_cylinder.mesh_instance.mesh = edge_cylinder_mesh.duplicate()
 		edge_cylinder.collision_shape.shape = edge_cylinder_shape.duplicate()
 
-		edge_cylinder.clicked.connect(
-			func() -> void:
-				label_component.text = "Length:\n%s" % Global.round_task_data(edge_cylinder.height)
-		)
+		var update_label := func() -> void:
+			label_component.text = "Length:\n%s" % Global.round_task_data(edge_cylinder.height)
+
+		edge_cylinder.clicked.connect(update_label)
+		edge_cylinder.properties_changed.connect(update_label)
 
 		var basis_right := (midpoint - middle_point).normalized()
 		if basis_right == Vector3.ZERO or basis_right.is_equal_approx(Vector3.ZERO):

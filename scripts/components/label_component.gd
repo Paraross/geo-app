@@ -11,9 +11,6 @@ func _ready() -> void:
 
 
 func connect_signals() -> void:
-	# HACK: call_deferred makes sure that label gets updated after vertices and edges
-	# otherwise the position may lag behind
-	# should be implemented such that it's not needed
 	figure.clicked.connect(toggle_visibility)
 
 

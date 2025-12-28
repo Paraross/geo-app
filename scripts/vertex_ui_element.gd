@@ -1,6 +1,10 @@
 class_name VertexUiElement
 extends HBoxContainer
 
+signal vertex_name_changed(new_name: String, index: int)
+
+var index: int
+
 var vertex_name: String:
 	get:
 		return name_line_edit.text
@@ -20,3 +24,7 @@ func get_vertex() -> Vector3:
 	var y := y_spinbox.value
 	var z := z_spinbox.value
 	return Vector3(x, y, z)
+
+
+func _on_name_line_edit_text_submitted(new_text: String) -> void:
+	vertex_name_changed.emit(new_text, index)

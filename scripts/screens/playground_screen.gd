@@ -60,10 +60,13 @@ func add_new_vertex_ui_element(x: float, y: float, z: float, vertex_name: String
 			remove_vertex_ui_element(vertex_ui_element)
 	)
 
+	vertex_ui_element.vertex_name_changed.connect(update_vertex_name)
+
 	vertex_ui_element.vertex_name = vertex_name if vertex_name != "" else "Vertex %s" % vertex_ui_elements.size()
 	vertex_ui_element.x_spinbox.value = x
 	vertex_ui_element.y_spinbox.value = y
 	vertex_ui_element.z_spinbox.value = z
+	vertex_ui_element.index = vertex_ui_elements.size() - 1
 
 	return vertex_ui_element
 
@@ -93,6 +96,11 @@ func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> void:
 	var polyhedron := polyhedron_environment.polyhedron
 	polyhedron.vertices = vertices
 	polyhedron.update_vertices(vertex_names)
+
+
+func update_vertex_name(new_name: String, index: int) -> void:
+	var polyhedron := polyhedron_environment.polyhedron
+	polyhedron.vertex_spheres[index].vertex_name = new_name
 
 
 func _on_new_vertex_button_pressed() -> void:
