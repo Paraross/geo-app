@@ -1,5 +1,5 @@
 class_name VertexUiElement
-extends Container
+extends HBoxContainer
 
 var vertex_name: String:
 	get:
@@ -7,8 +7,8 @@ var vertex_name: String:
 	set(value):
 		name_line_edit.text = value
 
-@onready var name_line_edit: LineEdit = $HBoxContainer/NameLineEdit
-@onready var remove_button: Button = $HBoxContainer/RemoveButton
+@onready var name_line_edit: LineEdit = $NameLineEdit
+@onready var remove_button: Button = $RemoveButton
 @onready var coords_container: Container = $CoordsContainer
 @onready var x_spinbox: SpinBox = coords_container.get_node("XSpinBox")
 @onready var y_spinbox: SpinBox = coords_container.get_node("YSpinBox")

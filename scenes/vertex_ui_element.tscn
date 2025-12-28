@@ -1,39 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgdov2iblt7d3"]
+[gd_scene load_steps=3 format=3 uid="uid://cgdov2iblt7d3"]
 
 [ext_resource type="Script" uid="uid://bbl5nxih7e8di" path="res://scripts/vertex_ui_element.gd" id="1_xhlat"]
+[ext_resource type="Texture2D" uid="uid://d0jt82dds4xwr" path="res://assets/trash_can.png" id="2_hsqwk"]
 
-[node name="VertexUiElement" type="VBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VertexUiElement" type="HBoxContainer"]
+offset_right = 388.0
+offset_bottom = 66.0
 script = ExtResource("1_xhlat")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="NameLineEdit" type="LineEdit" parent="HBoxContainer"]
+[node name="NameLineEdit" type="LineEdit" parent="."]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+tooltip_text = "Vertex name"
 placeholder_text = "Vertex"
-expand_to_text_length = true
-
-[node name="RemoveButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-text = "-"
 
 [node name="CoordsContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="XSpinBox" type="SpinBox" parent="CoordsContainer"]
 layout_mode = 2
+tooltip_text = "The X coordinate"
 min_value = -10.0
 max_value = 10.0
 
 [node name="YSpinBox" type="SpinBox" parent="CoordsContainer"]
 layout_mode = 2
+tooltip_text = "The Y coordinate"
 min_value = -10.0
 max_value = 10.0
 
 [node name="ZSpinBox" type="SpinBox" parent="CoordsContainer"]
 layout_mode = 2
+tooltip_text = "The Z coordinate"
 min_value = -10.0
 max_value = 10.0
+
+[node name="RemoveButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+tooltip_text = "Remove vertex"
+icon = ExtResource("2_hsqwk")
