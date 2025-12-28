@@ -312,6 +312,7 @@ material = SubResource("StandardMaterial3D_dp3eg")
 [node name="RightPanel" type="PanelContainer" parent="PlaygroundScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 
 [node name="RightVBox" type="VBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel"]
 layout_mode = 2
