@@ -1,5 +1,34 @@
 extends Node
 
+const CUBE_VERTICES: PackedVector3Array = [
+	Vector3(-1, 1, 1),
+	Vector3(1, 1, 1),
+	Vector3(1, -1, 1),
+	Vector3(-1, -1, 1),
+	Vector3(-1, 1, -1),
+	Vector3(1, 1, -1),
+	Vector3(1, -1, -1),
+	Vector3(-1, -1, -1),
+]
+
+const PRISM_VERTICES: PackedVector3Array = [
+	Vector3(-1, -1, 1),
+	Vector3(1, -1, 1),
+	Vector3(0, 1, 1),
+	Vector3(-1, -1, -1),
+	Vector3(1, -1, -1),
+	Vector3(0, 1, -1),
+]
+
+const PYRAMID_VERTICES: PackedVector3Array = [
+	Vector3(0, 1, 0),
+	Vector3(-1, -1, 1),
+	Vector3(1, -1, 1),
+	Vector3(1, -1, -1),
+	Vector3(-1, -1, -1),
+]
+
+
 func are_valid_polyhedron_vertices(
 		vertices: PackedVector3Array,
 ) -> bool:

@@ -7,38 +7,10 @@ const SHAPE_OPTIONS: Array[String] = [
 	"Pyramid",
 ]
 
-const SHAPE_VERTICES: Array[PackedVector3Array] = [
-	CUBE_VERTICES,
-	PRISM_VERTICES,
-	PYRAMID_VERTICES,
-]
-
-const CUBE_VERTICES: PackedVector3Array = [
-	Vector3(-1, 1, 1),
-	Vector3(1, 1, 1),
-	Vector3(1, -1, 1),
-	Vector3(-1, -1, 1),
-	Vector3(-1, 1, -1),
-	Vector3(1, 1, -1),
-	Vector3(1, -1, -1),
-	Vector3(-1, -1, -1),
-]
-
-const PRISM_VERTICES: PackedVector3Array = [
-	Vector3(-1, -1, 1),
-	Vector3(1, -1, 1),
-	Vector3(0, 1, 1),
-	Vector3(-1, -1, -1),
-	Vector3(1, -1, -1),
-	Vector3(0, 1, -1),
-]
-
-const PYRAMID_VERTICES: PackedVector3Array = [
-	Vector3(0, 1, 0),
-	Vector3(-1, -1, 1),
-	Vector3(1, -1, 1),
-	Vector3(1, -1, -1),
-	Vector3(-1, -1, -1),
+const SHAPES_VERTICES: Array[PackedVector3Array] = [
+	Poly.CUBE_VERTICES,
+	Poly.PRISM_VERTICES,
+	Poly.PYRAMID_VERTICES,
 ]
 
 var vertex_ui_elements: Array[VertexUiElement] = []
@@ -66,10 +38,7 @@ func _ready() -> void:
 
 
 func on_entered() -> void:
-	for vertex_ui_element: VertexUiElement in vertices_vbox.get_children():
-		vertex_ui_element.queue_free()
-		vertices_vbox.remove_child(vertex_ui_element)
-	vertex_ui_elements.clear()
+	clear_vertex_ui_elements()
 
 
 func on_left() -> void:
@@ -80,7 +49,7 @@ func reset() -> void:
 	polyhedron_environment.unload_polyhedron()
 
 
-func add_new_vertex_ui_element(vertex_name: String = "") -> VertexUiElement:
+func add_new_vertex_ui_element(x: float, y: float, z: float, vertex_name: String = "") -> VertexUiElement:
 	var vertex_ui_element: VertexUiElement = preload("res://scenes/vertex_ui_element.tscn").instantiate()
 
 	vertex_ui_elements.append(vertex_ui_element)
@@ -90,16 +59,25 @@ func add_new_vertex_ui_element(vertex_name: String = "") -> VertexUiElement:
 		func() -> void:
 			remove_vertex_ui_element(vertex_ui_element)
 	)
-	
+
 	vertex_ui_element.label.text = vertex_name if vertex_name != "" else "Vertex %s" % vertex_ui_elements.size()
+	vertex_ui_element.x_spinbox.value = x
+	vertex_ui_element.y_spinbox.value = y
+	vertex_ui_element.z_spinbox.value = z
 
 	return vertex_ui_element
 
 
 func remove_vertex_ui_element(element: VertexUiElement) -> void:
 	element.queue_free()
-	# remove_child(element)
 	vertex_ui_elements.erase(element)
+
+
+func clear_vertex_ui_elements() -> void:
+	for vertex_ui_element: VertexUiElement in vertices_vbox.get_children():
+		vertex_ui_element.queue_free()
+		vertices_vbox.remove_child(vertex_ui_element)
+	vertex_ui_elements.clear()
 
 
 func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> void:
@@ -113,7 +91,7 @@ func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> void:
 
 
 func _on_new_vertex_button_pressed() -> void:
-	add_new_vertex_ui_element()
+	add_new_vertex_ui_element(0.0, 0.0, 0.0)
 
 
 func _on_create_polyhedron_button_pressed() -> void:
@@ -121,28 +99,18 @@ func _on_create_polyhedron_button_pressed() -> void:
 	vertices.resize(vertex_ui_elements.size())
 
 	for i in range(vertex_ui_elements.size()):
-		var element := vertex_ui_elements[i]
-		var x := element.x_spinbox.value
-		var y := element.y_spinbox.value
-		var z := element.z_spinbox.value
-		vertices[i] = Vector3(x, y, z)
+		vertices[i] = vertex_ui_elements[i].get_vertex()
 
 	create_polyhedron_from_vertices(vertices)
 
 
 func _on_load_button_pressed() -> void:
-	var vertices := SHAPE_VERTICES[shape_button.selected]
+	var vertices := SHAPES_VERTICES[shape_button.selected]
 
-	for vertex_ui_element: VertexUiElement in vertices_vbox.get_children():
-		vertex_ui_element.queue_free()
-		vertices_vbox.remove_child(vertex_ui_element)
-	vertex_ui_elements.clear()
+	clear_vertex_ui_elements()
 
 	for v in vertices:
-		var new_vertex_ui_element := add_new_vertex_ui_element()
-		new_vertex_ui_element.x_spinbox.value = v.x
-		new_vertex_ui_element.y_spinbox.value = v.y
-		new_vertex_ui_element.z_spinbox.value = v.z
+		add_new_vertex_ui_element(v.x, v.y, v.z)
 
 	create_polyhedron_from_vertices(vertices)
 
@@ -160,12 +128,10 @@ func _on_save_to_file_button_pressed() -> void:
 
 	for i in range(vertex_ui_elements.size()):
 		var element := vertex_ui_elements[i]
-		var x := element.x_spinbox.value
-		var y := element.y_spinbox.value
-		var z := element.z_spinbox.value
-		vertices[i] = Vector3(x, y, z)
+		var vertex := element.get_vertex()
+		vertices[i] = Vector3(vertex.x, vertex.y, vertex.z)
 
-		verts_for_json[i] = { "name": element.label.text, "x": x, "y": y, "z": z }
+		verts_for_json[i] = { "name": element.label.text, "x": vertex.x, "y": vertex.y, "z": vertex.z }
 
 	var vertices_json := JSON.stringify(verts_for_json, "  ")
 
@@ -198,10 +164,7 @@ func _on_load_file_dialog_file_selected(path: String) -> void:
 
 	var parsed_vertices: Array = JSON.parse_string(file_content)
 
-	for vertex_ui_element: VertexUiElement in vertices_vbox.get_children():
-		vertex_ui_element.queue_free()
-		vertices_vbox.remove_child(vertex_ui_element)
-	vertex_ui_elements.clear()
+	clear_vertex_ui_elements()
 
 	var vertices: PackedVector3Array
 	vertices.resize(parsed_vertices.size())
@@ -215,10 +178,7 @@ func _on_load_file_dialog_file_selected(path: String) -> void:
 
 		vertices[i] = Vector3(x, y, z)
 
-		var new_vertex_ui_element := add_new_vertex_ui_element(vertex_name)
-		new_vertex_ui_element.x_spinbox.value = x
-		new_vertex_ui_element.y_spinbox.value = y
-		new_vertex_ui_element.z_spinbox.value = z
+		add_new_vertex_ui_element(x, y, z, vertex_name)
 
 		i += 1
 

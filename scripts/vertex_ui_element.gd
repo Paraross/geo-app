@@ -7,3 +7,10 @@ extends Container
 @onready var x_spinbox: SpinBox = coords_container.get_node("XSpinBox")
 @onready var y_spinbox: SpinBox = coords_container.get_node("YSpinBox")
 @onready var z_spinbox: SpinBox = coords_container.get_node("ZSpinBox")
+
+
+func get_vertex() -> Vector3:
+	var x := x_spinbox.value
+	var y := y_spinbox.value
+	var z := z_spinbox.value
+	return Vector3(x, y, z)
