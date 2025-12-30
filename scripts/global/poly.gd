@@ -1,30 +1,39 @@
 extends Node
 
 const CUBE_VERTICES: PackedVector3Array = [
-	Vector3(-1, 1, 1),
-	Vector3(1, 1, 1),
-	Vector3(1, -1, 1),
-	Vector3(-1, -1, 1),
-	Vector3(-1, 1, -1),
-	Vector3(1, 1, -1),
-	Vector3(1, -1, -1),
-	Vector3(-1, -1, -1),
+	# front
+	Vector3(-1, 1, 1), # left top near
+	Vector3(1, 1, 1), # right top near
+	Vector3(1, -1, 1), # right bottom near
+	Vector3(-1, -1, 1), # left bottom near
+	# back
+	Vector3(-1, 1, -1), # left top far
+	Vector3(1, 1, -1), # right top far
+	Vector3(1, -1, -1), # right bottom far
+	Vector3(-1, -1, -1), # left bottom far
 ]
 
 const PRISM_VERTICES: PackedVector3Array = [
-	Vector3(-1, -1, 1),
-	Vector3(1, -1, 1),
-	Vector3(0, 1, 1),
-	Vector3(-1, -1, -1),
-	Vector3(1, -1, -1),
-	Vector3(0, 1, -1),
+	# front
+	Vector3(-1, -1, 1), # left
+	Vector3(1, -1, 1), # right
+	Vector3(0, 1, 1), # top
+	# back
+	Vector3(-1, -1, -1), # left
+	Vector3(1, -1, -1), # right
+	Vector3(0, 1, -1), # top
 ]
 
 const PYRAMID_VERTICES: PackedVector3Array = [
+	# top
 	Vector3(0, 1, 0),
+	# left near
 	Vector3(-1, -1, 1),
+	# right near
 	Vector3(1, -1, 1),
+	# right far
 	Vector3(1, -1, -1),
+	# left far
 	Vector3(-1, -1, -1),
 ]
 

@@ -1,50 +1,27 @@
 class_name Prism
 extends Polyhedron
 
-const VERTICES: PackedVector3Array = [
-	# front
-	Vector3(-1, -1, 1), # left
-	Vector3(1, -1, 1), # right
-	Vector3(0, 1, 1), # top
-	# back
-	Vector3(-1, -1, -1), # left
-	Vector3(1, -1, -1), # right
-	Vector3(0, 1, -1), # top
-]
-
 var base_base: float:
 	set(value):
 		base_base = value
-
-		var s := scale()
-		for i in vertices.size():
-			vertices[i] = VERTICES[i] * s
-
+		scale_vertices()
 		properties_changed.emit()
 
 var base_height: float:
 	set(value):
 		base_height = value
-
-		var s := scale()
-		for i in vertices.size():
-			vertices[i] = VERTICES[i] * s
-
+		scale_vertices()
 		properties_changed.emit()
 
 var height: float:
 	set(value):
 		height = value
-
-		var s := scale()
-		for i in vertices.size():
-			vertices[i] = VERTICES[i] * s
-
+		scale_vertices()
 		properties_changed.emit()
 
 
 func _ready() -> void:
-	vertices = VERTICES.duplicate()
+	vertices = Poly.PRISM_VERTICES.duplicate()
 	super._ready()
 
 
@@ -67,3 +44,9 @@ func volume() -> float:
 
 func base_area() -> float:
 	return base_base * base_height / 2.0
+
+
+func scale_vertices() -> void:
+	var s := scale()
+	for i in vertices.size():
+		vertices[i] = Poly.PRISM_VERTICES[i] * s
