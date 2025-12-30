@@ -83,9 +83,10 @@ func set_step_ui() -> void:
 		child.queue_free()
 		steps_vbox.remove_child(child)
 
+	var i := 1
 	for step in task_environment.task.steps():
 		var title_label := Label.new()
-		title_label.text = step.title
+		title_label.text = "%s. %s" % [i, step.title]
 
 		var tip_button := Button.new()
 		tip_button.theme_type_variation = "TipButton"
@@ -104,7 +105,9 @@ func set_step_ui() -> void:
 
 		var answer_spinbox := SpinBox.new()
 		answer_spinbox.step = 1.0 / 10.0 ** Settings.answer_precision
-		answer_spinbox.value = step.correct_answer()
+		answer_spinbox.min_value = -1000.0
+		answer_spinbox.max_value = 1000.0
+		answer_spinbox.value = step.correct_answer() # TODO: remove in final version
 		answer_spinbox.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 
 		var answer_mark_label := Label.new()
@@ -119,6 +122,8 @@ func set_step_ui() -> void:
 		step_vbox.add_child(answer_hbox)
 
 		steps_vbox.add_child(step_vbox)
+		
+		i += 1
 
 	update_step_ui()
 

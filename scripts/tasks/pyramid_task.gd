@@ -30,13 +30,13 @@ func volume_tip() -> String:
 func steps() -> Array[Step]:
 	return [
 		Step.new(
-			"1. Calculate base area",
+			"Calculate base area",
 			"A cube's area is side × side",
 			0,
 			pyramid.base_area,
 		),
 		Step.new(
-			"3. Calculate volume",
+			"Calculate volume",
 			"A prism's volume is base area × height ÷ 3",
 			1,
 			pyramid.volume,

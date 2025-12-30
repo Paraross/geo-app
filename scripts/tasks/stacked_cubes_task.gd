@@ -40,49 +40,49 @@ func volume_tip() -> String:
 func steps() -> Array[Step]:
 	return [
 		Step.new(
-			"1. Calculate bottom cube area",
+			"Calculate bottom cube area",
 			"A cube's total area is the sum of all its 6 face areas",
 			0,
 			bottom_cube.area,
 		),
 		Step.new(
-			"2. Calculate top cube area",
+			"Calculate top cube area",
 			"A cube's total area is the sum of all its 6 face areas",
 			0,
 			top_cube.area,
 		),
 		Step.new(
-			"3. Calculate the visible area of the top cube",
+			"Calculate the visible area of the top cube",
 			"Only 5 faces of the top cube are visible",
 			0,
 			func() -> float: return 5.0 * top_cube.face_area()
 		),
 		Step.new(
-			"4. Calculate the visible area of the bottom cube",
+			"Calculate the visible area of the bottom cube",
 			"5 faces of the bottom cube are fully visible. One face is partially covered by one of the top cube's faces",
 			0,
 			func() -> float: return bottom_cube.area() - top_cube.face_area()
 		),
 		Step.new(
-			"5. Calculate the area of the whole shape",
+			"Calculate the area of the whole shape",
 			"The bottom cube's volume is its side length cubed",
 			0,
 			func() -> float: return 5.0 * top_cube.face_area() + bottom_cube.area() - top_cube.face_area()
 		),
 		Step.new(
-			"6. Calculate bottom cube volume",
+			"Calculate bottom cube volume",
 			"The bottom cube's volume is its side length cubed",
 			0,
 			bottom_cube.volume,
 		),
 		Step.new(
-			"7. Calculate top cube volume",
+			"Calculate top cube volume",
 			"The top cube's volume is its side length cubed",
 			0,
 			top_cube.volume,
 		),
 		Step.new(
-			"8. Calculate total volume",
+			"Calculate total volume",
 			"Add the volumes of both cubes together",
 			0,
 			func() -> float: return bottom_cube.volume() + top_cube.volume()

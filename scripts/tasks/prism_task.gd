@@ -33,19 +33,19 @@ func volume_tip() -> String:
 func steps() -> Array[Step]:
 	return [
 		Step.new(
-			"1. Calculate base area",
+			"Calculate base area",
 			"A triangular base area is (base × height) ÷ 2",
 			1,
 			prism.base_area,
 		),
 		Step.new(
-			"2. Calculate total area",
+			"Calculate total area",
 			"A prism's total area is 2 × base area + side walls area",
 			1,
 			prism.area,
 		),
 		Step.new(
-			"3. Calculate volume",
+			"Calculate volume",
 			"A prism's volume is base area × height",
 			1,
 			prism.volume,
