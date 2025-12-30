@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddn7lp27rrv1x"]
-
-[ext_resource type="Script" uid="uid://b2fq07imhi1l8" path="res://scripts/tasks/cylinder_task.gd" id="1_1dm5o"]
-[ext_resource type="PackedScene" uid="uid://y8rgwhcmo6ck" path="res://scenes/figures/cylinder.tscn" id="2_8y7lk"]
-
-[node name="CyllinderTask" type="Node3D"]
-script = ExtResource("1_1dm5o")
-
-[node name="Cylinder" parent="." instance=ExtResource("2_8y7lk")]
