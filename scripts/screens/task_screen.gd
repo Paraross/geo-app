@@ -1,7 +1,7 @@
 class_name TaskScreen
 extends Screen
 
-var available_tasks: Array[Task]
+var selected_task: Task
 
 var current_step: int = 0
 
@@ -51,7 +51,7 @@ func update_step_nav_ui() -> void:
 
 
 func get_new_task() -> void:
-	task_environment.spawn_new_task(available_tasks)
+	task_environment.spawn_new_task(selected_task)
 
 	Global.clear_grid(task_data_grid)
 	check_answer_button.disabled = false

@@ -178,7 +178,6 @@ offset_bottom = 80.0
 horizontal_alignment = 1
 
 [node name="TaskFilterScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,12 +222,12 @@ auto_height = true
 
 [node name="TaskList" type="ItemList" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-select_mode = 2
 auto_width = true
 auto_height = true
 
 [node name="StartButton" type="Button" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Start"
 
 [node name="BackButton" type="Button" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer"]
@@ -254,6 +253,7 @@ layout_mode = 2
 columns = 3
 
 [node name="PlaygroundScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -281,7 +281,7 @@ stretch = true
 [node name="ShapeViewport" type="SubViewport" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
 size = Vector2i(954, 1080)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="PolyhedronEnvironment" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 script = ExtResource("8_a8y0u")
@@ -729,6 +729,7 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/NewTaskButton" to="TaskScreen" method="_on_new_task_button_pressed"]
 [connection signal="multi_selected" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterScreen" method="_on_difficulty_item_list_multi_selected"]
 [connection signal="item_clicked" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_item_clicked"]
+[connection signal="item_selected" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_item_selected"]
 [connection signal="resized" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_resized"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

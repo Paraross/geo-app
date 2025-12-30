@@ -58,8 +58,7 @@ func _on_settings_button_pressed() -> void:
 func _on_task_filter_start_button_pressed() -> void:
 	task_screen.reset()
 
-	var selected_tasks := task_filter_screen.selected_tasks()
-	task_screen.available_tasks = selected_tasks
+	task_screen.selected_task = task_filter_screen.selected_task()
 
 	current_screen = task_screen
 

@@ -4,12 +4,8 @@ extends FigureEnvironment
 var task: Task
 
 
-func spawn_new_task(available_tasks: Array[Task]) -> void:
-	var random_task_index := randi_range(0, available_tasks.size() - 1)
-
-	var task := available_tasks[random_task_index]
+func spawn_new_task(task: Task) -> void:
 	task.randomize_values()
-
 	set_current_task(task)
 
 

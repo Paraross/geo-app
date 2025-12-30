@@ -8,7 +8,7 @@ extends Screen
 @onready var task_settings_popup_vbox: VBoxContainer = task_settings_popup.get_node("VBox")
 @onready var task_settings_popup_label: Label = task_settings_popup_vbox.get_node("Label")
 @onready var task_settings_popup_grid: GridContainer = task_settings_popup_vbox.get_node("TaskValueGrid")
-
+@onready var start_button: Button = task_filter_vbox.get_node("StartButton")
 
 func on_entered() -> void:
 	pass
@@ -43,25 +43,18 @@ func fill_task_list() -> void:
 		if task_difficulty_is_selected:
 			task_list.add_item(task_name)
 
-	for i in range(task_list.item_count):
-		task_list.select(i, false)
 
-
-func selected_tasks() -> Array[Task]:
+func selected_task() -> Task:
 	var selected_task_indices := task_list.get_selected_items()
 
-	if selected_task_indices.is_empty():
-		return []
+	var nice_name := task_list.get_item_text(selected_task_indices[0])
+	var selected_task := Tasks.all_tasks[nice_name]
 
-	var selected_tasks1: Array[Task] = []
-	for index in selected_task_indices:
-		var nice_name := task_list.get_item_text(index)
-		selected_tasks1.push_back(Tasks.all_tasks[nice_name])
-
-	return selected_tasks1
+	return selected_task
 
 
 func _on_difficulty_item_list_multi_selected(_index: int, _selected: bool) -> void:
+	start_button.disabled = true
 	fill_task_list()
 
 
@@ -97,6 +90,10 @@ func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_
 		task_settings_popup_grid.add_child(max_spin_box)
 
 	task_settings_popup.show()
+
+
+func _on_task_list_item_selected(_index: int) -> void:
+	start_button.disabled = false
 
 
 func _on_task_list_resized() -> void:
