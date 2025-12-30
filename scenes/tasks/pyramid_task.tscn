@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy431f5yya2du"]
+
+[ext_resource type="Script" uid="uid://drf1cfwiqv78s" path="res://scripts/tasks/pyramid_task.gd" id="1_rta3o"]
+[ext_resource type="PackedScene" uid="uid://cc3wa3x3hjuao" path="res://scenes/figures/pyramid.tscn" id="2_rta3o"]
+
+[node name="PyramidTask" type="Node3D"]
+script = ExtResource("1_rta3o")
+
+[node name="Pyramid" parent="." instance=ExtResource("2_rta3o")]
