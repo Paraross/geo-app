@@ -122,7 +122,7 @@ func set_step_ui() -> void:
 		step_vbox.add_child(answer_hbox)
 
 		steps_vbox.add_child(step_vbox)
-		
+
 		i += 1
 
 	update_step_ui()

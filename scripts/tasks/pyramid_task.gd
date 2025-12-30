@@ -1,3 +1,4 @@
+class_name PyramidTask
 extends Task
 
 var base_side_length: TaskFloatValue = TaskFloatValue.with_min_max(1.0, 5.0) \

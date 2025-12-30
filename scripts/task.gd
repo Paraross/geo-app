@@ -60,10 +60,10 @@ class Step:
 
 
 	func _init(
-		title: String,
-		tip: String,
-		answer_precision_digits: int,
-		correct_answer_func: Callable
+			title: String,
+			tip: String,
+			answer_precision_digits: int,
+			correct_answer_func: Callable,
 	) -> void:
 		self.title = title
 		self.tip = tip

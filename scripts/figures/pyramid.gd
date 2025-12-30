@@ -36,8 +36,11 @@ func base_area() -> float:
 
 
 func lateral_triangle_area() -> float:
-	var a := base_side_length
-	return a * sqrt(base_area() + 4 * height ** 2) / 4.0
+	return base_side_length * lateral_triangle_height() / 2.0
+
+
+func lateral_triangle_height() -> float:
+	return sqrt(base_side_length ** 2 / 4.0 + height ** 2)
 
 
 func scale_vertices() -> void:

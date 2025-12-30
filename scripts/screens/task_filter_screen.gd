@@ -10,6 +10,7 @@ extends Screen
 @onready var task_settings_popup_grid: GridContainer = task_settings_popup_vbox.get_node("TaskValueGrid")
 @onready var start_button: Button = task_filter_vbox.get_node("StartButton")
 
+
 func on_entered() -> void:
 	pass
 
