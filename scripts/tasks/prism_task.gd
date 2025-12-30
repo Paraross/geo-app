@@ -1,12 +1,9 @@
 extends Task
 
-# x
 var base_base: TaskFloatValue = TaskFloatValue.with_min_max(1.0, 5.0) \
 .with_on_set(func() -> void: prism.base_base = base_base.value)
-# y
 var base_height: TaskFloatValue = TaskFloatValue.with_min_max(1.0, 5.0) \
 .with_on_set(func() -> void: prism.base_height = base_height.value)
-# z
 var height: TaskFloatValue = TaskFloatValue.with_min_max(1.0, 5.0) \
 .with_on_set(func() -> void: prism.height = height.value)
 

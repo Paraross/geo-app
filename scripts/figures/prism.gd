@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func scale() -> Vector3:
-	return Vector3(base_base, base_height, height) / 2.0
+	return Vector3(base_base, height, base_height) / 2.0
 
 
 # correct only for a isosceles triangle
