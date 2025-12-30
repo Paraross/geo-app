@@ -55,15 +55,22 @@ func tip_for_step(step: int) -> String:
 class Step:
 	var title: String
 	var tip: String
+	var answer_precision_digits: int
 	var _correct_answer_func: Callable
 
 
-	func _init(title: String, tip: String, correct_answer_func: Callable) -> void:
+	func _init(
+		title: String,
+		tip: String,
+		answer_precision_digits: int,
+		correct_answer_func: Callable
+	) -> void:
 		self.title = title
 		self.tip = tip
+		self.answer_precision_digits = answer_precision_digits
 		self._correct_answer_func = correct_answer_func
 
 
 	func correct_answer() -> float:
 		var answer: float = _correct_answer_func.call()
-		return Global.round_task_answer(answer)
+		return Global.round_with_digits(answer, answer_precision_digits)

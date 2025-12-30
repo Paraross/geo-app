@@ -160,7 +160,7 @@ func create_edge_cylinders() -> void:
 		edge_cylinder.collision_shape.shape = edge_cylinder_shape.duplicate()
 
 		var update_label := func() -> void:
-			label_component.text = "Length:\n%s" % Global.round_task_data(edge_cylinder.height)
+			label_component.text = "Length:\n%s" % Global.round_with_digits(edge_cylinder.height, 1)
 
 		edge_cylinder.clicked.connect(update_label)
 		edge_cylinder.properties_changed.connect(update_label)

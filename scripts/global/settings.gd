@@ -23,9 +23,6 @@ var answer_precision: int:
 	set(value):
 		settings[answer_precision_str].set_value(value)
 
-var default_task_data_min_value: float = 1.0
-var default_task_data_max_value: float = 2.0
-
 
 func _ready() -> void:
 	load_settings_from_file()

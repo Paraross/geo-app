@@ -8,23 +8,19 @@ var value: float:
 		value = new_value
 		if not on_set.is_null():
 			on_set.call()
+var precision_digits: int = 0
 var on_set: Callable
 
 
-static func with_min_max(min_val: float, max_val: float) -> TaskFloatValue:
-	return TaskFloatValue.new(min_val, max_val, (min_val + max_val) / 2.0)
+static func with_min_max(min_val: float, max_val: float, precision_digits: int = 0) -> TaskFloatValue:
+	return TaskFloatValue.new(min_val, max_val, (min_val + max_val) / 2.0, precision_digits)
 
 
-static func default() -> TaskFloatValue:
-	var min_val := Settings.default_task_data_min_value
-	var max_val := Settings.default_task_data_max_value
-	return TaskFloatValue.with_min_max(min_val, max_val)
-
-
-func _init(min_val: float, max_val: float, val: float) -> void:
+func _init(min_val: float, max_val: float, val: float, precision_digits: int) -> void:
 	min_value = min_val
 	max_value = max_val
 	value = val
+	self.precision_digits = precision_digits
 
 
 func random_in_range() -> float:
@@ -32,7 +28,7 @@ func random_in_range() -> float:
 
 
 func randomize_and_round() -> void:
-	value = Global.round_task_data(random_in_range())
+	value = Global.round_with_digits(random_in_range(), precision_digits)
 
 
 func with_on_set(on_set_function: Callable) -> TaskFloatValue:
