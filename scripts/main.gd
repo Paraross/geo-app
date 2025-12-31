@@ -12,12 +12,13 @@ extends Node
 
 var last_screen: Screen
 
-@onready var task_screen: TaskScreen = $TaskScreen
-@onready var task_filter_screen: TaskFilterScreen = $TaskFilterScreen
-@onready var playground_screen: PlaygroundScreen = $PlaygroundScreen
-@onready var settings_screen: SettingsScreen = $SettingsScreen
-@onready var formulas_screen: FormulasScreen = $FormulasScreen
-@onready var main_menu_screen: MainMenuScreen = $MainMenuScreen
+@onready var main_content: Control = $AppVBox/MainContent
+@onready var task_screen: TaskScreen = main_content.get_node("TaskScreen")
+@onready var task_filter_screen: TaskFilterScreen = main_content.get_node("TaskFilterScreen")
+@onready var playground_screen: PlaygroundScreen = main_content.get_node("PlaygroundScreen")
+@onready var settings_screen: SettingsScreen = main_content.get_node("SettingsScreen")
+@onready var formulas_screen: FormulasScreen = main_content.get_node("TopBarScreenVBox/FormulasScreen")
+@onready var main_menu_screen: MainMenuScreen = main_content.get_node("MainMenuScreen")
 
 
 func _ready() -> void:
@@ -39,7 +40,20 @@ func enable_current_screen() -> void:
 
 
 func screens() -> Array:
-	return get_children().filter(func(child: Node) -> bool: return child is Screen)
+	# TODO: ?
+	if main_content == null:
+		return []
+
+	return [
+		task_screen,
+		task_filter_screen,
+		playground_screen,
+		settings_screen,
+		formulas_screen,
+		main_menu_screen,
+	]
+
+	# return main_content.get_children().filter(func(child: Node) -> bool: return child is Screen)
 
 
 func _notification(what: int) -> void:

@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://rgaehgi5s083"]
+
+[ext_resource type="Script" uid="uid://cem51d1xh2ksa" path="res://scripts/screen_with_top_bar.gd" id="1_m8rvd"]
+
+[node name="ScreenWithTopBar" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_m8rvd")
+
+[node name="TopBarHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="TopBarHBox"]
+layout_mode = 2
+text = "Main menu"
+
+[node name="TasksButton" type="Button" parent="TopBarHBox"]
+layout_mode = 2
+text = "Solve tasks"
+
+[node name="ExploreButton" type="Button" parent="TopBarHBox"]
+layout_mode = 2
+text = "Explore tasks"
+
+[node name="PlaygroundButton" type="Button" parent="TopBarHBox"]
+layout_mode = 2
+text = "Playground"

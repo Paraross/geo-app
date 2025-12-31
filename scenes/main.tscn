@@ -49,7 +49,7 @@ height = 20.0
 
 [node name="Main" type="Node" node_paths=PackedStringArray("current_screen")]
 script = ExtResource("1_ig7tw")
-current_screen = NodePath("MainMenuScreen")
+current_screen = NodePath("AppVBox/MainContent/MainMenuScreen")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -59,9 +59,48 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.24313726, 0.24313726, 0.29803923, 1)
 
-[node name="TaskScreen" type="Control" parent="."]
+[node name="AppVBox" type="VBoxContainer" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 1896.0
+offset_bottom = 1056.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("5_tasktheme")
+
+[node name="TopBarHBox" type="HBoxContainer" parent="AppVBox"]
 visible = false
-layout_mode = 3
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="AppVBox/TopBarHBox"]
+layout_mode = 2
+text = "Main menu"
+
+[node name="TasksButton" type="Button" parent="AppVBox/TopBarHBox"]
+layout_mode = 2
+text = "Solve tasks"
+
+[node name="ExploreButton" type="Button" parent="AppVBox/TopBarHBox"]
+layout_mode = 2
+text = "Explore tasks"
+
+[node name="PlaygroundButton" type="Button" parent="AppVBox/TopBarHBox"]
+layout_mode = 2
+text = "Playground"
+
+[node name="HSeparator" type="HSeparator" parent="AppVBox"]
+visible = false
+layout_mode = 2
+
+[node name="MainContent" type="Control" parent="AppVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TaskScreen" type="Control" parent="AppVBox/MainContent"]
+visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -72,7 +111,7 @@ theme = ExtResource("5_tasktheme")
 script = ExtResource("2_85g3d")
 metadata/_custom_type_script = "uid://chan7lqvx204"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TaskScreen"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AppVBox/MainContent/TaskScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,105 +119,106 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShapeViewportContainer" type="SubViewportContainer" parent="TaskScreen/HBoxContainer"]
+[node name="ShapeViewportContainer" type="SubViewportContainer" parent="AppVBox/MainContent/TaskScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
 
-[node name="ShapeViewport" type="SubViewport" parent="TaskScreen/HBoxContainer/ShapeViewportContainer"]
+[node name="ShapeViewport" type="SubViewport" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
 size = Vector2i(2, 2)
 render_target_update_mode = 0
 
-[node name="TaskEnvironment" parent="TaskScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
+[node name="TaskEnvironment" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 
-[node name="PanelContainer" type="PanelContainer" parent="TaskScreen/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="AppVBox/MainContent/TaskScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer"]
 layout_mode = 2
 focus_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Task Data"
 
-[node name="SettingsButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="SettingsButton" type="Button" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 tooltip_text = "Settings"
 theme_type_variation = &"SettingsButton"
 icon = ExtResource("4_choun")
 
-[node name="TaskDataGrid" type="GridContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="TaskDataGrid" type="GridContainer" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 2
 
-[node name="HSeparator" type="HSeparator" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StepNavHbox" type="HBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="StepNavHbox" type="HBoxContainer" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PrevButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
+[node name="PrevButton" type="Button" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
 layout_mode = 2
 text = "< Prev"
 
-[node name="Label" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
 
-[node name="NextButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
+[node name="NextButton" type="Button" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox"]
 layout_mode = 2
 text = "Next >"
 
-[node name="StepsScroll" type="ScrollContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="StepsScroll" type="ScrollContainer" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 draw_focus_border = true
 
-[node name="StepsVBox" type="VBoxContainer" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepsScroll"]
+[node name="StepsVBox" type="VBoxContainer" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepsScroll"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="CheckAnswerButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="CheckAnswerButton" type="Button" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 disabled = true
 text = "Check answer"
 
-[node name="FinalLabel" type="Label" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="FinalLabel" type="Label" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Task complete!"
 
-[node name="NewTaskButton" type="Button" parent="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="NewTaskButton" type="Button" parent="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Get new task"
 
-[node name="TipPopup" type="PopupPanel" parent="TaskScreen"]
+[node name="TipPopup" type="PopupPanel" parent="AppVBox/MainContent/TaskScreen"]
 oversampling_override = 1.0
 
-[node name="TipLabel" type="Label" parent="TaskScreen/TipPopup"]
+[node name="TipLabel" type="Label" parent="AppVBox/MainContent/TaskScreen/TipPopup"]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 80.0
 offset_bottom = 80.0
 horizontal_alignment = 1
 
-[node name="TaskFilterScreen" type="Control" parent="."]
-layout_mode = 3
+[node name="TaskFilterScreen" type="Control" parent="AppVBox/MainContent"]
+visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -188,7 +228,7 @@ focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("3_tefeu")
 
-[node name="CenterContainer" type="CenterContainer" parent="TaskFilterScreen"]
+[node name="CenterContainer" type="CenterContainer" parent="AppVBox/MainContent/TaskFilterScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -196,67 +236,67 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="TaskFilterScreen/CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TaskFilterScreen/CenterContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="DifficultyLabel" type="Label" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+[node name="DifficultyLabel" type="Label" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Filter by difficulty"
 horizontal_alignment = 1
 
-[node name="TasksLabel" type="Label" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+[node name="TasksLabel" type="Label" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Select tasks"
 horizontal_alignment = 1
 
-[node name="DifficultyList" type="ItemList" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+[node name="DifficultyList" type="ItemList" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 auto_width = true
 auto_height = true
 
-[node name="TaskList" type="ItemList" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+[node name="TaskList" type="ItemList" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 auto_width = true
 auto_height = true
 
-[node name="StartButton" type="Button" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 disabled = true
 text = "Start"
 
-[node name="BackButton" type="Button" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
 
-[node name="TaskSettingsPopup" type="PopupPanel" parent="TaskFilterScreen"]
+[node name="TaskSettingsPopup" type="PopupPanel" parent="AppVBox/MainContent/TaskFilterScreen"]
 oversampling_override = 1.0
 initial_position = 2
 
-[node name="VBox" type="VBoxContainer" parent="TaskFilterScreen/TaskSettingsPopup"]
+[node name="VBox" type="VBoxContainer" parent="AppVBox/MainContent/TaskFilterScreen/TaskSettingsPopup"]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 80.0
 offset_bottom = 80.0
 
-[node name="Label" type="Label" parent="TaskFilterScreen/TaskSettingsPopup/VBox"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/TaskFilterScreen/TaskSettingsPopup/VBox"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="TaskValueGrid" type="GridContainer" parent="TaskFilterScreen/TaskSettingsPopup/VBox"]
+[node name="TaskValueGrid" type="GridContainer" parent="AppVBox/MainContent/TaskFilterScreen/TaskSettingsPopup/VBox"]
 layout_mode = 2
 columns = 3
 
-[node name="PlaygroundScreen" type="Control" parent="."]
+[node name="PlaygroundScreen" type="Control" parent="AppVBox/MainContent"]
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -267,7 +307,7 @@ theme = ExtResource("5_tasktheme")
 script = ExtResource("7_trceg")
 metadata/_custom_type_script = "uid://bvt58xko28kd1"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlaygroundScreen"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AppVBox/MainContent/PlaygroundScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -275,159 +315,159 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShapeViewportContainer" type="SubViewportContainer" parent="PlaygroundScreen/HBoxContainer"]
+[node name="ShapeViewportContainer" type="SubViewportContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
 
-[node name="ShapeViewport" type="SubViewport" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer"]
+[node name="ShapeViewport" type="SubViewport" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/ShapeViewportContainer"]
 handle_input_locally = false
 size = Vector2i(2, 2)
 render_target_update_mode = 0
 
-[node name="PolyhedronEnvironment" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
+[node name="PolyhedronEnvironment" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_0xm2m")]
 script = ExtResource("8_a8y0u")
 
-[node name="CenterSphere" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("10_jbj1t")]
+[node name="CenterSphere" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("10_jbj1t")]
 
-[node name="CenterLabel" type="Label3D" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment/CenterSphere"]
+[node name="CenterLabel" type="Label3D" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment/CenterSphere"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 billboard = 1
 text = "0.0"
 
-[node name="XAxis" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
+[node name="XAxis" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_jkv2x")
 material = SubResource("StandardMaterial3D_12lcd")
 label_distance = -0.2
 
-[node name="YAxis" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
+[node name="YAxis" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
 mesh = SubResource("CylinderMesh_muem4")
 material = SubResource("StandardMaterial3D_jbj1t")
 
-[node name="ZAxis" parent="PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
+[node name="ZAxis" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("9_jkv2x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0, 0, 0)
 rotation_order = 0
 mesh = SubResource("CylinderMesh_0ld40")
 material = SubResource("StandardMaterial3D_dp3eg")
 
-[node name="RightPanel" type="PanelContainer" parent="PlaygroundScreen/HBoxContainer"]
+[node name="RightPanel" type="PanelContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
 
-[node name="RightVBox" type="VBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel"]
+[node name="RightVBox" type="VBoxContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel"]
 layout_mode = 2
 
-[node name="LoadLabel" type="Label" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="LoadLabel" type="Label" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Load vertices"
 
-[node name="PredefinedHBox" type="HBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="PredefinedHBox" type="HBoxContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
 layout_mode = 2
 text = "Load a predefined shape"
 
-[node name="ShapeButton" type="OptionButton" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
+[node name="ShapeButton" type="OptionButton" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
 layout_mode = 2
 
-[node name="LoadButton" type="Button" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
+[node name="LoadButton" type="Button" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
 layout_mode = 2
 text = "Load"
 
-[node name="LoadLabel2" type="Label" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="LoadLabel2" type="Label" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 text = "or"
 
-[node name="FromFileHBox" type="HBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="FromFileHBox" type="HBoxContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
 layout_mode = 2
 text = "Load a shape from a file"
 
-[node name="FromFileButton" type="Button" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
+[node name="FromFileButton" type="Button" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
 layout_mode = 2
 text = "Load a file"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Vertices"
 
-[node name="SettingsButton" type="Button" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
+[node name="SettingsButton" type="Button" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 tooltip_text = "Settings"
 theme_type_variation = &"SettingsButton"
 icon = ExtResource("4_choun")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="ScrollContainer" type="ScrollContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 size_flags_vertical = 3
 draw_focus_border = true
 
-[node name="VBox" type="VBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/ScrollContainer"]
+[node name="VBox" type="VBoxContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VerticesVBox" type="VBoxContainer" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/ScrollContainer/VBox"]
+[node name="VerticesVBox" type="VBoxContainer" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/ScrollContainer/VBox"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="HSeparator" type="HSeparator" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 
-[node name="NewVertexButton" type="Button" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="NewVertexButton" type="Button" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Add new vertex"
 
-[node name="SaveToFileButton" type="Button" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="SaveToFileButton" type="Button" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Save to file"
 
-[node name="CreatePolyhedronButton" type="Button" parent="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
+[node name="CreatePolyhedronButton" type="Button" parent="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Create Polyhedron"
 
-[node name="Popup" type="PopupPanel" parent="PlaygroundScreen"]
+[node name="Popup" type="PopupPanel" parent="AppVBox/MainContent/PlaygroundScreen"]
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(513, 100)
 
-[node name="Label" type="Label" parent="PlaygroundScreen/Popup"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/PlaygroundScreen/Popup"]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 493.0
 offset_bottom = 80.0
 text = "A polyhedron cannot be created from those vertices."
 
-[node name="SaveFileDialog" type="FileDialog" parent="PlaygroundScreen"]
+[node name="SaveFileDialog" type="FileDialog" parent="AppVBox/MainContent/PlaygroundScreen"]
 initial_position = 2
 access = 2
 use_native_dialog = true
 
-[node name="LoadFileDialog" type="FileDialog" parent="PlaygroundScreen"]
+[node name="LoadFileDialog" type="FileDialog" parent="AppVBox/MainContent/PlaygroundScreen"]
 title = "Open a File"
 initial_position = 2
 file_mode = 0
 access = 2
 use_native_dialog = true
 
-[node name="SettingsScreen" type="Control" parent="."]
+[node name="SettingsScreen" type="Control" parent="AppVBox/MainContent"]
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -437,7 +477,7 @@ focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("4_o6xl0")
 
-[node name="CenterContainer" type="CenterContainer" parent="SettingsScreen"]
+[node name="CenterContainer" type="CenterContainer" parent="AppVBox/MainContent/SettingsScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -449,77 +489,99 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="SettingsScreen/CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="AppVBox/MainContent/SettingsScreen/CenterContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AppVBox/MainContent/SettingsScreen/CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="Grid" type="GridContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="Grid" type="GridContainer" parent="AppVBox/MainContent/SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="MainMenuButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="AppVBox/MainContent/SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="BackButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="AppVBox/MainContent/SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
 
-[node name="ConfirmPopup" type="PopupPanel" parent="SettingsScreen"]
+[node name="ConfirmPopup" type="PopupPanel" parent="AppVBox/MainContent/SettingsScreen"]
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(351, 183)
 
-[node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
+[node name="VBox" type="VBoxContainer" parent="AppVBox/MainContent/SettingsScreen/ConfirmPopup"]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 331.0
 offset_bottom = 163.0
 
-[node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2
 text = "Some settings have been changed
 Do you want to save the changes?"
 horizontal_alignment = 1
 
-[node name="ButtonHBox" type="HBoxContainer" parent="SettingsScreen/ConfirmPopup/VBox"]
+[node name="ButtonHBox" type="HBoxContainer" parent="AppVBox/MainContent/SettingsScreen/ConfirmPopup/VBox"]
 layout_mode = 2
 
-[node name="YesButton" type="Button" parent="SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
+[node name="YesButton" type="Button" parent="AppVBox/MainContent/SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
+[node name="NoButton" type="Button" parent="AppVBox/MainContent/SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "No"
 
-[node name="CancelButton" type="Button" parent="SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
+[node name="CancelButton" type="Button" parent="AppVBox/MainContent/SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
 
-[node name="FormulasScreen" type="Control" parent="."]
-visible = false
-layout_mode = 3
+[node name="TopBarScreenVBox" type="VBoxContainer" parent="AppVBox/MainContent"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TopBarHBox" type="HBoxContainer" parent="AppVBox/MainContent/TopBarScreenVBox"]
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="AppVBox/MainContent/TopBarScreenVBox/TopBarHBox"]
+layout_mode = 2
+text = "Main menu"
+
+[node name="TasksButton" type="Button" parent="AppVBox/MainContent/TopBarScreenVBox/TopBarHBox"]
+layout_mode = 2
+text = "Solve tasks"
+
+[node name="ExploreButton" type="Button" parent="AppVBox/MainContent/TopBarScreenVBox/TopBarHBox"]
+layout_mode = 2
+text = "Explore tasks"
+
+[node name="PlaygroundButton" type="Button" parent="AppVBox/MainContent/TopBarScreenVBox/TopBarHBox"]
+layout_mode = 2
+text = "Playground"
+
+[node name="FormulasScreen" type="Control" parent="AppVBox/MainContent/TopBarScreenVBox"]
+layout_mode = 2
+size_flags_vertical = 3
 focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("7_eb6dy")
 
-[node name="PanelContainer" type="PanelContainer" parent="FormulasScreen"]
+[node name="PanelContainer" type="PanelContainer" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen"]
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 1
 anchors_preset = 15
@@ -528,84 +590,84 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBox" type="HBoxContainer" parent="FormulasScreen/PanelContainer"]
+[node name="HBox" type="HBoxContainer" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer"]
 layout_mode = 2
 
-[node name="TaskFilterVBox" type="VBoxContainer" parent="FormulasScreen/PanelContainer/HBox"]
+[node name="TaskFilterVBox" type="VBoxContainer" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 0.25
 
-[node name="TaskFilterEdit" type="LineEdit" parent="FormulasScreen/PanelContainer/HBox/TaskFilterVBox"]
+[node name="TaskFilterEdit" type="LineEdit" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskFilterVBox"]
 layout_mode = 2
 placeholder_text = "Filter tasks"
 
-[node name="TaskList" type="ItemList" parent="FormulasScreen/PanelContainer/HBox/TaskFilterVBox"]
+[node name="TaskList" type="ItemList" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskFilterVBox"]
 layout_mode = 2
 allow_search = false
 auto_width = true
 auto_height = true
 
-[node name="MainMenuButton" type="Button" parent="FormulasScreen/PanelContainer/HBox/TaskFilterVBox"]
+[node name="MainMenuButton" type="Button" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskFilterVBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 text = "Main Menu"
 
-[node name="VSeparator" type="VSeparator" parent="FormulasScreen/PanelContainer/HBox"]
+[node name="VSeparator" type="VSeparator" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox"]
 layout_mode = 2
 
-[node name="InfoVBox" type="VBoxContainer" parent="FormulasScreen/PanelContainer/HBox"]
+[node name="InfoVBox" type="VBoxContainer" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="Label" type="Label" parent="FormulasScreen/PanelContainer/HBox/InfoVBox"]
+[node name="Label" type="Label" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
 text = "TODO: add task steps"
 
-[node name="AreaTipHeader" type="Label" parent="FormulasScreen/PanelContainer/HBox/InfoVBox"]
+[node name="AreaTipHeader" type="Label" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
 text = "Area tip"
 
-[node name="AreaTipLabel" type="Label" parent="FormulasScreen/PanelContainer/HBox/InfoVBox"]
+[node name="AreaTipLabel" type="Label" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
 
-[node name="VolumeTipHeader" type="Label" parent="FormulasScreen/PanelContainer/HBox/InfoVBox"]
+[node name="VolumeTipHeader" type="Label" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
 text = "Volume tip"
 
-[node name="VolumeTipLabel" type="Label" parent="FormulasScreen/PanelContainer/HBox/InfoVBox"]
+[node name="VolumeTipLabel" type="Label" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
 
-[node name="VSeparator2" type="VSeparator" parent="FormulasScreen/PanelContainer/HBox"]
+[node name="VSeparator2" type="VSeparator" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox"]
 layout_mode = 2
 
-[node name="TaskVBox" type="VBoxContainer" parent="FormulasScreen/PanelContainer/HBox"]
+[node name="TaskVBox" type="VBoxContainer" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox"]
 layout_mode = 2
 size_flags_stretch_ratio = 0.5
 focus_mode = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="FormulasScreen/PanelContainer/HBox/TaskVBox"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskVBox"]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 
-[node name="SubViewport" type="SubViewport" parent="FormulasScreen/PanelContainer/HBox/TaskVBox/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskVBox/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(768, 768)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
-[node name="TaskEnvironment" parent="FormulasScreen/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
+[node name="TaskEnvironment" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport" instance=ExtResource("2_0xm2m")]
 
-[node name="TaskDataGrid" type="GridContainer" parent="FormulasScreen/PanelContainer/HBox/TaskVBox"]
+[node name="TaskDataGrid" type="GridContainer" parent="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskVBox"]
 layout_mode = 2
 columns = 2
 
-[node name="MainMenuScreen" type="Control" parent="."]
+[node name="MainMenuScreen" type="Control" parent="AppVBox/MainContent"]
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -617,7 +679,7 @@ focus_mode = 1
 theme = ExtResource("5_tasktheme")
 script = ExtResource("5_tipki")
 
-[node name="CenterContainer" type="CenterContainer" parent="MainMenuScreen"]
+[node name="CenterContainer" type="CenterContainer" parent="AppVBox/MainContent/MainMenuScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -625,29 +687,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenuScreen/CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuScreen/CenterContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_tasktheme")
 theme_type_variation = &"MainMenuLabel"
 text = "Main Menu"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Solve tasks	"
 
-[node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
+[node name="MouseFocusComponent" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
 script = ExtResource("10_ya4ey")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
+[node name="AnimationComponent" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -655,16 +717,16 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="FormulasButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="FormulasButton" type="Button" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Explore tasks"
 
-[node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
+[node name="MouseFocusComponent" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
 script = ExtResource("10_ya4ey")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
+[node name="AnimationComponent" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -672,16 +734,16 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="PlaygroundButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="PlaygroundButton" type="Button" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Playground"
 
-[node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
+[node name="MouseFocusComponent" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
 script = ExtResource("10_ya4ey")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
+[node name="AnimationComponent" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -689,16 +751,16 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="SettingsButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Settings"
 
-[node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
+[node name="MouseFocusComponent" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
 script = ExtResource("10_ya4ey")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent2" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
+[node name="AnimationComponent2" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -706,17 +768,17 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="QuitButton" type="Button" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Quit"
 script = ExtResource("6_tefeu")
 
-[node name="MouseFocusComponent" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+[node name="MouseFocusComponent" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
 script = ExtResource("10_ya4ey")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent2" type="Node" parent="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+[node name="AnimationComponent2" type="Node" parent="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
 script = ExtResource("4_jyhfs")
 trans_type = 4
 ease_type = 1
@@ -724,35 +786,44 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox/PrevButton" to="TaskScreen" method="_on_prev_step_pressed"]
-[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox/NextButton" to="TaskScreen" method="_on_next_step_pressed"]
-[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/CheckAnswerButton" to="TaskScreen" method="_on_check_answer_button_pressed"]
-[connection signal="pressed" from="TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/NewTaskButton" to="TaskScreen" method="_on_new_task_button_pressed"]
-[connection signal="item_selected" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterScreen" method="_on_difficulty_list_item_selected"]
-[connection signal="item_clicked" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_item_clicked"]
-[connection signal="item_selected" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_item_selected"]
-[connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
-[connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox/LoadButton" to="PlaygroundScreen" method="_on_load_button_pressed"]
-[connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/FromFileHBox/FromFileButton" to="PlaygroundScreen" method="_on_from_file_button_pressed"]
-[connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/NewVertexButton" to="PlaygroundScreen" method="_on_new_vertex_button_pressed"]
-[connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/SaveToFileButton" to="PlaygroundScreen" method="_on_save_to_file_button_pressed"]
-[connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/CreatePolyhedronButton" to="PlaygroundScreen" method="_on_create_polyhedron_button_pressed"]
-[connection signal="file_selected" from="PlaygroundScreen/SaveFileDialog" to="PlaygroundScreen" method="_on_save_file_dialog_file_selected"]
-[connection signal="file_selected" from="PlaygroundScreen/LoadFileDialog" to="PlaygroundScreen" method="_on_load_file_dialog_file_selected"]
-[connection signal="left" from="SettingsScreen" to="." method="_on_settings_screen_left"]
-[connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="SettingsScreen" method="leave_to_main_menu"]
-[connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="SettingsScreen" method="leave_to_last"]
-[connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/YesButton" to="SettingsScreen" method="_on_yes_button_pressed"]
-[connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/NoButton" to="SettingsScreen" method="_on_no_button_pressed"]
-[connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/CancelButton" to="SettingsScreen" method="_on_cancel_button_pressed"]
-[connection signal="text_changed" from="FormulasScreen/PanelContainer/HBox/TaskFilterVBox/TaskFilterEdit" to="FormulasScreen" method="_on_task_filter_edit_text_changed"]
-[connection signal="item_selected" from="FormulasScreen/PanelContainer/HBox/TaskFilterVBox/TaskList" to="FormulasScreen" method="_on_task_list_item_selected"]
-[connection signal="pressed" from="FormulasScreen/PanelContainer/HBox/TaskFilterVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
-[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton" to="." method="_on_formulas_button_pressed"]
-[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton" to="." method="_on_playground_button_pressed"]
-[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_tasktheme")
+
+[connection signal="pressed" from="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox/PrevButton" to="AppVBox/MainContent/TaskScreen" method="_on_prev_step_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/StepNavHbox/NextButton" to="AppVBox/MainContent/TaskScreen" method="_on_next_step_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/CheckAnswerButton" to="AppVBox/MainContent/TaskScreen" method="_on_check_answer_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/TaskScreen/HBoxContainer/PanelContainer/VBoxContainer/NewTaskButton" to="AppVBox/MainContent/TaskScreen" method="_on_new_task_button_pressed"]
+[connection signal="item_selected" from="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="AppVBox/MainContent/TaskFilterScreen" method="_on_difficulty_list_item_selected"]
+[connection signal="item_clicked" from="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="AppVBox/MainContent/TaskFilterScreen" method="_on_task_list_item_clicked"]
+[connection signal="item_selected" from="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="AppVBox/MainContent/TaskFilterScreen" method="_on_task_list_item_selected"]
+[connection signal="pressed" from="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox/LoadButton" to="AppVBox/MainContent/PlaygroundScreen" method="_on_load_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/FromFileHBox/FromFileButton" to="AppVBox/MainContent/PlaygroundScreen" method="_on_from_file_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/NewVertexButton" to="AppVBox/MainContent/PlaygroundScreen" method="_on_new_vertex_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/SaveToFileButton" to="AppVBox/MainContent/PlaygroundScreen" method="_on_save_to_file_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/CreatePolyhedronButton" to="AppVBox/MainContent/PlaygroundScreen" method="_on_create_polyhedron_button_pressed"]
+[connection signal="file_selected" from="AppVBox/MainContent/PlaygroundScreen/SaveFileDialog" to="AppVBox/MainContent/PlaygroundScreen" method="_on_save_file_dialog_file_selected"]
+[connection signal="file_selected" from="AppVBox/MainContent/PlaygroundScreen/LoadFileDialog" to="AppVBox/MainContent/PlaygroundScreen" method="_on_load_file_dialog_file_selected"]
+[connection signal="left" from="AppVBox/MainContent/SettingsScreen" to="." method="_on_settings_screen_left"]
+[connection signal="pressed" from="AppVBox/MainContent/SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="AppVBox/MainContent/SettingsScreen" method="leave_to_main_menu"]
+[connection signal="pressed" from="AppVBox/MainContent/SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="AppVBox/MainContent/SettingsScreen" method="leave_to_last"]
+[connection signal="pressed" from="AppVBox/MainContent/SettingsScreen/ConfirmPopup/VBox/ButtonHBox/YesButton" to="AppVBox/MainContent/SettingsScreen" method="_on_yes_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/SettingsScreen/ConfirmPopup/VBox/ButtonHBox/NoButton" to="AppVBox/MainContent/SettingsScreen" method="_on_no_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/SettingsScreen/ConfirmPopup/VBox/ButtonHBox/CancelButton" to="AppVBox/MainContent/SettingsScreen" method="_on_cancel_button_pressed"]
+[connection signal="text_changed" from="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskFilterVBox/TaskFilterEdit" to="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen" method="_on_task_filter_edit_text_changed"]
+[connection signal="item_selected" from="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskFilterVBox/TaskList" to="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen" method="_on_task_list_item_selected"]
+[connection signal="pressed" from="AppVBox/MainContent/TopBarScreenVBox/FormulasScreen/PanelContainer/HBox/TaskFilterVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_main_menu_start_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/FormulasButton" to="." method="_on_formulas_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton" to="." method="_on_playground_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="AppVBox/MainContent/MainMenuScreen/CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
