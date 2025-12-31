@@ -27,20 +27,18 @@ func initialize_difficulty_list() -> void:
 	for difficulty_name: String in Global.TaskDifficulty.keys():
 		difficulty_list.add_item(difficulty_name.capitalize())
 
-	# select all by default
-	for i in range(difficulty_list.item_count):
-		difficulty_list.select(i, false)
+	difficulty_list.select(0)
 
 	fill_task_list()
 
 
 func fill_task_list() -> void:
-	var selected_difficulty_indices := difficulty_list.get_selected_items()
+	var selected_difficulty_index := difficulty_list.get_selected_items()[0]
 
 	task_list.clear()
 	for task_name in Tasks.all_tasks:
 		var task := Tasks.all_tasks[task_name]
-		var task_difficulty_is_selected := selected_difficulty_indices.find(task.difficulty()) != -1
+		var task_difficulty_is_selected := task.difficulty() == selected_difficulty_index
 		if task_difficulty_is_selected:
 			task_list.add_item(task_name)
 
@@ -54,7 +52,7 @@ func selected_task() -> Task:
 	return selected_task
 
 
-func _on_difficulty_item_list_multi_selected(_index: int, _selected: bool) -> void:
+func _on_difficulty_list_item_selected(_index: int) -> void:
 	start_button.disabled = true
 	fill_task_list()
 
