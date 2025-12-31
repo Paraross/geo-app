@@ -208,11 +208,13 @@ columns = 2
 
 [node name="DifficultyLabel" type="Label" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "FIlter by difficulty"
+text = "Filter by difficulty"
+horizontal_alignment = 1
 
 [node name="TasksLabel" type="Label" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Select tasks"
+horizontal_alignment = 1
 
 [node name="DifficultyList" type="ItemList" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
