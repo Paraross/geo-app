@@ -93,11 +93,3 @@ func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_
 
 func _on_task_list_item_selected(_index: int) -> void:
 	start_button.disabled = false
-
-
-func _on_task_list_resized() -> void:
-	# disable auto-resizing after size is set for the first time
-	if task_list.size.x != 0.0 and task_list.size.y != 0.0:
-		task_list.custom_minimum_size = task_list.size
-		task_list.auto_width = false
-		task_list.auto_height = false

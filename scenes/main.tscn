@@ -220,6 +220,7 @@ auto_width = true
 auto_height = true
 
 [node name="TaskList" type="ItemList" parent="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 auto_width = true
 auto_height = true
@@ -729,7 +730,6 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="item_selected" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="TaskFilterScreen" method="_on_difficulty_list_item_selected"]
 [connection signal="item_clicked" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_item_clicked"]
 [connection signal="item_selected" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_item_selected"]
-[connection signal="resized" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="TaskFilterScreen" method="_on_task_list_resized"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_task_filter_start_button_pressed"]
 [connection signal="pressed" from="TaskFilterScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="PlaygroundScreen/HBoxContainer/RightPanel/RightVBox/PredefinedHBox/LoadButton" to="PlaygroundScreen" method="_on_load_button_pressed"]
