@@ -33,43 +33,29 @@ grow_vertical = 2
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBox"]
 layout_mode = 2
 theme = ExtResource("2_filxx")
 theme_type_variation = &"MainMenuLabel"
 text = "Main Menu"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBox"]
 layout_mode = 2
-theme_type_variation = &"MainMenuButton"
-text = "Solve tasks	"
 
-[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/StartButton"]
-script = ExtResource("3_3g2hh")
-metadata/_custom_type_script = "uid://crqyttnj4l7vo"
-
-[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/StartButton"]
-script = ExtResource("4_cs0cy")
-trans_type = 4
-ease_type = 1
-scale_value = Vector2(1.1, 1.1)
-duration = 0.1
-metadata/_custom_type_script = "uid://c6xlyam5vher4"
-
-[node name="FormulasButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="ExploreButton" type="Button" parent="CenterContainer/PanelContainer/VBox/Buttons"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Explore tasks"
 
-[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/ExploreButton"]
 script = ExtResource("3_3g2hh")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
+[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/ExploreButton"]
 script = ExtResource("4_cs0cy")
 trans_type = 4
 ease_type = 1
@@ -77,16 +63,33 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="PlaygroundButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="TasksButton" type="Button" parent="CenterContainer/PanelContainer/VBox/Buttons"]
+layout_mode = 2
+theme_type_variation = &"MainMenuButton"
+text = "Solve tasks	"
+
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/TasksButton"]
+script = ExtResource("3_3g2hh")
+metadata/_custom_type_script = "uid://crqyttnj4l7vo"
+
+[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/TasksButton"]
+script = ExtResource("4_cs0cy")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
+[node name="PlaygroundButton" type="Button" parent="CenterContainer/PanelContainer/VBox/Buttons"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Playground"
 
-[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/PlaygroundButton"]
 script = ExtResource("3_3g2hh")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
+[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/PlaygroundButton"]
 script = ExtResource("4_cs0cy")
 trans_type = 4
 ease_type = 1
@@ -94,16 +97,16 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="SettingsButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="CenterContainer/PanelContainer/VBox/Buttons"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Settings"
 
-[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/SettingsButton"]
 script = ExtResource("3_3g2hh")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
+[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/SettingsButton"]
 script = ExtResource("4_cs0cy")
 trans_type = 4
 ease_type = 1
@@ -111,17 +114,17 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/VBox/Buttons"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
 text = "Quit"
 script = ExtResource("5_kj8vl")
 
-[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/QuitButton"]
 script = ExtResource("3_3g2hh")
 metadata/_custom_type_script = "uid://crqyttnj4l7vo"
 
-[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/QuitButton"]
 script = ExtResource("4_cs0cy")
 trans_type = 4
 ease_type = 1
@@ -129,8 +132,8 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_tasks_button_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/FormulasButton" to="." method="_on_explore_button_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton" to="." method="_on_playground_button_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/ExploreButton" to="." method="_on_explore_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/TasksButton" to="." method="_on_tasks_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/PlaygroundButton" to="." method="_on_playground_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/QuitButton" to="CenterContainer/PanelContainer/VBox/Buttons/QuitButton" method="_on_pressed"]

@@ -6,21 +6,21 @@ signal explore_button_pressed
 signal playground_button_pressed
 signal settings_button_pressed
 
-@onready var start_button: Button = $CenterContainer/PanelContainer/VBoxContainer/StartButton
-@onready var settings_button: Button = $CenterContainer/PanelContainer/VBoxContainer/SettingsButton
-@onready var quit_button: Button = $CenterContainer/PanelContainer/VBoxContainer/QuitButton
+@onready var buttons_container: Container = $CenterContainer/PanelContainer/VBox/Buttons
 
 
 func _input(event: InputEvent) -> void:
-	var should_focus_start_button := event.is_action_pressed("ui_focus_next") or event.is_action_pressed("ui_down")
-	var should_focus_quit_button := event.is_action_pressed("ui_focus_prev") or event.is_action_pressed("ui_up")
-	var any_button_has_focus := start_button.has_focus() or settings_button.has_focus() or quit_button.has_focus()
+	var buttons := buttons_container.get_children()
 
-	if not any_button_has_focus:
-		if should_focus_start_button:
-			start_button.grab_focus.call_deferred()
-		elif should_focus_quit_button:
-			quit_button.grab_focus.call_deferred()
+	var any_button_has_focus := buttons.any(func(button: Button) -> bool: return button.has_focus())
+
+	var first_button: Button = buttons.front()
+	var last_button: Button = buttons.back()
+
+	if is_ui_next_pressed(event) and (not any_button_has_focus or last_button.has_focus()):
+		first_button.grab_focus.call_deferred()
+	elif is_ui_prev_pressed(event) and (not any_button_has_focus or first_button.has_focus()):
+		last_button.grab_focus.call_deferred()
 
 
 func on_entered() -> void:
@@ -29,6 +29,14 @@ func on_entered() -> void:
 
 func on_left() -> void:
 	pass
+
+
+func is_ui_next_pressed(event: InputEvent) -> bool:
+	return event.is_action_pressed("ui_focus_next") or event.is_action_pressed("ui_down")
+
+
+func is_ui_prev_pressed(event: InputEvent) -> bool:
+	return event.is_action_pressed("ui_focus_prev") or event.is_action_pressed("ui_up")
 
 
 func _on_tasks_button_pressed() -> void:
