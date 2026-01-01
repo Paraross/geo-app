@@ -8,6 +8,8 @@ var move_up: bool = false
 var move_down: bool = false
 var move_left: bool = false
 var move_right: bool = false
+var zoom_in: bool = false
+var zoom_out: bool = false
 
 
 func _ready() -> void:
@@ -41,6 +43,16 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	elif event.is_action_released("camera_right"):
 		move_right = false
 
+	if event.is_action_pressed("camera_in"):
+		zoom_in = true
+	elif event.is_action_released("camera_in"): 
+		zoom_in = false
+
+	if event.is_action_pressed("camera_out"):
+		zoom_out = true
+	elif event.is_action_released("camera_out"): 
+		zoom_out = false
+
 
 func rotate_camera(delta: float) -> void:
 	var rotate_amount := rotation_speed * delta
@@ -64,7 +76,7 @@ func rotate_camera(delta: float) -> void:
 func zoom_camera(delta: float) -> void:
 	var zoom_amount := zoom_speed * delta
 
-	if Input.is_action_pressed("camera_in"):
+	if zoom_in:
 		position -= position * zoom_amount
-	if Input.is_action_pressed("camera_out"):
+	if zoom_out:
 		position += position * zoom_amount
