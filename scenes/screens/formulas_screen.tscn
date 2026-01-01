@@ -36,7 +36,31 @@ size_flags_stretch_ratio = 0.25
 layout_mode = 2
 placeholder_text = "Filter tasks"
 
-[node name="TaskList" type="ItemList" parent="PanelContainer/HBox/TaskFilterVBox"]
+[node name="EasyLabel" type="Label" parent="PanelContainer/HBox/TaskFilterVBox"]
+layout_mode = 2
+text = "Easy"
+
+[node name="EasyTaskList" type="ItemList" parent="PanelContainer/HBox/TaskFilterVBox"]
+layout_mode = 2
+allow_search = false
+auto_width = true
+auto_height = true
+
+[node name="MediumLabel" type="Label" parent="PanelContainer/HBox/TaskFilterVBox"]
+layout_mode = 2
+text = "Medium"
+
+[node name="MediumTaskList" type="ItemList" parent="PanelContainer/HBox/TaskFilterVBox"]
+layout_mode = 2
+allow_search = false
+auto_width = true
+auto_height = true
+
+[node name="HardLabel" type="Label" parent="PanelContainer/HBox/TaskFilterVBox"]
+layout_mode = 2
+text = "Hard"
+
+[node name="HardTaskList" type="ItemList" parent="PanelContainer/HBox/TaskFilterVBox"]
 layout_mode = 2
 allow_search = false
 auto_width = true
@@ -94,4 +118,6 @@ layout_mode = 2
 columns = 2
 
 [connection signal="text_changed" from="PanelContainer/HBox/TaskFilterVBox/TaskFilterEdit" to="." method="_on_task_filter_edit_text_changed"]
-[connection signal="item_selected" from="PanelContainer/HBox/TaskFilterVBox/TaskList" to="." method="_on_task_list_item_selected"]
+[connection signal="item_selected" from="PanelContainer/HBox/TaskFilterVBox/EasyTaskList" to="." method="_on_easy_task_list_item_selected"]
+[connection signal="item_selected" from="PanelContainer/HBox/TaskFilterVBox/MediumTaskList" to="." method="_on_medium_task_list_item_selected"]
+[connection signal="item_selected" from="PanelContainer/HBox/TaskFilterVBox/HardTaskList" to="." method="_on_hard_task_list_item_selected"]
