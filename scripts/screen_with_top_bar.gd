@@ -18,11 +18,11 @@ func _ready() -> void:
 
 
 func on_entered() -> void:
-	pass
+	screen.on_entered()
 
 
 func on_left() -> void:
-	pass
+	screen.on_left()
 
 
 func find_and_set_screen() -> void:
