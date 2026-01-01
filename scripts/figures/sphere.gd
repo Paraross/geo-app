@@ -8,7 +8,7 @@ var radius: float:
 		sphere_mesh.radius = value
 		sphere_mesh.height = 2.0 * value
 		shape.radius = value
-		properties_changed.emit()
+		change_properties()
 
 @onready var sphere_mesh: SphereMesh:
 	get:

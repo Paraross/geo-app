@@ -1,13 +1,14 @@
 @abstract class_name Figure
 extends Area3D
 
-@warning_ignore("unused_signal")
 signal properties_changed
 signal hover_started
 signal hover_ended
 signal clicked
 
 @export var hl_material: Material = preload("res://assets/highlight_material.tres")
+
+var do_emit_properties_changed: bool = false
 
 var was_hovered: bool = false
 var is_hovered: bool = false
@@ -44,3 +45,14 @@ func on_hover_end() -> void:
 
 
 @abstract func volume() -> float
+
+
+func change_properties() -> void:
+	if not do_emit_properties_changed:
+		do_emit_properties_changed = true
+		emit_properties_changed.call_deferred()
+
+
+func emit_properties_changed() -> void:
+	do_emit_properties_changed = false
+	properties_changed.emit()

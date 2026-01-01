@@ -9,7 +9,7 @@ var side_length: float:
 		for i in vertices.size():
 			vertices[i] = Poly.CUBE_VERTICES[i] * s
 
-		properties_changed.emit()
+		change_properties()
 
 
 func _ready() -> void:

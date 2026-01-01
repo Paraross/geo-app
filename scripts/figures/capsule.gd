@@ -7,7 +7,7 @@ var radius: float:
 	set(value):
 		capsule_mesh.radius = value
 		shape.radius = value
-		properties_changed.emit()
+		change_properties()
 
 var height: float:
 	get:
@@ -15,7 +15,7 @@ var height: float:
 	set(value):
 		capsule_mesh.height = value
 		shape.height = value
-		properties_changed.emit()
+		change_properties()
 
 @onready var capsule_mesh: CapsuleMesh:
 	get:
@@ -48,4 +48,4 @@ func capsule_height() -> float:
 func set_properties(radius: float, height: float) -> void:
 	capsule_mesh.radius = radius
 	capsule_mesh.height = height
-	properties_changed.emit()
+	change_properties()

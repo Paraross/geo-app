@@ -5,19 +5,19 @@ var base_base: float:
 	set(value):
 		base_base = value
 		scale_vertices()
-		properties_changed.emit()
+		change_properties()
 
 var base_height: float:
 	set(value):
 		base_height = value
 		scale_vertices()
-		properties_changed.emit()
+		change_properties()
 
 var height: float:
 	set(value):
 		height = value
 		scale_vertices()
-		properties_changed.emit()
+		change_properties()
 
 
 func _ready() -> void:

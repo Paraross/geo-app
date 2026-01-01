@@ -5,13 +5,13 @@ var base_side_length: float:
 	set(value):
 		base_side_length = value
 		scale_vertices()
-		properties_changed.emit()
+		change_properties()
 
 var height: float:
 	set(value):
 		height = value
 		scale_vertices()
-		properties_changed.emit()
+		change_properties()
 
 
 func _ready() -> void:

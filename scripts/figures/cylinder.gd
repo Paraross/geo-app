@@ -8,7 +8,7 @@ var radius: float:
 		cylinder_mesh.top_radius = value
 		cylinder_mesh.bottom_radius = value
 		shape.radius = value
-		properties_changed.emit()
+		change_properties()
 
 var height: float:
 	get:
@@ -16,7 +16,7 @@ var height: float:
 	set(value):
 		cylinder_mesh.height = value
 		shape.height = value
-		properties_changed.emit()
+		change_properties()
 
 @onready var cylinder_mesh: CylinderMesh:
 	get:
