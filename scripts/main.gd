@@ -5,8 +5,12 @@ var last_screen: Screen
 
 var current_screen: Screen:
 	set(value):
+		if value == current_screen:
+			return
+
 		if current_screen != null:
 			current_screen.on_left()
+
 		last_screen = current_screen
 		current_screen = value
 		current_screen.on_entered()
