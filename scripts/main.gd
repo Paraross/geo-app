@@ -96,7 +96,10 @@ func _on_task_filter_start_button_pressed() -> void:
 
 
 func _on_settings_screen_left(to_main_menu: bool) -> void:
-	current_screen = main_menu_screen if to_main_menu else last_screen
+	if to_main_menu:
+		go_to_main_menu()
+	else:
+		go_to_last()
 
 
 func _notification(what: int) -> void:
