@@ -33,6 +33,7 @@ size_flags_horizontal = 3
 stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="HBoxContainer/ShapeViewportContainer"]
+own_world_3d = true
 handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4

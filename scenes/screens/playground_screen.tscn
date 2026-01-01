@@ -1,44 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbpmn1rgceibd"]
+[gd_scene load_steps=5 format=3 uid="uid://dbpmn1rgceibd"]
 
 [ext_resource type="Script" uid="uid://bvt58xko28kd1" path="res://scripts/screens/playground_screen.gd" id="1_icayx"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="2_vs2of"]
 [ext_resource type="Script" uid="uid://dmk6r1sfe6ut6" path="res://scripts/polyhedron_environment.gd" id="3_dd5n6"]
-[ext_resource type="PackedScene" uid="uid://djsu2ayr7h4by" path="res://scenes/axis_sphere.tscn" id="4_rge0t"]
-[ext_resource type="PackedScene" uid="uid://c0rkfe12bqbpb" path="res://scenes/axis.tscn" id="5_odc3t"]
 
 [sub_resource type="Environment" id="Environment_sgqdd"]
 background_mode = 1
 background_color = Color(0.24313726, 0.24313726, 0.29803923, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12lcd"]
-transparency = 1
-albedo_color = Color(1, 0, 0, 0.5019608)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_jkv2x"]
-material = SubResource("StandardMaterial3D_12lcd")
-top_radius = 0.02
-bottom_radius = 0.02
-height = 20.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
-transparency = 1
-albedo_color = Color(0, 1, 0, 0.5019608)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_muem4"]
-material = SubResource("StandardMaterial3D_jbj1t")
-top_radius = 0.02
-bottom_radius = 0.02
-height = 20.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp3eg"]
-transparency = 1
-albedo_color = Color(0, 0, 1, 0.5019608)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_0ld40"]
-material = SubResource("StandardMaterial3D_dp3eg")
-top_radius = 0.02
-bottom_radius = 0.02
-height = 20.0
 
 [node name="PlaygroundScreen" type="Control"]
 layout_mode = 3
@@ -65,6 +33,7 @@ size_flags_horizontal = 3
 stretch = true
 
 [node name="ShapeViewport" type="SubViewport" parent="HBoxContainer/ShapeViewportContainer"]
+own_world_3d = true
 handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4
@@ -72,29 +41,6 @@ render_target_update_mode = 4
 [node name="PolyhedronEnvironment" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_vs2of")]
 environment = SubResource("Environment_sgqdd")
 script = ExtResource("3_dd5n6")
-
-[node name="CenterSphere" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("4_rge0t")]
-
-[node name="CenterLabel" type="Label3D" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment/CenterSphere"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
-billboard = 1
-text = "0.0"
-
-[node name="XAxis" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("5_odc3t")]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CylinderMesh_jkv2x")
-material = SubResource("StandardMaterial3D_12lcd")
-label_distance = -0.2
-
-[node name="YAxis" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("5_odc3t")]
-mesh = SubResource("CylinderMesh_muem4")
-material = SubResource("StandardMaterial3D_jbj1t")
-
-[node name="ZAxis" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("5_odc3t")]
-transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0, 0, 0)
-rotation_order = 0
-mesh = SubResource("CylinderMesh_0ld40")
-material = SubResource("StandardMaterial3D_dp3eg")
 
 [node name="RightPanel" type="PanelContainer" parent="HBoxContainer"]
 layout_mode = 2
