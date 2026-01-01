@@ -2,7 +2,7 @@ extends Camera3D
 
 ## In radians per second.
 @export var rotation_speed: float = TAU / 3.0
-@export var zoom_speed: float = 1.0
+@export var zoom_speed: float = 2.0
 
 var move_up: bool = false
 var move_down: bool = false
@@ -58,25 +58,24 @@ func rotate_camera(delta: float) -> void:
 	var rotate_amount := rotation_speed * delta
 	var camera_angle := -asin(position.y / position.length())
 
-	var next_camera_position := position
 	if move_up and camera_angle - rotate_amount > -PI / 2.0:
-		var left := -Vector3.UP.cross(position).normalized()
-		next_camera_position += position.rotated(left, rotate_amount) - position
+		var left := Vector3.DOWN.cross(position).normalized()
+		position = position.rotated(left, rotate_amount)
 	if move_down and camera_angle + rotate_amount < PI / 2.0:
 		var right := Vector3.UP.cross(position).normalized()
-		next_camera_position += position.rotated(right, rotate_amount) - position
+		position = position.rotated(right, rotate_amount)
 	if move_left:
-		next_camera_position += position.rotated(Vector3.DOWN, rotate_amount) - position
+		position = position.rotated(Vector3.DOWN, rotate_amount)
 	if move_right:
-		next_camera_position += position.rotated(Vector3.UP, rotate_amount) - position
-
-	position = next_camera_position
+		position = position.rotated(Vector3.UP, rotate_amount)
 
 
 func zoom_camera(delta: float) -> void:
 	var zoom_amount := zoom_speed * delta
 
+	var dir := position.normalized()
+
 	if zoom_in:
-		position -= position * zoom_amount
+		position = dir * (position.length() - zoom_amount)
 	if zoom_out:
-		position += position * zoom_amount
+		position = dir * (position.length() + zoom_amount)
