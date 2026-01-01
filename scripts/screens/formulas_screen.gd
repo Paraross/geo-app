@@ -70,6 +70,8 @@ func _on_task_list_item_selected(index: int) -> void:
 
 		var spin_box := SpinBox.new()
 		spin_box.step = 1.0 / 10.0 ** Settings.data_precision
+		spin_box.min_value = spin_box.step
+		spin_box.max_value = 10.0
 		spin_box.value = value_value.value
 		spin_box.value_changed.connect(a)
 		task_data_grid.add_child(spin_box)
