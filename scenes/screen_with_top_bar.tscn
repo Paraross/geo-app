@@ -7,21 +7,24 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_m8rvd")
 
-[node name="TopBarHBox" type="HBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
 
-[node name="MainMenuButton" type="Button" parent="TopBarHBox"]
+[node name="TopBarHBox" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/TopBarHBox"]
 layout_mode = 2
 text = "Main menu"
 
-[node name="TasksButton" type="Button" parent="TopBarHBox"]
+[node name="TasksButton" type="Button" parent="PanelContainer/TopBarHBox"]
 layout_mode = 2
 text = "Solve tasks"
 
-[node name="ExploreButton" type="Button" parent="TopBarHBox"]
+[node name="ExploreButton" type="Button" parent="PanelContainer/TopBarHBox"]
 layout_mode = 2
 text = "Explore tasks"
 
-[node name="PlaygroundButton" type="Button" parent="TopBarHBox"]
+[node name="PlaygroundButton" type="Button" parent="PanelContainer/TopBarHBox"]
 layout_mode = 2
 text = "Playground"

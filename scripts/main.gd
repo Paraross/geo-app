@@ -1,6 +1,9 @@
-extends Node
+class_name Main
+extends Control
 
-@export var current_screen: Screen:
+var last_screen: Screen
+
+var current_screen: Screen:
 	set(value):
 		if current_screen != null:
 			current_screen.on_left()
@@ -10,18 +13,16 @@ extends Node
 		disable_screens()
 		enable_current_screen()
 
-var last_screen: Screen
-
-@onready var main_content: Control = $AppVBox/MainContent
-@onready var task_screen: TaskScreen = main_content.get_node("TaskScreen")
-@onready var task_filter_screen: TaskFilterScreen = main_content.get_node("TaskFilterScreen")
-@onready var playground_screen: PlaygroundScreen = main_content.get_node("PlaygroundScreen")
-@onready var settings_screen: SettingsScreen = main_content.get_node("SettingsScreen")
-@onready var formulas_screen: FormulasScreen = main_content.get_node("TopBarScreenVBox/FormulasScreen")
-@onready var main_menu_screen: MainMenuScreen = main_content.get_node("MainMenuScreen")
+@onready var task_screen: Screen = $TaskScreen
+@onready var task_filter_screen: Screen = $TaskFilterScreen
+@onready var playground_screen: Screen = $PlaygroundScreen
+@onready var settings_screen: Screen = $SettingsScreen
+@onready var formulas_screen: Screen = $ExploreScreen
+@onready var main_menu_screen: Screen = $MainMenuScreen
 
 
 func _ready() -> void:
+	current_screen = main_menu_screen
 	disable_screens()
 	enable_current_screen()
 
@@ -40,10 +41,6 @@ func enable_current_screen() -> void:
 
 
 func screens() -> Array:
-	# TODO: ?
-	if main_content == null:
-		return []
-
 	return [
 		task_screen,
 		task_filter_screen,
@@ -53,7 +50,21 @@ func screens() -> Array:
 		main_menu_screen,
 	]
 
-	# return main_content.get_children().filter(func(child: Node) -> bool: return child is Screen)
+
+func go_to_main_menu() -> void:
+	current_screen = main_menu_screen
+
+
+func go_to_tasks() -> void:
+	current_screen = task_filter_screen
+
+
+func go_to_explore() -> void:
+	current_screen = formulas_screen
+
+
+func go_to_playground() -> void:
+	current_screen = playground_screen
 
 
 func _notification(what: int) -> void:
@@ -70,11 +81,16 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_task_filter_start_button_pressed() -> void:
-	task_screen.reset()
+	var ts := task_screen as ScreenWithTopBar
+	var tss := ts.screen as TaskScreen
+	var tfs := task_filter_screen as ScreenWithTopBar
+	var tfss := tfs.screen as TaskFilterScreen
 
-	task_screen.selected_task = task_filter_screen.selected_task()
+	tss.reset()
 
-	current_screen = task_screen
+	tss.selected_task = tfss.selected_task()
+
+	current_screen = ts
 
 
 func _on_back_button_pressed() -> void:

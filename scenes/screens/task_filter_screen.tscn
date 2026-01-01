@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://clgtlovxvmm04"]
+
+[ext_resource type="Script" uid="uid://bxvhplwobiied" path="res://scripts/screens/task_filter_screen.gd" id="1_jg7hv"]
+
+[node name="TaskFilterScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+script = ExtResource("1_jg7hv")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Filter by difficulty"
+horizontal_alignment = 1
+
+[node name="TasksLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Select tasks"
+horizontal_alignment = 1
+
+[node name="DifficultyList" type="ItemList" parent="CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+auto_width = true
+auto_height = true
+
+[node name="TaskList" type="ItemList" parent="CenterContainer/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+auto_width = true
+auto_height = true
+
+[node name="StartButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Start"
+
+[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="TaskSettingsPopup" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+initial_position = 2
+
+[node name="VBox" type="VBoxContainer" parent="TaskSettingsPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
+
+[node name="Label" type="Label" parent="TaskSettingsPopup/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="TaskValueGrid" type="GridContainer" parent="TaskSettingsPopup/VBox"]
+layout_mode = 2
+columns = 3
+
+[connection signal="item_selected" from="CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="." method="_on_difficulty_list_item_selected"]
+[connection signal="item_clicked" from="CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="." method="_on_task_list_item_clicked"]
+[connection signal="item_selected" from="CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="." method="_on_task_list_item_selected"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

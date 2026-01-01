@@ -47,6 +47,7 @@ func update_step_nav_ui() -> void:
 	current_step = clamp(current_step, 0, max(0, steps - 1))
 	step_title_label.text = task.step_title(current_step)
 	prev_step_button.disabled = current_step <= 0
+
 	next_step_button.disabled = current_step >= steps - 1 or not is_current_answer_correct()
 
 
@@ -59,7 +60,14 @@ func get_new_task() -> void:
 	current_step = 0
 
 	set_values_ui()
-	update_step_nav_ui()
+
+	var task := task_environment.task
+
+	current_step = 0
+	step_title_label.text = task.step_title(current_step)
+	prev_step_button.disabled = true
+	next_step_button.disabled = true
+
 	set_step_ui()
 
 

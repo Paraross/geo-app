@@ -1,6 +1,11 @@
 class_name TaskFilterScreen
 extends Screen
 
+# TODO: dodac top bara, zrobic zeby sensownie wyglodalo
+
+signal start_button_pressed
+signal back_button_pressed
+
 @onready var task_filter_vbox: VBoxContainer = $CenterContainer/PanelContainer/VBoxContainer
 @onready var difficulty_list: ItemList = task_filter_vbox.get_node("GridContainer/DifficultyList")
 @onready var task_list: ItemList = task_filter_vbox.get_node("GridContainer/TaskList")
@@ -93,3 +98,11 @@ func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_
 
 func _on_task_list_item_selected(_index: int) -> void:
 	start_button.disabled = false
+
+
+func _on_start_button_pressed() -> void:
+	start_button_pressed.emit()
+
+
+func _on_back_button_pressed() -> void:
+	back_button_pressed.emit()

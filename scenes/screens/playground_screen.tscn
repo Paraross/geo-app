@@ -1,0 +1,209 @@
+[gd_scene load_steps=13 format=3 uid="uid://dbpmn1rgceibd"]
+
+[ext_resource type="Script" uid="uid://bvt58xko28kd1" path="res://scripts/screens/playground_screen.gd" id="1_icayx"]
+[ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="2_vs2of"]
+[ext_resource type="Script" uid="uid://dmk6r1sfe6ut6" path="res://scripts/polyhedron_environment.gd" id="3_dd5n6"]
+[ext_resource type="PackedScene" uid="uid://djsu2ayr7h4by" path="res://scenes/axis_sphere.tscn" id="4_rge0t"]
+[ext_resource type="PackedScene" uid="uid://c0rkfe12bqbpb" path="res://scenes/axis.tscn" id="5_odc3t"]
+
+[sub_resource type="Environment" id="Environment_sgqdd"]
+background_mode = 1
+background_color = Color(0.24313726, 0.24313726, 0.29803923, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12lcd"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.5019608)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jkv2x"]
+material = SubResource("StandardMaterial3D_12lcd")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.5019608)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_muem4"]
+material = SubResource("StandardMaterial3D_jbj1t")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp3eg"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.5019608)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0ld40"]
+material = SubResource("StandardMaterial3D_dp3eg")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 20.0
+
+[node name="PlaygroundScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+script = ExtResource("1_icayx")
+metadata/_custom_type_script = "uid://bvt58xko28kd1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShapeViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="ShapeViewport" type="SubViewport" parent="HBoxContainer/ShapeViewportContainer"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="PolyhedronEnvironment" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_vs2of")]
+environment = SubResource("Environment_sgqdd")
+script = ExtResource("3_dd5n6")
+
+[node name="CenterSphere" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("4_rge0t")]
+
+[node name="CenterLabel" type="Label3D" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment/CenterSphere"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+billboard = 1
+text = "0.0"
+
+[node name="XAxis" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("5_odc3t")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_jkv2x")
+material = SubResource("StandardMaterial3D_12lcd")
+label_distance = -0.2
+
+[node name="YAxis" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("5_odc3t")]
+mesh = SubResource("CylinderMesh_muem4")
+material = SubResource("StandardMaterial3D_jbj1t")
+
+[node name="ZAxis" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment" instance=ExtResource("5_odc3t")]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0, 0, 0)
+rotation_order = 0
+mesh = SubResource("CylinderMesh_0ld40")
+material = SubResource("StandardMaterial3D_dp3eg")
+
+[node name="RightPanel" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+
+[node name="RightVBox" type="VBoxContainer" parent="HBoxContainer/RightPanel"]
+layout_mode = 2
+
+[node name="LoadLabel" type="Label" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+theme_type_variation = &"BigLabel"
+text = "Load vertices"
+
+[node name="PredefinedHBox" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
+layout_mode = 2
+text = "Load a predefined shape"
+
+[node name="ShapeButton" type="OptionButton" parent="HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
+layout_mode = 2
+
+[node name="LoadButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
+layout_mode = 2
+text = "Load"
+
+[node name="LoadLabel2" type="Label" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+text = "or"
+
+[node name="FromFileHBox" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
+layout_mode = 2
+text = "Load a shape from a file"
+
+[node name="FromFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
+layout_mode = 2
+text = "Load a file"
+
+[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+theme_type_variation = &"BigLabel"
+text = "Vertices"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+draw_focus_border = true
+
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer/RightPanel/RightVBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VerticesVBox" type="VBoxContainer" parent="HBoxContainer/RightPanel/RightVBox/ScrollContainer/VBox"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+
+[node name="NewVertexButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Add new vertex"
+
+[node name="SaveToFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Save to file"
+
+[node name="CreatePolyhedronButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Create Polyhedron"
+
+[node name="Popup" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(513, 100)
+
+[node name="Label" type="Label" parent="Popup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 509.0
+offset_bottom = 96.0
+text = "A polyhedron cannot be created from those vertices."
+
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+initial_position = 2
+access = 2
+use_native_dialog = true
+
+[node name="LoadFileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+file_mode = 0
+access = 2
+use_native_dialog = true
+
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/PredefinedHBox/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/FromFileHBox/FromFileButton" to="." method="_on_from_file_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/NewVertexButton" to="." method="_on_new_vertex_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/SaveToFileButton" to="." method="_on_save_to_file_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/CreatePolyhedronButton" to="." method="_on_create_polyhedron_button_pressed"]
+[connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
+[connection signal="file_selected" from="LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]
