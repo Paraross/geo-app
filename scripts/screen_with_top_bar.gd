@@ -34,6 +34,6 @@ func find_and_set_screen() -> void:
 
 func connect_signals() -> void:
 	main_menu_button.pressed.connect(main.go_to_main_menu)
-	tasks_button.pressed.connect(main.go_to_tasks)
+	tasks_button.pressed.connect(main.go_to_task_filter)
 	explore_button.pressed.connect(main.go_to_explore)
 	playground_button.pressed.connect(main.go_to_playground)

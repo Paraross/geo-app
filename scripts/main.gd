@@ -56,6 +56,10 @@ func go_to_main_menu() -> void:
 
 
 func go_to_tasks() -> void:
+	current_screen = task_screen
+
+
+func go_to_task_filter() -> void:
 	current_screen = task_filter_screen
 
 
@@ -67,17 +71,12 @@ func go_to_playground() -> void:
 	current_screen = playground_screen
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		get_tree().quit()
-
-
-func _on_main_menu_start_button_pressed() -> void:
-	current_screen = task_filter_screen
-
-
-func _on_settings_button_pressed() -> void:
+func go_to_settings() -> void:
 	current_screen = settings_screen
+
+
+func go_to_last() -> void:
+	current_screen = last_screen
 
 
 func _on_task_filter_start_button_pressed() -> void:
@@ -87,27 +86,15 @@ func _on_task_filter_start_button_pressed() -> void:
 	var tfss := tfs.screen as TaskFilterScreen
 
 	tss.reset()
-
 	tss.selected_task = tfss.selected_task()
 
-	current_screen = ts
-
-
-func _on_back_button_pressed() -> void:
-	current_screen = last_screen
-
-
-func _on_main_menu_button_pressed() -> void:
-	current_screen = main_menu_screen
-
-
-func _on_formulas_button_pressed() -> void:
-	current_screen = formulas_screen
+	go_to_tasks()
 
 
 func _on_settings_screen_left(to_main_menu: bool) -> void:
 	current_screen = main_menu_screen if to_main_menu else last_screen
 
 
-func _on_playground_button_pressed() -> void:
-	current_screen = playground_screen
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		get_tree().quit()

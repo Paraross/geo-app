@@ -1,0 +1,136 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxd3v5u5weei3"]
+
+[ext_resource type="Script" uid="uid://du67yjm7lo0e8" path="res://scripts/screens/main_menu_screen.gd" id="1_sf18h"]
+[ext_resource type="Theme" uid="uid://djv8k6x7m5yp3" path="res://themes/new_theme.tres" id="2_filxx"]
+[ext_resource type="Script" uid="uid://crqyttnj4l7vo" path="res://scripts/components/mouse_focus_component.gd" id="3_3g2hh"]
+[ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/components/animation_component.gd" id="4_cs0cy"]
+[ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="5_kj8vl"]
+
+[node name="MainMenuScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 1
+script = ExtResource("1_sf18h")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_filxx")
+theme_type_variation = &"MainMenuLabel"
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MainMenuButton"
+text = "Solve tasks	"
+
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/StartButton"]
+script = ExtResource("3_3g2hh")
+metadata/_custom_type_script = "uid://crqyttnj4l7vo"
+
+[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/StartButton"]
+script = ExtResource("4_cs0cy")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
+[node name="FormulasButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MainMenuButton"
+text = "Explore tasks"
+
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
+script = ExtResource("3_3g2hh")
+metadata/_custom_type_script = "uid://crqyttnj4l7vo"
+
+[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/FormulasButton"]
+script = ExtResource("4_cs0cy")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
+[node name="PlaygroundButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MainMenuButton"
+text = "Playground"
+
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
+script = ExtResource("3_3g2hh")
+metadata/_custom_type_script = "uid://crqyttnj4l7vo"
+
+[node name="AnimationComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton"]
+script = ExtResource("4_cs0cy")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MainMenuButton"
+text = "Settings"
+
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
+script = ExtResource("3_3g2hh")
+metadata/_custom_type_script = "uid://crqyttnj4l7vo"
+
+[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/SettingsButton"]
+script = ExtResource("4_cs0cy")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MainMenuButton"
+text = "Quit"
+script = ExtResource("5_kj8vl")
+
+[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+script = ExtResource("3_3g2hh")
+metadata/_custom_type_script = "uid://crqyttnj4l7vo"
+
+[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/QuitButton"]
+script = ExtResource("4_cs0cy")
+trans_type = 4
+ease_type = 1
+scale_value = Vector2(1.1, 1.1)
+duration = 0.1
+metadata/_custom_type_script = "uid://c6xlyam5vher4"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_tasks_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/FormulasButton" to="." method="_on_explore_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/PlaygroundButton" to="." method="_on_playground_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="CenterContainer/PanelContainer/VBoxContainer/QuitButton" method="_on_pressed"]
