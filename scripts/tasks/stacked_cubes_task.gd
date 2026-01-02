@@ -22,10 +22,14 @@ func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.MEDIUM
 
 
+func description() -> String:
+	return "Bottom cube side: {Bottom side}, top cube side: {Top side}"
+
+
 func values() -> Dictionary[String, TaskFloatValue]:
 	return {
-		"Bottom Side": bottom_side_length,
-		"Top Side": top_side_length,
+		"Bottom side": bottom_side_length,
+		"Top side": top_side_length,
 	}
 
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://f2wobln3gv8g"]
+[gd_scene load_steps=4 format=3 uid="uid://f2wobln3gv8g"]
 
 [ext_resource type="Script" uid="uid://bnee8638le068" path="res://scripts/screens/task_screen.gd" id="1_ga4ux"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="2_4ndmo"]
-[ext_resource type="Texture2D" uid="uid://benixub5eg7nq" path="res://assets/gear_icon.tres" id="3_vj163"]
 
 [sub_resource type="Environment" id="Environment_ga4ux"]
 background_mode = 1
@@ -49,20 +48,18 @@ size_flags_horizontal = 3
 layout_mode = 2
 focus_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="DescriptionHeaderLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"BigLabel"
+text = "Task Description"
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Task Data"
-
-[node name="SettingsButton" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-tooltip_text = "Settings"
-theme_type_variation = &"SettingsButton"
-icon = ExtResource("3_vj163")
 
 [node name="TaskDataGrid" type="GridContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2

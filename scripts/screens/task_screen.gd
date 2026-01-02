@@ -8,6 +8,8 @@ var current_step: int = 0
 @onready var task_environment: TaskEnvironment = $HBoxContainer/ShapeViewportContainer/ShapeViewport/TaskEnvironment
 @onready var task_vbox: VBoxContainer = $HBoxContainer/PanelContainer/VBoxContainer
 
+@onready var description_label: Label = $HBoxContainer/PanelContainer/VBoxContainer/DescriptionLabel
+
 @onready var task_data_grid: GridContainer = task_vbox.get_node("TaskDataGrid")
 
 @onready var step_nav_hbox: HBoxContainer = task_vbox.get_node("StepNavHbox")
@@ -59,6 +61,7 @@ func get_new_task() -> void:
 	final_label.text = ""
 	current_step = 0
 
+	set_description_label()
 	set_values_ui()
 
 	var task := task_environment.task
@@ -69,6 +72,17 @@ func get_new_task() -> void:
 	next_step_button.disabled = true
 
 	set_step_ui()
+
+
+func set_description_label() -> void:
+	var task := task_environment.task
+	var task_values := task.values()
+
+	var values: Dictionary[String, float] = {}
+	for value_name in task_values:
+		values[value_name] = task_values[value_name].value
+
+	description_label.text = task.description().format(values)
 
 
 func set_values_ui() -> void:

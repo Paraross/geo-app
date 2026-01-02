@@ -15,6 +15,9 @@ func _ready() -> void:
 @abstract func difficulty() -> Global.TaskDifficulty
 
 
+@abstract func description() -> String
+
+
 @abstract func values() -> Dictionary[String, TaskFloatValue]
 
 

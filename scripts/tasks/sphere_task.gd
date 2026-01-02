@@ -10,6 +10,10 @@ func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
 
+func description() -> String:
+	return "Prism with radius: {Radius}"
+
+
 func values() -> Dictionary[String, TaskFloatValue]:
 	return { "Radius": radius }
 

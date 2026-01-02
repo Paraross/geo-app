@@ -14,6 +14,10 @@ func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.EASY
 
 
+func description() -> String:
+	return "Prism with base base: {Base base}, base height: {Base height}, height: {Height}"
+
+
 func values() -> Dictionary[String, TaskFloatValue]:
 	return {
 		"Base base": base_base,

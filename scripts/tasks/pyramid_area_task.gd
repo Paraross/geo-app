@@ -5,6 +5,10 @@ func difficulty() -> Global.TaskDifficulty:
 	return Global.TaskDifficulty.HARD
 
 
+func description() -> String:
+	return "Prism with base side length: {Base side length}, height: {Height} | area variant"
+
+
 func steps() -> Array[Step]:
 	return [
 		Step.new(
