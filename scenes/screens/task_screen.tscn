@@ -56,17 +56,6 @@ text = "Task Description"
 [node name="DescriptionLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"BigLabel"
-text = "Task Data"
-
-[node name="TaskDataGrid" type="GridContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 2
-
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 

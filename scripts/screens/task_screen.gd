@@ -10,8 +10,6 @@ var current_step: int = 0
 
 @onready var description_label: Label = $HBoxContainer/PanelContainer/VBoxContainer/DescriptionLabel
 
-@onready var task_data_grid: GridContainer = task_vbox.get_node("TaskDataGrid")
-
 @onready var step_nav_hbox: HBoxContainer = task_vbox.get_node("StepNavHbox")
 @onready var prev_step_button: Button = step_nav_hbox.get_node("PrevButton")
 @onready var next_step_button: Button = step_nav_hbox.get_node("NextButton")
@@ -35,7 +33,6 @@ func on_left() -> void:
 
 
 func reset() -> void:
-	Global.clear_grid(task_data_grid)
 	task_environment.unload_current_task()
 	check_answer_button.disabled = true
 	final_label.text = ""
@@ -56,13 +53,11 @@ func update_step_nav_ui() -> void:
 func get_new_task() -> void:
 	task_environment.spawn_new_task(selected_task)
 
-	Global.clear_grid(task_data_grid)
 	check_answer_button.disabled = false
 	final_label.text = ""
 	current_step = 0
 
 	set_description_label()
-	set_values_ui()
 
 	var task := task_environment.task
 
@@ -83,21 +78,6 @@ func set_description_label() -> void:
 		values[value_name] = task_values[value_name].value
 
 	description_label.text = task.description().format(values)
-
-
-func set_values_ui() -> void:
-	var values := task_environment.task.values()
-	for value_name in values:
-		var value_value := values[value_name].value
-
-		var name_label := Label.new()
-		name_label.text = "• %s" % value_name
-
-		var value_label := Label.new()
-		value_label.text = " = %s" % value_value
-
-		task_data_grid.add_child(name_label)
-		task_data_grid.add_child(value_label)
 
 
 func set_step_ui() -> void:
