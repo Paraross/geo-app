@@ -8,7 +8,7 @@ var current_step: int = 0
 @onready var task_environment: TaskEnvironment = $HBoxContainer/ShapeViewportContainer/ShapeViewport/TaskEnvironment
 @onready var task_vbox: VBoxContainer = $HBoxContainer/PanelContainer/VBoxContainer
 
-@onready var description_label: Label = $HBoxContainer/PanelContainer/VBoxContainer/DescriptionLabel
+@onready var description_label: RichTextLabel = $HBoxContainer/PanelContainer/VBoxContainer/DescriptionLabel
 
 @onready var step_nav_hbox: HBoxContainer = task_vbox.get_node("StepNavHbox")
 @onready var prev_step_button: Button = step_nav_hbox.get_node("PrevButton")
@@ -73,7 +73,7 @@ func set_description_label() -> void:
 	var task := task_environment.task
 	var task_values := task.values()
 
-	var values: Dictionary[String, float] = {}
+	var values: Dictionary[String, float] = { }
 	for value_name in task_values:
 		values[value_name] = task_values[value_name].value
 

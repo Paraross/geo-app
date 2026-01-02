@@ -53,8 +53,10 @@ layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Task Description"
 
-[node name="DescriptionLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="RichTextLabel" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+bbcode_enabled = true
+fit_content = true
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2

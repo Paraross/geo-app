@@ -45,12 +45,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("camera_in"):
 		zoom_in = true
-	elif event.is_action_released("camera_in"): 
+	elif event.is_action_released("camera_in"):
 		zoom_in = false
 
 	if event.is_action_pressed("camera_out"):
 		zoom_out = true
-	elif event.is_action_released("camera_out"): 
+	elif event.is_action_released("camera_out"):
 		zoom_out = false
 
 
