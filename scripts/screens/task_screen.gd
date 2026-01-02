@@ -106,7 +106,7 @@ func set_step_ui() -> void:
 		title_hbox.add_child(tip_button)
 
 		var answer_spinbox := SpinBox.new()
-		answer_spinbox.step = 1.0 / 10.0 ** Settings.answer_precision
+		answer_spinbox.step = 1.0 / 10.0 ** step.answer_precision_digits
 		answer_spinbox.min_value = -1000.0
 		answer_spinbox.max_value = 1000.0
 		answer_spinbox.value = step.correct_answer() # TODO: remove in final version
