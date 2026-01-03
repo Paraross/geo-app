@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqcnjtjy5fq5h"]
+
+[ext_resource type="Script" uid="uid://dhacb2u61ce5n" path="res://scripts/figures/cuboid.gd" id="1_idp6g"]
+
+[node name="Cuboid" type="Area3D"]
+script = ExtResource("1_idp6g")
+metadata/_custom_type_script = "uid://dhacb2u61ce5n"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]

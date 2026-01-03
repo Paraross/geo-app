@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ywrmkrw6dhki"]
+
+[ext_resource type="Script" uid="uid://10pwdl3ovlvo" path="res://scripts/tasks/cuboid_task.gd" id="1_4ccqr"]
+[ext_resource type="PackedScene" uid="uid://cqcnjtjy5fq5h" path="res://scenes/figures/cuboid.tscn" id="2_4ccqr"]
+
+[node name="CuboidTask" type="Node3D"]
+script = ExtResource("1_4ccqr")
+metadata/_custom_type_script = "uid://10pwdl3ovlvo"
+
+[node name="Cuboid" parent="." instance=ExtResource("2_4ccqr")]
