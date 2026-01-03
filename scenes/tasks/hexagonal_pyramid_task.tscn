@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck73mh021fb3k"]
+
+[ext_resource type="Script" uid="uid://bykgm1qaqso6m" path="res://scripts/tasks/hexagonal_pyramid_task.gd" id="1_wpd10"]
+[ext_resource type="PackedScene" uid="uid://44cguxubiww6" path="res://scenes/figures/hex_pyramid.tscn" id="2_wpd10"]
+
+[node name="HexagonalPyramidTask" type="Node3D"]
+script = ExtResource("1_wpd10")
+metadata/_custom_type_script = "uid://bykgm1qaqso6m"
+
+[node name="HexPyramid" parent="." instance=ExtResource("2_wpd10")]

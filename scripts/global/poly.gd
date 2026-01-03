@@ -37,6 +37,16 @@ const PYRAMID_VERTICES: PackedVector3Array = [
 	Vector3(-1, -1, -1),
 ]
 
+const HEX_PYRAMID_VERTICES: PackedVector3Array = [
+	Vector3(0, 0.5, 0),
+	Vector3(-0.5, -0.5, -0.866025),
+	Vector3(-1.0, -0.5, 0.0),
+	Vector3(-0.5, -0.5, 0.866025),
+	Vector3(0.5, -0.5, 0.866025),
+	Vector3(1.0, -0.5, -0.0),
+	Vector3(0.5, -0.5, -0.866026),
+]
+
 
 func are_valid_polyhedron_vertices(
 		vertices: PackedVector3Array,

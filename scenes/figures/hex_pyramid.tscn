@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://44cguxubiww6"]
+
+[ext_resource type="Script" uid="uid://chq0nlcxgffab" path="res://scripts/figures/hex_pyramid.gd" id="1_s0iq4"]
+
+[node name="HexPyramid" type="Area3D"]
+script = ExtResource("1_s0iq4")
+metadata/_custom_type_script = "uid://chq0nlcxgffab"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
