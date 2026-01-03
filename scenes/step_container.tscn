@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgqo4sudg00se"]
+
+[ext_resource type="Theme" uid="uid://djv8k6x7m5yp3" path="res://themes/new_theme.tres" id="1_iqp5b"]
+[ext_resource type="Script" uid="uid://d2t1hej843f7a" path="res://scripts/step_container.gd" id="2_ygrkf"]
+
+[node name="StepContainer" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_iqp5b")
+script = ExtResource("2_ygrkf")
+
+[node name="TitleHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TitleHBox"]
+layout_mode = 2
+
+[node name="TipButton" type="Button" parent="TitleHBox"]
+layout_mode = 2
+theme_type_variation = &"TipButton"
+text = "?"
+
+[node name="AnswerHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AnswerSpinBox" type="SpinBox" parent="AnswerHBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = -1000.0
+max_value = 1000.0
+
+[node name="AnswerMarkLabel" type="Label" parent="AnswerHBox"]
+visible = false
+layout_mode = 2

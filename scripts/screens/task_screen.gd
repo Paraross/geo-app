@@ -87,43 +87,20 @@ func set_step_ui() -> void:
 
 	var i := 1
 	for step in task_environment.task.steps():
-		var title_label := Label.new()
-		title_label.text = "%s. %s" % [i, step.title]
+		var step_container_scene: PackedScene = preload("res://scenes/step_container.tscn").duplicate_deep()
+		var step_container: StepContainer = step_container_scene.instantiate()
+		steps_vbox.add_child(step_container)
 
-		var tip_button := Button.new()
-		tip_button.theme_type_variation = "TipButton"
-		tip_button.text = "?"
-		tip_button.pressed.connect(
+		step_container.title_label.text = "%s. %s" % [i, step.title]
+		step_container.tip_button.pressed.connect(
 			func() -> void:
 				tip_popup_label.text = step.tip
-				tip_popup.position = tip_button.global_position
+				tip_popup.position = step_container.tip_button.global_position
 				tip_popup.size = tip_popup_label.get_combined_minimum_size()
 				tip_popup.show()
 		)
-
-		var title_hbox := HBoxContainer.new()
-		title_hbox.add_child(title_label)
-		title_hbox.add_child(tip_button)
-
-		var answer_spinbox := SpinBox.new()
-		answer_spinbox.step = 1.0 / 10.0 ** step.answer_precision_digits
-		answer_spinbox.min_value = -1000.0
-		answer_spinbox.max_value = 1000.0
-		answer_spinbox.value = step.correct_answer() # TODO: remove in final version
-		answer_spinbox.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-
-		var answer_mark_label := Label.new()
-		answer_mark_label.visible = false
-
-		var answer_hbox := HBoxContainer.new()
-		answer_hbox.add_child(answer_spinbox)
-		answer_hbox.add_child(answer_mark_label)
-
-		var step_vbox := VBoxContainer.new()
-		step_vbox.add_child(title_hbox)
-		step_vbox.add_child(answer_hbox)
-
-		steps_vbox.add_child(step_vbox)
+		step_container.answer_spinbox.step = 1.0 / 10.0 ** step.answer_precision_digits
+		step_container.answer_spinbox.value = step.correct_answer() # TODO: remove in final version
 
 		i += 1
 
@@ -177,10 +154,9 @@ func _on_next_step_pressed() -> void:
 func _on_check_answer_button_pressed() -> void:
 	var correct_answer := task_environment.task.steps()[current_step].correct_answer()
 
-	var step_container: Container = steps_vbox.get_children()[current_step]
-	var answer_hbox: HBoxContainer = step_container.get_child(1)
-	var answer_spinbox: SpinBox = answer_hbox.get_child(0)
-	var answer_mark_label: Label = answer_hbox.get_child(1)
+	var step_container: StepContainer = steps_vbox.get_children()[current_step]
+	var answer_spinbox: SpinBox = step_container.answer_spinbox
+	var answer_mark_label: Label = step_container.answer_mark_label
 
 	var is_answer_correct := is_equal_approx(answer_spinbox.value, correct_answer)
 
