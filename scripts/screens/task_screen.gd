@@ -73,9 +73,13 @@ func set_description_label() -> void:
 	var task := task_environment.task
 	var task_values := task.values()
 
-	var values: Dictionary[String, float] = { }
+	var values: Dictionary = { }
 	for value_name in task_values:
-		values[value_name] = task_values[value_name].value
+		var task_value := task_values[value_name]
+		if task_value.precision_digits == 0:
+			values[value_name] = task_value.value as int
+		else:
+			values[value_name] = task_value.value
 
 	description_label.text = task.description().format(values)
 
