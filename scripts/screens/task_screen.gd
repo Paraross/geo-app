@@ -96,13 +96,7 @@ func set_step_ui() -> void:
 		steps_vbox.add_child(step_container)
 
 		step_container.title_label.text = "%s. %s" % [i, step.title]
-		step_container.tip_button.pressed.connect(
-			func() -> void:
-				tip_popup_label.text = step.tip
-				tip_popup.position = step_container.tip_button.global_position
-				tip_popup.size = tip_popup_label.get_combined_minimum_size()
-				tip_popup.show()
-		)
+		step_container.tip_button.tip_text = step.tip
 		step_container.answer_spinbox.step = 1.0 / 10.0 ** step.answer_precision_digits
 		step_container.answer_spinbox.value = step.correct_answer() # TODO: remove in final version
 

@@ -8,6 +8,8 @@ extends Screen
 @onready var medium_task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/MediumTaskList
 @onready var hard_task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/HardTaskList
 
+@onready var steps_vbox: Container = $PanelContainer/HBox/InfoVBox/StepsScroll/StepsVBox
+
 @onready var task_environment: TaskEnvironment = $PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport/TaskEnvironment
 @onready var task_data_grid: GridContainer = $PanelContainer/HBox/TaskVBox/TaskDataGrid
 
@@ -57,6 +59,25 @@ func fill_task_lists_if(condition: Callable) -> void:
 				hard_task_list.add_item(task_name)
 
 
+func set_step_ui() -> void:
+	for child in steps_vbox.get_children():
+		child.queue_free()
+		steps_vbox.remove_child(child)
+
+	var i := 1
+	for step in task_environment.task.steps():
+		var step_container_scene: PackedScene = preload("res://scenes/step_container.tscn").duplicate_deep()
+		var step_container: StepContainer = step_container_scene.instantiate()
+		steps_vbox.add_child(step_container)
+
+		step_container.title_label.text = "%s. %s" % [i, step.title]
+		step_container.tip_button.tip_text = step.tip
+		step_container.answer_spinbox.step = 1.0 / 10.0 ** step.answer_precision_digits
+		step_container.answer_spinbox.value = step.correct_answer() # TODO: remove in final version
+
+		i += 1
+
+
 func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
 	var task_name := task_list.get_item_text(index)
 	var task := Tasks.all_tasks[task_name]
@@ -76,12 +97,14 @@ func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
 		var a := func(value: float) -> void: value_value.value = value
 
 		var spin_box := SpinBox.new()
-		spin_box.step = 1.0 / 10.0 ** Settings.data_precision
+		spin_box.step = 1.0 / 10.0 ** value_value.precision_digits
 		spin_box.min_value = spin_box.step
 		spin_box.max_value = 10.0
 		spin_box.value = value_value.value
 		spin_box.value_changed.connect(a)
 		task_data_grid.add_child(spin_box)
+
+	set_step_ui()
 
 
 func _on_task_filter_edit_text_changed(new_text: String) -> void:
