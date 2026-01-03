@@ -1,3 +1,6 @@
+/*.txt
+/*.infpnt
+Folder.DotSettings.user
 # Godot 4+ specific ignores
 .godot/
 /android/
