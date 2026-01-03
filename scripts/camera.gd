@@ -2,7 +2,7 @@ extends Camera3D
 
 ## In radians per second.
 @export var rotation_speed: float = TAU / 3.0
-@export var zoom_speed: float = 2.0
+@export var zoom_speed: float = 5.0
 
 var move_up: bool = false
 var move_down: bool = false
