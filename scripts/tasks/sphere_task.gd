@@ -18,14 +18,6 @@ func values() -> Dictionary[String, TaskFloatValue]:
 	return { "Radius": radius }
 
 
-func area_tip() -> String:
-	return "A sphere's area is 4 × π × radius²"
-
-
-func volume_tip() -> String:
-	return "A sphere's volume is (4/3) × π × radius³"
-
-
 func steps() -> Array[Step]:
 	return [
 		Step.new(

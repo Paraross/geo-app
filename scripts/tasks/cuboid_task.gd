@@ -29,14 +29,6 @@ func values() -> Dictionary[String, TaskFloatValue]:
 	}
 
 
-func area_tip() -> String:
-	return ""
-
-
-func volume_tip() -> String:
-	return ""
-
-
 func steps() -> Array[Step]:
 	return [
 		Step.new(

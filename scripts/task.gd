@@ -21,14 +21,6 @@ func _ready() -> void:
 @abstract func values() -> Dictionary[String, TaskFloatValue]
 
 
-# TODO: remove
-@abstract func area_tip() -> String
-
-
-# TODO: remove
-@abstract func volume_tip() -> String
-
-
 func randomize_values() -> void:
 	var values := values()
 	for value_name in values:

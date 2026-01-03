@@ -24,14 +24,6 @@ func values() -> Dictionary[String, TaskFloatValue]:
 	}
 
 
-func area_tip() -> String:
-	return "A prism's total area is base area + side triangles area"
-
-
-func volume_tip() -> String:
-	return "A prism's volume is base area × height ÷ 3"
-
-
 func steps() -> Array[Step]:
 	return [
 		Step.new(

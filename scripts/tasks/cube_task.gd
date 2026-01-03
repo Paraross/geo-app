@@ -18,14 +18,6 @@ func values() -> Dictionary[String, TaskFloatValue]:
 	return { "Side": side_length }
 
 
-func area_tip() -> String:
-	return "A cube's area is the sum of all its 6 side areas"
-
-
-func volume_tip() -> String:
-	return "A cube's volume is its side length cubed"
-
-
 func steps() -> Array[Step]:
 	return [
 		Step.new(

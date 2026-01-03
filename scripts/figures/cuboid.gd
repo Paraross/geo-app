@@ -7,13 +7,11 @@ var width: float:
 		scale_vertices()
 		change_properties()
 
-
 var height: float:
 	set(value):
 		height = value
 		scale_vertices()
 		change_properties()
-
 
 var length: float:
 	set(value):

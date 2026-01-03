@@ -78,20 +78,6 @@ size_flags_stretch_ratio = 0.25
 layout_mode = 2
 text = "TODO: add task steps"
 
-[node name="AreaTipHeader" type="Label" parent="PanelContainer/HBox/InfoVBox"]
-layout_mode = 2
-text = "Area tip"
-
-[node name="AreaTipLabel" type="Label" parent="PanelContainer/HBox/InfoVBox"]
-layout_mode = 2
-
-[node name="VolumeTipHeader" type="Label" parent="PanelContainer/HBox/InfoVBox"]
-layout_mode = 2
-text = "Volume tip"
-
-[node name="VolumeTipLabel" type="Label" parent="PanelContainer/HBox/InfoVBox"]
-layout_mode = 2
-
 [node name="VSeparator2" type="VSeparator" parent="PanelContainer/HBox"]
 layout_mode = 2
 

@@ -8,9 +8,6 @@ extends Screen
 @onready var medium_task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/MediumTaskList
 @onready var hard_task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/HardTaskList
 
-@onready var area_tip_label: Label = $PanelContainer/HBox/InfoVBox/AreaTipLabel
-@onready var volume_tip_label: Label = $PanelContainer/HBox/InfoVBox/VolumeTipLabel
-
 @onready var task_environment: TaskEnvironment = $PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport/TaskEnvironment
 @onready var task_data_grid: GridContainer = $PanelContainer/HBox/TaskVBox/TaskDataGrid
 
@@ -63,9 +60,6 @@ func fill_task_lists_if(condition: Callable) -> void:
 func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
 	var task_name := task_list.get_item_text(index)
 	var task := Tasks.all_tasks[task_name]
-
-	area_tip_label.text = task.area_tip()
-	volume_tip_label.text = task.volume_tip()
 
 	task_environment.set_current_task(task)
 

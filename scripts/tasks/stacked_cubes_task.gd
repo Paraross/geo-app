@@ -33,14 +33,6 @@ func values() -> Dictionary[String, TaskFloatValue]:
 	}
 
 
-func area_tip() -> String:
-	return "Calculate the total surface area of both cubes stacked together"
-
-
-func volume_tip() -> String:
-	return "The total volume is the sum of both cubes' volumes"
-
-
 func steps() -> Array[Step]:
 	return [
 		Step.new(
