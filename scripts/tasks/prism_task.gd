@@ -15,7 +15,10 @@ func difficulty() -> Global.TaskDifficulty:
 
 
 func description() -> String:
-	return "Prism with base base: {Base base}, base height: {Base height}, height: {Height}"
+	return """A prism is given. The prism has a triangular base.
+The base of the triangle has length [b]{Base base}[/b].
+The height of the triangle is [b]{Base height}[/b].
+The height of the the prism is [b]{Height}[/b]."""
 
 
 func values() -> Dictionary[String, TaskFloatValue]:

@@ -4,14 +4,14 @@ var bottom_side_length: TaskFloatValue = TaskFloatValue.with_min_max(2.0, 10.0) 
 .with_on_set(
 	func() -> void:
 		bottom_cube.side_length = bottom_side_length.value
-		top_cube.position.y = bottom_side_length.value / 2.0 + top_side_length.value / 2.0
+		top_cube.position.y = (bottom_side_length.value + top_side_length.value) / 2.0
 )
 
 var top_side_length: TaskFloatValue = TaskFloatValue.with_min_max(1.0, 5.0) \
 .with_on_set(
 	func() -> void:
 		top_cube.side_length = top_side_length.value
-		top_cube.position.y = bottom_side_length.value / 2.0 + top_side_length.value / 2.0
+		top_cube.position.y = (bottom_side_length.value + top_side_length.value) / 2.0
 )
 
 @onready var bottom_cube: Cube = $BottomCube
@@ -23,7 +23,10 @@ func difficulty() -> Global.TaskDifficulty:
 
 
 func description() -> String:
-	return "Bottom cube side: {Bottom side}, top cube side: {Top side}"
+	return """Two cubes are given. One cube is placed on top of the other.
+The length of the bottom cube's side is {Bottom side}.
+The length of the top cube's side is {Top side}.
+"""
 
 
 func values() -> Dictionary[String, TaskFloatValue]:

@@ -11,7 +11,9 @@ func difficulty() -> Global.TaskDifficulty:
 
 
 func description() -> String:
-	return "Cube with side length: [b]{Side}[/b]"
+	return """A cube is given.
+The length of the cube's side is [b]{Side}[/b].
+"""
 
 
 func values() -> Dictionary[String, TaskFloatValue]:

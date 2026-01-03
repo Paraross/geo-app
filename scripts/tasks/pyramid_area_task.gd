@@ -6,7 +6,10 @@ func difficulty() -> Global.TaskDifficulty:
 
 
 func description() -> String:
-	return "Prism with base side length: {Base side length}, height: {Height} | area variant"
+	return """A pyramid is given. The pyramid has a square base.
+The length of the base's side is [b]{Base side length}[/b].
+The height of the pyramid is [b]{Height}[/b].
+"""
 
 
 func steps() -> Array[Step]:

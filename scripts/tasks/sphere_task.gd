@@ -11,7 +11,9 @@ func difficulty() -> Global.TaskDifficulty:
 
 
 func description() -> String:
-	return "Prism with radius: {Radius}"
+	return """A sphere is given.
+The radius of the sphere is [b]{Radius}[/b].
+"""
 
 
 func values() -> Dictionary[String, TaskFloatValue]:

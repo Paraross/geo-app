@@ -18,7 +18,11 @@ func difficulty() -> Global.TaskDifficulty:
 
 
 func description() -> String:
-	return "Cuboid with width = [b]{Width}[/b], height = [b]{Height}[/b], length = [b]{Length}[/b]"
+	return """A cuboid is given.
+The width of the cuboid is [b]{Width}[/b].
+The height of the cuboid is [b]{Height}[/b].
+The length of the cuboid is [b]{Length}[/b].
+"""
 
 
 func values() -> Dictionary[String, TaskFloatValue]:
