@@ -97,23 +97,6 @@ scale_value = Vector2(1.1, 1.1)
 duration = 0.1
 metadata/_custom_type_script = "uid://c6xlyam5vher4"
 
-[node name="SettingsButton" type="Button" parent="CenterContainer/PanelContainer/VBox/Buttons"]
-layout_mode = 2
-theme_type_variation = &"MainMenuButton"
-text = "Settings"
-
-[node name="MouseFocusComponent" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/SettingsButton"]
-script = ExtResource("3_3g2hh")
-metadata/_custom_type_script = "uid://crqyttnj4l7vo"
-
-[node name="AnimationComponent2" type="Node" parent="CenterContainer/PanelContainer/VBox/Buttons/SettingsButton"]
-script = ExtResource("4_cs0cy")
-trans_type = 4
-ease_type = 1
-scale_value = Vector2(1.1, 1.1)
-duration = 0.1
-metadata/_custom_type_script = "uid://c6xlyam5vher4"
-
 [node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/VBox/Buttons"]
 layout_mode = 2
 theme_type_variation = &"MainMenuButton"
@@ -135,5 +118,4 @@ metadata/_custom_type_script = "uid://c6xlyam5vher4"
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/ExploreButton" to="." method="_on_explore_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/TasksButton" to="." method="_on_tasks_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/PlaygroundButton" to="." method="_on_playground_button_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBox/Buttons/QuitButton" to="CenterContainer/PanelContainer/VBox/Buttons/QuitButton" method="_on_pressed"]
