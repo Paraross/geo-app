@@ -3,25 +3,17 @@ extends Node
 const CONFIG_FILE_PATH: String = "user://settings.cfg"
 const SETTINGS_SECTION: String = "settings"
 
-const DATA_PRECISION_STR: String = "data_precision"
-const ANSWER_PRECISION_STR: String = "answer_precision"
+const COORDINATE_PRECISION: String = "coordinate_precision"
 
 var settings: Dictionary[String, Setting] = {
-	DATA_PRECISION_STR: IntSetting.new(1, 0, 6, "", "digits"),
-	ANSWER_PRECISION_STR: IntSetting.new(2, 0, 6, "", "digits"),
+	COORDINATE_PRECISION: IntSetting.new(0, 0, 6, "", "digits"),
 }
 
-var data_precision: int:
+var coordinate_precision: int:
 	get:
-		return settings[DATA_PRECISION_STR].value
+		return settings[COORDINATE_PRECISION].value
 	set(value):
-		settings[DATA_PRECISION_STR].set_value(value)
-
-var answer_precision: int:
-	get:
-		return settings[ANSWER_PRECISION_STR].value
-	set(value):
-		settings[ANSWER_PRECISION_STR].set_value(value)
+		settings[COORDINATE_PRECISION].set_value(value)
 
 
 func _ready() -> void:

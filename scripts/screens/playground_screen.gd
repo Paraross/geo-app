@@ -73,6 +73,12 @@ func add_new_vertex_ui_element(x: float, y: float, z: float, vertex_name: String
 
 	vertex_ui_element.vertex_name = vertex_name if vertex_name != "" else "Vertex %s" % vertex_ui_elements.size()
 	vertex_ui_element.index = vertex_ui_elements.size() - 1
+
+	var step := 1.0 / 10.0 ** Settings.coordinate_precision
+	vertex_ui_element.x_spinbox.step = step
+	vertex_ui_element.y_spinbox.step = step
+	vertex_ui_element.z_spinbox.step = step
+
 	vertex_ui_element.x_spinbox.value = x
 	vertex_ui_element.y_spinbox.value = y
 	vertex_ui_element.z_spinbox.value = z
