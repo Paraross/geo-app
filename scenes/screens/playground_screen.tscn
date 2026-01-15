@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbpmn1rgceibd"]
+[gd_scene load_steps=6 format=3 uid="uid://dbpmn1rgceibd"]
 
 [ext_resource type="Script" uid="uid://bvt58xko28kd1" path="res://scripts/screens/playground_screen.gd" id="1_icayx"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="2_vs2of"]
 [ext_resource type="Script" uid="uid://dmk6r1sfe6ut6" path="res://scripts/polyhedron_environment.gd" id="3_dd5n6"]
+[ext_resource type="PackedScene" uid="uid://s2d7puc614cm" path="res://scenes/sync_warning_label.tscn" id="4_uckll"]
 
 [sub_resource type="Environment" id="Environment_sgqdd"]
 background_mode = 1
@@ -84,10 +85,17 @@ text = "Load a shape from a file"
 layout_mode = 2
 text = "Load a file"
 
-[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Vertices"
+
+[node name="SyncWarningLabel" parent="HBoxContainer/RightPanel/RightVBox/HBoxContainer" instance=ExtResource("4_uckll")]
+visible = false
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
@@ -126,14 +134,33 @@ text = "Update polyhedron"
 [node name="Popup" type="PopupPanel" parent="."]
 oversampling_override = 1.0
 initial_position = 2
-size = Vector2i(513, 100)
+size = Vector2i(415, 100)
 
-[node name="Label" type="Label" parent="Popup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 509.0
+offset_right = 411.0
 offset_bottom = 96.0
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "A polyhedron cannot be created from those vertices."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Invalid vertices are marked with"
+
+[node name="SyncWarningLabel" parent="Popup/VBoxContainer/HBoxContainer" instance=ExtResource("4_uckll")]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "."
 
 [node name="SaveFileDialog" type="FileDialog" parent="."]
 initial_position = 2

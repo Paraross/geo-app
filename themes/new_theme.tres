@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://djv8k6x7m5yp3"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://djv8k6x7m5yp3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_disabled"]
 content_margin_left = 16.0
@@ -167,6 +167,18 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mun0v"]
+bg_color = Color(0.2, 0.2, 0.24705882, 1)
+border_width_left = 6
+border_width_top = 2
+border_width_right = 6
+border_width_bottom = 2
+border_color = Color(0.2, 0.2, 0.24705882, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [resource]
 BigLabel/base_type = &"Label"
 BigLabel/font_sizes/font_size = 24
@@ -226,3 +238,7 @@ TipButton/styles/hover = SubResource("StyleBoxFlat_tip_button_hover")
 TipButton/styles/normal = SubResource("StyleBoxFlat_tip_button_normal")
 TipButton/styles/pressed = SubResource("StyleBoxFlat_tip_button_hover")
 VBoxContainer/constants/separation = 20
+WarningLabel/base_type = &"Label"
+WarningLabel/colors/font_color = Color(1, 0, 0, 1)
+WarningLabel/font_sizes/font_size = 24
+WarningLabel/styles/normal = SubResource("StyleBoxFlat_mun0v")

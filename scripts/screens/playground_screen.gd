@@ -1,6 +1,11 @@
 class_name PlaygroundScreen
 extends Screen
 
+enum VertexIssue {
+	DUPLICATE,
+	NOT_IN_POLY,
+}
+
 const SHAPE_OPTIONS: Array[String] = [
 	"Cube",
 	"Prism",
@@ -22,9 +27,11 @@ var save_file_content: String
 @onready var shape_button: OptionButton = $HBoxContainer/RightPanel/RightVBox/PredefinedHBox/ShapeButton
 
 @onready var right_vbox: VBoxContainer = $HBoxContainer/RightPanel/RightVBox
+@onready var scroll_container: ScrollContainer = $HBoxContainer/RightPanel/RightVBox/ScrollContainer
 @onready var vertices_vbox: VBoxContainer = right_vbox.get_node("ScrollContainer/VBox/VerticesVBox")
 @onready var new_vertex_button: Button = right_vbox.get_node("NewVertexButton")
 
+@onready var sync_warning_label: Label = right_vbox.get_node("HBoxContainer/SyncWarningLabel")
 @onready var create_polyhedron_button: Button = right_vbox.get_node("CreatePolyhedronButton")
 
 @onready var popup: PopupPanel = $Popup
@@ -86,7 +93,6 @@ func remove_vertex_ui_element(element: VertexUiElement) -> void:
 
 	for i in vertex_ui_elements.size():
 		var vertex_ui_element := vertex_ui_elements[i]
-		print("%s. prev: %s" % [i, vertex_ui_element.index])
 		vertex_ui_element.index = i
 
 
@@ -114,13 +120,56 @@ func are_poly_verts_equal_to_ui() -> bool:
 	return polyhedron_environment.polyhedron.vertices == get_vertices_from_ui()
 
 
+func get_unsynced_vertex_indices() -> Array:
+	var unsynced_vertex_indices := PackedInt32Array()
+	var issues: Array[VertexIssue] = []
+
+	var polyhedron_vertices := polyhedron_environment.polyhedron.vertices
+
+	var already_inserted := PackedVector3Array()
+	for i in range(vertex_ui_elements.size()):
+		var vertex_ui_element := vertex_ui_elements[i]
+		var ui_vertex := vertex_ui_element.get_vertex()
+
+		if ui_vertex in already_inserted:
+			unsynced_vertex_indices.append(vertex_ui_element.index)
+			issues.append(VertexIssue.DUPLICATE)
+		elif ui_vertex in polyhedron_vertices:
+			already_inserted.append(vertex_ui_element.get_vertex())
+
+		if ui_vertex not in polyhedron_vertices:
+			unsynced_vertex_indices.append(vertex_ui_element.index)
+			issues.append(VertexIssue.NOT_IN_POLY)
+
+	# GDScript to najgorszy język na świecie
+	return [unsynced_vertex_indices, issues]
+
+
 func update_create_polyhedron_button() -> void:
 	if are_poly_verts_equal_to_ui():
 		create_polyhedron_button.disabled = true
-		create_polyhedron_button.tooltip_text = "The displayed polyhedron is equivalent to the vertices on the right."
+		create_polyhedron_button.tooltip_text = "The vertices of the diplayed polyhedron are the same as the vertices on the right."
+		sync_warning_label.visible = false
 	else:
 		create_polyhedron_button.disabled = false
-		create_polyhedron_button.tooltip_text = "The displayed polyhedron is not equivalent to the vertices on the right.\nPress to update."
+		create_polyhedron_button.tooltip_text = "The vertices of the diplayed polyhedron are different from the vertices on the right.\nPress to update."
+		sync_warning_label.visible = true
+
+	var gowno := get_unsynced_vertex_indices()
+	var unsynced_verts: PackedInt32Array = gowno[0]
+	var issues:  Array[VertexIssue] = gowno[1]
+
+	for i in range(vertex_ui_elements.size()):
+		var vertex_ui_element := vertex_ui_elements[i]
+
+		var unsynced_index := unsynced_verts.find(vertex_ui_element.index)
+
+		if unsynced_index == -1:
+			vertex_ui_element.hide_sync_warning_label()
+			continue
+
+		var issue := issues[unsynced_index]
+		vertex_ui_element.show_sync_warning_label_for_issue(issue)
 
 
 func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> bool:
@@ -150,6 +199,7 @@ func update_vertex_name(new_name: String, index: int) -> void:
 
 func _on_new_vertex_button_pressed() -> void:
 	add_new_vertex_ui_element(0.0, 0.0, 0.0)
+	update_create_polyhedron_button()
 
 
 func _on_create_polyhedron_button_pressed() -> void:

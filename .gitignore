@@ -1,5 +1,9 @@
 /*.txt
 /*.infpnt
+
+tmp*.tscn*
+tmp*.gd*
+
 Folder.DotSettings.user
 # Godot 4+ specific ignores
 .godot/

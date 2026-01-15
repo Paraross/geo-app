@@ -69,14 +69,11 @@ func set_mesh() -> void:
 
 
 func set_collision_shape() -> void:
-	# TODO: check which vertices are problematic (when adding new vertex in playground)
-
 	if Poly.are_valid_polyhedron_vertices(vertices):
 		var cp_shape := ConvexPolygonShape3D.new()
 		cp_shape.points = vertices
 		shape = cp_shape
 	else:
-		print("invalid vertices")
 		shape = null
 
 

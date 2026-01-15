@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgdov2iblt7d3"]
+[gd_scene load_steps=4 format=3 uid="uid://cgdov2iblt7d3"]
 
 [ext_resource type="Script" uid="uid://bbl5nxih7e8di" path="res://scripts/vertex_ui_element.gd" id="1_xhlat"]
 [ext_resource type="Texture2D" uid="uid://d0jt82dds4xwr" path="res://assets/trash_can.png" id="2_hsqwk"]
+[ext_resource type="PackedScene" uid="uid://s2d7puc614cm" path="res://scenes/sync_warning_label.tscn" id="3_68i8m"]
 
 [node name="VertexUiElement" type="HBoxContainer"]
 offset_right = 388.0
@@ -40,5 +41,9 @@ layout_mode = 2
 size_flags_horizontal = 8
 tooltip_text = "Remove vertex"
 icon = ExtResource("2_hsqwk")
+
+[node name="SyncWarningLabel" parent="." instance=ExtResource("3_68i8m")]
+visible = false
+layout_mode = 2
 
 [connection signal="text_submitted" from="NameLineEdit" to="." method="_on_name_line_edit_text_submitted"]
