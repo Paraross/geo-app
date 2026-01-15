@@ -4,7 +4,6 @@ extends Screen
 # TODO: dodac top bara, zrobic zeby sensownie wyglodalo
 
 signal start_button_pressed
-signal back_button_pressed
 
 @onready var task_filter_vbox: VBoxContainer = $CenterContainer/PanelContainer/VBoxContainer
 @onready var difficulty_list: ItemList = task_filter_vbox.get_node("GridContainer/DifficultyList")
@@ -62,47 +61,9 @@ func _on_difficulty_list_item_selected(_index: int) -> void:
 	fill_task_list()
 
 
-func _on_task_list_item_clicked(index: int, _at_position: Vector2, mouse_button_index: int) -> void:
-	if mouse_button_index != MouseButton.MOUSE_BUTTON_RIGHT:
-		return
-
-	var task_name := task_list.get_item_text(index)
-	var task := Tasks.all_tasks[task_name]
-
-	task_settings_popup_label.text = "%s settings" % task_name
-
-	Global.clear_grid(task_settings_popup_grid)
-
-	var values := task.values()
-	for value_name in values:
-		var value_value: TaskFloatValue = values[value_name]
-
-		var label := Label.new()
-		label.text = value_name
-		task_settings_popup_grid.add_child(label)
-
-		var min_spin_box := SpinBox.new()
-		min_spin_box.step = 1.0 / 10.0 ** Settings.data_precision
-		min_spin_box.value = value_value.min_value
-		min_spin_box.value_changed.connect(func(value: float) -> void: value_value.min_value = value)
-		task_settings_popup_grid.add_child(min_spin_box)
-
-		var max_spin_box := SpinBox.new()
-		max_spin_box.step = 1.0 / 10.0 ** Settings.data_precision
-		max_spin_box.value = value_value.max_value
-		max_spin_box.value_changed.connect(func(value: float) -> void: value_value.max_value = value)
-		task_settings_popup_grid.add_child(max_spin_box)
-
-	task_settings_popup.show()
-
-
 func _on_task_list_item_selected(_index: int) -> void:
 	start_button.disabled = false
 
 
 func _on_start_button_pressed() -> void:
 	start_button_pressed.emit()
-
-
-func _on_back_button_pressed() -> void:
-	back_button_pressed.emit()

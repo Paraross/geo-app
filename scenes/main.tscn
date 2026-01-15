@@ -176,7 +176,6 @@ size_flags_vertical = 3
 [node name="MainMenuScreen" parent="." instance=ExtResource("9_85g3d")]
 layout_mode = 1
 
-[connection signal="back_button_pressed" from="TaskFilterScreen/TaskFilterScreen" to="." method="go_to_main_menu"]
 [connection signal="start_button_pressed" from="TaskFilterScreen/TaskFilterScreen" to="." method="_on_task_filter_start_button_pressed"]
 [connection signal="left" from="SettingsScreen" to="." method="_on_settings_screen_left"]
 [connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="SettingsScreen" method="leave_to_main_menu"]

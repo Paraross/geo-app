@@ -56,10 +56,6 @@ layout_mode = 2
 disabled = true
 text = "Start"
 
-[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Back"
-
 [node name="TaskSettingsPopup" type="PopupPanel" parent="."]
 oversampling_override = 1.0
 initial_position = 2
@@ -79,7 +75,5 @@ layout_mode = 2
 columns = 3
 
 [connection signal="item_selected" from="CenterContainer/PanelContainer/VBoxContainer/GridContainer/DifficultyList" to="." method="_on_difficulty_list_item_selected"]
-[connection signal="item_clicked" from="CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="." method="_on_task_list_item_clicked"]
 [connection signal="item_selected" from="CenterContainer/PanelContainer/VBoxContainer/GridContainer/TaskList" to="." method="_on_task_list_item_selected"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
