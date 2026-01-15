@@ -120,7 +120,8 @@ text = "Save to file"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-text = "Create Polyhedron"
+disabled = true
+text = "Update polyhedron"
 
 [node name="Popup" type="PopupPanel" parent="."]
 oversampling_override = 1.0

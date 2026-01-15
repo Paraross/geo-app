@@ -25,6 +25,8 @@ var save_file_content: String
 @onready var vertices_vbox: VBoxContainer = right_vbox.get_node("ScrollContainer/VBox/VerticesVBox")
 @onready var new_vertex_button: Button = right_vbox.get_node("NewVertexButton")
 
+@onready var create_polyhedron_button: Button = right_vbox.get_node("CreatePolyhedronButton")
+
 @onready var popup: PopupPanel = $Popup
 
 @onready var save_file_dialog: FileDialog = $SaveFileDialog
@@ -55,18 +57,25 @@ func add_new_vertex_ui_element(x: float, y: float, z: float, vertex_name: String
 	vertex_ui_elements.append(vertex_ui_element)
 	vertices_vbox.add_child(vertex_ui_element)
 
-	vertex_ui_element.remove_button.pressed.connect(
-		func() -> void:
-			remove_vertex_ui_element(vertex_ui_element)
-	)
+	var remove_vertex := func() -> void:
+		remove_vertex_ui_element(vertex_ui_element)
+
+	vertex_ui_element.remove_button.pressed.connect(remove_vertex)
 
 	vertex_ui_element.vertex_name_changed.connect(update_vertex_name)
 
 	vertex_ui_element.vertex_name = vertex_name if vertex_name != "" else "Vertex %s" % vertex_ui_elements.size()
+	vertex_ui_element.index = vertex_ui_elements.size() - 1
 	vertex_ui_element.x_spinbox.value = x
 	vertex_ui_element.y_spinbox.value = y
 	vertex_ui_element.z_spinbox.value = z
-	vertex_ui_element.index = vertex_ui_elements.size() - 1
+
+	var create_poly := func(_new_value: float) -> void:
+		create_polyhedron_from_vertices(get_vertices_from_ui())
+
+	vertex_ui_element.x_spinbox.value_changed.connect(create_poly)
+	vertex_ui_element.y_spinbox.value_changed.connect(create_poly)
+	vertex_ui_element.z_spinbox.value_changed.connect(create_poly)
 
 	return vertex_ui_element
 
@@ -74,6 +83,14 @@ func add_new_vertex_ui_element(x: float, y: float, z: float, vertex_name: String
 func remove_vertex_ui_element(element: VertexUiElement) -> void:
 	element.queue_free()
 	vertex_ui_elements.erase(element)
+
+	for i in vertex_ui_elements.size():
+		var vertex_ui_element := vertex_ui_elements[i]
+		print("%s. prev: %s" % [i, vertex_ui_element.index])
+		vertex_ui_element.index = i
+
+
+	update_create_polyhedron_button()
 
 
 func clear_vertex_ui_elements() -> void:
@@ -83,10 +100,33 @@ func clear_vertex_ui_elements() -> void:
 	vertex_ui_elements.clear()
 
 
-func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> void:
+func get_vertices_from_ui() -> PackedVector3Array:
+	var vertices := PackedVector3Array()
+	vertices.resize(vertex_ui_elements.size())
+
+	for i in range(vertex_ui_elements.size()):
+		vertices[i] = vertex_ui_elements[i].get_vertex()
+	
+	return vertices
+
+
+func are_poly_verts_equal_to_ui() -> bool:
+	return polyhedron_environment.polyhedron.vertices == get_vertices_from_ui()
+
+
+func update_create_polyhedron_button() -> void:
+	if are_poly_verts_equal_to_ui():
+		create_polyhedron_button.disabled = true
+		create_polyhedron_button.tooltip_text = "The displayed polyhedron is equivalent to the vertices on the right."
+	else:
+		create_polyhedron_button.disabled = false
+		create_polyhedron_button.tooltip_text = "The displayed polyhedron is not equivalent to the vertices on the right.\nPress to update."
+
+
+func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> bool:
 	if not Poly.are_valid_polyhedron_vertices(vertices):
-		popup.show()
-		return
+		update_create_polyhedron_button()
+		return false
 
 	var vertex_names: PackedStringArray
 	vertex_names.resize(vertex_ui_elements.size())
@@ -97,8 +137,13 @@ func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> void:
 	polyhedron.vertices = vertices
 	polyhedron.update_vertices(vertex_names)
 
+	update_create_polyhedron_button()
+
+	return true
+
 
 func update_vertex_name(new_name: String, index: int) -> void:
+	print("%s. name changed to %s" % [index, new_name])
 	var polyhedron := polyhedron_environment.polyhedron
 	polyhedron.vertex_spheres[index].vertex_name = new_name
 
@@ -108,13 +153,11 @@ func _on_new_vertex_button_pressed() -> void:
 
 
 func _on_create_polyhedron_button_pressed() -> void:
-	var vertices := PackedVector3Array()
-	vertices.resize(vertex_ui_elements.size())
+	var vertices := get_vertices_from_ui()
+	var was_successful := create_polyhedron_from_vertices(vertices)
 
-	for i in range(vertex_ui_elements.size()):
-		vertices[i] = vertex_ui_elements[i].get_vertex()
-
-	create_polyhedron_from_vertices(vertices)
+	if not was_successful:
+		popup.show()
 
 
 func _on_load_button_pressed() -> void:
