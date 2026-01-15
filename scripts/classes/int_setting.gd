@@ -8,12 +8,12 @@ var prefix: String
 var suffix: String
 
 
-func _init(val: int, min_val: int, max_val: int, prefix: String = "", suffix: String = "") -> void:
+func _init(category1: String, val: int, min_val: int, max_val: int, prefix: String = "", suffix: String = "") -> void:
 	min_value = min_val
 	max_value = max_val
 	self.prefix = prefix
 	self.suffix = suffix
-	super._init(val)
+	super._init(category1, val)
 
 
 func set_value(val: Variant) -> void:

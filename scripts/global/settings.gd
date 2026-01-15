@@ -6,7 +6,7 @@ const SETTINGS_SECTION: String = "settings"
 const COORDINATE_PRECISION: String = "coordinate_precision"
 
 var settings: Dictionary[String, Setting] = {
-	COORDINATE_PRECISION: IntSetting.new(0, 0, 6, "", "digits"),
+	COORDINATE_PRECISION: IntSetting.new("Playground", 0, 0, 6, "", "digits"),
 }
 
 var coordinate_precision: int:

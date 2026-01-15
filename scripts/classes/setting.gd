@@ -1,12 +1,14 @@
 class_name Setting
 extends RefCounted
 
+var category: String
 var value: Variant
 var original_value: Variant
 var changed: bool
 
 
-func _init(val: Variant) -> void:
+func _init(category: String, val: Variant) -> void:
+	self.category = category
 	value = val
 	original_value = val
 	changed = false

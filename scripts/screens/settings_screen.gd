@@ -6,6 +6,7 @@ signal left(to_main_menu: bool)
 var return_to_main_menu: bool
 
 @onready var settings_grid: GridContainer = $CenterContainer/PanelContainer/VBoxContainer/Grid
+@onready var settings_container: VBoxContainer = $CenterContainer/PanelContainer/VBoxContainer/SettingsContainer
 
 @onready var confirm_popup: PopupPanel = $ConfirmPopup
 @onready var button_hbox: HBoxContainer = confirm_popup.get_node("VBox/ButtonHBox")
@@ -21,15 +22,30 @@ func on_left() -> void:
 
 
 func fill_settings_grid() -> void:
-	Global.clear_grid(settings_grid)
+	for child in settings_container.get_children():
+		child.queue_free()
+
+	var category_containers: Dictionary[String, Container] = {}
+
 	for setting_name in Settings.settings:
 		var setting := Settings.settings[setting_name]
+		var category_container: Container = category_containers.get(setting.category)
+
+		if category_container == null:
+			var category_label := Label.new()
+			category_label.text = setting.category
+			category_label.theme_type_variation = "BigLabel"
+			settings_container.add_child(category_label)
+
+			var new_category_container := GridContainer.new()
+			new_category_container.columns = 2
+			settings_container.add_child(new_category_container)
+			category_container = new_category_container
 
 		var label := Label.new()
 		label.text = setting_name.capitalize()
-		settings_grid.add_child(label)
-
-		settings_grid.add_child(setting.ui_element())
+		category_container.add_child(label)
+		category_container.add_child(setting.ui_element())
 
 
 func settings_changed() -> bool:

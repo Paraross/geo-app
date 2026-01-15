@@ -82,6 +82,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
+theme_type_variation = &"MainMenuLabel"
 script = ExtResource("4_o6xl0")
 
 [node name="CenterContainer" type="CenterContainer" parent="SettingsScreen"]
@@ -100,12 +101,16 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"MainMenuLabel"
 text = "Settings"
 horizontal_alignment = 1
 
 [node name="Grid" type="GridContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
+
+[node name="SettingsContainer" type="VBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="MainMenuButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
