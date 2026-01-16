@@ -3,11 +3,27 @@ extends Node
 const CONFIG_FILE_PATH: String = "user://settings.cfg"
 const SETTINGS_SECTION: String = "settings"
 
+const CAMERA_MOVE_SPEED: String = "camera_move_speed"
+const CAMERA_ZOOM_SPEED: String = "camera_zoom_speed"
 const COORDINATE_PRECISION: String = "coordinate_precision"
 
 var settings: Dictionary[String, Setting] = {
-	COORDINATE_PRECISION: IntSetting.new("Playground", 0, 0, 6, "", "digits"),
+	CAMERA_MOVE_SPEED: FloatSetting.new("Camera", 120.0, 1.0, 360.0, 1.0, "", "In degrees per second"),
+	CAMERA_ZOOM_SPEED: FloatSetting.new("Camera", 5.0, 0.1, 10.0, 0.1, "", "In units per second"),
+	COORDINATE_PRECISION: IntSetting.new("Playground", 0, 0, 6, "digits", "How many digits of precision should the vertices allow"),
 }
+
+var camera_move_speed: float:
+	get:
+		return settings[CAMERA_MOVE_SPEED].value
+	set(value):
+		settings[CAMERA_MOVE_SPEED].set_value(value)
+
+var camera_zoom_speed: float:
+	get:
+		return settings[CAMERA_ZOOM_SPEED].value
+	set(value):
+		settings[CAMERA_ZOOM_SPEED].set_value(value)
 
 var coordinate_precision: int:
 	get:

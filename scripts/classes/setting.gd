@@ -2,15 +2,19 @@ class_name Setting
 extends RefCounted
 
 var category: String
+
 var value: Variant
 var original_value: Variant
+var tooltip: String
+
 var changed: bool
 
 
-func _init(category: String, val: Variant) -> void:
+func _init(category: String, val: Variant, tooltip: String = "") -> void:
 	self.category = category
 	value = val
 	original_value = val
+	self.tooltip = tooltip
 	changed = false
 
 

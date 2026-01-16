@@ -39,6 +39,8 @@ func fill_settings_grid() -> void:
 
 			var new_category_container := GridContainer.new()
 			new_category_container.columns = 2
+
+			category_containers[setting.category] = new_category_container
 			settings_container.add_child(new_category_container)
 			category_container = new_category_container
 

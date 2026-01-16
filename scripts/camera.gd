@@ -1,9 +1,5 @@
 extends Camera3D
 
-## In radians per second.
-@export var rotation_speed: float = TAU / 3.0
-@export var zoom_speed: float = 5.0
-
 var move_up: bool = false
 var move_down: bool = false
 var move_left: bool = false
@@ -55,7 +51,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func rotate_camera(delta: float) -> void:
-	var rotate_amount := rotation_speed * delta
+	var rotate_amount := deg_to_rad(Settings.camera_move_speed) * delta
 	var camera_angle := -asin(position.y / position.length())
 
 	if move_up and camera_angle - rotate_amount > -PI / 2.0:
@@ -71,7 +67,7 @@ func rotate_camera(delta: float) -> void:
 
 
 func zoom_camera(delta: float) -> void:
-	var zoom_amount := zoom_speed * delta
+	var zoom_amount := Settings.camera_zoom_speed * delta
 
 	var dir := position.normalized()
 
