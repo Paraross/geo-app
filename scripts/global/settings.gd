@@ -3,9 +3,9 @@ extends Node
 const CONFIG_FILE_PATH: String = "user://settings.cfg"
 const SETTINGS_SECTION: String = "settings"
 
-const CAMERA_MOVE_SPEED: String = "camera_move_speed"
-const CAMERA_ZOOM_SPEED: String = "camera_zoom_speed"
-const COORDINATE_PRECISION: String = "coordinate_precision"
+const CAMERA_MOVE_SPEED: String = "Move speed"
+const CAMERA_ZOOM_SPEED: String = "Zoom speed"
+const COORDINATE_PRECISION: String = "Coordinate precision"
 
 var settings: Dictionary[String, Setting] = {
 	CAMERA_MOVE_SPEED: FloatSetting.new("Camera", 120.0, 1.0, 360.0, 1.0, "", "In degrees per second"),

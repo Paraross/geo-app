@@ -25,7 +25,7 @@ func fill_settings_grid() -> void:
 	for child in settings_container.get_children():
 		child.queue_free()
 
-	var category_containers: Dictionary[String, Container] = {}
+	var category_containers: Dictionary[String, Container] = { }
 
 	for setting_name in Settings.settings:
 		var setting := Settings.settings[setting_name]
@@ -45,9 +45,11 @@ func fill_settings_grid() -> void:
 			category_container = new_category_container
 
 		var label := Label.new()
-		label.text = setting_name.capitalize()
+		label.text = setting_name
 		category_container.add_child(label)
-		category_container.add_child(setting.ui_element())
+		var setting_ui_element := setting.ui_element()
+		setting_ui_element.size_flags_horizontal = Control.SIZE_EXPAND | Control.SIZE_SHRINK_END
+		category_container.add_child(setting_ui_element)
 
 
 func settings_changed() -> bool:

@@ -101,7 +101,6 @@ func remove_vertex_ui_element(element: VertexUiElement) -> void:
 		var vertex_ui_element := vertex_ui_elements[i]
 		vertex_ui_element.index = i
 
-
 	update_create_polyhedron_button()
 
 
@@ -118,7 +117,7 @@ func get_vertices_from_ui() -> PackedVector3Array:
 
 	for i in range(vertex_ui_elements.size()):
 		vertices[i] = vertex_ui_elements[i].get_vertex()
-	
+
 	return vertices
 
 
@@ -163,7 +162,7 @@ func update_create_polyhedron_button() -> void:
 
 	var gowno := get_unsynced_vertex_indices()
 	var unsynced_verts: PackedInt32Array = gowno[0]
-	var issues:  Array[VertexIssue] = gowno[1]
+	var issues: Array[VertexIssue] = gowno[1]
 
 	for i in range(vertex_ui_elements.size()):
 		var vertex_ui_element := vertex_ui_elements[i]
