@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://rgaehgi5s083"]
+[gd_scene load_steps=3 format=3 uid="uid://rgaehgi5s083"]
 
 [ext_resource type="Script" uid="uid://cem51d1xh2ksa" path="res://scripts/screen_with_top_bar.gd" id="1_m8rvd"]
+[ext_resource type="Texture2D" uid="uid://benixub5eg7nq" path="res://assets/gear_icon.tres" id="2_8p76l"]
 
 [node name="ScreenWithTopBar" type="VBoxContainer"]
 offset_right = 40.0
@@ -31,4 +32,6 @@ text = "Playground"
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/TopBarHBox"]
 layout_mode = 2
-text = "Settings"
+size_flags_horizontal = 10
+tooltip_text = "Settings"
+icon = ExtResource("2_8p76l")
