@@ -169,6 +169,7 @@ text = "."
 [node name="SaveFileDialog" type="FileDialog" parent="."]
 initial_position = 2
 access = 2
+filters = PackedStringArray("*.poly")
 use_native_dialog = true
 
 [node name="LoadFileDialog" type="FileDialog" parent="."]
@@ -176,6 +177,7 @@ title = "Open a File"
 initial_position = 2
 file_mode = 0
 access = 2
+filters = PackedStringArray("*.poly")
 use_native_dialog = true
 
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/PredefinedHBox/LoadButton" to="." method="_on_load_button_pressed"]
