@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://f2wobln3gv8g" path="res://scenes/screens/task_screen.tscn" id="3_eb6dy"]
-[ext_resource type="Script" uid="uid://cbvp3d0of5sdd" path="res://scripts/screens/settings_screen.gd" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://clgtlovxvmm04" path="res://scenes/screens/task_filter_screen.tscn" id="6_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://crhot0nmspxrb" path="res://scenes/screens/settings_screen.tscn" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://dbpmn1rgceibd" path="res://scenes/screens/playground_screen.tscn" id="7_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dxd3v5u5weei3" path="res://scenes/screens/main_menu_screen.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://n36w2by6x54e" path="res://scenes/screens/formulas_screen.tscn" id="12_jbj1t"]
@@ -72,86 +72,19 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SettingsScreen" type="Control" parent="."]
+[node name="SettingsScreen" parent="." instance=ExtResource("17_muem4")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 1
-theme_type_variation = &"MainMenuLabel"
-script = ExtResource("4_o6xl0")
-
-[node name="CenterContainer" type="CenterContainer" parent="SettingsScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="SettingsScreen/CenterContainer"]
+[node name="SettingsScreen" parent="SettingsScreen" instance=ExtResource("6_tipki")]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"MainMenuLabel"
-text = "Settings"
-horizontal_alignment = 1
-
-[node name="Grid" type="GridContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="SettingsContainer" type="VBoxContainer" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="MainMenuButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Main Menu"
-
-[node name="BackButton" type="Button" parent="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Back"
-
-[node name="ConfirmPopup" type="PopupPanel" parent="SettingsScreen"]
-oversampling_override = 1.0
-initial_position = 2
-size = Vector2i(351, 183)
-
-[node name="VBox" type="VBoxContainer" parent="SettingsScreen/ConfirmPopup"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 331.0
-offset_bottom = 163.0
-
-[node name="Label" type="Label" parent="SettingsScreen/ConfirmPopup/VBox"]
-layout_mode = 2
-text = "Some settings have been changed
-Do you want to save the changes?"
-horizontal_alignment = 1
-
-[node name="ButtonHBox" type="HBoxContainer" parent="SettingsScreen/ConfirmPopup/VBox"]
-layout_mode = 2
-
-[node name="YesButton" type="Button" parent="SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Yes"
-
-[node name="NoButton" type="Button" parent="SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "No"
-
-[node name="CancelButton" type="Button" parent="SettingsScreen/ConfirmPopup/VBox/ButtonHBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Cancel"
+size_flags_vertical = 3
 
 [node name="ExploreScreen" parent="." instance=ExtResource("17_muem4")]
 visible = false
@@ -177,12 +110,6 @@ offset_right = 0.0
 offset_bottom = 0.0
 
 [connection signal="start_button_pressed" from="TaskFilterScreen/TaskFilterScreen" to="." method="_on_task_filter_start_button_pressed"]
-[connection signal="left" from="SettingsScreen" to="." method="_on_settings_screen_left"]
-[connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="SettingsScreen" method="leave_to_main_menu"]
-[connection signal="pressed" from="SettingsScreen/CenterContainer/PanelContainer/VBoxContainer/BackButton" to="SettingsScreen" method="leave_to_last"]
-[connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/YesButton" to="SettingsScreen" method="_on_yes_button_pressed"]
-[connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/NoButton" to="SettingsScreen" method="_on_no_button_pressed"]
-[connection signal="pressed" from="SettingsScreen/ConfirmPopup/VBox/ButtonHBox/CancelButton" to="SettingsScreen" method="_on_cancel_button_pressed"]
 [connection signal="explore_button_pressed" from="MainMenuScreen" to="." method="go_to_explore"]
 [connection signal="playground_button_pressed" from="MainMenuScreen" to="." method="go_to_playground"]
 [connection signal="settings_button_pressed" from="MainMenuScreen" to="." method="go_to_settings"]
