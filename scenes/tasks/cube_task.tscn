@@ -1,10 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://013kke5pgw4v"]
 
 [ext_resource type="Script" uid="uid://dcij1g24gp5jx" path="res://scripts/tasks/cube_task.gd" id="1_a6ih5"]
-[ext_resource type="PackedScene" uid="uid://c568rgivd5bbl" path="res://scenes/figures/cube.tscn" id="2_yhg30"]
+[ext_resource type="PackedScene" uid="uid://clisyvmrgphsw" path="res://scenes/tasks/base/cube_task_base.tscn" id="1_yhg30"]
 
-[node name="CubeTask" type="Node3D"]
+[node name="CubeTask" instance=ExtResource("1_yhg30")]
 script = ExtResource("1_a6ih5")
-metadata/_custom_type_script = "uid://bom80mryh4gm6"
-
-[node name="Cube" parent="." instance=ExtResource("2_yhg30")]
