@@ -33,6 +33,9 @@ theme_type_variation = &"MainMenuLabel"
 text = "Settings"
 horizontal_alignment = 1
 
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="Grid" type="GridContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
