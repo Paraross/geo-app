@@ -18,3 +18,25 @@ func values() -> Dictionary[String, TaskFloatValue]:
 		"Base height": base_height,
 		"Height": height,
 	}
+
+func steps() -> Array[Step]:
+	return [
+		Step.new(
+			"Calculate base area",
+			"A triangular base area is (base × height) ÷ 2",
+			2,
+			prism.base_area,
+		),
+		Step.new(
+			"Calculate total area",
+			"A prism's total area is 2 × base area + side walls area",
+			2,
+			prism.area,
+		),
+		Step.new(
+			"Calculate volume",
+			"A prism's volume is base area × height",
+			2,
+			prism.volume,
+		),
+	]

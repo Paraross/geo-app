@@ -1,8 +1,6 @@
 class_name FormulasScreen
 extends Screen
 
-# TODO: Fill InfoVbox with task steps
-
 @onready var task_filter_edit: LineEdit = $PanelContainer/HBox/TaskFilterVBox/TaskFilterEdit
 @onready var easy_task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/EasyTaskList
 @onready var medium_task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/MediumTaskList
@@ -69,13 +67,23 @@ func set_step_ui() -> void:
 		var step_container_scene: PackedScene = preload("res://scenes/step_container.tscn").duplicate_deep()
 		var step_container: StepContainer = step_container_scene.instantiate()
 		steps_vbox.add_child(step_container)
+		step_container.answer_spinbox.editable = false
 
 		step_container.title_label.text = "%s. %s" % [i, step.title]
 		step_container.tip_button.tip_text = step.tip
 		step_container.answer_spinbox.step = 1.0 / 10.0 ** step.answer_precision_digits
-		step_container.answer_spinbox.value = step.correct_answer() # TODO: remove in final version
+		step_container.answer_spinbox.value = step.correct_answer()
 
 		i += 1
+
+
+func update_step_ui() -> void:
+	var steps := task_environment.task.steps()
+	var step_containers := steps_vbox.get_children()
+	for i in range(steps.size()):
+		var step := steps[i]
+		var step_container: StepContainer = step_containers[i]
+		step_container.answer_spinbox.value = step.correct_answer()
 
 
 func fill_task_data_grid() -> void:
@@ -89,7 +97,9 @@ func fill_task_data_grid() -> void:
 		label.text = value_name
 		task_data_grid.add_child(label)
 
-		var a := func(value: float) -> void: value_value.value = value
+		var a := func(value: float) -> void:
+			value_value.value = value
+			update_step_ui()
 
 		var spin_box := SpinBox.new()
 		spin_box.step = 1.0 / 10.0 ** value_value.precision_digits
@@ -99,8 +109,6 @@ func fill_task_data_grid() -> void:
 		spin_box.value_changed.connect(a)
 		task_data_grid.add_child(spin_box)
 
-	set_step_ui()
-
 
 func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
 	var task_name := task_list.get_item_text(index)
@@ -109,6 +117,7 @@ func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
 	task_environment.set_current_task(task)
 
 	fill_task_data_grid()
+	set_step_ui()
 
 
 func _on_task_filter_edit_text_changed(new_text: String) -> void:

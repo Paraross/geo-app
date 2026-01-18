@@ -74,6 +74,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
+[node name="Label" type="Label" parent="PanelContainer/HBox/InfoVBox"]
+layout_mode = 2
+theme_type_variation = &"BigLabel"
+text = "Steps"
+
 [node name="StepsScroll" type="ScrollContainer" parent="PanelContainer/HBox/InfoVBox"]
 layout_mode = 2
 size_flags_vertical = 3
