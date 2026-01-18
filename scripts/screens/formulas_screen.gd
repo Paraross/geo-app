@@ -78,12 +78,7 @@ func set_step_ui() -> void:
 		i += 1
 
 
-func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
-	var task_name := task_list.get_item_text(index)
-	var task := Tasks.all_tasks[task_name]
-
-	task_environment.set_current_task(task)
-
+func fill_task_data_grid() -> void:
 	Global.clear_grid(task_data_grid)
 
 	var values := task_environment.task.values()
@@ -98,13 +93,22 @@ func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
 
 		var spin_box := SpinBox.new()
 		spin_box.step = 1.0 / 10.0 ** value_value.precision_digits
-		spin_box.min_value = spin_box.step
-		spin_box.max_value = 10.0
+		spin_box.min_value = value_value.min_value
+		spin_box.max_value = value_value.max_value
 		spin_box.value = value_value.value
 		spin_box.value_changed.connect(a)
 		task_data_grid.add_child(spin_box)
 
 	set_step_ui()
+
+
+func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
+	var task_name := task_list.get_item_text(index)
+	var task := Tasks.all_tasks[task_name]
+
+	task_environment.set_current_task(task)
+
+	fill_task_data_grid()
 
 
 func _on_task_filter_edit_text_changed(new_text: String) -> void:
