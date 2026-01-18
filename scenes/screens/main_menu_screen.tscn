@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxd3v5u5weei3"]
+[gd_scene load_steps=5 format=3 uid="uid://dxd3v5u5weei3"]
 
 [ext_resource type="Script" uid="uid://du67yjm7lo0e8" path="res://scripts/screens/main_menu_screen.gd" id="1_sf18h"]
-[ext_resource type="Theme" uid="uid://djv8k6x7m5yp3" path="res://themes/new_theme.tres" id="2_filxx"]
 [ext_resource type="Script" uid="uid://crqyttnj4l7vo" path="res://scripts/components/mouse_focus_component.gd" id="3_3g2hh"]
 [ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/components/animation_component.gd" id="4_cs0cy"]
 [ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="5_kj8vl"]
@@ -38,7 +37,6 @@ layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBox"]
 layout_mode = 2
-theme = ExtResource("2_filxx")
 theme_type_variation = &"MainMenuLabel"
 text = "Main Menu"
 horizontal_alignment = 1

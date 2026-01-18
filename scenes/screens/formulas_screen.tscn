@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://n36w2by6x54e"]
+[gd_scene load_steps=3 format=3 uid="uid://n36w2by6x54e"]
 
-[ext_resource type="Theme" uid="uid://djv8k6x7m5yp3" path="res://themes/new_theme.tres" id="1_gqfj1"]
 [ext_resource type="Script" uid="uid://b0wykdryvqmi4" path="res://scripts/screens/formulas_screen.gd" id="2_r8gaf"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="3_f6t1q"]
 
@@ -12,7 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
-theme = ExtResource("1_gqfj1")
 script = ExtResource("2_r8gaf")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

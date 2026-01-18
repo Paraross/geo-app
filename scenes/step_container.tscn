@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgqo4sudg00se"]
+[gd_scene load_steps=3 format=3 uid="uid://bgqo4sudg00se"]
 
-[ext_resource type="Theme" uid="uid://djv8k6x7m5yp3" path="res://themes/new_theme.tres" id="1_iqp5b"]
 [ext_resource type="Script" uid="uid://d2t1hej843f7a" path="res://scripts/step_container.gd" id="2_ygrkf"]
 [ext_resource type="PackedScene" uid="uid://cu2mkxrb13wyk" path="res://scenes/tip_button.tscn" id="3_f8b1s"]
 
 [node name="StepContainer" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
-theme = ExtResource("1_iqp5b")
 script = ExtResource("2_ygrkf")
 
 [node name="TitleHBox" type="HBoxContainer" parent="."]

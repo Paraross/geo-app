@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bugepp7ityxgx"]
+[gd_scene load_steps=9 format=3 uid="uid://bugepp7ityxgx"]
 
 [ext_resource type="Script" uid="uid://0bsk03gjsmpv" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://f2wobln3gv8g" path="res://scenes/screens/task_screen.tscn" id="3_eb6dy"]
 [ext_resource type="Script" uid="uid://cbvp3d0of5sdd" path="res://scripts/screens/settings_screen.gd" id="4_o6xl0"]
-[ext_resource type="Theme" uid="uid://djv8k6x7m5yp3" path="res://themes/new_theme.tres" id="5_tasktheme"]
 [ext_resource type="PackedScene" uid="uid://clgtlovxvmm04" path="res://scenes/screens/task_filter_screen.tscn" id="6_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dbpmn1rgceibd" path="res://scenes/screens/playground_screen.tscn" id="7_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dxd3v5u5weei3" path="res://scenes/screens/main_menu_screen.tscn" id="9_85g3d"]
@@ -17,7 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("5_tasktheme")
 script = ExtResource("1_ig7tw")
 
 [node name="Background" type="ColorRect" parent="."]

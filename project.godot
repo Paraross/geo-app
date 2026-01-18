@@ -43,6 +43,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="GeoApp"
 
+[gui]
+
+theme/custom="uid://djv8k6x7m5yp3"
+
 [input]
 
 camera_up={
