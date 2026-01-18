@@ -28,3 +28,7 @@ text = "Solve tasks"
 [node name="PlaygroundButton" type="Button" parent="PanelContainer/TopBarHBox"]
 layout_mode = 2
 text = "Playground"
+
+[node name="SettingsButton" type="Button" parent="PanelContainer/TopBarHBox"]
+layout_mode = 2
+text = "Settings"

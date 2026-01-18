@@ -10,6 +10,7 @@ var screen: Screen
 @onready var tasks_button: Button = top_bar.get_node("TasksButton")
 @onready var explore_button: Button = top_bar.get_node("ExploreButton")
 @onready var playground_button: Button = top_bar.get_node("PlaygroundButton")
+@onready var settings_button: Button = top_bar.get_node("SettingsButton")
 
 
 func _ready() -> void:
@@ -37,3 +38,4 @@ func connect_signals() -> void:
 	tasks_button.pressed.connect(main.go_to_task_filter)
 	explore_button.pressed.connect(main.go_to_explore)
 	playground_button.pressed.connect(main.go_to_playground)
+	settings_button.pressed.connect(main.go_to_settings)
