@@ -1,9 +1,6 @@
 class_name PolyhedronEnvironment
 extends FigureEnvironment
 
-# TODO:
-# popup on vertex click - for removing vertices, etc
-
 @onready var polyhedron: Polyhedron:
 	get:
 		if polyhedron == null:

@@ -36,7 +36,7 @@ stretch = true
 [node name="ShapeViewport" type="SubViewport" parent="HBoxContainer/ShapeViewportContainer"]
 own_world_3d = true
 handle_input_locally = false
-size = Vector2i(958, 1080)
+size = Vector2i(954, 1080)
 render_target_update_mode = 4
 
 [node name="PolyhedronEnvironment" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_vs2of")]
@@ -97,6 +97,10 @@ text = "Vertices"
 visible = false
 layout_mode = 2
 
+[node name="VertexVisibilityButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
+layout_mode = 2
+text = "Show labels"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -137,10 +141,10 @@ initial_position = 2
 size = Vector2i(415, 100)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 411.0
-offset_bottom = 96.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 477.0
+offset_bottom = 104.0
 
 [node name="Label" type="Label" parent="Popup/VBoxContainer"]
 layout_mode = 2
@@ -176,6 +180,7 @@ use_native_dialog = true
 
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/PredefinedHBox/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/FromFileHBox/FromFileButton" to="." method="_on_from_file_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/HBoxContainer/VertexVisibilityButton" to="." method="_on_vertex_visibility_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/NewVertexButton" to="." method="_on_new_vertex_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/SaveToFileButton" to="." method="_on_save_to_file_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/CreatePolyhedronButton" to="." method="_on_create_polyhedron_button_pressed"]

@@ -1,6 +1,8 @@
 class_name Polyhedron
 extends Figure
 
+signal vertex_sphere_clicked(index: int)
+
 var vertex_spheres: Array[VertexSphere]
 var edge_cylinders: Array[Cylinder]
 
@@ -119,6 +121,7 @@ func create_vertex_spheres(vertex_names: PackedStringArray = []) -> void:
 			label_component.text = "%s\n%s" % [vertex_sphere.vertex_name, vertex_sphere.position]
 
 		vertex_sphere.clicked.connect(update_label)
+		vertex_sphere.clicked.connect(func() -> void: vertex_sphere_clicked.emit(i))
 		vertex_sphere.properties_changed.connect(update_label)
 
 
@@ -127,6 +130,10 @@ func set_vertex_spheres_transform() -> void:
 		var vertex_position := vertices[i]
 		var vertex_mesh := vertex_spheres[i]
 		vertex_mesh.position = vertex_position
+
+
+func is_any_vertex_label_visible() -> bool:
+	return vertex_spheres.any(func(vs: VertexSphere) -> bool: return vs.is_label_visible())
 
 
 func create_edge_cylinders() -> void:

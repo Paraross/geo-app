@@ -32,6 +32,8 @@ var save_file_content: String
 @onready var new_vertex_button: Button = right_vbox.get_node("NewVertexButton")
 
 @onready var sync_warning_label: Label = right_vbox.get_node("HBoxContainer/SyncWarningLabel")
+@onready var vertex_visibility_button: Button = right_vbox.get_node("HBoxContainer/VertexVisibilityButton") 
+
 @onready var create_polyhedron_button: Button = right_vbox.get_node("CreatePolyhedronButton")
 
 @onready var popup: PopupPanel = $Popup
@@ -44,6 +46,11 @@ func _ready() -> void:
 	for shape in SHAPE_OPTIONS:
 		shape_button.add_item(shape)
 	shape_button.selected = 0
+
+	polyhedron_environment.polyhedron.vertex_sphere_clicked.connect(
+		func(_index: int) -> void:
+			update_vertex_visibility_button()
+	)
 
 
 func on_entered() -> void:
@@ -192,6 +199,7 @@ func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> bool:
 	polyhedron.update_vertices(vertex_names)
 
 	update_create_polyhedron_button()
+	update_vertex_visibility_button()
 
 	return true
 
@@ -200,6 +208,13 @@ func update_vertex_name(new_name: String, index: int) -> void:
 	print("%s. name changed to %s" % [index, new_name])
 	var polyhedron := polyhedron_environment.polyhedron
 	polyhedron.vertex_spheres[index].vertex_name = new_name
+
+
+func update_vertex_visibility_button() -> void:
+	if polyhedron_environment.polyhedron.is_any_vertex_label_visible():
+		vertex_visibility_button.text = "Hide labels"
+	else:
+		vertex_visibility_button.text = "Show labels"
 
 
 func _on_new_vertex_button_pressed() -> void:
@@ -294,3 +309,11 @@ func _on_load_file_dialog_file_selected(path: String) -> void:
 		i += 1
 
 	create_polyhedron_from_vertices(vertices)
+
+
+func _on_vertex_visibility_button_pressed() -> void:
+	var polyhedron := polyhedron_environment.polyhedron
+	var is_any_label_visible := polyhedron.is_any_vertex_label_visible()
+	for vertex_sphere in polyhedron.vertex_spheres:
+		vertex_sphere.label_visibility_requested.emit(not is_any_label_visible)
+	update_vertex_visibility_button()

@@ -5,6 +5,8 @@ signal properties_changed
 signal hover_started
 signal hover_ended
 signal clicked
+@warning_ignore("unused_signal")
+signal label_visibility_requested(visible: bool)
 
 @export var hl_material: Material = preload("res://assets/highlight_material.tres")
 

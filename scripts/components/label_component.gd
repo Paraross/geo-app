@@ -11,7 +11,12 @@ func _ready() -> void:
 
 
 func connect_signals() -> void:
+	figure.label_visibility_requested.connect(set_visible)
 	figure.clicked.connect(toggle_visibility)
+
+
+func make_invisible() -> void:
+	visible = false
 
 
 func toggle_visibility() -> void:
