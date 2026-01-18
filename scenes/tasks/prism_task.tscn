@@ -1,9 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://30u4lhd14484"]
 
 [ext_resource type="Script" uid="uid://bbypdqk6wudjv" path="res://scripts/tasks/prism_task.gd" id="1_1cdr6"]
-[ext_resource type="PackedScene" uid="uid://bc21mb02ols0s" path="res://scenes/figures/prism.tscn" id="2_6ul3m"]
+[ext_resource type="PackedScene" uid="uid://cba5qls8btels" path="res://scenes/tasks/base/prism_task_base.tscn" id="1_6ul3m"]
 
-[node name="PrismTask" type="Node3D"]
+[node name="PrismTask" instance=ExtResource("1_6ul3m")]
 script = ExtResource("1_1cdr6")
-
-[node name="Prism" parent="." instance=ExtResource("2_6ul3m")]
