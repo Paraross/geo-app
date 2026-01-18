@@ -19,6 +19,7 @@ func _ready() -> void:
 
 
 func on_entered() -> void:
+	set_top_bar_button_disabled()
 	screen.on_entered()
 
 
@@ -31,6 +32,24 @@ func find_and_set_screen() -> void:
 		if child is Screen:
 			screen = child
 			break
+
+
+func set_top_bar_button_disabled() -> void:
+	# bad code
+	tasks_button.disabled = false
+	explore_button.disabled = false
+	playground_button.disabled = false
+	settings_button.disabled = false
+
+	match self:
+		main.task_filter_screen:
+			tasks_button.disabled = true
+		main.formulas_screen:
+			explore_button.disabled = true
+		main.playground_screen:
+			playground_button.disabled = true
+		main.settings_screen:
+			settings_button.disabled = true
 
 
 func connect_signals() -> void:
