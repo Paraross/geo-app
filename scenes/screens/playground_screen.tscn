@@ -71,6 +71,7 @@ layout_mode = 2
 text = "Load"
 
 [node name="LoadLabel2" type="Label" parent="HBoxContainer/RightPanel/RightVBox"]
+visible = false
 layout_mode = 2
 text = "or"
 
@@ -83,23 +84,74 @@ text = "Load a shape from a file"
 
 [node name="FromFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
 layout_mode = 2
-text = "Load a file"
+text = "Load"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
+[node name="PropertiesHeaderLabel" type="Label" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+theme_type_variation = &"BigLabel"
+text = "Properties"
+
+[node name="PropertiesContainer" type="GridContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+columns = 2
+
+[node name="AreaLabel" type="Label" parent="HBoxContainer/RightPanel/RightVBox/PropertiesContainer"]
+layout_mode = 2
+text = "Area"
+
+[node name="AreaSpinBox" type="SpinBox" parent="HBoxContainer/RightPanel/RightVBox/PropertiesContainer"]
+layout_mode = 2
+step = 0.1
+editable = false
+
+[node name="VolumeLabel" type="Label" parent="HBoxContainer/RightPanel/RightVBox/PropertiesContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSpinBox" type="SpinBox" parent="HBoxContainer/RightPanel/RightVBox/PropertiesContainer"]
+layout_mode = 2
+step = 0.1
+editable = false
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+
+[node name="VerticesHeaderContainer" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer"]
 layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Vertices"
 
-[node name="SyncWarningLabel" parent="HBoxContainer/RightPanel/RightVBox/HBoxContainer" instance=ExtResource("4_uckll")]
+[node name="SyncWarningLabel" parent="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer" instance=ExtResource("4_uckll")]
 visible = false
 layout_mode = 2
 
-[node name="VertexVisibilityButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/HBoxContainer"]
+[node name="NewVertexButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Add new vertex"
+
+[node name="VertexVisibilityButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer"]
 layout_mode = 2
 text = "Show labels"
+
+[node name="SaveToFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Save to file"
+
+[node name="CreatePolyhedronButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+disabled = true
+text = "Update polyhedron"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
@@ -113,27 +165,6 @@ size_flags_vertical = 3
 
 [node name="VerticesVBox" type="VBoxContainer" parent="HBoxContainer/RightPanel/RightVBox/ScrollContainer/VBox"]
 layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightPanel/RightVBox"]
-layout_mode = 2
-
-[node name="NewVertexButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Add new vertex"
-
-[node name="SaveToFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Save to file"
-
-[node name="CreatePolyhedronButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-disabled = true
-text = "Update polyhedron"
 
 [node name="Popup" type="PopupPanel" parent="."]
 oversampling_override = 1.0
@@ -182,9 +213,9 @@ use_native_dialog = true
 
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/PredefinedHBox/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/FromFileHBox/FromFileButton" to="." method="_on_from_file_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/HBoxContainer/VertexVisibilityButton" to="." method="_on_vertex_visibility_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/NewVertexButton" to="." method="_on_new_vertex_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/SaveToFileButton" to="." method="_on_save_to_file_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/CreatePolyhedronButton" to="." method="_on_create_polyhedron_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/NewVertexButton" to="." method="_on_new_vertex_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/VertexVisibilityButton" to="." method="_on_vertex_visibility_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/SaveToFileButton" to="." method="_on_save_to_file_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/CreatePolyhedronButton" to="." method="_on_create_polyhedron_button_pressed"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
 [connection signal="file_selected" from="LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]

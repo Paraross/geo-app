@@ -29,12 +29,15 @@ var save_file_content: String
 @onready var right_vbox: VBoxContainer = $HBoxContainer/RightPanel/RightVBox
 @onready var scroll_container: ScrollContainer = $HBoxContainer/RightPanel/RightVBox/ScrollContainer
 @onready var vertices_vbox: VBoxContainer = right_vbox.get_node("ScrollContainer/VBox/VerticesVBox")
-@onready var new_vertex_button: Button = right_vbox.get_node("NewVertexButton")
 
-@onready var sync_warning_label: Label = right_vbox.get_node("HBoxContainer/SyncWarningLabel")
-@onready var vertex_visibility_button: Button = right_vbox.get_node("HBoxContainer/VertexVisibilityButton") 
+@onready var area_spin_box: SpinBox = $HBoxContainer/RightPanel/RightVBox/PropertiesContainer/AreaSpinBox
+@onready var volume_spin_box: SpinBox = $HBoxContainer/RightPanel/RightVBox/PropertiesContainer/VolumeSpinBox
 
-@onready var create_polyhedron_button: Button = right_vbox.get_node("CreatePolyhedronButton")
+@onready var sync_warning_label: Label = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/SyncWarningLabel
+@onready var new_vertex_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/NewVertexButton
+@onready var vertex_visibility_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/VertexVisibilityButton
+@onready var save_to_file_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/SaveToFileButton
+@onready var create_polyhedron_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/CreatePolyhedronButton
 
 @onready var popup: PopupPanel = $Popup
 
@@ -200,8 +203,15 @@ func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> bool:
 
 	update_create_polyhedron_button()
 	update_vertex_visibility_button()
+	update_properties_labels()
 
 	return true
+
+
+func update_properties_labels() -> void:
+	var polyhedron := polyhedron_environment.polyhedron
+	area_spin_box.value = polyhedron.area()
+	volume_spin_box.value = polyhedron.volume()
 
 
 func update_vertex_name(new_name: String, index: int) -> void:
