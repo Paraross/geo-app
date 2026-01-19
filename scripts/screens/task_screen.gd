@@ -98,7 +98,7 @@ func set_step_ui() -> void:
 		step_container.title_label.text = "%s. %s" % [i, step.title]
 		step_container.tip_button.tip_text = step.tip
 		step_container.answer_spinbox.step = 1.0 / 10.0 ** step.answer_precision_digits
-		step_container.answer_spinbox.value = step.correct_answer() # TODO: remove in final version
+		# step_container.answer_spinbox.value = step.correct_answer() # TODO: remove in final version
 
 		i += 1
 
