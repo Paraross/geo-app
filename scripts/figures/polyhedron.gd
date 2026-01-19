@@ -30,16 +30,22 @@ func _ready() -> void:
 
 func update_vertices(vertex_names: PackedStringArray) -> void:
 	clear_vertex_spheres_edge_cylinders()
-	faces_indices = Poly.extract_faces_indices(vertices)
 	create_vertex_spheres(vertex_names)
-	create_edge_cylinders()
 
+	if Poly.are_valid_polyhedron_vertices(vertices):
+		faces_indices = Poly.extract_faces_indices(vertices)
+		create_edge_cylinders()
+	
 	set_mesh()
 	set_collision_shape()
 
 
 func set_mesh() -> void:
 	if faces_indices.is_empty():
+		return
+
+	if not Poly.are_valid_polyhedron_vertices(vertices):
+		mesh_instance.mesh = null
 		return
 
 	var face_verts: Array[PackedVector3Array] = []
@@ -55,7 +61,6 @@ func set_mesh() -> void:
 
 		face_verts[i] = face_vertices
 
-	# TODO: run this only once at ready, store normalized faces, then multiply when needed
 	var flattened_faces := Poly.flatten_faces(face_verts)
 
 	var arrays := []
@@ -71,12 +76,13 @@ func set_mesh() -> void:
 
 
 func set_collision_shape() -> void:
-	if Poly.are_valid_polyhedron_vertices(vertices):
-		var cp_shape := ConvexPolygonShape3D.new()
-		cp_shape.points = vertices
-		shape = cp_shape
-	else:
+	if not Poly.are_valid_polyhedron_vertices(vertices):
 		shape = null
+		return
+
+	var cp_shape := ConvexPolygonShape3D.new()
+	cp_shape.points = vertices
+	shape = cp_shape
 
 
 func update_collision_shape() -> void:
@@ -229,6 +235,9 @@ func edges() -> Array[Edge]:
 
 
 func area() -> float:
+	if not Poly.are_valid_polyhedron_vertices(vertices):
+		return 0.0
+
 	var total_area := 0.0
 
 	for face_indices in faces_indices:
@@ -263,6 +272,9 @@ func calculate_face_area(face_indices: PackedInt32Array) -> float:
 
 # https://en.wikipedia.org/wiki/Polyhedron#Volume
 func volume() -> float:
+	if not Poly.are_valid_polyhedron_vertices(vertices):
+		return 0.0
+
 	var total_volume := 0.0
 
 	for face_indices in faces_indices:

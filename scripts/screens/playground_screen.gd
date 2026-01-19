@@ -61,6 +61,11 @@ func on_entered() -> void:
 	clear_vertex_ui_elements()
 	set_properties_spin_box_step()
 
+	polyhedron_environment.load_polyhedron()
+	update_create_polyhedron_button()
+	update_vertex_visibility_button()
+	update_properties_values()
+
 
 func on_left() -> void:
 	reset()
@@ -102,6 +107,8 @@ func add_new_vertex_ui_element(x: float, y: float, z: float, vertex_name: String
 	vertex_ui_element.y_spinbox.value_changed.connect(create_poly)
 	vertex_ui_element.z_spinbox.value_changed.connect(create_poly)
 
+	create_polyhedron_from_vertices(get_vertices_from_ui())
+
 	return vertex_ui_element
 
 
@@ -113,7 +120,7 @@ func remove_vertex_ui_element(element: VertexUiElement) -> void:
 		var vertex_ui_element := vertex_ui_elements[i]
 		vertex_ui_element.index = i
 
-	update_create_polyhedron_button()
+	create_polyhedron_from_vertices(get_vertices_from_ui())
 
 
 func clear_vertex_ui_elements() -> void:
@@ -134,7 +141,12 @@ func get_vertices_from_ui() -> PackedVector3Array:
 
 
 func are_poly_verts_equal_to_ui() -> bool:
-	return polyhedron_environment.polyhedron.vertices == get_vertices_from_ui()
+	var a := polyhedron_environment.polyhedron.vertices == get_vertices_from_ui()
+	if not a:
+		print(polyhedron_environment.polyhedron.vertices)
+		print(get_vertices_from_ui())
+
+	return a
 
 
 func get_unsynced_vertex_indices() -> Array:
@@ -151,10 +163,11 @@ func get_unsynced_vertex_indices() -> Array:
 		if ui_vertex in already_inserted:
 			unsynced_vertex_indices.append(vertex_ui_element.index)
 			issues.append(VertexIssue.DUPLICATE)
-		elif ui_vertex in polyhedron_vertices:
-			already_inserted.append(vertex_ui_element.get_vertex())
+			continue
 
-		if ui_vertex not in polyhedron_vertices:
+		if ui_vertex in polyhedron_vertices:
+			already_inserted.append(ui_vertex)
+		else:
 			unsynced_vertex_indices.append(vertex_ui_element.index)
 			issues.append(VertexIssue.NOT_IN_POLY)
 
@@ -190,9 +203,9 @@ func update_create_polyhedron_button() -> void:
 
 
 func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> bool:
+	var succeeded := true
 	if not Poly.are_valid_polyhedron_vertices(vertices):
-		update_create_polyhedron_button()
-		return false
+		succeeded = false
 
 	var vertex_names: PackedStringArray
 	vertex_names.resize(vertex_ui_elements.size())
@@ -207,7 +220,7 @@ func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> bool:
 	update_vertex_visibility_button()
 	update_properties_values()
 
-	return true
+	return succeeded
 
 
 func update_properties_values() -> void:
@@ -237,7 +250,6 @@ func update_vertex_visibility_button() -> void:
 
 func _on_new_vertex_button_pressed() -> void:
 	add_new_vertex_ui_element(0.0, 0.0, 0.0)
-	update_create_polyhedron_button()
 
 
 func _on_create_polyhedron_button_pressed() -> void:
@@ -245,9 +257,9 @@ func _on_create_polyhedron_button_pressed() -> void:
 
 	if vertices.is_empty():
 		# reset to default
-		polyhedron_environment.unload_polyhedron()
-		polyhedron_environment.load_polyhedron()
-		update_create_polyhedron_button()
+		# polyhedron_environment.unload_polyhedron()
+		# polyhedron_environment.load_polyhedron()
+		create_polyhedron_from_vertices(vertices)
 		update_vertex_visibility_button()
 		update_properties_values()
 		return
