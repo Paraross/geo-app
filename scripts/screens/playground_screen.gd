@@ -58,6 +58,7 @@ func _ready() -> void:
 
 func on_entered() -> void:
 	clear_vertex_ui_elements()
+	set_properties_spin_box_step()
 
 
 func on_left() -> void:
@@ -203,15 +204,21 @@ func create_polyhedron_from_vertices(vertices: PackedVector3Array) -> bool:
 
 	update_create_polyhedron_button()
 	update_vertex_visibility_button()
-	update_properties_labels()
+	update_properties_values()
 
 	return true
 
 
-func update_properties_labels() -> void:
+func update_properties_values() -> void:
 	var polyhedron := polyhedron_environment.polyhedron
 	area_spin_box.value = polyhedron.area()
 	volume_spin_box.value = polyhedron.volume()
+
+
+func set_properties_spin_box_step() -> void:
+	var step := 1.0 / 10.0 ** (Settings.coordinate_precision + 1)
+	area_spin_box.step = step
+	volume_spin_box.step = step
 
 
 func update_vertex_name(new_name: String, index: int) -> void:
