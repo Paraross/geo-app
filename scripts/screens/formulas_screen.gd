@@ -6,10 +6,11 @@ extends Screen
 @onready var medium_task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/MediumTaskList
 @onready var hard_task_list: ItemList = $PanelContainer/HBox/TaskFilterVBox/HardTaskList
 
+@onready var description_label: RichTextLabel = $PanelContainer/HBox/InfoVBox/DescriptionLabel
 @onready var steps_vbox: Container = $PanelContainer/HBox/InfoVBox/StepsScroll/StepsVBox
 
 @onready var task_environment: TaskEnvironment = $PanelContainer/HBox/TaskVBox/SubViewportContainer/SubViewport/TaskEnvironment
-@onready var task_data_grid: GridContainer = $PanelContainer/HBox/TaskVBox/TaskDataGrid
+@onready var task_data_grid: GridContainer = $PanelContainer/HBox/InfoVBox/TaskDataGrid
 
 
 func on_entered() -> void:
@@ -57,6 +58,21 @@ func fill_task_lists_if(condition: Callable) -> void:
 				hard_task_list.add_item(task_name)
 
 
+func set_description_label() -> void:
+	var task := task_environment.task
+	var task_values := task.values()
+
+	var values: Dictionary = { }
+	for value_name in task_values:
+		var task_value := task_values[value_name]
+		if task_value.precision_digits == 0:
+			values[value_name] = task_value.value as int
+		else:
+			values[value_name] = task_value.value
+
+	description_label.text = task.description().format(values)
+
+
 func set_step_ui() -> void:
 	for child in steps_vbox.get_children():
 		child.queue_free()
@@ -100,6 +116,7 @@ func fill_task_data_grid() -> void:
 		var a := func(value: float) -> void:
 			value_value.value = value
 			update_step_ui()
+			set_description_label()
 
 		var spin_box := SpinBox.new()
 		spin_box.step = 1.0 / 10.0 ** value_value.precision_digits
@@ -118,6 +135,7 @@ func on_task_list_item_selected(task_list: ItemList, index: int) -> void:
 
 	fill_task_data_grid()
 	set_step_ui()
+	set_description_label()
 
 
 func _on_task_filter_edit_text_changed(new_text: String) -> void:
