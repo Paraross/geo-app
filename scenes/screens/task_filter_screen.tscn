@@ -53,6 +53,7 @@ auto_height = true
 
 [node name="StartButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Please select a task"
 disabled = true
 text = "Start"
 
@@ -61,10 +62,10 @@ oversampling_override = 1.0
 initial_position = 2
 
 [node name="VBox" type="VBoxContainer" parent="TaskSettingsPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 80.0
 
 [node name="Label" type="Label" parent="TaskSettingsPopup/VBox"]
 layout_mode = 2

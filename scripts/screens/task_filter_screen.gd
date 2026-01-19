@@ -58,11 +58,13 @@ func selected_task() -> Task:
 
 func _on_difficulty_list_item_selected(_index: int) -> void:
 	start_button.disabled = true
+	start_button.tooltip_text = "Please select a task"
 	fill_task_list()
 
 
 func _on_task_list_item_selected(_index: int) -> void:
 	start_button.disabled = false
+	start_button.tooltip_text = ""
 
 
 func _on_start_button_pressed() -> void:
