@@ -112,7 +112,7 @@ func create_vertex_spheres(vertex_names: PackedStringArray = []) -> void:
 		vertex_sphere.mesh_instance.mesh = vertex_sphere_mesh
 
 		vertex_sphere.position = vertex_position
-		vertex_sphere.radius = 0.05
+		vertex_sphere.radius = 0.0625
 
 		if use_vertex_names:
 			vertex_sphere.vertex_name = vertex_names[i]
