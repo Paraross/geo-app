@@ -38,7 +38,7 @@ layout_mode = 2
 [node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBox"]
 layout_mode = 2
 theme_type_variation = &"MainMenuLabel"
-text = "Main Menu"
+text = "GeoApp"
 horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBox"]
