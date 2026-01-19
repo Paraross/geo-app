@@ -4,8 +4,8 @@ extends HBoxContainer
 signal vertex_name_changed(new_name: String, index: int)
 
 const ISSUE_LABEL_MAP: Dictionary[PlaygroundScreen.VertexIssue, String] = {
-	PlaygroundScreen.VertexIssue.DUPLICATE: "Duplicate vertex.",
-	PlaygroundScreen.VertexIssue.NOT_IN_POLY: "Not in polyhedron.",
+	PlaygroundScreen.VertexIssue.DUPLICATE: "Duplicate vertex",
+	PlaygroundScreen.VertexIssue.NOT_IN_POLY: "Not in polyhedron",
 }
 
 const ISSUE_TOOLTIP_MAP: Dictionary[PlaygroundScreen.VertexIssue, String] = {
