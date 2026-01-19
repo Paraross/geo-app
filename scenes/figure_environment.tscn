@@ -55,6 +55,7 @@ target_position = Vector3(0, 0, -10)
 collide_with_areas = true
 
 [node name="CenterSphere" parent="." instance=ExtResource("3_b4a5n")]
+visible = false
 
 [node name="CenterLabel" type="Label3D" parent="CenterSphere"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)

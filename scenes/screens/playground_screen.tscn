@@ -167,13 +167,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Save to file"
 
-[node name="CreatePolyhedronButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-disabled = true
-text = "Update polyhedron"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -195,8 +188,8 @@ size = Vector2i(415, 100)
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 477.0
-offset_bottom = 104.0
+offset_right = 395.0
+offset_bottom = 80.0
 
 [node name="Label" type="Label" parent="Popup/VBoxContainer"]
 layout_mode = 2
@@ -237,6 +230,5 @@ use_native_dialog = true
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/NewVertexButton" to="." method="_on_new_vertex_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/VertexVisibilityButton" to="." method="_on_vertex_visibility_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/SaveToFileButton" to="." method="_on_save_to_file_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/CreatePolyhedronButton" to="." method="_on_create_polyhedron_button_pressed"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
 [connection signal="file_selected" from="LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]

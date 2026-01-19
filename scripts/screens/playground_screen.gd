@@ -38,7 +38,6 @@ var save_file_content: String
 @onready var new_vertex_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/NewVertexButton
 @onready var vertex_visibility_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/VertexVisibilityButton
 @onready var save_to_file_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/SaveToFileButton
-@onready var create_polyhedron_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/CreatePolyhedronButton
 
 @onready var popup: PopupPanel = $Popup
 
@@ -177,12 +176,8 @@ func get_unsynced_vertex_indices() -> Array:
 
 func update_create_polyhedron_button() -> void:
 	if are_poly_verts_equal_to_ui():
-		create_polyhedron_button.disabled = true
-		create_polyhedron_button.tooltip_text = "The vertices of the diplayed polyhedron are the same as the vertices on the right."
 		sync_warning_label.visible = false
 	else:
-		create_polyhedron_button.disabled = false
-		create_polyhedron_button.tooltip_text = "The vertices of the diplayed polyhedron are different from the vertices on the right.\nPress to update."
 		sync_warning_label.visible = true
 
 	var gowno := get_unsynced_vertex_indices()
@@ -250,24 +245,6 @@ func update_vertex_visibility_button() -> void:
 
 func _on_new_vertex_button_pressed() -> void:
 	add_new_vertex_ui_element(0.0, 0.0, 0.0)
-
-
-func _on_create_polyhedron_button_pressed() -> void:
-	var vertices := get_vertices_from_ui()
-
-	if vertices.is_empty():
-		# reset to default
-		# polyhedron_environment.unload_polyhedron()
-		# polyhedron_environment.load_polyhedron()
-		create_polyhedron_from_vertices(vertices)
-		update_vertex_visibility_button()
-		update_properties_values()
-		return
-
-	var was_successful := create_polyhedron_from_vertices(vertices)
-
-	if not was_successful:
-		popup.show()
 
 
 func _on_load_button_pressed() -> void:
