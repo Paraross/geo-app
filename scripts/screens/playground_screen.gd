@@ -242,6 +242,16 @@ func _on_new_vertex_button_pressed() -> void:
 
 func _on_create_polyhedron_button_pressed() -> void:
 	var vertices := get_vertices_from_ui()
+
+	if vertices.is_empty():
+		# reset to default
+		polyhedron_environment.unload_polyhedron()
+		polyhedron_environment.load_polyhedron()
+		update_create_polyhedron_button()
+		update_vertex_visibility_button()
+		update_properties_values()
+		return
+
 	var was_successful := create_polyhedron_from_vertices(vertices)
 
 	if not was_successful:
