@@ -56,7 +56,35 @@ layout_mode = 2
 theme_type_variation = &"BigLabel"
 text = "Load vertices"
 
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+layout_mode = 2
+columns = 2
+
+[node name="LoadPredefinedLabel" type="Label" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
+layout_mode = 2
+text = "Load a predefined shape"
+
+[node name="PredefinedHBox" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
+layout_mode = 2
+
+[node name="ShapeButton" type="OptionButton" parent="HBoxContainer/RightPanel/RightVBox/GridContainer/PredefinedHBox"]
+layout_mode = 2
+
+[node name="LoadButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/GridContainer/PredefinedHBox"]
+layout_mode = 2
+text = "Load"
+
+[node name="LoadFromFileLabel" type="Label" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
+layout_mode = 2
+text = "Load a shape from a file"
+
+[node name="FromFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Load"
+
 [node name="PredefinedHBox" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
@@ -66,25 +94,18 @@ text = "Load a predefined shape"
 [node name="ShapeButton" type="OptionButton" parent="HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
 layout_mode = 2
 
-[node name="LoadButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
-layout_mode = 2
-text = "Load"
-
 [node name="LoadLabel2" type="Label" parent="HBoxContainer/RightPanel/RightVBox"]
 visible = false
 layout_mode = 2
 text = "or"
 
 [node name="FromFileHBox" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
 layout_mode = 2
 text = "Load a shape from a file"
-
-[node name="FromFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
-layout_mode = 2
-text = "Load"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
@@ -211,8 +232,8 @@ access = 2
 filters = PackedStringArray("*.poly")
 use_native_dialog = true
 
-[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/PredefinedHBox/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/FromFileHBox/FromFileButton" to="." method="_on_from_file_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/GridContainer/PredefinedHBox/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/GridContainer/FromFileButton" to="." method="_on_from_file_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/NewVertexButton" to="." method="_on_new_vertex_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/VertexVisibilityButton" to="." method="_on_vertex_visibility_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/SaveToFileButton" to="." method="_on_save_to_file_button_pressed"]

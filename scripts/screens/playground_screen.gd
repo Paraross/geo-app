@@ -24,7 +24,8 @@ var save_file_content: String
 
 @onready var polyhedron_environment: PolyhedronEnvironment = $HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment
 
-@onready var shape_button: OptionButton = $HBoxContainer/RightPanel/RightVBox/PredefinedHBox/ShapeButton
+#@onready var shape_button: OptionButton = $HBoxContainer/RightPanel/RightVBox/PredefinedHBox/ShapeButton
+@onready var shape_button: OptionButton = $HBoxContainer/RightPanel/RightVBox/GridContainer/PredefinedHBox/ShapeButton
 
 @onready var right_vbox: VBoxContainer = $HBoxContainer/RightPanel/RightVBox
 @onready var scroll_container: ScrollContainer = $HBoxContainer/RightPanel/RightVBox/ScrollContainer
