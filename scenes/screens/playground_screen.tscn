@@ -62,7 +62,7 @@ columns = 2
 
 [node name="LoadPredefinedLabel" type="Label" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
 layout_mode = 2
-text = "Load a predefined shape"
+text = "Load a polyhedron"
 
 [node name="PredefinedHBox" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
 layout_mode = 2
@@ -76,7 +76,7 @@ text = "Load"
 
 [node name="LoadFromFileLabel" type="Label" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
 layout_mode = 2
-text = "Load a shape from a file"
+text = "Load a polyhedron from a file"
 
 [node name="FromFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
 layout_mode = 2
