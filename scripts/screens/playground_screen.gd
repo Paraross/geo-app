@@ -24,7 +24,6 @@ var save_file_content: String
 
 @onready var polyhedron_environment: PolyhedronEnvironment = $HBoxContainer/ShapeViewportContainer/ShapeViewport/PolyhedronEnvironment
 
-#@onready var shape_button: OptionButton = $HBoxContainer/RightPanel/RightVBox/PredefinedHBox/ShapeButton
 @onready var shape_button: OptionButton = $HBoxContainer/RightPanel/RightVBox/GridContainer/PredefinedHBox/ShapeButton
 
 @onready var right_vbox: VBoxContainer = $HBoxContainer/RightPanel/RightVBox
@@ -139,15 +138,6 @@ func get_vertices_from_ui() -> PackedVector3Array:
 	return vertices
 
 
-func are_poly_verts_equal_to_ui() -> bool:
-	var a := polyhedron_environment.polyhedron.vertices == get_vertices_from_ui()
-	if not a:
-		print(polyhedron_environment.polyhedron.vertices)
-		print(get_vertices_from_ui())
-
-	return a
-
-
 func get_unsynced_vertex_indices() -> Array:
 	var unsynced_vertex_indices := PackedInt32Array()
 	var issues: Array[VertexIssue] = []
@@ -175,10 +165,11 @@ func get_unsynced_vertex_indices() -> Array:
 
 
 func update_create_polyhedron_button() -> void:
-	if are_poly_verts_equal_to_ui():
+	var vertices := polyhedron_environment.polyhedron.vertices
+	if vertices.is_empty():
 		sync_warning_label.visible = false
 	else:
-		sync_warning_label.visible = true
+		sync_warning_label.visible = not Poly.are_valid_polyhedron_vertices(vertices)
 
 	var gowno := get_unsynced_vertex_indices()
 	var unsynced_verts: PackedInt32Array = gowno[0]

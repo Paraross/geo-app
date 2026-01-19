@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://s2d7puc614cm"]
 
 [node name="SyncWarningLabel" type="Label"]
-tooltip_text = "The vertices of the diplayed polyhedron are different from the vertices on the right.
-Press the \"Update polyhedron\" button at the bottom to update."
+tooltip_text = "A polyhedron cannot be created from those vertices."
 mouse_filter = 1
 theme_type_variation = &"WarningLabel"
 text = "!"
