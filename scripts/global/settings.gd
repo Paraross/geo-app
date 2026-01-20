@@ -40,12 +40,8 @@ func load_settings_from_file() -> void:
 	var config := ConfigFile.new()
 	var err := config.load(CONFIG_FILE_PATH)
 
-	if err == Error.ERR_FILE_NOT_FOUND:
-		save_settings_to_file()
-		return
-
 	if err != OK:
-		print("error opening settings file: %s" % err)
+		save_settings_to_file()
 		return
 
 	for setting_name in settings:
