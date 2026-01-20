@@ -46,4 +46,4 @@ icon = ExtResource("2_hsqwk")
 visible = false
 layout_mode = 2
 
-[connection signal="text_submitted" from="NameLineEdit" to="." method="_on_name_line_edit_text_submitted"]
+[connection signal="text_changed" from="NameLineEdit" to="." method="_on_name_line_edit_text_changed"]

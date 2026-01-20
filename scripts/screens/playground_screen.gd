@@ -222,7 +222,6 @@ func set_properties_spin_box_step() -> void:
 
 
 func update_vertex_name(new_name: String, index: int) -> void:
-	print("%s. name changed to %s" % [index, new_name])
 	var polyhedron := polyhedron_environment.polyhedron
 	polyhedron.vertex_spheres[index].vertex_name = new_name
 

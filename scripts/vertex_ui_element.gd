@@ -50,5 +50,5 @@ func show_sync_warning_label_for_issue(issue: PlaygroundScreen.VertexIssue) -> v
 	sync_warning_label.visible = true
 
 
-func _on_name_line_edit_text_submitted(new_text: String) -> void:
+func _on_name_line_edit_text_changed(new_text: String) -> void:
 	vertex_name_changed.emit(new_text, index)
