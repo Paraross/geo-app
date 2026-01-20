@@ -44,7 +44,7 @@ environment = SubResource("Environment_ig7tw")
 script = ExtResource("1_yqeqd")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 2.5, 2.5)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 5, 5)
 rotation_edit_mode = 1
 script = ExtResource("2_iqh5t")
 
