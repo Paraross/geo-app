@@ -38,7 +38,8 @@ var save_file_content: String
 @onready var vertex_visibility_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/VertexVisibilityButton
 @onready var save_to_file_button: Button = $HBoxContainer/RightPanel/RightVBox/VerticesHeaderContainer/SaveToFileButton
 
-@onready var popup: PopupPanel = $Popup
+@onready var poly_load_error_popup: PopupPanel = $PolyLoadErrorPopup
+@onready var error_label: Label = $PolyLoadErrorPopup/ErrorLabel
 
 @onready var save_file_dialog: FileDialog = $SaveFileDialog
 @onready var load_file_dialog: FileDialog = $LoadFileDialog
@@ -277,25 +278,79 @@ func _on_save_file_dialog_file_selected(path: String) -> void:
 	var save_file := FileAccess.open(path, FileAccess.WRITE)
 
 	if save_file == null:
-		print("opening file %s failed", path)
+		show_error_popup_with_message(true, "could not open file %s" % path)
 		return
 
 	var is_successful := save_file.store_line(save_file_content)
 
 	if not is_successful:
-		print("saving to file %s failed" % path)
+		show_error_popup_with_message(true, "could not save to file %s" % path)
+
+
+func show_error_popup_with_message(save: bool, message: String) -> void:
+	if save:
+		error_label.text = "Failed to save file: %s" % message
+	else:
+		error_label.text = "Failed to load file: %s" % message
+
+	poly_load_error_popup.size = error_label.get_combined_minimum_size()
+	poly_load_error_popup.position = get_window().size / 2.0
+	poly_load_error_popup.show()
 
 
 func _on_load_file_dialog_file_selected(path: String) -> void:
 	var vertices_file := FileAccess.open(path, FileAccess.READ)
 
 	if vertices_file == null:
-		print("opening file %s failed", path)
+		show_error_popup_with_message(false, "could not open file %s" % path)
 		return
 
 	var file_content := vertices_file.get_as_text()
 
-	var parsed_vertices: Array = JSON.parse_string(file_content)
+	var parsed_vertices_variant: Variant = JSON.parse_string(file_content)
+
+	if parsed_vertices_variant == null:
+		show_error_popup_with_message(false, "the file has invalid format")
+		return
+
+	if not parsed_vertices_variant is Array:
+		show_error_popup_with_message(false, "the file has invalid format")
+		return
+
+	var parsed_vertices: Array = parsed_vertices_variant
+
+	if parsed_vertices.is_empty():
+		show_error_popup_with_message(false, "the file must contain at least 1 vertex")
+		return
+
+	for i in range(parsed_vertices.size()):
+		var vertex_variant: Variant = parsed_vertices[i]
+
+		if not vertex_variant is Dictionary:
+			show_error_popup_with_message(false, "vertex at index %d is improperly formatted" % i)
+			return
+
+		var vertex: Dictionary = vertex_variant
+
+		if not vertex.has("name") or not vertex.has("x") or not vertex.has("y") or not vertex.has("z"):
+			show_error_popup_with_message(false, "vertex at index %d is missing required fields (name, x, y, z)" % i)
+			return
+
+		if not vertex["name"] is String:
+			show_error_popup_with_message(false, "vertex at index %d has invalid name" % i)
+			return
+
+		if not (vertex["x"] is float or vertex["x"] is int):
+			show_error_popup_with_message(false, "vertex at index %d has invalid X coordinate" % i)
+			return
+
+		if not (vertex["y"] is float or vertex["y"] is int):
+			show_error_popup_with_message(false, "vertex at index %d has invalid Y coordinate" % i)
+			return
+
+		if not (vertex["z"] is float or vertex["z"] is int):
+			show_error_popup_with_message(false, "vertex at index %d has invalid Z coordinate" % i)
+			return
 
 	clear_vertex_ui_elements()
 

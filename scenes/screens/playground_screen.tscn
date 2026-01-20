@@ -183,13 +183,13 @@ layout_mode = 2
 [node name="Popup" type="PopupPanel" parent="."]
 oversampling_override = 1.0
 initial_position = 2
-size = Vector2i(415, 100)
+size = Vector2i(513, 140)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 395.0
-offset_bottom = 80.0
+offset_right = 493.0
+offset_bottom = 120.0
 
 [node name="Label" type="Label" parent="Popup/VBoxContainer"]
 layout_mode = 2
@@ -210,6 +210,17 @@ layout_mode = 2
 [node name="Label3" type="Label" parent="Popup/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "."
+
+[node name="PolyLoadErrorPopup" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(357, 100)
+
+[node name="ErrorLabel" type="Label" parent="PolyLoadErrorPopup"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 337.0
+offset_bottom = 80.0
 
 [node name="SaveFileDialog" type="FileDialog" parent="."]
 initial_position = 2
