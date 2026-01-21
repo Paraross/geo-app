@@ -19,14 +19,14 @@ The length of the cube's side is [b]{Side}[/b].
 func steps() -> Array[Step]:
 	return [
 		Step.new(
-			"Calculate face area",
-			"A cube face is a square, so its area is side × side",
+			"Calculate area of one face",
+			"A cube face is a square, so its area is side * side",
 			0,
 			cube.face_area,
 		),
 		Step.new(
 			"Calculate total area",
-			"A cube's total area is the sum of all its 6 face areas",
+			"A cube has 6 faces",
 			0,
 			cube.area,
 		),

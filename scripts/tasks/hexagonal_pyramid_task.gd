@@ -10,11 +10,11 @@ var height: TaskFloatValue = TaskFloatValue.with_min_max(1.0, 5.0) \
 
 
 func difficulty() -> Global.TaskDifficulty:
-	return Global.TaskDifficulty.MEDIUM
+	return Global.TaskDifficulty.HARD
 
 
 func description() -> String:
-	return """A pyramid is given. The pyramid has a hexagonal base.
+	return """A pyramid is given. The base of the pyramid is a regular hexagon.
 The length of the base's side is [b]{Base side length}[/b].
 The height of the pyramid is [b]{Height}[/b].
 """
@@ -30,14 +30,20 @@ func values() -> Dictionary[String, TaskFloatValue]:
 func steps() -> Array[Step]:
 	return [
 		Step.new(
+			"Calculate area of one triangle of the hexagonal base",
+			"Each triangle of a regular hexagon is an equilateral triangle",
+			1,
+			pyramid.base_triangle_area,
+		),
+		Step.new(
 			"Calculate base area",
-			"A cube's area is side × side",
-			0,
+			"The hexagonal base consists of 6 triangles",
+			1,
 			pyramid.base_area,
 		),
 		Step.new(
 			"Calculate volume",
-			"A prism's volume is base area × height ÷ 3",
+			"A pyramid's volume is base area * height / 3",
 			1,
 			pyramid.volume,
 		),

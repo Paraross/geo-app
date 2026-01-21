@@ -16,26 +16,32 @@ func steps() -> Array[Step]:
 	return [
 		Step.new(
 			"Calculate base area",
-			"A cube's area is side × side",
+			"The base is a square",
 			0,
 			pyramid.base_area,
 		),
 		Step.new(
 			"Calculate height of a side triangle",
-			"TODO",
+			"The Pythagorean theorem can be used for this",
 			1,
 			pyramid.lateral_triangle_height,
 		),
 		Step.new(
 			"Calculate area of one side triangle",
-			"TODO",
+			"A side triangle is a triangle whose base is the same as the side length of the pyramid's base",
 			1,
 			pyramid.lateral_triangle_area,
 		),
 		Step.new(
 			"Calculate area of all side triangles",
-			"TODO",
+			"There are 4 side triangles",
 			1,
 			func() -> float: return 4.0 * pyramid.lateral_triangle_area(),
+		),
+		Step.new(
+			"Calculate total area of the pyramid",
+			"The total area is the sum of the base area and the area of the side triangles",
+			1,
+			pyramid.area,
 		),
 	]

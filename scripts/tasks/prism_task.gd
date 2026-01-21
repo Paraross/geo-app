@@ -9,7 +9,7 @@ var height: TaskFloatValue = TaskFloatValue.with_min_max(1.0, 5.0) \
 
 
 func difficulty() -> Global.TaskDifficulty:
-	return Global.TaskDifficulty.EASY
+	return Global.TaskDifficulty.MEDIUM
 
 
 func values() -> Dictionary[String, TaskFloatValue]:

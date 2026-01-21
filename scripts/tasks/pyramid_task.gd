@@ -31,13 +31,13 @@ func steps() -> Array[Step]:
 	return [
 		Step.new(
 			"Calculate base area",
-			"A cube's area is side × side",
+			"The pyramid's area is a square",
 			0,
 			pyramid.base_area,
 		),
 		Step.new(
 			"Calculate volume",
-			"A prism's volume is base area × height ÷ 3",
+			"A prism's volume is base area * height / 3",
 			1,
 			pyramid.volume,
 		),

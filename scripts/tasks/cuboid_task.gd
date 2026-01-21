@@ -55,13 +55,13 @@ func steps() -> Array[Step]:
 		),
 		Step.new(
 			"Calculate total area",
-			"A cuboid's total area is 2 * (front area + top area + side area)",
+			"A cuboid's total area is the sum of the areas of its faces",
 			0,
 			cuboid.area,
 		),
 		Step.new(
 			"Calculate volume",
-			"A cuboid's volume is width * height * length",
+			"A cuboid's volume is the product of width, height and length",
 			0,
 			cuboid.volume,
 		),

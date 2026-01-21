@@ -31,19 +31,27 @@ func scale() -> Vector3:
 
 # correct only for a isosceles triangle
 func area() -> float:
-	var bottom_wall_area := base_base * height
-	var base_side := sqrt((base_base / 2.0) ** 2.0 + base_height ** 2.0)
-	var side_wall_area := base_side * height
-
-	return 2.0 * base_area() + 2.0 * side_wall_area + bottom_wall_area
+	return 2.0 * base_area() + 2.0 * side_wall_area() + bottom_wall_area()
 
 
 func volume() -> float:
 	return base_area() * height
 
 
+func base_side() -> float:
+	return sqrt((base_base / 2.0) ** 2.0 + base_height ** 2.0)
+
+
 func base_area() -> float:
 	return base_base * base_height / 2.0
+
+
+func bottom_wall_area() -> float:
+	return base_base * height
+
+
+func side_wall_area() -> float:
+	return base_side() * height
 
 
 func scale_vertices() -> void:
