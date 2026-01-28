@@ -83,30 +83,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Load"
 
-[node name="PredefinedHBox" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
-visible = false
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
-layout_mode = 2
-text = "Load a predefined shape"
-
-[node name="ShapeButton" type="OptionButton" parent="HBoxContainer/RightPanel/RightVBox/PredefinedHBox"]
-layout_mode = 2
-
-[node name="LoadLabel2" type="Label" parent="HBoxContainer/RightPanel/RightVBox"]
-visible = false
-layout_mode = 2
-text = "or"
-
-[node name="FromFileHBox" type="HBoxContainer" parent="HBoxContainer/RightPanel/RightVBox"]
-visible = false
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/RightPanel/RightVBox/FromFileHBox"]
-layout_mode = 2
-text = "Load a shape from a file"
-
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
 

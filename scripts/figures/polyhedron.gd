@@ -251,13 +251,10 @@ func calculate_face_area(face_indices: PackedInt32Array) -> float:
 
 	var triangle_count := face_indices.size() - 2
 	# for each triangle in face
-	for i in triangle_count:
-		var index1 := 0 # Poly.triangle_index(i * 3)
-		var index2 := Poly.triangle_index(i * 3 + 1)
-		var index3 := index2 + 1 # Poly.triangle_index(i * 3 + 2)
-		var face_index1 := face_indices[index1]
-		var face_index2 := face_indices[index2]
-		var face_index3 := face_indices[index3]
+	for i in range(triangle_count):
+		var face_index1 := face_indices[0]
+		var face_index2 := face_indices[i + 1]
+		var face_index3 := face_indices[i + 2]
 		var vertex1 := vertices[face_index1]
 		var vertex2 := vertices[face_index2]
 		var vertex3 := vertices[face_index3]
