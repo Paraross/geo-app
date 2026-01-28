@@ -48,10 +48,58 @@ const HEX_PYRAMID_VERTICES: PackedVector3Array = [
 ]
 
 
+func is_face_concave(
+		vertices: PackedVector3Array,
+		face_indices: PackedInt32Array
+) -> bool:
+	# A polygon face is concave if any of its interior angles is greater than 180°
+	# We check this by examining the cross products of consecutive edges
+
+	const EPS := 0.0001
+	var n := face_indices.size()
+
+	if n < 3:
+		return false
+
+	# Calculate the face normal from the first three vertices
+	var v0 := vertices[face_indices[0]]
+	var v1 := vertices[face_indices[1]]
+	var v2 := vertices[face_indices[2]]
+	var face_normal := (v1 - v0).cross(v2 - v1).normalized()
+
+	if face_normal.length() < EPS:
+		return false
+
+	# Check each vertex in the polygon
+	for i in range(n):
+		var p_prev := vertices[face_indices[(i - 1 + n) % n]]
+		var p_curr := vertices[face_indices[i]]
+		var p_next := vertices[face_indices[(i + 1) % n]]
+
+		var edge1 := p_curr - p_prev
+		var edge2 := p_next - p_curr
+
+		# Cross product of consecutive edges
+		var cross := edge1.cross(edge2)
+
+		# If the cross product points in the opposite direction of the face normal,
+		# this vertex forms a concave angle
+		if cross.dot(face_normal) < -EPS:
+			return true
+
+	return false
+
+
 func are_valid_polyhedron_vertices(
 		vertices: PackedVector3Array,
 ) -> bool:
 	var faces := Poly.extract_faces_indices(vertices)
+
+	# Check if any face is concave
+	for face_indices in faces:
+		if is_face_concave(vertices, face_indices):
+			return false
+
 	var edges := Poly.get_edges_from_faces(faces)
 	# Euler's formula for polyhedrons
 	return vertices.size() > 2 and vertices.size() - edges.size() + faces.size() == 2
