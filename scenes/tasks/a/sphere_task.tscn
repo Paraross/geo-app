@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv76bs7wf35xt"]
-
-[ext_resource type="Script" uid="uid://v7pvsd6jaw3k" path="res://scripts/tasks/sphere_task.gd" id="1_1rmag"]
-[ext_resource type="PackedScene" uid="uid://cn3npgvnmgerc" path="res://scenes/figures/sphere.tscn" id="2_xph80"]
-
-[node name="SphereTask" type="Node3D"]
-script = ExtResource("1_1rmag")
-
-[node name="Sphere" parent="." instance=ExtResource("2_xph80")]
