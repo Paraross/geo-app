@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://f2wobln3gv8g"]
 
 [ext_resource type="Script" uid="uid://bnee8638le068" path="res://scripts/screens/task_screen.gd" id="1_ga4ux"]
-[ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="2_4ndmo"]
+[ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/3d/figure_environment.tscn" id="2_4ndmo"]
 
 [sub_resource type="Environment" id="Environment_ga4ux"]
 background_mode = 1

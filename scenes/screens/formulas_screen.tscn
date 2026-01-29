@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://n36w2by6x54e"]
 
 [ext_resource type="Script" uid="uid://b0wykdryvqmi4" path="res://scripts/screens/formulas_screen.gd" id="2_r8gaf"]
-[ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="3_f6t1q"]
+[ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/3d/figure_environment.tscn" id="3_f6t1q"]
 
 [node name="FormulasScreen" type="Control"]
 layout_mode = 3

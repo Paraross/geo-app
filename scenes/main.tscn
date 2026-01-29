@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dbpmn1rgceibd" path="res://scenes/screens/playground_screen.tscn" id="7_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dxd3v5u5weei3" path="res://scenes/screens/main_menu_screen.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://n36w2by6x54e" path="res://scenes/screens/formulas_screen.tscn" id="12_jbj1t"]
-[ext_resource type="PackedScene" uid="uid://rgaehgi5s083" path="res://scenes/screen_with_top_bar.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://rgaehgi5s083" path="res://scenes/ui/screen_with_top_bar.tscn" id="17_muem4"]
 
 [node name="Main" type="Control"]
 layout_mode = 3

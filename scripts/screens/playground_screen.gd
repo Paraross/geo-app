@@ -75,7 +75,7 @@ func reset() -> void:
 
 
 func add_new_vertex_ui_element(x: float, y: float, z: float, vertex_name: String = "") -> VertexUiElement:
-	var vertex_ui_element: VertexUiElement = preload("res://scenes/vertex_ui_element.tscn").instantiate()
+	var vertex_ui_element: VertexUiElement = preload("res://scenes/ui/vertex_ui_element.tscn").instantiate()
 
 	vertex_ui_elements.append(vertex_ui_element)
 	vertices_vbox.add_child(vertex_ui_element)

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ublatk17f74f" path="res://scripts/task_environment.gd" id="1_yqeqd"]
 [ext_resource type="Script" uid="uid://d0ml2eda64idd" path="res://scripts/camera.gd" id="2_iqh5t"]
-[ext_resource type="PackedScene" uid="uid://djsu2ayr7h4by" path="res://scenes/axis_sphere.tscn" id="3_b4a5n"]
-[ext_resource type="PackedScene" uid="uid://c0rkfe12bqbpb" path="res://scenes/axis.tscn" id="4_afo4u"]
+[ext_resource type="PackedScene" uid="uid://djsu2ayr7h4by" path="res://scenes/3d/axis_sphere.tscn" id="3_b4a5n"]
+[ext_resource type="PackedScene" uid="uid://c0rkfe12bqbpb" path="res://scenes/3d/axis.tscn" id="4_afo4u"]
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
 background_mode = 1

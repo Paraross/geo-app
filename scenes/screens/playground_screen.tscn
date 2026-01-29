@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbpmn1rgceibd"]
 
 [ext_resource type="Script" uid="uid://bvt58xko28kd1" path="res://scripts/screens/playground_screen.gd" id="1_icayx"]
-[ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/figure_environment.tscn" id="2_vs2of"]
+[ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/3d/figure_environment.tscn" id="2_vs2of"]
 [ext_resource type="Script" uid="uid://dmk6r1sfe6ut6" path="res://scripts/polyhedron_environment.gd" id="3_dd5n6"]
-[ext_resource type="PackedScene" uid="uid://s2d7puc614cm" path="res://scenes/sync_warning_label.tscn" id="4_uckll"]
+[ext_resource type="PackedScene" uid="uid://s2d7puc614cm" path="res://scenes/ui/sync_warning_label.tscn" id="4_uckll"]
 
 [sub_resource type="Environment" id="Environment_sgqdd"]
 background_mode = 1
@@ -36,7 +36,7 @@ stretch = true
 [node name="ShapeViewport" type="SubViewport" parent="HBoxContainer/ShapeViewportContainer"]
 own_world_3d = true
 handle_input_locally = false
-size = Vector2i(954, 1080)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="PolyhedronEnvironment" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_vs2of")]

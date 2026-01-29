@@ -101,14 +101,14 @@ func create_vertex_spheres(vertex_names: PackedStringArray = []) -> void:
 
 	assert(not use_vertex_names or vertex_names.size() == vertices.size())
 
-	var vertex_sphere_scene: PackedScene = preload("res://scenes/vertex_sphere.tscn")
+	var vertex_sphere_scene: PackedScene = preload("res://scenes/3d/vertex_sphere.tscn")
 	var vertex_sphere_mesh: SphereMesh = preload("res://assets/vertex_mesh.tres")
 
 	for i in range(vertices.size()):
 		var vertex_position := vertices[i]
 		var vertex_sphere: VertexSphere = vertex_sphere_scene.instantiate()
 
-		var label_component_scene: PackedScene = preload("res://scenes/label_component.tscn").duplicate_deep()
+		var label_component_scene: PackedScene = preload("res://scenes/3d/label_component.tscn").duplicate_deep()
 		var label_component: LabelComponent = label_component_scene.instantiate()
 		vertex_sphere.add_child(label_component)
 
@@ -159,7 +159,7 @@ func create_edge_cylinders() -> void:
 
 		var edge_cylinder: Cylinder = edge_cylinder_scene.instantiate()
 
-		var label_component_scene: PackedScene = preload("res://scenes/label_component.tscn").duplicate_deep()
+		var label_component_scene: PackedScene = preload("res://scenes/3d/label_component.tscn").duplicate_deep()
 		var label_component: LabelComponent = label_component_scene.instantiate()
 		edge_cylinder.add_child(label_component)
 

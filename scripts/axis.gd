@@ -12,7 +12,7 @@ extends MeshInstance3D
 
 func _ready() -> void:
 	# NOTE: can be optimized
-	var sphere_mesh_scene: PackedScene = preload("res://scenes/axis_sphere.tscn").duplicate_deep()
+	var sphere_mesh_scene: PackedScene = preload("res://scenes/3d/axis_sphere.tscn").duplicate_deep()
 
 	var pos := start_pos
 	while pos <= end_pos:

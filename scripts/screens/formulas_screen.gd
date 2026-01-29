@@ -80,7 +80,7 @@ func set_step_ui() -> void:
 
 	var i := 1
 	for step in task_environment.task.steps():
-		var step_container_scene: PackedScene = preload("res://scenes/step_container.tscn").duplicate_deep()
+		var step_container_scene: PackedScene = preload("res://scenes/ui/step_container.tscn").duplicate_deep()
 		var step_container: StepContainer = step_container_scene.instantiate()
 		steps_vbox.add_child(step_container)
 		step_container.answer_spinbox.editable = false
