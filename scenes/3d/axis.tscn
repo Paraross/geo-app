@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0rkfe12bqbpb"]
 
-[ext_resource type="Script" uid="uid://bbdr4ph48dwbl" path="res://scripts/axis.gd" id="1_12lcd"]
+[ext_resource type="Script" uid="uid://bbdr4ph48dwbl" path="res://scripts/3d/axis.gd" id="1_12lcd"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jkv2x"]
 top_radius = 0.02

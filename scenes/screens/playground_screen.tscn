@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvt58xko28kd1" path="res://scripts/screens/playground_screen.gd" id="1_icayx"]
 [ext_resource type="PackedScene" uid="uid://ng6j4mjp362o" path="res://scenes/3d/figure_environment.tscn" id="2_vs2of"]
-[ext_resource type="Script" uid="uid://dmk6r1sfe6ut6" path="res://scripts/polyhedron_environment.gd" id="3_dd5n6"]
+[ext_resource type="Script" uid="uid://dmk6r1sfe6ut6" path="res://scripts/3d/polyhedron_environment.gd" id="3_dd5n6"]
 [ext_resource type="PackedScene" uid="uid://s2d7puc614cm" path="res://scenes/ui/sync_warning_label.tscn" id="4_uckll"]
 
 [sub_resource type="Environment" id="Environment_sgqdd"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgqo4sudg00se"]
 
-[ext_resource type="Script" uid="uid://d2t1hej843f7a" path="res://scripts/step_container.gd" id="2_ygrkf"]
+[ext_resource type="Script" uid="uid://d2t1hej843f7a" path="res://scripts/ui/step_container.gd" id="2_ygrkf"]
 [ext_resource type="PackedScene" uid="uid://cu2mkxrb13wyk" path="res://scenes/ui/tip_button.tscn" id="3_f8b1s"]
 
 [node name="StepContainer" type="VBoxContainer"]

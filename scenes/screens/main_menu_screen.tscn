@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://du67yjm7lo0e8" path="res://scripts/screens/main_menu_screen.gd" id="1_sf18h"]
 [ext_resource type="Script" uid="uid://crqyttnj4l7vo" path="res://scripts/components/mouse_focus_component.gd" id="3_3g2hh"]
 [ext_resource type="Script" uid="uid://c6xlyam5vher4" path="res://scripts/components/animation_component.gd" id="4_cs0cy"]
-[ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/quit_button.gd" id="5_kj8vl"]
+[ext_resource type="Script" uid="uid://djsqfgcllvdsy" path="res://scripts/ui/quit_button.gd" id="5_kj8vl"]
 
 [node name="MainMenuScreen" type="Control"]
 layout_mode = 3

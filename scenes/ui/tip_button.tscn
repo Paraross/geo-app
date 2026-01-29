@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cu2mkxrb13wyk"]
 
-[ext_resource type="Script" uid="uid://bcjbn7rhoyel6" path="res://scripts/tip_button.gd" id="1_iw5h1"]
+[ext_resource type="Script" uid="uid://bcjbn7rhoyel6" path="res://scripts/ui/tip_button.gd" id="1_iw5h1"]
 
 [node name="TipButton" type="Button"]
 offset_right = 8.0
