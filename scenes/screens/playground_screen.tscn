@@ -36,7 +36,7 @@ stretch = true
 [node name="ShapeViewport" type="SubViewport" parent="HBoxContainer/ShapeViewportContainer"]
 own_world_3d = true
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(954, 1080)
 render_target_update_mode = 4
 
 [node name="PolyhedronEnvironment" parent="HBoxContainer/ShapeViewportContainer/ShapeViewport" instance=ExtResource("2_vs2of")]
@@ -81,7 +81,7 @@ text = "Load a polyhedron from a file"
 [node name="FromFileButton" type="Button" parent="HBoxContainer/RightPanel/RightVBox/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Load"
+text = "Load file"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightPanel/RightVBox"]
 layout_mode = 2
