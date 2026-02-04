@@ -29,3 +29,10 @@ func niceify_name(task_name: String) -> String:
 
 func deniceify_name(task_name: String) -> String:
 	return task_name.replace(" ", "") + "Task"
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		for task_name in all_tasks:
+			var task := all_tasks[task_name]
+			task.queue_free()

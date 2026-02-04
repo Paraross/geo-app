@@ -104,4 +104,6 @@ func _on_settings_screen_left(to_main_menu: bool) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		await get_tree().process_frame
+		await get_tree().process_frame
 		get_tree().quit()
