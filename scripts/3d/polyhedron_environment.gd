@@ -20,4 +20,5 @@ func load_polyhedron() -> void:
 func unload_polyhedron() -> void:
 	if polyhedron != null:
 		remove_child(polyhedron)
+		polyhedron.queue_free()
 		polyhedron = null
