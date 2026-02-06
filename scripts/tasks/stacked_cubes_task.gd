@@ -1,13 +1,13 @@
 extends Task
 
-var bottom_side_length: TaskFloatValue = TaskFloatValue.with_min_max(2.0, 10.0) \
+var bottom_side_length: TaskFloatValue = TaskFloatValue.new(2.0, 10.0, 4.0, 0) \
 .with_on_set(
 	func() -> void:
 		bottom_cube.side_length = bottom_side_length.value
 		top_cube.position.y = (bottom_side_length.value + top_side_length.value) / 2.0
 )
 
-var top_side_length: TaskFloatValue = TaskFloatValue.with_min_max(1.0, 5.0) \
+var top_side_length: TaskFloatValue = TaskFloatValue.new(1.0, 5.0, 2.0, 0) \
 .with_on_set(
 	func() -> void:
 		top_cube.side_length = top_side_length.value
